@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">JainShaadi</string>
+    <string name="message">Enter text here</string>
 </resources>

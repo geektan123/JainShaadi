@@ -1,0 +1,13 @@
+<!-- text_color_white.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true">
+        <shape>
+            <solid android:color="#FFFFFF" /> <!-- White color for the text -->
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF" /> <!-- White color for the text (default) -->
+        </shape>
+    </item>
+</selector>

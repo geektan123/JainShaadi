@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -22,17 +25,21 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity {
     // Set the dimensions of the sign-in button.
-    SignInButton textView;
+   LinearLayout textView;
     GoogleSignInClient client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
-        textView = findViewById(R.id.sign_in_button);
+        textView = findViewById(R.id.google_sign_in_button);
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -56,11 +63,14 @@ public class Login extends AppCompatActivity {
                     GoogleSignInAccount account = task.getResult(ApiException.class);
 
                     AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
+
                     FirebaseAuth.getInstance().signInWithCredential(credential)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
+
+
                                         Intent intent = new Intent(getApplicationContext(),Profile.class);
                                         startActivity(intent);
                                         Toast.makeText(Login.this," Success", Toast.LENGTH_SHORT).show();
@@ -80,5 +90,4 @@ public class Login extends AppCompatActivity {
             }
 
     }
-
 }
