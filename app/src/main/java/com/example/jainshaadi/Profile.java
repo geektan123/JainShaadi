@@ -82,6 +82,8 @@ public class Profile extends AppCompatActivity {
         layoutfemale = findViewById(R.id.layoutfemale);
         next = findViewById(R.id.Next);
         linearnext = findViewById(R.id.Layoutnext);
+        layoutgayab.setVisibility(View.INVISIBLE);
+
         //my button clic
 
         layout.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +106,8 @@ public class Profile extends AppCompatActivity {
                 layout1.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                 myson.setTextColor(Color.parseColor("#FFFFFF"));
                 layoutgayab.setVisibility(view.INVISIBLE);
+                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                next.setTextColor(Color.parseColor("#FFFFFF"));
 
             }
         });
@@ -115,7 +119,8 @@ public class Profile extends AppCompatActivity {
                 mybro.setTextColor(Color.parseColor("#FFFFFF"));
                 layoutgayab.setVisibility(view.INVISIBLE);
 
-
+                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                next.setTextColor(Color.parseColor("#FFFFFF"));
 
             }
         });
@@ -126,6 +131,8 @@ public class Profile extends AppCompatActivity {
                 layout3.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                 mydaughter.setTextColor(Color.parseColor("#FFFFFF"));
                 layoutgayab.setVisibility(view.INVISIBLE);
+                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                next.setTextColor(Color.parseColor("#FFFFFF"));
 
 
 
@@ -139,6 +146,8 @@ public class Profile extends AppCompatActivity {
                 layout4.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                 mysister.setTextColor(Color.parseColor("#FFFFFF"));
                 layoutgayab.setVisibility(view.INVISIBLE);
+                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                next.setTextColor(Color.parseColor("#FFFFFF"));
 
 
 
@@ -162,7 +171,8 @@ public class Profile extends AppCompatActivity {
 
                 layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                 male.setTextColor(Color.parseColor("#FFFFFF"));
-
+                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                next.setTextColor(Color.parseColor("#FFFFFF"));
 
 
             }
@@ -173,7 +183,8 @@ public class Profile extends AppCompatActivity {
 
                 layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                 female.setTextColor(Color.parseColor("#FFFFFF"));
-
+                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                next.setTextColor(Color.parseColor("#FFFFFF"));
 
 
 
@@ -183,8 +194,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                next.setTextColor(Color.parseColor("#FFFFFF"));
+
                 Intent i = new Intent(getApplicationContext(), Name.class);
                 startActivity(i);
 

@@ -33,11 +33,15 @@
             android:name=".Cast"
             android:exported="false" />
         <activity
-            android:name=".Dob"
-            android:exported="false" />
-        <activity
             android:name=".Name"
             android:exported="false" />
+        <activity
+            android:name=".Dob"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+
+
+            android:exported="true"
+            />
         <activity
             android:name=".Profile"
             android:exported="false" />
