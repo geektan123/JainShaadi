@@ -41,8 +41,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="161dp"
-        android:background="@drawable/rounded_card_background_enabled"
 
+        android:background="@drawable/rounded_card_background_next_disabled"
         android:text="Submit" />
 
 

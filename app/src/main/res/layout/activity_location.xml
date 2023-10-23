@@ -34,7 +34,7 @@
         android:layout_marginTop="96dp"
         android:layout_marginLeft="21dp">
         <Spinner
-         android:id="@+id/spinner1"
+            android:id="@+id/spinner_indian_states"
             android:layout_width="320dp"
             android:layout_height="48dp"
             android:background="@drawable/rounded_card_8_background"
@@ -70,8 +70,8 @@
         android:layout_height="48dp"
         android:layout_marginTop="263dp"
         android:layout_marginLeft="21dp">
-        <EditText
-
+        <Spinner
+            android:id="@+id/spinner_indian_districts"
             android:layout_width="320dp"
             android:layout_height="48dp"
             android:background="@drawable/rounded_card_8_background"

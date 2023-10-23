@@ -1,39 +1,17 @@
 package com.example.jainshaadi;
 
-import static androidx.core.view.ViewCompat.setBackground;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.GradientDrawable;
-import android.media.Image;
 import android.os.Bundle;
-
-
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Profile extends AppCompatActivity {
 
-    boolean clickedmyself = false;
-    boolean clickedmyson = false;
-    boolean clickedmybrother = false;
-    boolean clickedmydaughter = false;
-
+    private LinearLayout selectedLinearLayout = null;
 
     TextView myself;
     TextView myson;
@@ -55,14 +33,13 @@ public class Profile extends AppCompatActivity {
     LinearLayout layoutfemale;
     LinearLayout linearnext;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-
         setContentView(R.layout.activity_profile);
         this.setTitle("Create Profile For");
+
         myself = (TextView) findViewById(R.id.myself);
         myson = findViewById(R.id.Son);
         mybro = findViewById(R.id.Brother);
@@ -71,7 +48,7 @@ public class Profile extends AppCompatActivity {
         myrelative = findViewById(R.id.Relative);
         male = findViewById(R.id.male);
         female = findViewById(R.id.Female);
-        layout = (LinearLayout) findViewById(R.id.layout);
+        layout = findViewById(R.id.layout);
         layoutgayab = findViewById(R.id.Layoutgayab);
         layout1 = findViewById(R.id.Layout1);
         layout2 = findViewById(R.id.Layout2);
@@ -83,123 +60,111 @@ public class Profile extends AppCompatActivity {
         next = findViewById(R.id.Next);
         linearnext = findViewById(R.id.Layoutnext);
         layoutgayab.setVisibility(View.INVISIBLE);
-
-        //my button clic
-
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //change boolean value
-
-                layout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                myself.setTextColor(Color.parseColor("#FFFFFF"));
-                layoutgayab.setVisibility(v.VISIBLE);
-
-
-            }
-        });
-
-        layout1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                layout1.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                myson.setTextColor(Color.parseColor("#FFFFFF"));
-                layoutgayab.setVisibility(view.INVISIBLE);
-                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                next.setTextColor(Color.parseColor("#FFFFFF"));
-
-            }
-        });
-        layout2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                layout2.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                mybro.setTextColor(Color.parseColor("#FFFFFF"));
-                layoutgayab.setVisibility(view.INVISIBLE);
-
-                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                next.setTextColor(Color.parseColor("#FFFFFF"));
-
-            }
-        });
-        layout3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                layout3.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                mydaughter.setTextColor(Color.parseColor("#FFFFFF"));
-                layoutgayab.setVisibility(view.INVISIBLE);
-                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                next.setTextColor(Color.parseColor("#FFFFFF"));
-
-
-
-
-            }
-        });
-        layout4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                layout4.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                mysister.setTextColor(Color.parseColor("#FFFFFF"));
-                layoutgayab.setVisibility(view.INVISIBLE);
-                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                next.setTextColor(Color.parseColor("#FFFFFF"));
-
-
-
-
-            }
-        });
-        layout5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                layout5.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                myrelative.setTextColor(Color.parseColor("#FFFFFF"));
-                layoutgayab.setVisibility(view.VISIBLE);
-
-
-            }
-        });
-        layoutmale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                male.setTextColor(Color.parseColor("#FFFFFF"));
-                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                next.setTextColor(Color.parseColor("#FFFFFF"));
-
-
-            }
-        });
-        layoutfemale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                female.setTextColor(Color.parseColor("#FFFFFF"));
-                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                next.setTextColor(Color.parseColor("#FFFFFF"));
-
-
-
-            }
-        });
         linearnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 Intent i = new Intent(getApplicationContext(), Name.class);
                 startActivity(i);
-
             }
         });
 
+        setLinearLayoutOnClickListener(layout, myself, false);
+        setLinearLayoutOnClickListener(layout1, myson, false);
+        setLinearLayoutOnClickListener(layout2, mybro, false);
+        setLinearLayoutOnClickListener(layout3, mydaughter, false);
+        setLinearLayoutOnClickListener(layout4, mysister, false);
+        setLinearLayoutOnClickListener(layout5, myrelative, false);
+
+        layoutmale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleSelection(layoutmale, male, true);
+            }
+        });
+
+        layoutfemale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleSelection(layoutfemale, female, true);
+            }
+        });
+
+
+    }
+
+    private void setLinearLayoutOnClickListener(final LinearLayout linearLayout, final TextView textView, final boolean isMaleOrFemale) {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (linearLayout == selectedLinearLayout && !isMaleOrFemale) {
+                    // If the same layout is clicked again and it's not male or female, deselect it
+                    linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    textView.setTextColor(Color.parseColor("#756568"));
+                    selectedLinearLayout = null;
+                } else {
+                    // Deselect the previously selected layout (if any)
+                    if (selectedLinearLayout != null) {
+                        if (!isMaleOrFemale) {
+                            selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                            TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
+                            selectedTextView.setTextColor(Color.parseColor("#756568"));
+                        }
+                    }
+
+                    // Select the clicked layout
+                    if (isMaleOrFemale) {
+                        linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                        textView.setTextColor(Color.parseColor("#FFFFFF"));
+                        selectedLinearLayout = linearLayout;
+
+                    } else {
+                        linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                        textView.setTextColor(Color.parseColor("#FFFFFF"));
+                        selectedLinearLayout = linearLayout;
+                    }
+
+                    // Show/hide layoutgayab based on the selected layout
+                    if (linearLayout == layout || linearLayout == layout5) {
+                        layoutgayab.setVisibility(View.VISIBLE);
+                    } else {
+                        layoutgayab.setVisibility(View.INVISIBLE);
+                    }
+                }
+            }
+        });
+    }
+
+    private void handleSelection(LinearLayout linearLayout, TextView textView, boolean isMaleOrFemale) {
+        if (linearLayout == selectedLinearLayout && !isMaleOrFemale) {
+            // If the same layout is clicked again and it's not male or female, deselect it
+            linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+            textView.setTextColor(Color.parseColor("#756568"));
+            selectedLinearLayout = null;
+        } else {
+            // Deselect the previously selected layout (if any)
+            if (selectedLinearLayout != null) {
+                if (!isMaleOrFemale) {
+                    selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
+                    selectedTextView.setTextColor(Color.parseColor("#756568"));
+                }
+
+                // Select the clicked layout
+                if (isMaleOrFemale) {
+                    linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    textView.setTextColor(Color.parseColor("#FFFFFF"));
+                    selectedLinearLayout = linearLayout;
+                } else {
+                    linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    textView.setTextColor(Color.parseColor("#FFFFFF"));
+                    selectedLinearLayout = linearLayout;
+                }
+
+            }
+
+        }
+
+
     }
 }
+

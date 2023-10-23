@@ -56,7 +56,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="219dp">
+        android:layout_marginTop="219dp"
+        android:id="@+id/layout1">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,11 +69,17 @@
 
     </LinearLayout>
 
+
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="250dp"
-        android:layout_marginLeft="21dp">
+        android:layout_marginLeft="21dp"
+        android:id="@+id/layout2"
+        >
         <EditText
 
             android:layout_width="320dp"
@@ -85,7 +92,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="325dp">
+        android:layout_marginTop="325dp"
+        android:id="@+id/layout3">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,7 +109,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="356dp"
-        android:layout_marginLeft="21dp">
+        android:layout_marginLeft="21dp"
+        android:id="@+id/layout4">
         <EditText
 
             android:layout_width="320dp"
@@ -114,7 +123,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="431dp">
+        android:layout_marginTop="431dp"
+        android:id="@+id/layout5">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,7 +140,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="462dp"
-        android:layout_marginLeft="21dp">
+        android:layout_marginLeft="21dp"
+        android:id="@+id/layout6">
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="320dp"
@@ -143,7 +154,8 @@
         android:layout_width="match_parent"
         android:layout_height="17dp"
         android:layout_marginLeft="21dp"
-        android:layout_marginTop="518dp">
+        android:layout_marginTop="518dp"
+        android:id="@+id/layout7">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -158,12 +170,14 @@
             />
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:gravity="center"
         android:layout_marginTop="596dp"
         >
+
         <LinearLayout
             android:layout_width="320dp"
             android:layout_height="48dp"
@@ -175,16 +189,16 @@
             android:id="@+id/Nextlay"
             android:background="@drawable/rounded_card_background_next_disabled"
             >
-
             <TextView
                 android:id="@+id/Nexttext"
-                android:layout_width="473dp"
-                android:layout_height="84dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Next"
-                android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

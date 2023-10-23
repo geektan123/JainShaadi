@@ -20,8 +20,12 @@ import java.util.Calendar;
 public class Dob extends AppCompatActivity {
     TextView date;
     LinearLayout nextlay;
+    LinearLayout layout;
+    LinearLayout layout1;
+
     TextView nexttext;
     String dates;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,11 @@ public class Dob extends AppCompatActivity {
         getSupportActionBar().hide();
         nextlay=findViewById(R.id.Nextlay);
         nexttext=findViewById(R.id.Nexttext);
+        layout=findViewById(R.id.layout);
+        layout1=findViewById(R.id.layout1);
+
+        layout.setVisibility(View.INVISIBLE);
+        layout1.setVisibility(View.INVISIBLE);
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +55,9 @@ public class Dob extends AppCompatActivity {
 
                         //Showing the picked value in the textView
                             date.setText(dates);
+                        layout1.setVisibility(View.VISIBLE);
+
+                        layout.setVisibility(View.VISIBLE);
                     }
                 }, 2000, 01, 20);
 
@@ -90,15 +102,38 @@ public class Dob extends AppCompatActivity {
         nextlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                // Retrieve the username from the Bundle
+                Bundle extras = getIntent().getExtras();
+                if (extras != null) {
+                    String username = extras.getString("username");
+                    // Retrieve the date
+                    String dates = date.getText().toString();
 
-                nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+                    // Retrieve selected values from spinners
+                    Spinner spinner1 = findViewById(R.id.spinner1);
+                    String spinnerValue1 = spinner1.getSelectedItem().toString();
 
-                Intent i = new Intent(getApplicationContext(),Cast.class);
-                startActivity(i);
+                    Spinner spinner2 = findViewById(R.id.spinner2);
+                    String spinnerValue2 = spinner2.getSelectedItem().toString();
 
+                    // Create a new Bundle to pass username, dates, and spinner values
+                    Bundle newBundle = new Bundle();
+                    newBundle.putString("username", username);
+                    newBundle.putString("dates", dates);
+                    newBundle.putString("spinnerValue1", spinnerValue1);
+                    newBundle.putString("spinnerValue2", spinnerValue2);
+
+                    // Create an Intent and add the new Bundle
+                    Intent i = new Intent(getApplicationContext(), Cast.class);
+                    i.putExtras(newBundle);
+
+                    startActivity(i);
+                }
             }
         });
 
+
     }
 }
+
+

@@ -2,6 +2,7 @@ package com.example.jainshaadi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -46,7 +47,7 @@ Button Next;
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String username=editText.getText().toString();
 
-                Next.setBackgroundColor(Color.parseColor("#DC143C"));
+                Next.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
 
                 Next.setTextColor(Color.parseColor("#FFFFFF"));
 
@@ -57,14 +58,23 @@ Button Next;
 
             }
         });
-       Next.setOnClickListener(new View.OnClickListener() {
+        Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
+                String username = editText.getText().toString();
 
+                // Create a Bundle to pass data
+                Bundle bundle = new Bundle();
+                bundle.putString("username", username);
+
+                // Create an Intent and add the Bundle
                 Intent i = new Intent(getApplicationContext(), Dob.class);
-                startActivity(i);
+                i.putExtras(bundle);
 
+                startActivity(i);
             }
         });
     }

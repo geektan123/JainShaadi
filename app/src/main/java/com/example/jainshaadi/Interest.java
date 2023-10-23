@@ -295,8 +295,8 @@ TextView Next;
      public void onClick(View view) {
          layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
          Next.setTextColor(Color.parseColor("#FFFFFF"));
-        /* Intent i = new Intent(getApplicationContext(),welcome_instructions.class);
-         startActivity(i);*/
+        Intent i = new Intent(getApplicationContext(),IncomeActivity.class);
+         startActivity(i);
 
 
      }
