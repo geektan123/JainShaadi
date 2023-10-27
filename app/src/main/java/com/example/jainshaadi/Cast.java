@@ -12,7 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cast extends AppCompatActivity {
     LinearLayout Layout1;
@@ -28,9 +34,12 @@ public class Cast extends AppCompatActivity {
     String subcategory;
     String username;
     String dates;
-    String spinnerValue1;
-    String spinnerValue2;
+    String Height;
+
     String spinners;
+    private String selectedText;
+    private String Gender;
+    private String Age;
 
 
     @Override
@@ -50,11 +59,19 @@ public class Cast extends AppCompatActivity {
         Layout3.setVisibility(View.INVISIBLE);
         Layout4.setVisibility(View.INVISIBLE);
         Layout5.setVisibility(View.INVISIBLE);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         Layout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 category = "Digamber";
+                String userKey = FirebaseAuth.getInstance().getUid();
+
+                DatabaseReference userRef = databaseReference.child(userKey);
+                Map<String, Object> updateData = new HashMap<>();
+                updateData.put("Category", category);
+
+                userRef.updateChildren(updateData);
                 Layout1.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                 Digamber.setTextColor(Color.parseColor("#FFFFFF"));
                 Layout3.setVisibility(View.VISIBLE);
@@ -67,6 +84,13 @@ public class Cast extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 subcategory = "Shwetamber";
+                String userKey = FirebaseAuth.getInstance().getUid();
+
+                DatabaseReference userRef = databaseReference.child(userKey);
+                Map<String, Object> updateData = new HashMap<>();
+                updateData.put("Category", subcategory);
+
+                userRef.updateChildren(updateData);
                 Layout2.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                 Svetamber.setTextColor(Color.parseColor("#FFFFFF"));
             }
@@ -75,6 +99,7 @@ public class Cast extends AppCompatActivity {
         Spinner spin = findViewById(R.id.spinner1);
         ArrayList<String> arrayAdapter1 = new ArrayList<>();
         arrayAdapter1.add("Digamber - Agrawal");
+        arrayAdapter1.add("Svetamber - Agrawal");
         ArrayAdapter<String> arrayAdapter6 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayAdapter1);
         arrayAdapter6.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin.setAdapter(arrayAdapter6);
@@ -84,6 +109,15 @@ public class Cast extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 // Get the selected value from the spinner
                 spinners = arrayAdapter1.get(position);
+                nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+                String userKey = FirebaseAuth.getInstance().getUid();
+
+                DatabaseReference userRef = databaseReference.child(userKey);
+                Map<String, Object> updateData = new HashMap<>();
+                updateData.put("Subcategory", spinners);
+                userRef.updateChildren(updateData);
+
             }
 
             @Override
@@ -96,24 +130,25 @@ public class Cast extends AppCompatActivity {
         nextlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+
 
                 // Create a Bundle to pass data to the next activity
-                Bundle dataBundle = new Bundle();
+                Bundle bundle = new Bundle();
 
-                dataBundle.putString("below category", spinners);
+                bundle.putString("below category", spinners);
 
-                dataBundle.putString("category", category);
-                dataBundle.putString("subcategory", subcategory);
-                dataBundle.putString("username", username);
-                dataBundle.putString("dates", dates);
-                dataBundle.putString("spinnerValue1", spinnerValue1);
-                dataBundle.putString("spinnerValue2", spinnerValue2);
+                bundle.putString("category", category);
+                bundle.putString("subcategory", subcategory);
+                bundle.putString("username", username);
+                bundle.putString("Account managed by", selectedText);
+                bundle.putString("Gender", Gender);
+                bundle.putString("Height", Height);
+                bundle.putString("DOB", dates);
+                bundle.putString("Age", Age);
 
                 // Create an Intent and add the Bundle
                 Intent i = new Intent(getApplicationContext(), LocationActivity.class);
-                i.putExtras(dataBundle);
+                i.putExtras(bundle);
 
                 startActivity(i);
             }
@@ -124,8 +159,12 @@ public class Cast extends AppCompatActivity {
         if (extras != null) {
             username = extras.getString("username");
             dates = extras.getString("dates");
-            spinnerValue1 = extras.getString("spinnerValue1");
-            spinnerValue2 = extras.getString("spinnerValue2");
+            Height = extras.getString("Height");
+           Age= extras.getString("Age");
+
+            selectedText=extras.getString("selectedText");
+
+            Gender=extras.getString("Gender");
         }
     }
 }

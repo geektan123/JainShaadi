@@ -6,12 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class Profile extends AppCompatActivity {
 
     private LinearLayout selectedLinearLayout = null;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+    private boolean gender = true; // Initialize with a default value (true for Male, false for Female)
+
 
     TextView myself;
     TextView myson;
@@ -32,6 +42,7 @@ public class Profile extends AppCompatActivity {
     LinearLayout layoutmale;
     LinearLayout layoutfemale;
     LinearLayout linearnext;
+    boolean isMale = false; // Initialize the gender flag
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,111 +71,350 @@ public class Profile extends AppCompatActivity {
         next = findViewById(R.id.Next);
         linearnext = findViewById(R.id.Layoutnext);
         layoutgayab.setVisibility(View.INVISIBLE);
-        linearnext.setOnClickListener(new View.OnClickListener() {
+        Bundle bundle = new Bundle();
+
+
+        layout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), Name.class);
-                startActivity(i);
+            public void onClick(View v) {
+                if (layout == selectedLinearLayout) {
+                    layout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    myself.setTextColor(Color.parseColor("#756568"));
+                    selectedLinearLayout = null;
+                } else {
+                    if (selectedLinearLayout != null) {
+                        selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                        TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
+                        selectedTextView.setTextColor(Color.parseColor("#756568"));
+                    }
+                    layoutgayab.setVisibility(View.VISIBLE);
+                    layout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    myself.setTextColor(Color.parseColor("#FFFFFF"));
+                    selectedLinearLayout = layout;
+
+                    layoutmale.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (!isMale) {
+                                layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                                male.setTextColor(Color.parseColor("#FFFFFF"));
+                                layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                                female.setTextColor(Color.parseColor("#756568"));
+                                String selectedText = myself.getText().toString();
+                                String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
+
+                                HashMap<String, Object> userData = new HashMap<>();
+                                userData.put("Account Managed for", selectedText);
+                                String gender = "Male";
+
+                                userData.put("Gender", gender);
+                                databaseReference.child(userKey).setValue(userData);
+
+                                isMale = true; // Set gender flag to true
+                            }
+                        }
+                    });
+
+                    layoutfemale.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (isMale) {
+                                layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                                female.setTextColor(Color.parseColor("#FFFFFF"));
+                                layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                                male.setTextColor(Color.parseColor("#756568"));
+                                String selectedText = myself.getText().toString();
+
+                                String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
+
+                                HashMap<String, Object> userData = new HashMap<>();
+                                userData.put("Account Managed for", selectedText);
+                                String gender = "Female";
+
+                                userData.put("Gender", gender);
+                                databaseReference.child(userKey).setValue(userData);
+
+                                isMale = false; // Set gender flag to false
+                            }
+                        }
+                    });
+
+
+
+
+                }
+
             }
         });
 
-        setLinearLayoutOnClickListener(layout, myself, false);
-        setLinearLayoutOnClickListener(layout1, myson, false);
-        setLinearLayoutOnClickListener(layout2, mybro, false);
-        setLinearLayoutOnClickListener(layout3, mydaughter, false);
-        setLinearLayoutOnClickListener(layout4, mysister, false);
-        setLinearLayoutOnClickListener(layout5, myrelative, false);
 
-        layoutmale.setOnClickListener(new View.OnClickListener() {
+        layout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleSelection(layoutmale, male, true);
+                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                next.setTextColor(Color.parseColor("#FFFFFF"));
+                if (layout1 == selectedLinearLayout && !false) {
+                    layout1.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    myson.setTextColor(Color.parseColor("#756568"));
+                    selectedLinearLayout = null;
+                } else {
+                    if (selectedLinearLayout != null) {
+                        selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                        TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
+                        selectedTextView.setTextColor(Color.parseColor("#756568"));
+                    }
+                    layoutgayab.setVisibility(View.INVISIBLE);
+
+                    layout1.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    myson.setTextColor(Color.parseColor("#FFFFFF"));
+                    selectedLinearLayout = layout1;
+
+                }
+                String selectedText = myson.getText().toString();
+
+                String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
+
+                HashMap<String, Object> userData = new HashMap<>();
+                userData.put("Account Managed for", selectedText);
+                String gender = "Male";
+
+                userData.put("Gender", gender);
+
+                databaseReference.child(userKey).setValue(userData);
+            }
+        });
+
+        layout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                next.setTextColor(Color.parseColor("#FFFFFF"));
+                if (layout2 == selectedLinearLayout && !false) {
+                    layout2.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    mybro.setTextColor(Color.parseColor("#756568"));
+                    selectedLinearLayout = null;
+                } else {
+                    if (selectedLinearLayout != null) {
+                        selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                        TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
+                        selectedTextView.setTextColor(Color.parseColor("#756568"));
+                    }
+                    layoutgayab.setVisibility(View.INVISIBLE);
+
+                    layout2.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    mybro.setTextColor(Color.parseColor("#FFFFFF"));
+                    selectedLinearLayout = layout2;
+                }
+                String selectedText = mybro.getText().toString();
+                String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
+
+                HashMap<String, Object> userData = new HashMap<>();
+                userData.put("Account Managed for", selectedText);
+
+                String gender = "Male";
+
+                userData.put("Gender", gender);
+
+                databaseReference.child(userKey).setValue(userData);
+            }
+        });
+        layout3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                next.setTextColor(Color.parseColor("#FFFFFF"));
+                if (layout3 == selectedLinearLayout && !false) {
+                    layout3.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    mydaughter.setTextColor(Color.parseColor("#756568"));
+                    selectedLinearLayout = null;
+                } else {
+                    if (selectedLinearLayout != null) {
+                        selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                        TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
+                        selectedTextView.setTextColor(Color.parseColor("#756568"));
+                    }
+                    layoutgayab.setVisibility(View.INVISIBLE);
+
+                    layout3.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    mydaughter.setTextColor(Color.parseColor("#FFFFFF"));
+                    selectedLinearLayout = layout3;
+                }
+
+                String selectedText = mydaughter.getText().toString();
+                String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
+
+                HashMap<String, Object> userData = new HashMap<>();
+                userData.put("Account Managed for", selectedText);
+                String gender = "Female";
+
+                userData.put("Gender", gender);
+
+                databaseReference.child(userKey).setValue(userData);
+            }
+        });
+
+        layout4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                next.setTextColor(Color.parseColor("#FFFFFF"));
+                if (layout4 == selectedLinearLayout && !false) {
+                    layout4.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    mysister.setTextColor(Color.parseColor("#756568"));
+                    selectedLinearLayout = null;
+                } else {
+                    if (selectedLinearLayout != null) {
+                        selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                        TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
+                        selectedTextView.setTextColor(Color.parseColor("#756568"));
+                    }
+                    layoutgayab.setVisibility(View.INVISIBLE);
+
+                    layout4.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    mysister.setTextColor(Color.parseColor("#FFFFFF"));
+                    selectedLinearLayout = layout4;
+                }
+                String selectedText = mysister.getText().toString();
+                // Assuming you have a reference to your Firebase Database
+                String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
+
+                HashMap<String, Object> userData = new HashMap<>();
+                userData.put("Account Managed for", selectedText);
+                String gender = "Female";
+
+                userData.put("Gender", gender);
+
+                databaseReference.child(userKey).setValue(userData);
+
+            }
+        });
+
+        layout5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (layout5 == selectedLinearLayout && !false) {
+                    layout5.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    myrelative.setTextColor(Color.parseColor("#756568"));
+                    selectedLinearLayout = null;
+                } else {
+                    if (selectedLinearLayout != null) {
+                        selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                        TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
+                        selectedTextView.setTextColor(Color.parseColor("#756568"));
+                    }
+                    layout5.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    myrelative.setTextColor(Color.parseColor("#FFFFFF"));
+                    selectedLinearLayout = layout5;
+                    layoutgayab.setVisibility(View.VISIBLE);
+                    layoutmale.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (!isMale) {
+                                layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                                male.setTextColor(Color.parseColor("#FFFFFF"));
+                                layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                                female.setTextColor(Color.parseColor("#756568"));
+                                String selectedText = myself.getText().toString();
+                                String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
+
+                                HashMap<String, Object> userData = new HashMap<>();
+                                userData.put("Account Managed for", selectedText);
+                                String gender = "Male";
+
+                                userData.put("Gender", gender);
+                                databaseReference.child(userKey).setValue(userData);
+
+                                isMale = true; // Set gender flag to true
+                            }
+                        }
+                    });
+
+                    layoutfemale.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (isMale) {
+                                layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                                female.setTextColor(Color.parseColor("#FFFFFF"));
+                                layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                                male.setTextColor(Color.parseColor("#756568"));
+                                String selectedText = myself.getText().toString();
+
+                                String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
+
+                                HashMap<String, Object> userData = new HashMap<>();
+                                userData.put("Account Managed for", selectedText);
+                                String gender = "Female";
+
+                                userData.put("Gender", gender);
+                                databaseReference.child(userKey).setValue(userData);
+
+                                isMale = false; // Set gender flag to false
+                            }
+                        }
+                    });
+
+
+                }
+                String selectedText = myrelative.getText().toString();
+                bundle.putString("SelectedText", selectedText);
+            }
+        });
+      /*  layoutmale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (layoutmale == selectedLinearLayout) {
+                    layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    male.setTextColor(Color.parseColor("#756568"));
+                    selectedLinearLayout = null;
+                } else {
+                    if (selectedLinearLayout != null) {
+                        selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                        TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
+                        selectedTextView.setTextColor(Color.parseColor("#756568"));
+                    }
+                    layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    male.setTextColor(Color.parseColor("#FFFFFF"));
+                    selectedLinearLayout = layoutmale;
+                }
+                String gender = "Male";
+                bundle.putString("Gender", gender);
             }
         });
 
         layoutfemale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleSelection(layoutfemale, female, true);
-            }
-        });
-
-
-    }
-
-    private void setLinearLayoutOnClickListener(final LinearLayout linearLayout, final TextView textView, final boolean isMaleOrFemale) {
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (linearLayout == selectedLinearLayout && !isMaleOrFemale) {
-                    // If the same layout is clicked again and it's not male or female, deselect it
-                    linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
-                    textView.setTextColor(Color.parseColor("#756568"));
+                if (layoutfemale == selectedLinearLayout) {
+                    layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    female.setTextColor(Color.parseColor("#756568"));
                     selectedLinearLayout = null;
                 } else {
-                    // Deselect the previously selected layout (if any)
                     if (selectedLinearLayout != null) {
-                        if (!isMaleOrFemale) {
-                            selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
-                            TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
-                            selectedTextView.setTextColor(Color.parseColor("#756568"));
-                        }
+                        selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                        TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
+                        selectedTextView.setTextColor(Color.parseColor("#756568"));
                     }
-
-                    // Select the clicked layout
-                    if (isMaleOrFemale) {
-                        linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                        textView.setTextColor(Color.parseColor("#FFFFFF"));
-                        selectedLinearLayout = linearLayout;
-
-                    } else {
-                        linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                        textView.setTextColor(Color.parseColor("#FFFFFF"));
-                        selectedLinearLayout = linearLayout;
-                    }
-
-                    // Show/hide layoutgayab based on the selected layout
-                    if (linearLayout == layout || linearLayout == layout5) {
-                        layoutgayab.setVisibility(View.VISIBLE);
-                    } else {
-                        layoutgayab.setVisibility(View.INVISIBLE);
-                    }
+                    layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    female.setTextColor(Color.parseColor("#FFFFFF"));
+                    selectedLinearLayout = layoutfemale;
                 }
+                String gender = "Female";
+                bundle.putString("Gender", gender);
+
+            }
+        });*/
+        linearnext.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(getApplicationContext(), Name.class);
+
+                 // Add this line to attach the bundle
+                startActivity(i);
+
             }
         });
-    }
-
-    private void handleSelection(LinearLayout linearLayout, TextView textView, boolean isMaleOrFemale) {
-        if (linearLayout == selectedLinearLayout && !isMaleOrFemale) {
-            // If the same layout is clicked again and it's not male or female, deselect it
-            linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
-            textView.setTextColor(Color.parseColor("#756568"));
-            selectedLinearLayout = null;
-        } else {
-            // Deselect the previously selected layout (if any)
-            if (selectedLinearLayout != null) {
-                if (!isMaleOrFemale) {
-                    selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
-                    TextView selectedTextView = (TextView) selectedLinearLayout.getChildAt(0);
-                    selectedTextView.setTextColor(Color.parseColor("#756568"));
-                }
-
-                // Select the clicked layout
-                if (isMaleOrFemale) {
-                    linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                    textView.setTextColor(Color.parseColor("#FFFFFF"));
-                    selectedLinearLayout = linearLayout;
-                } else {
-                    linearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                    textView.setTextColor(Color.parseColor("#FFFFFF"));
-                    selectedLinearLayout = linearLayout;
-                }
-
-            }
-
-        }
-
 
     }
 }
-

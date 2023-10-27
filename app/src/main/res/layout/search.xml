@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF9FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13.76dp"
+        android:layout_marginHorizontal="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Find Your Partner"
+            android:textColor="#271116"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="61.76dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/rounded_card_white_background"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/search_page_pic"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="18dp" />
+
+        <LinearLayout
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="21dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Verify Your Profile"
+                android:textColor="#271116"
+                android:textSize="18dp"
+                android:gravity="right" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To start messaging"
+                android:textColor="#3D2429"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"
+                android:gravity="right" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginTop="36dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="29dp"
+                    android:background="@drawable/rounded_card_background_enabled"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:text="Start Now"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginVertical="6dp"
+                        android:gravity="center" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="228.76dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_card_white_background"
+            android:gravity="center"
+            android:layout_marginHorizontal="8dp"
+            android:id="@+id/digamber">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Digmaber"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_card_white_background"
+            android:gravity="center"
+            android:layout_gravity="right"
+            android:layout_marginHorizontal="8dp"
+            android:id="@+id/shwetamber">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Swetambar"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="395.76dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_card_white_background"
+            android:gravity="center"
+            android:layout_marginHorizontal="8dp"
+            android:id="@+id/location">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_card_white_background"
+            android:gravity="center"
+            android:layout_gravity="right"
+            android:layout_marginHorizontal="8dp"
+            android:id="@+id/interest">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interest"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

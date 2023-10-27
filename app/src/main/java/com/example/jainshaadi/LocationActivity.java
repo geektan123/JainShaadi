@@ -38,6 +38,11 @@ TextView Nexttext;
     private String spinners;
     private String category;
     private String subcategory;
+    private String Height;
+    private String Age;
+    private String selectedText;
+    private String Gender;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +197,10 @@ TextView Nexttext;
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             selectedDistrict = districtSpinner.getSelectedItem().toString();
 
+                            NextLay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+
+                            Nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+
                         }
 
                         @Override
@@ -210,11 +219,16 @@ TextView Nexttext;
         if (extras != null) {
              username = extras.getString("username");
             dates = extras.getString("dates");
-            spinnerValue1 = extras.getString("spinnerValue1");
-            spinnerValue2 = extras.getString("spinnerValue2");
+
             spinners = extras.getString("spinners");
             category = extras.getString("category");
             subcategory = extras.getString("subcategory");
+            Height = extras.getString("Height");
+            Age= extras.getString("Age");
+
+            selectedText=extras.getString("selectedText");
+
+            Gender=extras.getString("Gender");
 
 
         }
@@ -224,23 +238,42 @@ TextView Nexttext;
         NextLay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NextLay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                Bundle bundle = new Bundle();
 
-                Nexttext.setTextColor(Color.parseColor("#FFFFFF"));
-                Bundle dataBundle = new Bundle();
+                bundle.putString("below category", spinners);
 
-                dataBundle.putString("below category", spinners);
+                bundle.putString("category", category);
+                bundle.putString("subcategory", subcategory);
+                bundle.putString("username", username);
+                bundle.putString("Account managed by", selectedText);
+                bundle.putString("Gender", Gender);
+                bundle.putString("Height", Height);
+                bundle.putString("DOB", dates);
+                bundle.putString("Age", Age);
+                String userKey = FirebaseAuth.getInstance().getUid();
 
-                dataBundle.putString("category", category);
-                dataBundle.putString("subcategory", subcategory);
-                dataBundle.putString("username", username);
-                dataBundle.putString("dates", dates);
-                dataBundle.putString("spinnerValue1", spinnerValue1);
-                dataBundle.putString("spinnerValue2", spinnerValue2);
-                dataBundle.putString("selectedState", selectedState);
-                dataBundle.putString("selectedDistrict", selectedDistrict);
-                //String uid = FirebaseAuth.getInstance().getCurrentUser() != null ? FirebaseAuth.getInstance().getCurrentUser().getUid() : null;
+                DatabaseReference userRef = databaseReference.child(userKey);
+                Map<String, Object> updateData = new HashMap<>();
+                updateData.put("State", selectedState);
+                updateData.put("City", selectedDistrict);
 
+                userRef.updateChildren(updateData);
+
+                // Create an Intent and add the Bundle
+                Intent i = new Intent(getApplicationContext(), Interest.class);
+                i.putExtras(bundle);
+
+                startActivity(i);
+            }
+        });
+
+        // Retrieve data from the previous activity
+
+    }
+}
+
+    //String uid = FirebaseAuth.getInstance().getCurrentUser() != null ? FirebaseAuth.getInstance().getCurrentUser().getUid() : null;
+/*
 
                 DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
 
@@ -271,6 +304,4 @@ TextView Nexttext;
 
             }
 
-        });
-    }
-}
+        });*/

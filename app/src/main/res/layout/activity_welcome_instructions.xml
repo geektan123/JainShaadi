@@ -166,7 +166,7 @@
     </TextView>
 
     <LinearLayout
-        android:id="@+id/i_agree_btn"
+        android:id="@+id/Nextlay"
         android:layout_width="320dp"
         android:layout_height="48.56dp"
         android:paddingLeft="16dp"
@@ -187,6 +187,7 @@
             android:layout_gravity="start"
             android:text="I Agree"
             android:textSize="16dp"
+            android:id="@+id/Nexttext"
             android:textColor="#FFFFFF"
             />
     </LinearLayout>

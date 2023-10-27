@@ -7,15 +7,22 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Dob extends AppCompatActivity {
     TextView date;
@@ -25,6 +32,7 @@ public class Dob extends AppCompatActivity {
 
     TextView nexttext;
     String dates;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +60,8 @@ public class Dob extends AppCompatActivity {
                         String dates= DateFormat.getDateInstance().format(calendar.getTime());
 
 
-
                         //Showing the picked value in the textView
-                            date.setText(dates);
+                        date.setText(dates);
                         layout1.setVisibility(View.VISIBLE);
 
                         layout.setVisibility(View.VISIBLE);
@@ -77,8 +84,8 @@ public class Dob extends AppCompatActivity {
 
         arrayAdapter.add("8 Feet");
         ArrayAdapter<String>arrayAdapter5=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,arrayAdapter);
-            arrayAdapter5.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
-            spinner.setAdapter(arrayAdapter5);
+        arrayAdapter5.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+        spinner.setAdapter(arrayAdapter5);
         Spinner spin=findViewById(R.id.spinner2);
         ArrayList<String>arrayAdapter1=new ArrayList<>();
         arrayAdapter1.add("0 Inch");
@@ -103,9 +110,9 @@ public class Dob extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Retrieve the username from the Bundle
-                Bundle extras = getIntent().getExtras();
+             /*   Bundle extras = getIntent().getExtras();
                 if (extras != null) {
-                    String username = extras.getString("username");
+                    String username = extras.getString("username");*/
                     // Retrieve the date
                     String dates = date.getText().toString();
 
@@ -115,25 +122,46 @@ public class Dob extends AppCompatActivity {
 
                     Spinner spinner2 = findViewById(R.id.spinner2);
                     String spinnerValue2 = spinner2.getSelectedItem().toString();
+                spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                        nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                        // Do nothing
+                    }
+                });
+
+
+                String userKey = FirebaseAuth.getInstance().getUid();
+
+                DatabaseReference userRef = databaseReference.child(userKey);
+                Map<String, Object> updateData = new HashMap<>();
+                updateData.put("DateOfBirth", dates);
+                    updateData.put("Height", spinnerValue1+" "+spinnerValue2);
+
+                    userRef.updateChildren(updateData);
 
                     // Create a new Bundle to pass username, dates, and spinner values
-                    Bundle newBundle = new Bundle();
+                  /*  Bundle newBundle = new Bundle();
                     newBundle.putString("username", username);
                     newBundle.putString("dates", dates);
                     newBundle.putString("spinnerValue1", spinnerValue1);
                     newBundle.putString("spinnerValue2", spinnerValue2);
-
+*/
                     // Create an Intent and add the new Bundle
                     Intent i = new Intent(getApplicationContext(), Cast.class);
-                    i.putExtras(newBundle);
+                 //   i.putExtras(newBundle);
 
                     startActivity(i);
                 }
-            }
+
         });
 
 
     }
 }
-
 

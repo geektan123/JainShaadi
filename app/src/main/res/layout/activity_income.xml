@@ -81,7 +81,7 @@
         android:id="@+id/layout2"
         >
         <EditText
-
+       android:id="@+id/Role"
             android:layout_width="320dp"
             android:layout_height="48dp"
             android:background="@drawable/rounded_card_8_background"
@@ -112,6 +112,7 @@
         android:layout_marginLeft="21dp"
         android:id="@+id/layout4">
         <EditText
+            android:id="@+id/Company"
 
             android:layout_width="320dp"
             android:layout_height="48dp"

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +15,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JainShaadi"
         tools:targetApi="31">
-      
+        <activity
+            android:name=".ImageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchFilter"
+            android:exported="false" />
+        <activity
+            android:name=".Search"
+            android:exported="false" />
+        <activity
+            android:name=".MyProfile"
+            android:exported="false" />
+        <activity
+            android:name=".SaveProfileDisplay"
+            android:exported="false" />
+        <activity
+            android:name=".ViewProfile"
+            android:exported="false" />
+        <activity
+            android:name=".CardItem"
+            android:exported="false" />
+        <activity
+            android:name=".CardAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".Homeactivity"
+            android:exported="false" />
         <activity
             android:name=".welcome_instructions"
             android:exported="false" />

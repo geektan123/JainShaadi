@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF1F3"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFAFB">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:padding="12dp"
+                android:gravity="center_horizontal">
+                <LinearLayout
+                    android:layout_width="158dp"
+                    android:layout_height="29dp"
+                    android:layout_marginRight="74dp"
+                    android:layout_weight="1"
+                    >
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/back_button"
+                        android:layout_marginRight="11dp"
+                        android:layout_gravity="center_vertical"/>
+                    <TextView
+                        android:layout_width="118dp"
+                        android:layout_height="29dp"
+                        android:text="Saved"
+                        android:textSize="24dp"
+                        android:textColor="#3D2429"
+                        android:textStyle="bold"
+                        android:gravity="left"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="64dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="right"
+                    android:id="@+id/saved">
+                    <ImageView
+
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:src="@drawable/save_icon"
+                        android:layout_marginRight="11dp"/>
+                    <ImageView
+
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:src="@drawable/notification_icon"
+                        android:layout_marginRight="11dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- RecyclerView for Card Items -->
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_marginTop="53dp"
+        android:layout_marginBottom="67dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF1F3"
+        tools:context=".SaveProfileDisplay"
+        >
+
+        <!-- Add a FrameLayout to wrap both RecyclerView and your existing content -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!-- Add any other views or content you want to display -->
+
+        </FrameLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
+    <!-- Buttons Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingHorizontal="28dp"
+        android:paddingVertical="12dp"
+        android:gravity="center"
+        android:background="#FFFAFB"
+
+        >
+
+        <GridLayout
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:rowCount="2"
+            android:columnCount="1"
+            android:layout_weight="1"
+
+            >
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/home"
+                android:layout_marginRight="11dp"
+                android:id="@+id/home"/>
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:rowCount="2"
+            android:columnCount="1"
+            android:layout_weight="1"
+
+            >
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/search"
+                android:layout_marginRight="11dp"
+                android:id="@+id/search"/>
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:rowCount="2"
+            android:columnCount="1"
+            android:layout_weight="1"
+
+            >
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/message"
+                android:layout_marginRight="11dp"
+                android:id="@+id/chat"/>
+
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:rowCount="2"
+            android:columnCount="1"
+            android:id="@+id/my_profile"
+
+            >
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/profile"
+                android:layout_marginRight="11dp"/>
+
+
+        </GridLayout>
+    </LinearLayout>
+</RelativeLayout>

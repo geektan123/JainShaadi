@@ -8,16 +8,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class IncomeActivity extends AppCompatActivity {
- Spinner spin;
- Spinner spin1;
- LinearLayout Next;
+    Spinner spin;
+    Spinner spin1;
+
+    LinearLayout Next;
     LinearLayout layout1;
     LinearLayout layout2;
     LinearLayout layout3;
@@ -25,23 +32,30 @@ public class IncomeActivity extends AppCompatActivity {
     LinearLayout layout5;
     LinearLayout layout6;
     LinearLayout layout7;
+    EditText Role;
+    EditText Company;
 
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
     TextView nexttext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_income);
-        spin=findViewById(R.id.spinner1);
-        layout1=findViewById(R.id.layout1);
-        layout2=findViewById(R.id.layout2);
-        layout3=findViewById(R.id.layout3);
-        layout4=findViewById(R.id.layout4);
-        layout5=findViewById(R.id.layout5);
-        layout6=findViewById(R.id.layout6);
-        layout7=findViewById(R.id.layout7);
+        spin = findViewById(R.id.spinner1);
+        layout1 = findViewById(R.id.layout1);
+        layout2 = findViewById(R.id.layout2);
+        layout3 = findViewById(R.id.layout3);
+        layout4 = findViewById(R.id.layout4);
+        layout5 = findViewById(R.id.layout5);
+        layout6 = findViewById(R.id.layout6);
+        layout7 = findViewById(R.id.layout7);
+        Role = findViewById(R.id.Role);
+        Company = findViewById(R.id.Company);
+
      /*   layout1.setVisibility(View.INVISIBLE);
         layout2.setVisibility(View.INVISIBLE);
         layout3.setVisibility(View.INVISIBLE);
@@ -62,17 +76,17 @@ public class IncomeActivity extends AppCompatActivity {
             }
         });*/
 
-        ArrayList<String> arrayAdapter1=new ArrayList<>();
+        ArrayList<String> arrayAdapter1 = new ArrayList<>();
         arrayAdapter1.add("Private Company");
         arrayAdapter1.add("Government Company");
         arrayAdapter1.add("Startup");
-        ArrayAdapter<String> arrayAdapter6=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,arrayAdapter1);
+        ArrayAdapter<String> arrayAdapter6 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayAdapter1);
         arrayAdapter6.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin.setAdapter(arrayAdapter6);
 
 
-              spin1 = findViewById(R.id.spinner2);
-        ArrayList<String> arrayAdapter2=new ArrayList<>();
+        spin1 = findViewById(R.id.spinner2);
+        ArrayList<String> arrayAdapter2 = new ArrayList<>();
         arrayAdapter2.add("Below 1 Lakh");
         arrayAdapter2.add("1 Lakh to 3 Lakh");
         arrayAdapter2.add("3 Lakhs to 6 Lakh");
@@ -80,23 +94,46 @@ public class IncomeActivity extends AppCompatActivity {
         arrayAdapter2.add("9 Lakhs to 12 Lakh");
 
 
-        ArrayAdapter<String> arrayAdapter7=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,arrayAdapter2);
+        ArrayAdapter<String> arrayAdapter7 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayAdapter2);
         arrayAdapter7.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin1.setAdapter(arrayAdapter7);
-        Next=findViewById(R.id.Nextlay);
-        nexttext=findViewById(R.id.Nexttext);
-        Next.setOnClickListener(new View.OnClickListener() {
+       /* spin1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Next.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
 
                 nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+            }
+        });*/
+        Next = findViewById(R.id.Nextlay);
+        nexttext = findViewById(R.id.Nexttext);
+
+
+        Next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text;
+                String text1;
+
+                String spinner1Value = spin.getSelectedItem().toString();
+                String spinner2Value = spin1.getSelectedItem().toString();
+                text = Role.getText().toString(); // This will fetch the text from the EditText as a String
+                text1 = Company.getText().toString(); // This will fetch the text from the EditText as a String
+
+                HashMap<String, Object> incomeData = new HashMap<>();
+                incomeData.put("IncomeType", spinner1Value);
+                incomeData.put("IncomeRange", spinner2Value);
+                incomeData.put("Role", text);
+                incomeData.put("Company", text1);
+                String userKey = FirebaseAuth.getInstance().getUid();
+
+                // Update user data in Firebase
+                databaseReference.child(userKey).updateChildren(incomeData);
+
                 Intent i = new Intent(getApplicationContext(), DescribeActivity.class);
                 startActivity(i);
-
             }
-
         });
+
     }
 }
-
