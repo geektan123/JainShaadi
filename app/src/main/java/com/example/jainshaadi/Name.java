@@ -25,11 +25,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class Name extends AppCompatActivity {
-LinearLayout nextlay;
-TextView nexttext;
-EditText editText;
-Button Next;
+    LinearLayout nextlay;
+    TextView nexttext;
+    EditText editText;
+    Button Next;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+    private boolean isNameEntered = false;
 
 
     @Override
@@ -38,13 +39,14 @@ Button Next;
         setContentView(R.layout.activity_name);
         getSupportActionBar().hide();
 
-        editText=findViewById(R.id.editText);
-        String txt=editText.getText().toString();
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+        editText = findViewById(R.id.editText);
+        String txt = editText.getText().toString();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         editText.requestFocus();
-        InputMethodManager inputMethodManager=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
-        Next=findViewById(R.id.submitButton);
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        Next = findViewById(R.id.submitButton);
         Bundle bunde = getIntent().getExtras();
 
         editText.addTextChangedListener(new TextWatcher() {
@@ -56,7 +58,14 @@ Button Next;
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String username=editText.getText().toString();
+                String username = editText.getText().toString();
+                if (!username.isEmpty()) {
+                    Next.setEnabled(true); // Enable the Next button when a name is entered
+                    Next.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
+                } else {
+                    Next.setEnabled(false); // Disable the Next button if the name is empty
+                }
                 HashMap<String, Object> userData = new HashMap<>();
                 userData.put("Name", username);
                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
@@ -77,27 +86,23 @@ Button Next;
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
-
-
                 String username = editText.getText().toString();
-                HashMap<String, Object> userData = new HashMap<>();
-                userData.put("Name", username);
-                String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
 
+                if (!username.isEmpty()) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
-                databaseReference.child(userKey).updateChildren(userData);
+                    HashMap<String, Object> userData = new HashMap<>();
+                    userData.put("Name", username);
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    databaseReference.child(userKey).updateChildren(userData);
 
-                // Create an Intent and add the Bundle
-                Intent i = new Intent(getApplicationContext(), Dob.class);
-
-                startActivity(i);
+                    Intent i = new Intent(getApplicationContext(), Dob.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(Name.this, "Please enter your name.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-
-
-        }
     }
-
+}

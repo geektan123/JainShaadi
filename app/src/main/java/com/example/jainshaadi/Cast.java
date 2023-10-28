@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +41,7 @@ public class Cast extends AppCompatActivity {
     private String selectedText;
     private String Gender;
     private String Age;
+    boolean isNextLayoutChanged = false;
 
 
     @Override
@@ -107,17 +109,19 @@ public class Cast extends AppCompatActivity {
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                // Get the selected value from the spinner
-                spinners = arrayAdapter1.get(position);
-                nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                nexttext.setTextColor(Color.parseColor("#FFFFFF"));
-                String userKey = FirebaseAuth.getInstance().getUid();
+                if (spin.getSelectedItemPosition() > 0) {
+                    nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+                    isNextLayoutChanged = true;
 
-                DatabaseReference userRef = databaseReference.child(userKey);
-                Map<String, Object> updateData = new HashMap<>();
-                updateData.put("Subcategory", spinners);
-                userRef.updateChildren(updateData);
+                    spinners = arrayAdapter1.get(position);
 
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    DatabaseReference userRef = databaseReference.child(userKey);
+                    Map<String, Object> updateData = new HashMap<>();
+                    updateData.put("Subcategory", spinners);
+                    userRef.updateChildren(updateData);
+                }
             }
 
             @Override
@@ -130,41 +134,14 @@ public class Cast extends AppCompatActivity {
         nextlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                // Create a Bundle to pass data to the next activity
-                Bundle bundle = new Bundle();
-
-                bundle.putString("below category", spinners);
-
-                bundle.putString("category", category);
-                bundle.putString("subcategory", subcategory);
-                bundle.putString("username", username);
-                bundle.putString("Account managed by", selectedText);
-                bundle.putString("Gender", Gender);
-                bundle.putString("Height", Height);
-                bundle.putString("DOB", dates);
-                bundle.putString("Age", Age);
-
-                // Create an Intent and add the Bundle
-                Intent i = new Intent(getApplicationContext(), LocationActivity.class);
-                i.putExtras(bundle);
-
-                startActivity(i);
+                if (isNextLayoutChanged) {
+                    Intent i = new Intent(getApplicationContext(), LocationActivity.class);
+                    startActivity(i);
+                } else {
+                    // Display a message to the user indicating that they need to change the Next layout color
+                    Toast.makeText(Cast.this, "Please enter inputs", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-        // Retrieve data from the previous activity
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            username = extras.getString("username");
-            dates = extras.getString("dates");
-            Height = extras.getString("Height");
-           Age= extras.getString("Age");
-
-            selectedText=extras.getString("selectedText");
-
-            Gender=extras.getString("Gender");
-        }
     }
 }

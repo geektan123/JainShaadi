@@ -16,6 +16,8 @@ public class welcome_instructions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_instructions);
+        getSupportActionBar().hide();
+
         Next=findViewById(R.id.Nextlay);
         nexttext=findViewById(R.id.Nexttext);
         Next.setOnClickListener(new View.OnClickListener() {

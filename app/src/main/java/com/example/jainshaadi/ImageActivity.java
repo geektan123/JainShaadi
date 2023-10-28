@@ -45,6 +45,8 @@ public class ImageActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
+        getSupportActionBar().hide();
+
         shapeableImageView = findViewById(R.id.shapeable_image_view);
         layout = findViewById(R.id.Next);
 
@@ -91,6 +93,8 @@ public class ImageActivity extends AppCompatActivity {
                      //   progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(ImageActivity.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
                       //  imageView.setImageResource(R.drawable.baseline_add_photo_alternate_24);
+                        Intent i = new Intent(getApplicationContext(), welcome_instructions.class);
+                        startActivity(i);
                     }
                 });
             }
@@ -103,6 +107,8 @@ public class ImageActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
               //  progressBar.setVisibility(View.INVISIBLE);
+                Intent i = new Intent(getApplicationContext(), welcome_instructions.class);
+                startActivity(i);
                 Toast.makeText(ImageActivity.this, "Uploading Failed !!", Toast.LENGTH_SHORT).show();
             }
         });

@@ -43,6 +43,7 @@ public class Profile extends AppCompatActivity {
     LinearLayout layoutfemale;
     LinearLayout linearnext;
     boolean isMale = false; // Initialize the gender flag
+    boolean isNextLayoutChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,12 +97,15 @@ public class Profile extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             if (!isMale) {
+                                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                                next.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                                 male.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
                                 female.setTextColor(Color.parseColor("#756568"));
                                 String selectedText = myself.getText().toString();
                                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
+                                 isNextLayoutChanged = true;
 
                                 HashMap<String, Object> userData = new HashMap<>();
                                 userData.put("Account Managed for", selectedText);
@@ -119,6 +123,8 @@ public class Profile extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             if (isMale) {
+                                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                                next.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                                 female.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
@@ -130,6 +136,7 @@ public class Profile extends AppCompatActivity {
                                 HashMap<String, Object> userData = new HashMap<>();
                                 userData.put("Account Managed for", selectedText);
                                 String gender = "Female";
+                                isNextLayoutChanged = true;
 
                                 userData.put("Gender", gender);
                                 databaseReference.child(userKey).setValue(userData);
@@ -164,6 +171,7 @@ public class Profile extends AppCompatActivity {
                         selectedTextView.setTextColor(Color.parseColor("#756568"));
                     }
                     layoutgayab.setVisibility(View.INVISIBLE);
+                    isNextLayoutChanged = true;
 
                     layout1.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                     myson.setTextColor(Color.parseColor("#FFFFFF"));
@@ -203,10 +211,12 @@ public class Profile extends AppCompatActivity {
 
                     layout2.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                     mybro.setTextColor(Color.parseColor("#FFFFFF"));
+                 isNextLayoutChanged = true;
                     selectedLinearLayout = layout2;
                 }
                 String selectedText = mybro.getText().toString();
                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
+
 
                 HashMap<String, Object> userData = new HashMap<>();
                 userData.put("Account Managed for", selectedText);
@@ -234,7 +244,7 @@ public class Profile extends AppCompatActivity {
                         selectedTextView.setTextColor(Color.parseColor("#756568"));
                     }
                     layoutgayab.setVisibility(View.INVISIBLE);
-
+                    isNextLayoutChanged = true;
                     layout3.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                     mydaughter.setTextColor(Color.parseColor("#FFFFFF"));
                     selectedLinearLayout = layout3;
@@ -269,7 +279,7 @@ public class Profile extends AppCompatActivity {
                         selectedTextView.setTextColor(Color.parseColor("#756568"));
                     }
                     layoutgayab.setVisibility(View.INVISIBLE);
-
+                  isNextLayoutChanged = true;
                     layout4.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                     mysister.setTextColor(Color.parseColor("#FFFFFF"));
                     selectedLinearLayout = layout4;
@@ -310,6 +320,8 @@ public class Profile extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             if (!isMale) {
+                                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                                next.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                                 male.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
@@ -320,7 +332,7 @@ public class Profile extends AppCompatActivity {
                                 HashMap<String, Object> userData = new HashMap<>();
                                 userData.put("Account Managed for", selectedText);
                                 String gender = "Male";
-
+                                isNextLayoutChanged = true;
                                 userData.put("Gender", gender);
                                 databaseReference.child(userKey).setValue(userData);
 
@@ -333,6 +345,8 @@ public class Profile extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             if (isMale) {
+                                linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                                next.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                                 female.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
@@ -344,7 +358,7 @@ public class Profile extends AppCompatActivity {
                                 HashMap<String, Object> userData = new HashMap<>();
                                 userData.put("Account Managed for", selectedText);
                                 String gender = "Female";
-
+                           isNextLayoutChanged = true;
                                 userData.put("Gender", gender);
                                 databaseReference.child(userKey).setValue(userData);
 
@@ -407,12 +421,15 @@ public class Profile extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+if(isNextLayoutChanged==true) {
+    Intent i = new Intent(getApplicationContext(), Name.class);
 
-                Intent i = new Intent(getApplicationContext(), Name.class);
-
-                 // Add this line to attach the bundle
-                startActivity(i);
-
+    // Add this line to attach the bundle
+    startActivity(i);
+}
+else {
+    Toast.makeText( Profile.this, "Please Complete the values", Toast.LENGTH_SHORT).show();
+}
             }
         });
 

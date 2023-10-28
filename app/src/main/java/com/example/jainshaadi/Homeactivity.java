@@ -34,6 +34,7 @@ public class Homeactivity extends AppCompatActivity {
     private List<CardItem> cardItemList;
     private DatabaseReference databaseRef;
     private String currentUserId;
+
     private static final int PAGE_SIZE = 3;
     private int currentPage = 1;
     private Query query;
@@ -48,6 +49,8 @@ public class Homeactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+        getSupportActionBar().hide();
+
 /*
        recyclerView = findViewById(R.id.recyclerView);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);

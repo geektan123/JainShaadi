@@ -13,11 +13,14 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.MemoryLruGcSettings;
 
 import java.util.HashMap;
 
 public class Interest extends AppCompatActivity {
     int i = 0;
+    boolean isNextLayoutChanged = false;
+
     String interest1;
     String interest2;
     String interest3;
@@ -86,7 +89,7 @@ public class Interest extends AppCompatActivity {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
     HashMap<String, Object> interestData = new HashMap<>();
 
-    int selectedCount = 0;
+    int selectedCount =1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,6 +162,22 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                } else if (selectedCount == 6) {
+                    layout1.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    GYM.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest1 = GYM.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest1);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
+                    isNextLayoutChanged = true;
+
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -184,6 +203,19 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                } else if (selectedCount == 6) {
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
+                    layout2.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    YOGA.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest2 = YOGA.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest2);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+                   isNextLayoutChanged=true;
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -206,6 +238,19 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                }else if (selectedCount == 6) {
+                    layout3.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Badminton.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest3 = Badminton.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest3);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
+                    isNextLayoutChanged=true;
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -230,6 +275,20 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                }else if (selectedCount == 6) {
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
+                    layout4.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Cricket.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest4 = Cricket.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest4);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+                    isNextLayoutChanged=true;
+
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -254,12 +313,25 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                } else if (selectedCount == 6) {
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
+                    isNextLayoutChanged=true;
+                    layout5.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Chess.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest5 = Chess.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest5);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
 // For layout6
         layout6.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -276,6 +348,23 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+
+                } else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+
+                    layout6.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Football.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest6 = Football.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest6);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
+
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -300,6 +389,20 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                } else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+
+                    layout7.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Athletics.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest7 = Athletics.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest7);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -322,6 +425,20 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                } else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+                    layout8.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Bollywood.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest8 = Bollywood.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest8);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -346,6 +463,21 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                }else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+                    layout9.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Hollywood.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest9 = Hollywood.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest9);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    selectedCount++;
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -368,6 +500,21 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                } else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+                    layout10.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Music.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest10 = Music.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest10);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    selectedCount++;
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -392,6 +539,21 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                } else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+                    layout11.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Comedy.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest11 = Comedy.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest11);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    selectedCount++;
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -414,6 +576,21 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                } else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+                    layout12.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Drama.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest12 = Drama.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest12);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    selectedCount++;
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -436,11 +613,26 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                } else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+                    layout13.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    travelling.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest13 = travelling.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest13);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    selectedCount++;
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });;
 
 // For layout14
         layout14.setOnClickListener(new View.OnClickListener() {
@@ -458,11 +650,26 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                }else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+                    layout14.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Reading.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest14 = Reading.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest14);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    selectedCount++;
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });;
 
 // For layout15
         layout15.setOnClickListener(new View.OnClickListener() {
@@ -480,6 +687,21 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                } else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+                    layout15.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Singing.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest15 = Singing.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest15);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    selectedCount++;
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -502,11 +724,27 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                }else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+                    layout16.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Dancing.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest16 = Dancing.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest16);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    selectedCount++;
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
 
 // For layout17
         layout17.setOnClickListener(new View.OnClickListener() {
@@ -524,11 +762,28 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
-                } else {
-                    Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
+               else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+                    layout17.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Cooking.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest17 = Cooking.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest17);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    selectedCount++;
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                        Next.setTextColor(Color.parseColor("#FFFFFF"));
+                    } else {
+                        Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
+                    }
             }
         });
+
 
 // For layout18
         layout18.setOnClickListener(new View.OnClickListener() {
@@ -546,6 +801,21 @@ public class Interest extends AppCompatActivity {
                     databaseReference.child(userKey).updateChildren(interestData);
 
                     selectedCount++;
+                } else if (selectedCount == 6) {
+                    isNextLayoutChanged=true;
+                    layout18.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Painting.setTextColor(Color.parseColor("#FFFFFF"));
+                    interest18 = Painting.getText().toString();
+
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    i++;
+                    interestData.put("Interest" + i, interest18);
+
+                    databaseReference.child(userKey).updateChildren(interestData);
+
+                    selectedCount++;
+                    layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Next.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     Toast.makeText(Interest.this, "You can only select up to 6 interests.", Toast.LENGTH_SHORT).show();
                 }
@@ -554,47 +824,23 @@ public class Interest extends AppCompatActivity {
 
 
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            username = extras.getString("username");
-            dates = extras.getString("dates");
-
-            spinners = extras.getString("spinners");
-            category = extras.getString("category");
-            subcategory = extras.getString("subcategory");
-            Height = extras.getString("Height");
-            Age = extras.getString("Age");
-
-            selectedText = extras.getString("selectedText");
-
-            Gender = extras.getString("Gender");
-            // Assuming 'extras' contains your intent extras
-
-
-        }
         layout19.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                layout19.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                Next.setTextColor(Color.parseColor("#FFFFFF"));
 
-                bundle.putString("below category", spinners);
-                bundle.putString("category", category);
-                bundle.putString("subcategory", subcategory);
-                bundle.putString("username", username);
-                bundle.putString("Account managed by", selectedText);
-                bundle.putString("Gender", Gender);
-                bundle.putString("Height", Height);
-                bundle.putString("DOB", dates);
-                bundle.putString("Age", Age);
+
+                if (isNextLayoutChanged) {
 
                 Intent i = new Intent(getApplicationContext(), IncomeActivity.class);
-                i.putExtras(bundle);
+
 
                 startActivity(i);
             }
-        });
-        }
-    }
+                else
+                    Toast.makeText(Interest.this, "Please Complete the values", Toast.LENGTH_SHORT).show();
 
+            }
+        });
+    }
+}

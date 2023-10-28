@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,7 @@ import java.util.HashMap;
 public class IncomeActivity extends AppCompatActivity {
     Spinner spin;
     Spinner spin1;
+    boolean isNextLayoutChanged = false;
 
     LinearLayout Next;
     LinearLayout layout1;
@@ -55,7 +57,7 @@ public class IncomeActivity extends AppCompatActivity {
         layout7 = findViewById(R.id.layout7);
         Role = findViewById(R.id.Role);
         Company = findViewById(R.id.Company);
-
+nexttext= findViewById(R.id.Nexttext);
      /*   layout1.setVisibility(View.INVISIBLE);
         layout2.setVisibility(View.INVISIBLE);
         layout3.setVisibility(View.INVISIBLE);
@@ -105,6 +107,23 @@ public class IncomeActivity extends AppCompatActivity {
                 nexttext.setTextColor(Color.parseColor("#FFFFFF"));
             }
         });*/
+
+        spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spin1.getSelectedItemPosition() > 0) {
+                    Next.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+                    isNextLayoutChanged = true;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Handle when nothing is selected
+            }
+        });
         Next = findViewById(R.id.Nextlay);
         nexttext = findViewById(R.id.Nexttext);
 
@@ -120,20 +139,29 @@ public class IncomeActivity extends AppCompatActivity {
                 text = Role.getText().toString(); // This will fetch the text from the EditText as a String
                 text1 = Company.getText().toString(); // This will fetch the text from the EditText as a String
 
-                HashMap<String, Object> incomeData = new HashMap<>();
-                incomeData.put("IncomeType", spinner1Value);
-                incomeData.put("IncomeRange", spinner2Value);
-                incomeData.put("Role", text);
-                incomeData.put("Company", text1);
-                String userKey = FirebaseAuth.getInstance().getUid();
+                // Check if Role and Company are not empty
+                if (!text.isEmpty() && !text1.isEmpty()&&spin.getSelectedItemPosition()> 0&&spin1.getSelectedItemPosition()> 0&&isNextLayoutChanged==true) {
+                    Next.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+                    HashMap<String, Object> incomeData = new HashMap<>();
+                    incomeData.put("IncomeType", spinner1Value);
+                    incomeData.put("IncomeRange", spinner2Value);
+                    incomeData.put("Role", text);
+                    incomeData.put("Company", text1);
+                    String userKey = FirebaseAuth.getInstance().getUid();
 
-                // Update user data in Firebase
-                databaseReference.child(userKey).updateChildren(incomeData);
+                    // Update user data in Firebase
+                    databaseReference.child(userKey).updateChildren(incomeData);
 
-                Intent i = new Intent(getApplicationContext(), DescribeActivity.class);
-                startActivity(i);
+                    Intent i = new Intent(getApplicationContext(), DescribeActivity.class);
+                    startActivity(i);
+                } else {
+                    // Show a Toast or error message indicating that Role and Company are mandatory
+                    Toast.makeText(IncomeActivity.this, "All the field are mandatory", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
 
     }
 }

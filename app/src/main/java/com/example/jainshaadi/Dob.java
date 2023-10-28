@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -38,56 +39,54 @@ public class Dob extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dob);
-        date=findViewById(R.id.date);
+
+        date = findViewById(R.id.date);
         getSupportActionBar().hide();
-        nextlay=findViewById(R.id.Nextlay);
-        nexttext=findViewById(R.id.Nexttext);
-        layout=findViewById(R.id.layout);
-        layout1=findViewById(R.id.layout1);
+        nextlay = findViewById(R.id.Nextlay);
+        nexttext = findViewById(R.id.Nexttext);
+        layout = findViewById(R.id.layout);
+        layout1 = findViewById(R.id.layout1);
 
         layout.setVisibility(View.INVISIBLE);
         layout1.setVisibility(View.INVISIBLE);
+
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(Dob.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        Calendar calendar=Calendar.getInstance();
-                        calendar.set(Calendar.YEAR,year);
-                        calendar.set(Calendar.MONTH,month);
-                        calendar.set(Calendar.DAY_OF_MONTH,day);
-                        String dates= DateFormat.getDateInstance().format(calendar.getTime());
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.YEAR, year);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.DAY_OF_MONTH, day);
+                        dates = DateFormat.getDateInstance().format(calendar.getTime());
 
-
-                        //Showing the picked value in the textView
+                        // Showing the picked value in the textView
                         date.setText(dates);
                         layout1.setVisibility(View.VISIBLE);
-
                         layout.setVisibility(View.VISIBLE);
                     }
                 }, 2000, 01, 20);
 
                 datePickerDialog.show();
-
             }
         });
-        Spinner spinner=findViewById(R.id.spinner1);
-        ArrayList<String>arrayAdapter=new ArrayList<>();
 
+        Spinner spinner = findViewById(R.id.spinner1);
+        ArrayList<String> arrayAdapter = new ArrayList<>();
         arrayAdapter.add("4 Feet");
         arrayAdapter.add("5 Feet");
-
         arrayAdapter.add("6 Feet");
-
         arrayAdapter.add("7 Feet");
-
         arrayAdapter.add("8 Feet");
-        ArrayAdapter<String>arrayAdapter5=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,arrayAdapter);
+
+        ArrayAdapter<String> arrayAdapter5 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayAdapter);
         arrayAdapter5.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spinner.setAdapter(arrayAdapter5);
-        Spinner spin=findViewById(R.id.spinner2);
-        ArrayList<String>arrayAdapter1=new ArrayList<>();
+
+        Spinner spin = findViewById(R.id.spinner2);
+        ArrayList<String> arrayAdapter1 = new ArrayList<>();
         arrayAdapter1.add("0 Inch");
         arrayAdapter1.add("1 Inch");
         arrayAdapter1.add("2 Inch");
@@ -99,69 +98,53 @@ public class Dob extends AppCompatActivity {
         arrayAdapter1.add("8 Inch");
         arrayAdapter1.add("9 Inch");
 
-
-
-        ArrayAdapter<String>arrayAdapter6=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,arrayAdapter1);
+        ArrayAdapter<String> arrayAdapter6 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayAdapter1);
         arrayAdapter6.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin.setAdapter(arrayAdapter6);
 
 
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                // Check if both spinners have a selected value
+                if (spinner.getSelectedItemPosition() > 0 && spin.getSelectedItemPosition() > 0) {
+                    nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Handle the case where nothing is selected
+            }
+        });
+
         nextlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Retrieve the username from the Bundle
-             /*   Bundle extras = getIntent().getExtras();
-                if (extras != null) {
-                    String username = extras.getString("username");*/
-                    // Retrieve the date
-                    String dates = date.getText().toString();
+                try {
+                    String spinnerValue1 = spinner.getSelectedItem().toString();
+                    String spinnerValue2 = spin.getSelectedItem().toString();
 
-                    // Retrieve selected values from spinners
-                    Spinner spinner1 = findViewById(R.id.spinner1);
-                    String spinnerValue1 = spinner1.getSelectedItem().toString();
+                    if (!dates.isEmpty() && !spinnerValue1.isEmpty() && !spinnerValue2.isEmpty()) {
+                        String userKey = FirebaseAuth.getInstance().getUid();
+                        DatabaseReference userRef = databaseReference.child(userKey);
+                        Map<String, Object> updateData = new HashMap<>();
+                        updateData.put("DateOfBirth", dates);
+                        updateData.put("Height", spinnerValue1 + " " + spinnerValue2);
+                        userRef.updateChildren(updateData);
 
-                    Spinner spinner2 = findViewById(R.id.spinner2);
-                    String spinnerValue2 = spinner2.getSelectedItem().toString();
-                spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                        nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+                        Intent i = new Intent(getApplicationContext(), Cast.class);
+                        startActivity(i);
+                    } else {
+                        Toast.makeText(Dob.this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
                     }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-                        // Do nothing
-                    }
-                });
-
-
-                String userKey = FirebaseAuth.getInstance().getUid();
-
-                DatabaseReference userRef = databaseReference.child(userKey);
-                Map<String, Object> updateData = new HashMap<>();
-                updateData.put("DateOfBirth", dates);
-                    updateData.put("Height", spinnerValue1+" "+spinnerValue2);
-
-                    userRef.updateChildren(updateData);
-
-                    // Create a new Bundle to pass username, dates, and spinner values
-                  /*  Bundle newBundle = new Bundle();
-                    newBundle.putString("username", username);
-                    newBundle.putString("dates", dates);
-                    newBundle.putString("spinnerValue1", spinnerValue1);
-                    newBundle.putString("spinnerValue2", spinnerValue2);
-*/
-                    // Create an Intent and add the new Bundle
-                    Intent i = new Intent(getApplicationContext(), Cast.class);
-                 //   i.putExtras(newBundle);
-
-                    startActivity(i);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(Dob.this, "An error occurred. Please try again.", Toast.LENGTH_SHORT).show();
                 }
-
+            }
         });
-
 
     }
 }
-

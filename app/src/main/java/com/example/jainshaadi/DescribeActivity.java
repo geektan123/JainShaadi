@@ -1,6 +1,7 @@
 package com.example.jainshaadi;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,6 +26,7 @@ public class DescribeActivity extends AppCompatActivity {
     TextView nexttext;
     TextInputEditText Describe;
     TextView Count;
+    boolean isNextLayoutChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class DescribeActivity extends AppCompatActivity {
             }
 
             @Override
+
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // Calculate character count
                 int charCount = s.length();
@@ -51,12 +54,21 @@ public class DescribeActivity extends AppCompatActivity {
 
                 // Disable Next button if character count exceeds 500
                 if (charCount > 500) {
-                    Toast.makeText(DescribeActivity.this, "Not allowed to enter more than 500 word", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DescribeActivity.this, "Not allowed to enter more than 500 characters", Toast.LENGTH_SHORT).show();
+
+                    // Trim the string to 500 characters
+                    Describe.setText(s.subSequence(0, 500));
+                    Describe.setSelection(500); // Set cursor position to the end
+
+                    // Enable Next button after trimming
                 } else {
-                    Next.setEnabled(true);
+                    Next.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+                    isNextLayoutChanged = true;
 
                 }
             }
+
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -67,17 +79,22 @@ public class DescribeActivity extends AppCompatActivity {
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String describe = Describe.getText().toString();
-                HashMap<String, Object> Describes = new HashMap<>();
-                Describes.put("Description", describe);
-                String userKey = FirebaseAuth.getInstance().getUid();
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+               if(isNextLayoutChanged==true) {
+                   String describe = Describe.getText().toString();
+                   HashMap<String, Object> Describes = new HashMap<>();
+                   Describes.put("Description", describe);
+                   String userKey = FirebaseAuth.getInstance().getUid();
+                   DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
-                // Update user data in Firebase
-                databaseReference.child(userKey).updateChildren(Describes);
+                   // Update user data in Firebase
+                   databaseReference.child(userKey).updateChildren(Describes);
 
-                Intent i = new Intent(getApplicationContext(), ImageActivity.class);
-                startActivity(i);
+                   Intent i = new Intent(getApplicationContext(), ImageActivity.class);
+                   startActivity(i);
+               }
+               else
+                   Toast.makeText(DescribeActivity.this, "All the field are mandatory", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
