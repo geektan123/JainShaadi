@@ -2,4 +2,9 @@
 <resources>
 
     <style name="roundimageview"></style>
+    <style name="MyTextInputLayoutHintStyle" parent="@style/TextAppearance.Design.Hint">
+        <item name="android:textColor">#FF5722</item> <!-- Custom hint text color -->
+        <item name="android:textSize">16sp</item> <!-- Custom hint text size -->
+        <!-- Add other custom attributes as needed -->
+    </style>
 </resources>

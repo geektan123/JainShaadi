@@ -5,6 +5,7 @@ package com.example.jainshaadi;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,21 +27,27 @@ public class ViewProfile extends AppCompatActivity {
     private String currentUserId;
     private String profileId;
     private TextView profileName, profileProfession, tag, profileAge, profileCast, profileIncome, profileCity;
-    private TextView profileEducation,  profileFather, profileMother, profileMembers, profileFamilyType, profileResidence;
+    private TextView profileEducation, profileFather, profileMother, profileMembers, profileFamilyType, profileResidence;
     private TextView profileInterest01, profileInterest02, profileInterest03, profileInterest04, profileInterest05, profileInterest06;
     private ViewPager2 viewPager;
     private ImagePagerAdapter adapter;
     private List<Integer> imageList;
     private LinearLayout dotIndicators;
-
+        Button button;
+String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_profile);
+        getSupportActionBar().hide();
+
         Intent intent = getIntent();
         currentUserId = intent.getStringExtra("curentUserId");
         profileId = intent.getStringExtra("profileId");
+        name=intent.getStringExtra("Name");
         viewPager = findViewById(R.id.viewPager);
+        button=findViewById(R.id.overlay_button);
+
         imageList = new ArrayList<>();
         imageList.add(R.drawable.profile_picture); // Replace with your image resources
         imageList.add(R.drawable.profile_picture);
@@ -51,7 +58,6 @@ public class ViewProfile extends AppCompatActivity {
 
         adapter = new ImagePagerAdapter(context, imageList);
         viewPager.setAdapter(adapter);
-
         dotIndicators = findViewById(R.id.dotIndicators);
 
         setupDotIndicators(imageList.size());
@@ -69,9 +75,7 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
 
-        Button overlayButton = findViewById(R.id.overlay_button);
-        int color = ContextCompat.getColor(this, R.color.button_enabled);
-        overlayButton.setBackgroundColor(color);
+
 
         // Initialize TextViews
         profileName = findViewById(R.id.profile_name);
@@ -93,9 +97,9 @@ public class ViewProfile extends AppCompatActivity {
         profileInterest04 = findViewById(R.id.profile_interest04);
         profileInterest05 = findViewById(R.id.profile_interest05);
         profileInterest06 = findViewById(R.id.profile_interest06);
-
         // Fetch and display profile data
         fetchAndDisplayProfileData();
+
     }
 
     private void setupDotIndicators(int count) {
@@ -119,7 +123,7 @@ public class ViewProfile extends AppCompatActivity {
 
     private void fetchAndDisplayProfileData() {
         // Create a reference to the Firebase database
-        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("profile_details");
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users");
 
         // Get the reference to the current profile
         DatabaseReference currentProfileRef = databaseRef.child(profileId);
@@ -129,42 +133,75 @@ public class ViewProfile extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     // Retrieve profile data
-                    String name = dataSnapshot.child("name").getValue(String.class);
-                    String profession = dataSnapshot.child("profession").getValue(String.class);
+                    String name = dataSnapshot.child("Name").getValue(String.class);
+                    String profession = dataSnapshot.child("Role").getValue(String.class);
                     String tagValue = dataSnapshot.child("tag").getValue(String.class);
-                    String age = dataSnapshot.child("age").getValue(String.class);
-                    String cast = dataSnapshot.child("cast").getValue(String.class);
-                    String income = dataSnapshot.child("income").getValue(String.class);
-                    String city = dataSnapshot.child("city").getValue(String.class);
+                    String age = dataSnapshot.child("Age").getValue(String.class);
+                    String cast = dataSnapshot.child("Subcategory").getValue(String.class);
+                    String income = dataSnapshot.child("IncomeRange").getValue(String.class);
+                    String city = dataSnapshot.child("City").getValue(String.class);
+                    String state = dataSnapshot.child("State").getValue(String.class);
+                    String Height = dataSnapshot.child("Height").getValue(String.class);
 
                     // Set the data in TextViews
                     profileName.setText(name);
                     profileProfession.setText(profession);
                     tag.setText(tagValue);
-                    profileAge.setText(age);
+                    profileAge.setText(age + "," + Height);
                     profileCast.setText(cast);
                     profileIncome.setText(income);
-                    profileCity.setText(city);
+                    profileCity.setText(city + "," + state);
 
-                    // Retrieve and set other profile data in TextViews similarly
-                    profileEducation.setText(dataSnapshot.child("education").getValue(String.class));
-                    profileFather.setText(dataSnapshot.child("father").getValue(String.class));
-                    profileMother.setText(dataSnapshot.child("mother").getValue(String.class));
-                    profileMembers.setText(dataSnapshot.child("members").getValue(String.class));
-                    profileFamilyType.setText(dataSnapshot.child("family_type").getValue(String.class));
-                    profileResidence.setText(dataSnapshot.child("residence").getValue(String.class));
-                    profileInterest01.setText(dataSnapshot.child("interest01").getValue(String.class));
-                    profileInterest02.setText(dataSnapshot.child("interest02").getValue(String.class));
-                    profileInterest03.setText(dataSnapshot.child("interest03").getValue(String.class));
-                    profileInterest04.setText(dataSnapshot.child("interest04").getValue(String.class));
-                    profileInterest05.setText(dataSnapshot.child("interest05").getValue(String.class));
-                    profileInterest06.setText(dataSnapshot.child("interest06").getValue(String.class));
+                    // Retrieve and set other profile data in TextViews simil
+                        // Data exists, set the TextViews
+
+                        String Degree = dataSnapshot.child("Degree").getValue(String.class);
+                        String College = dataSnapshot.child("College").getValue(String.class);
+                       String FatherName = dataSnapshot.child("FatherName").getValue(String.class);
+                       String FatherOccupation = dataSnapshot.child("FatherOccupation").getValue(String.class);
+                        String MotherName = dataSnapshot.child("MotherName").getValue(String.class);
+                        String MotherOccupation = dataSnapshot.child("MotherOccupation").getValue(String.class);
+                      String  FamilyMembers = dataSnapshot.child("FamilyMembers").getValue(String.class);
+                        String Familytype = dataSnapshot.child("Familytype").getValue(String.class);
+                        String ParentState = dataSnapshot.child("ParentState").getValue(String.class);
+                        String ParentCity = dataSnapshot.child("ParentCity").getValue(String.class);
+                       String Year = dataSnapshot.child("Year").getValue(String.class);
+
+                        profileName.setText(name);
+                        profileProfession.setText(profession);
+                        tag.setText(tagValue);
+                        profileAge.setText(age + "," + Height);
+                        profileCast.setText(cast);
+                        profileIncome.setText(income);
+                        profileCity.setText(city + "," + state);
+                        profileEducation.setText(Degree + "\n" + College + ", " + Year);
+                        profileFather.setText(FatherName + "(" + FatherOccupation + ")");
+                        profileMother.setText(MotherName + "(" + MotherOccupation + ")");
+                        profileMembers.setText(FamilyMembers);
+                        profileFamilyType.setText(Familytype);
+                        profileResidence.setText(ParentCity + "," + ParentState);
+                        profileInterest01.setText(dataSnapshot.child("Interest1").getValue(String.class));
+                        profileInterest02.setText(dataSnapshot.child("Interest2").getValue(String.class));
+                        profileInterest03.setText(dataSnapshot.child("Interest3").getValue(String.class));
+                        profileInterest04.setText(dataSnapshot.child("Interest4").getValue(String.class));
+                        profileInterest05.setText(dataSnapshot.child("Interest5").getValue(String.class));
+                        profileInterest06.setText(dataSnapshot.child("Interest6").getValue(String.class));
+                    }
                 }
-            }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle any errors
+            }
+        });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), specificchat.class);
+                intent.putExtra("profileId", profileId);
+                intent.putExtra("Name", name);
+                startActivity(intent);
             }
         });
     }

@@ -1,6 +1,8 @@
 package com.example.jainshaadi;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.cardview.widget.CardView;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -39,6 +46,9 @@ import java.util.List;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,19 +79,34 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        CardItem cardItem = cardItemList.get(position);
 
-        holder.postedByTextView.setText(cardItem.getPostedBy());
-        holder.profileImageView.setImageResource(R.drawable.profile_picture);
-        holder.profileNameTextView.setText(cardItem.getProfileName());
-        holder.profileWorkTextView.setText(cardItem.getProfileWork());
-        holder.profileBioTextView.setText(cardItem.getProfileBio());
-        holder.profileBirthDateTextView.setText(cardItem.getProfileBirthDate());
-        holder.profileCommunityTextView.setText(cardItem.getProfileCommunity());
-        holder.profileIncomeTextView.setText(cardItem.getProfileIncome());
-        holder.profileLocationTextView.setText(cardItem.getProfileLocation());
+
+        CardItem cardItem = cardItemList.get(position);
+        holder.postedByTextView.setText(cardItem.getAccountMangedfor());
+       Glide.with(holder.itemView.getContext()).load(cardItem.getImageUrl1()).into(holder.profileImageView);
+          //holder.profileImageView.setImageResource(cardItem.getImageUrl1());
+
+
+        holder.profileNameTextView.setText(cardItem.getName());
+        holder.profileWorkTextView.setText(cardItem.getRole());
+        holder.profileBioTextView.setText(cardItem.getDescription());
+        holder.profileBirthDateTextView.setText(cardItem.getAge()+" Years Old,"+cardItem.getHeight());
+        holder.profileCommunityTextView.setText(cardItem.getSubcategory());
+        holder.profileIncomeTextView.setText(cardItem.getIncomeRange());
+        holder.profileLocationTextView.setText(cardItem.getCity()+","+cardItem.getState());
+        holder.Interest1.setText(cardItem.getInterest1());
+        holder.Interest2.setText(cardItem.getInterest2());
+        holder.Interest3.setText(cardItem.getInterest3());
+        holder.Interest4.setText(cardItem.getInterest4());
+        holder.Interest5.setText(cardItem.getInterest5());
+        holder.Interest6.setText(cardItem.getInterest6());
+
+
         holder.Saved = false;
-        DatabaseReference savedProfilesRef = FirebaseDatabase.getInstance().getReference("profile_details").child(currentUserId).child("savedProfiles");
+
+        // Assuming you have a reference to the Firebase database
+
+        DatabaseReference savedProfilesRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserId).child("savedProfiles");
         savedProfilesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -137,9 +162,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                 int clickedPosition = holder.getAdapterPosition();
                 if (clickedPosition != RecyclerView.NO_POSITION) {
                     String profileId = cardItemList.get(clickedPosition).getProfileId();
+                    String name=cardItemList.get(clickedPosition).getName();
                     Intent intent = new Intent(context, ViewProfile.class);
                     intent.putExtra("currentUserId", currentUserId);
                     intent.putExtra("profileId", profileId);
+                    intent.putExtra("Name", name);
+
                     context.startActivity(intent);
                 }
             }
@@ -165,6 +193,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         boolean Saved;
         TextView savedButtonText;
         LinearLayout viewProfile;
+        TextView Interest1;
+        TextView Interest2;
+        TextView Interest3;
+        TextView Interest4;
+        TextView Interest5;
+        TextView Interest6;
+ ShapeableImageView profilepic;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -181,17 +217,26 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             savedButton = itemView.findViewById(R.id.save);
             savedButtonText = itemView.findViewById(R.id.saveButtonText);
             viewProfile = itemView.findViewById(R.id.viewProfile);
+             Interest1 = itemView.findViewById(R.id.profile_interest01);
+            Interest2=itemView.findViewById(R.id.profile_interest02);
+            Interest3=itemView.findViewById(R.id.profile_interest03);
+            Interest4=itemView.findViewById(R.id.profile_interest04);
+            Interest5=itemView.findViewById(R.id.profile_interest05);
+            Interest6=itemView.findViewById(R.id.profile_interest06);
+            profilepic=itemView.findViewById(R.id.profileImg);
+
+
         }
     }
 
     private void saveProfileToFirebase(String profileId) {
-        DatabaseReference cardItem1Ref = databaseRef.child("profile_details");
+        DatabaseReference cardItem1Ref = databaseRef.child("users");
         cardItem1Ref.child(currentUserId).child("savedProfiles").child(profileId).setValue(true);
 //        Log.e("click",profileId);
     }
     private void deleteProfileFromFirebase(String profileId) {
         Log.e("error",currentUserId + "/" + profileId );
-        DatabaseReference cardItem1Ref = databaseRef.child("profile_details");
+        DatabaseReference cardItem1Ref = databaseRef.child("users");
         cardItem1Ref.child(currentUserId).child("savedProfiles").child(profileId).removeValue();
 //        Log.e("click",profileId);
     }

@@ -20,6 +20,7 @@ import com.example.jainshaadi.MyProfile;
 import com.example.jainshaadi.R;
 import com.example.jainshaadi.SaveProfileDisplay;
 import com.example.jainshaadi.Search;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,25 +70,25 @@ public class SearchFilter extends AppCompatActivity {
         Intent intent = getIntent();
         currentUserId = intent.getStringExtra("currentUserId");
         filterType = intent.getStringExtra("filterType");
-        currentUserId = "profile1";
-        Log.e("e","current = "+currentUserId);
-        Log.e("e","filter = "+filterType);
+        currentUserId = FirebaseAuth.getInstance().getUid();
+        Log.e("ehjjj","current = "+currentUserId);
+        Log.e("ekkkka","filter = "+filterType);
 
         // Profile Reference
-        profilesRef = database.getReference("cardItems");
+        profilesRef = database.getReference("users");
 
         // Query
         if (filterType.equals("Digambar")) {
-            Log.e("error","digambar");
+            Log.e("errorfff","digambar"+currentUserId);
             query = profilesRef
-                    .orderByChild("profileCommunity")
+                    .orderByChild("Category")
                     .equalTo("Digambar");
         } else if (filterType.equals("Shwetamber")) {
             query = profilesRef
-                    .orderByChild("profileCommunity")
+                    .orderByChild("Category")
                     .equalTo("Shwetamber");
         } else if (filterType.equals("Location")) {
-            DatabaseReference userLocationRef = FirebaseDatabase.getInstance().getReference("cardItems").child(currentUserId).child("profileLocation");
+            DatabaseReference userLocationRef = FirebaseDatabase.getInstance().getReference("users").child(currentUserId).child("State");
 
             userLocationRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -96,12 +97,12 @@ public class SearchFilter extends AppCompatActivity {
                     // Do something with the current user's location (currentLocation)
                     if (currentLocation != null) {
                         query = profilesRef
-                                .orderByChild("profileLocation")
+                                .orderByChild("State")
                                 .equalTo(currentLocation);
                         loadCardItems();
                     } else {
                         query = profilesRef
-                                .orderByChild("profileGender")
+                                .orderByChild("Gender")
                                 .equalTo("Female");
                     }
                     loadCardItems(); // Load card items after getting the location

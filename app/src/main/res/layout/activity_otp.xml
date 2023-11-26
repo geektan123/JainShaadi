@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/Verify"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="258dp"
+        android:layout_marginEnd="1dp"
+        android:background="@drawable/rounded_card_background_next_disabled"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/Send"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            android:text="Send"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="100dp"
+        android:gravity="center"
+        >
+
+        <!-- First LinearLayout with ImageView -->
+        <LinearLayout
+            android:id="@+id/firstLinearLayout"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/dark_grey_layer_background"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/dark_grey_tick_icon"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <!-- View -->
+        <View
+            android:id="@+id/firstView"
+            android:layout_width="40dp"
+            android:layout_height="1dp"
+            android:background="@drawable/dark_grey_layer_background"
+            android:gravity="center" />
+
+        <!-- Second LinearLayout with ImageView -->
+        <LinearLayout
+            android:id="@+id/secondLinearLayout"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/dark_grey_layer_background"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/secondImage"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/grey_tick_icon"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <!-- View -->
+        <View
+            android:id="@+id/secondView"
+            android:layout_width="40dp"
+            android:layout_height="1dp"
+            android:background="#E3DADC"
+            android:gravity="center" />
+
+        <!-- Third LinearLayout with ImageView -->
+        <LinearLayout
+            android:id="@+id/thirdLinearLayout"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/dark_grey_layer_background"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/thirdImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/grey_tick_icon" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:gravity="center"
+        android:layout_marginTop="80dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Add Mobile Number"
+            android:textSize="20dp"
+            android:textColor="#524044"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mobileNumberLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:layout_marginHorizontal="20dp"
+
+>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mobileNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="Enter Mobile Number"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/otpLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="183dp"
+        android:layout_marginHorizontal="20dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/otpEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="OTP"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/Verify"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="258dp"
+        android:background="@drawable/rounded_card_background_next_disabled"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/Send"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            android:text="Send"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/didnot"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="317dp"
+        android:background="@drawable/rounded_card_blank_background"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            android:text="I didn't get the OTP"
+            android:textColor="#524044"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/request"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="380dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/Timer"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            android:text="You may request the new OTP in 1:00"
+            android:textColor="#524044"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -112,6 +112,10 @@ public class Profile extends AppCompatActivity {
                                 String gender = "Male";
 
                                 userData.put("Gender", gender);
+                                String tag = "Looking for bride";
+
+                                userData.put("tag", tag);
+
                                 databaseReference.child(userKey).setValue(userData);
 
                                 isMale = true; // Set gender flag to true
@@ -139,6 +143,11 @@ public class Profile extends AppCompatActivity {
                                 isNextLayoutChanged = true;
 
                                 userData.put("Gender", gender);
+                                String tag = "Looking for groom";
+
+                                userData.put("tag", tag);
+
+
                                 databaseReference.child(userKey).setValue(userData);
 
                                 isMale = false; // Set gender flag to false
@@ -187,6 +196,9 @@ public class Profile extends AppCompatActivity {
                 String gender = "Male";
 
                 userData.put("Gender", gender);
+                String tag = "Looking for bride";
+
+                userData.put("tag", tag);
 
                 databaseReference.child(userKey).setValue(userData);
             }
@@ -219,12 +231,14 @@ public class Profile extends AppCompatActivity {
 
 
                 HashMap<String, Object> userData = new HashMap<>();
-                userData.put("Account Managed for", selectedText);
+                userData.put("AccountManagedfor", selectedText);
 
                 String gender = "Male";
 
                 userData.put("Gender", gender);
+                String tag = "Looking for bride";
 
+                userData.put("tag", tag);
                 databaseReference.child(userKey).setValue(userData);
             }
         });
@@ -258,6 +272,9 @@ public class Profile extends AppCompatActivity {
                 String gender = "Female";
 
                 userData.put("Gender", gender);
+                String tag = "Looking for groom";
+
+                userData.put("tag", tag);
 
                 databaseReference.child(userKey).setValue(userData);
             }
@@ -289,10 +306,13 @@ public class Profile extends AppCompatActivity {
                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
 
                 HashMap<String, Object> userData = new HashMap<>();
-                userData.put("Account Managed for", selectedText);
+                userData.put("AccountManagedfor", selectedText);
                 String gender = "Female";
 
                 userData.put("Gender", gender);
+                String tag = "Looking for groom";
+
+                userData.put("tag", tag);
 
                 databaseReference.child(userKey).setValue(userData);
 
@@ -333,7 +353,11 @@ public class Profile extends AppCompatActivity {
                                 userData.put("Account Managed for", selectedText);
                                 String gender = "Male";
                                 isNextLayoutChanged = true;
-                                userData.put("Gender", gender);
+                                userData.put("profileGender", gender);
+                                String tag = "Looking for bride";
+
+                                userData.put("tag", tag);
+
                                 databaseReference.child(userKey).setValue(userData);
 
                                 isMale = true; // Set gender flag to true
@@ -358,8 +382,12 @@ public class Profile extends AppCompatActivity {
                                 HashMap<String, Object> userData = new HashMap<>();
                                 userData.put("Account Managed for", selectedText);
                                 String gender = "Female";
-                           isNextLayoutChanged = true;
-                                userData.put("Gender", gender);
+                                 isNextLayoutChanged = true;
+                                String tag = "Looking for groom";
+
+                                userData.put("tag", tag);
+
+                                userData.put("profileGender", gender);
                                 databaseReference.child(userKey).setValue(userData);
 
                                 isMale = false; // Set gender flag to false

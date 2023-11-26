@@ -1,26 +1,42 @@
-package com.example.jainshaadi;
-
- // Replace with your actual package name
+package com.example.jainshaadi; // Replace with your actual package name
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.cardview.widget.CardView;
 import java.util.ArrayList;
 import java.util.List;
-
+import android.os.Bundle;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 import androidx.annotation.NonNull;
 import android.util.Log;
 import android.os.Handler;
 import java.util.Collections;
+import java.util.Map;
+
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.content.Intent;
+import android.widget.Toast;
+
+import com.example.jainshaadi.CardAdapter;
+import com.example.jainshaadi.CardItem;
+import com.example.jainshaadi.MyProfile;
+import com.example.jainshaadi.R;
+import com.example.jainshaadi.SaveProfileDisplay;
+import com.example.jainshaadi.Search;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,13 +53,27 @@ public class Homeactivity extends AppCompatActivity {
 
     private static final int PAGE_SIZE = 3;
     private int currentPage = 1;
-    private Query query;
+
+    Query query;
+    String s1;
+    String s2;
+
     private ValueEventListener valueEventListener;
     private DatabaseReference profilesRef;
+    private DatabaseReference profilesRef1;
+    private DatabaseReference profilesRef2;
+    String getPro;
+    String getid;
+
     private final Handler handler = new Handler();
     private int check = 0;
     private int val = 1;
     private SwipeRefreshLayout swipeRefreshLayout;
+    Query maleQuery;
+    Query femaleQuery;
+    String currentGender;
+    ArrayList<String> arrayList = new ArrayList<>();
+    Map map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +81,7 @@ public class Homeactivity extends AppCompatActivity {
         setContentView(R.layout.home);
         getSupportActionBar().hide();
 
-/*
-       recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
         recyclerView.setHasFixedSize(true);
@@ -64,93 +93,100 @@ public class Homeactivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         // Set the current user's ID (replace with your own logic)
-        currentUserId = "profile1";
-        Log.e("e","curent2 = "+currentUserId);
+        currentUserId = FirebaseAuth.getInstance().getUid();
+        Log.e("e", "curent2 = " + currentUserId);
         // Profile Reference
-        profilesRef = database.getReference("cardItems");
+        profilesRef = database.getReference("users");
+        profilesRef1 = profilesRef.child(currentUserId);
+        profilesRef2 = profilesRef1.child("Gender");
 
-        // Query
-        query = profilesRef
-                .orderByChild("profileGender")
-                .equalTo("Female");
+        String currentUserId = FirebaseAuth.getInstance().getUid();
 
         // Set up SwipeRefreshLayout
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // Load the data again when the user swipes to refresh
-                loadCardItems();
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(() -> loadCardItems());
 
         // Load the initial data
         loadCardItems();
+
         LinearLayout saveIcon = findViewById(R.id.saved);
-        saveIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Redirect to SavedProfilesActivity
-                Intent intent = new Intent(Homeactivity.this, SaveProfileDisplay.class);
-                startActivity(intent);
-            }
+        saveIcon.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            Intent intent = new Intent(Homeactivity.this, SaveProfileDisplay.class);
+            startActivity(intent);
         });
 
-        GridLayout myProfile = findViewById(R.id.navigation_profile);
-        myProfile.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
-                // Redirect to SavedProfilesActivity
-                Intent intent = new Intent(Homeactivity.this, MyProfile.class);
-                startActivity(intent);
-            }
+        GridLayout myProfile = findViewById(R.id.my_profile);
+        myProfile.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            Intent intent = new Intent(Homeactivity.this, MyProfile.class);
+            startActivity(intent);
         });
 
-        ImageView search = findViewById(R.id.navigation_search);
-        search.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
-                // Redirect to SavedProfilesActivity
-                Intent intent = new Intent(Homeactivity.this, Search.class);
-                Log.e("e","curent3 = "+currentUserId);
-                intent.putExtra("currentUserId", currentUserId);
-                startActivity(intent);
-            }
+        ImageView search = findViewById(R.id.search);
+        search.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            Intent intent = new Intent(Homeactivity.this, Search.class);
+            Log.e("e", "curent3 = " + currentUserId);
+            intent.putExtra("currentUserId", currentUserId);
+            startActivity(intent);
         });
+        GridLayout Chat = findViewById(R.id.chatlist);
+        Chat.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            Intent intent = new Intent(Homeactivity.this, Chatlist.class);
+            startActivity(intent);
+        });
+
+
+
 
     }
 
     private void loadCardItems() {
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                cardItemList.clear(); // Clear the list before adding new data
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserId);
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    // Parse data and create CardItem objects
-                    CardItem cardItem = snapshot.getValue(CardItem.class);
-                    if (cardItem != null) {
-//                        cardItem.setProfileId(snapshot.getKey()); // Set the profile ID
-                        cardItemList.add(cardItem);
-                    }
+        userRef.child("Gender").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Object currentUserGender = task.getResult().getValue();
+
+                if (currentUserGender != null && currentUserGender.toString().equals("Female")) {
+                    query = profilesRef.orderByChild("Gender").equalTo("Male");
+                } else {
+                    query = profilesRef.orderByChild("Gender").equalTo("Female");
                 }
 
-                Collections.shuffle(cardItemList);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        cardItemList.clear(); // Clear the list before adding new data
 
-                // Initialize your CardAdapter with database reference and current user ID
-                databaseRef = FirebaseDatabase.getInstance().getReference();
-                cardAdapter = new CardAdapter(Homeactivity.this, cardItemList, databaseRef, currentUserId);
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            // Parse data and create CardItem objects
+                            CardItem cardItem = snapshot.getValue(CardItem.class);
+                            if (cardItem != null) {
+                                cardItemList.add(cardItem);
+                            }
+                        }
 
-                recyclerView.setAdapter(cardAdapter);
+                        Collections.shuffle(cardItemList);
 
-                // Stop the swipe-to-refresh animation
-                swipeRefreshLayout.setRefreshing(false);
+                        databaseRef = FirebaseDatabase.getInstance().getReference();
+                        cardAdapter = new CardAdapter(Homeactivity.this, cardItemList, databaseRef, currentUserId);
+
+                        recyclerView.setAdapter(cardAdapter);
+
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        Log.e("data error", "error :" + error);
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            } else {
+                // Handle the case where task is not successful
             }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Log.e("data error", "error :" + error);
-
-                // Stop the swipe-to-refresh animation
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });*/
+        });
     }
-    }
+}

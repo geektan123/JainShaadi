@@ -56,12 +56,12 @@
                     android:layout_marginRight="16dp"
                     >
 
-                    <ImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/profile_picture"
                         android:id="@+id/profileImg"
-                        android:scaleType="centerCrop"/>
+
+                        android:scaleType="centerCrop" />
                 </androidx.cardview.widget.CardView>
                 <GridLayout
                     android:layout_width="190dp"
@@ -181,12 +181,12 @@
                 android:layout_width="273dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">
+
                 <GridLayout
-                    android:layout_width="273dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:rowCount="2"
                     android:columnCount="4"
-                    >
+                    android:rowCount="2">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -209,117 +209,117 @@
                             android:textColor="#756568"
                             android:textSize="12sp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp"
                         android:layout_marginRight="4dp"
                         android:width="1dp"
-                        android:color="#756568"
                         android:background="@drawable/rounded_hobbies_card"
-                        >
+                        android:color="#756568"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="4dp">
+
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Dancing"
-                            android:textSize="12sp"
-                            android:textColor="#756568"
                             android:id="@+id/profile_interest02"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp"
-                        android:layout_marginRight="4dp"
-                        android:width="1dp"
-                        android:color="#756568"
-                        android:background="@drawable/rounded_hobbies_card"
-                        >
-                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
                             android:textColor="#756568"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        android:width="1dp"
+                        android:background="@drawable/rounded_hobbies_card"
+                        android:color="#756568"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="4dp">
+
+                        <TextView
                             android:id="@+id/profile_interest03"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp"
-                        android:layout_marginRight="4dp"
-                        android:width="1dp"
-                        android:color="#756568"
-                        android:background="@drawable/rounded_hobbies_card"
-                        >
-                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
                             android:textColor="#756568"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        android:width="1dp"
+                        android:background="@drawable/rounded_hobbies_card"
+                        android:color="#756568"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="4dp">
+
+                        <TextView
                             android:id="@+id/profile_interest04"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="4dp"
-                        android:width="1dp"
-                        android:color="#756568"
-                        android:background="@drawable/rounded_hobbies_card"
-                        >
-                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
                             android:textColor="#756568"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:width="1dp"
+                        android:background="@drawable/rounded_hobbies_card"
+                        android:color="#756568"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="4dp">
+
+                        <TextView
                             android:id="@+id/profile_interest05"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="4dp"
-                        android:width="1dp"
-                        android:color="#756568"
-                        android:background="@drawable/rounded_hobbies_card"
-                        >
-                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
                             android:textColor="#756568"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:width="1dp"
+                        android:background="@drawable/rounded_hobbies_card"
+                        android:color="#756568"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="4dp">
+
+                        <TextView
                             android:id="@+id/profile_interest06"
-                            />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Dancing"
+                            android:textColor="#756568"
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </GridLayout>
             </LinearLayout>

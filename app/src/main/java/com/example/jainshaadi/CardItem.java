@@ -1,111 +1,330 @@
 package com.example.jainshaadi;
 
 
-
 public class CardItem {
-    private String postedBy;
+    private String AccountMangedfor;
+    private String Category;
+    private String City;
+    private String Company;
+    private String DateOfBirth;
+    private String Description;
+    private String Height;
+    private String IncomeRange;
+    private String IncomeType;
+    private String Interest1;
+    private String Interest2;
+    private String Interest3;
+    private String Interest4;
+    private String Interest5;
+    private String Interest6;
+    private String Name;
+    private String Subcategory;
+    private String Role;
+    private String State;
+    private String Age;
+    private String imageUrl1;
     private String profileId;
-    private int profileImage;
-    private String profileName;
-    private String profileWork;
-    private String profileBio;
-    private String profileBirthDate;
-    private String profileCommunity;
-    private String profileIncome;
-    private String profileLocation;
+    private String profileGender;
+    private String FamilyMembers;
+    private String Familytype;
+    private String FatherName;
+    private String FatherOccupation;
+    private String MotherName;
+    private String ParentCity;
+    private String ParentState;
+    private String Degree;
+    private String College;
+
+
+
 
     public CardItem() {
         // Default constructor required for Firebase
     }
 
-    public CardItem (String postedBy, int profileImage, String profileName, String profileWork, String profileBio, String profileBirthDate, String profileCommunity, String profileIncome, String profileLocation , String profileId) {
-        this.postedBy = postedBy;
-        this.profileImage = profileImage;
-        this.profileName = profileName;
-        this.profileWork = profileWork;
-        this.profileBio = profileBio;
-        this.profileBirthDate = profileBirthDate;
-        this.profileCommunity = profileCommunity;
-        this.profileIncome = profileIncome;
-        this.profileLocation = profileLocation;
-        this.profileId = profileId;
+    public CardItem(String accountMangedfor, String ProfileGender, String ProfileId, String ImageUrl1, String age, String category, String city, String company, String dateOfBirth, String description, String height, String incomeRange, String incomeType, String interest1, String interest2, String interest3, String interest4, String interest5, String interest6, String name, String subcategory, String role, String state, String familyMembers, String parentCity) {
+
+        AccountMangedfor = accountMangedfor;
+        Category = category;
+        City = city;
+        Age = age;
+        Company = company;
+        DateOfBirth = dateOfBirth;
+        Description = description;
+        Height = height;
+        IncomeRange = incomeRange;
+        IncomeType = incomeType;
+        Interest1 = interest1;
+        Interest2 = interest2;
+        Interest3 = interest3;
+        Interest4 = interest4;
+        Interest5 = interest5;
+        Interest6 = interest6;
+        Name = name;
+        Subcategory = subcategory;
+        Role = role;
+        State = state;
+        imageUrl1 = ImageUrl1;
+        profileId = ProfileId;
+        profileGender = ProfileGender;
+
+        FamilyMembers = familyMembers;
+        ParentCity = parentCity;
     }
 
-    // Getter and Setter methods for all fields
-    public String getPostedBy() {
-        return postedBy;
+    public String getFamilytype() {
+        return Familytype;
     }
 
-    public void setPostedBy(String postedBy) {
-        this.postedBy = postedBy;
+    public void setFamilytype(String familytype) {
+        Familytype = familytype;
     }
 
-    public String getProfileId() {return profileId; }
+    public String getFatherName() {
+        return FatherName;
+    }
+
+    public void setFatherName(String fatherName) {
+        FatherName = fatherName;
+    }
+
+    public String getFatherOccupation() {
+        return FatherOccupation;
+    }
+
+    public void setFatherOccupation(String fatherOccupation) {
+        FatherOccupation = fatherOccupation;
+    }
+
+    public String getMotherName() {
+        return MotherName;
+    }
+
+    public void setMotherName(String motherName) {
+        MotherName = motherName;
+    }
+
+    public String getParentCity() {
+        return ParentCity;
+    }
+
+    public void setParentCity(String parentCity) {
+        ParentCity = parentCity;
+    }
+
+    public String getParentState() {
+        return ParentState;
+    }
+
+    public void setParentState(String parentState) {
+        ParentState = parentState;
+    }
+
+    public String getDegree() {
+        return Degree;
+    }
+
+    public void setDegree(String degree) {
+        Degree = degree;
+    }
+
+    public String getCollege() {
+        return College;
+    }
+
+    public void setCollege(String college) {
+        College = college;
+    }
+
+    public String getFamilyMembers() {
+        return FamilyMembers;
+    }
+
+    public void setFamilyMembers(String familyMembers) {
+        FamilyMembers = familyMembers;
+    }
+
+    public String getAccountMangedfor() {
+        return AccountMangedfor;
+    }
+
+    public void setAccountMangedfor(String accountMangedfor) {
+        AccountMangedfor = accountMangedfor;
+    }
+
+    public String getCategory() {
+        return Category;
+    }
+
+    public void setCategory(String category) {
+        Category = category;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
+
+    public String getCompany() {
+        return Company;
+    }
+
+    public void setCompany(String company) {
+        Company = company;
+    }
+
+    public String getDateOfBirth() {
+        return DateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        DateOfBirth = dateOfBirth;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public String getHeight() {
+        return Height;
+    }
+
+    public void setHeight(String height) {
+        Height = height;
+    }
+
+    public String getIncomeRange() {
+        return IncomeRange;
+    }
+
+    public void setIncomeRange(String incomeRange) {
+        IncomeRange = incomeRange;
+    }
+
+    public String getIncomeType() {
+        return IncomeType;
+    }
+
+    public void setIncomeType(String incomeType) {
+        IncomeType = incomeType;
+    }
+
+    public String getInterest1() {
+        return Interest1;
+    }
+
+    public void setInterest1(String interest1) {
+        Interest1 = interest1;
+    }
+
+    public String getInterest2() {
+        return Interest2;
+    }
+
+    public void setInterest2(String interest2) {
+        Interest2 = interest2;
+    }
+
+    public String getInterest3() {
+        return Interest3;
+    }
+
+    public void setInterest3(String interest3) {
+        Interest3 = interest3;
+    }
+
+    public String getInterest4() {
+        return Interest4;
+    }
+
+    public void setInterest4(String interest4) {
+        Interest4 = interest4;
+    }
+
+    public String getInterest5() {
+        return Interest5;
+    }
+
+    public void setInterest5(String interest5) {
+        Interest5 = interest5;
+    }
+
+    public String getInterest6() {
+        return Interest6;
+    }
+
+    public void setInterest6(String interest6) {
+        Interest6 = interest6;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getSubcategory() {
+        return Subcategory;
+    }
+
+    public void setSubcategory(String subcategory) {
+        Subcategory = subcategory;
+    }
+
+    public String getRole() {
+        return Role;
+    }
+
+    public void setRole(String role) {
+        Role = role;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String state) {
+        State = state;
+    }
+
+    public String getAge() {
+        return Age;
+    }
+
+    public void setAge(String age) {
+        Age = age;
+    }
+
+    public String getImageUrl1() {
+        return imageUrl1;
+    }
+
+    public void setImageUrl1(String imageUrl1) {
+        this.imageUrl1 = imageUrl1;
+    }
+
+    public String getProfileId() {
+        return profileId;
+    }
+
     public void setProfileId(String profileId) {
         this.profileId = profileId;
     }
 
-    public int getProfileImage() {
-        return profileImage;
+    public String getProfileGender() {
+        return profileGender;
     }
 
-    public void setProfileImage(int profileImage) {
-        this.profileImage = profileImage;
-    }
-
-    public String getProfileName() {
-        return profileName;
-    }
-
-    public void setProfileName(String profileName) {
-        this.profileName = profileName;
-    }
-
-    public String getProfileWork() {
-        return profileWork;
-    }
-
-    public void setProfileWork(String profileWork) {
-        this.profileWork = profileWork;
-    }
-
-    public String getProfileBio() {
-        return profileBio;
-    }
-
-    public void setProfileBio(String profileBio) {
-        this.profileBio = profileBio;
-    }
-
-    public String getProfileBirthDate() {
-        return profileBirthDate;
-    }
-
-    public void setProfileBirthDate(String profileBirthDate) {
-        this.profileBirthDate = profileBirthDate;
-    }
-
-    public String getProfileCommunity() {
-        return profileCommunity;
-    }
-
-    public void setProfileCommunity(String profileCommunity) {
-        this.profileCommunity = profileCommunity;
-    }
-
-    public String getProfileIncome() {
-        return profileIncome;
-    }
-
-    public void setProfileIncome(String profileIncome) {
-        this.profileIncome = profileIncome;
-    }
-
-    public String getProfileLocation() {
-        return profileLocation;
-    }
-
-    public void setProfileLocation(String profileLocation) {
-        this.profileLocation = profileLocation;
+    public void setProfileGender(String profileGender) {
+        this.profileGender = profileGender;
     }
 }

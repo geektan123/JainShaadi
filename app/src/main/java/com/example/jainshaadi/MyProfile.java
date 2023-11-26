@@ -1,7 +1,10 @@
 package com.example.jainshaadi;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.jainshaadi.ImagePagerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +38,7 @@ public class MyProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_profile);
+        getSupportActionBar().hide();
 
         viewPager = findViewById(R.id.viewPager);
         imageList = new ArrayList<>();
@@ -67,6 +72,14 @@ public class MyProfile extends AppCompatActivity {
         Button overlayButton = findViewById(R.id.overlay_button);
         int color = ContextCompat.getColor(this, R.color.button_enabled);
         overlayButton.setBackgroundColor(color);
+        overlayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),educational_information_form.class);
+
+                // Add this line to attach the bundle
+                startActivity(i);            }
+        });
 
         // Initialize TextViews
         profileName = findViewById(R.id.profile_name);
@@ -114,48 +127,78 @@ public class MyProfile extends AppCompatActivity {
 
     private void fetchAndDisplayProfileData() {
         // Create a reference to the Firebase database
-        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("profile_details");
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users");
 
         // Get the reference to the current profile
-        DatabaseReference currentProfileRef = databaseRef.child(currentUserId);
+        DatabaseReference currentProfileRef = databaseRef.child(FirebaseAuth.getInstance().getUid());
 
         currentProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     // Retrieve profile data
-                    String name = dataSnapshot.child("name").getValue(String.class);
-                    String profession = dataSnapshot.child("profession").getValue(String.class);
+                    String name = dataSnapshot.child("Name").getValue(String.class);
+                    String profession = dataSnapshot.child("Role").getValue(String.class);
                     String tagValue = dataSnapshot.child("tag").getValue(String.class);
-                    String age = dataSnapshot.child("age").getValue(String.class);
-                    String cast = dataSnapshot.child("cast").getValue(String.class);
-                    String income = dataSnapshot.child("income").getValue(String.class);
-                    String city = dataSnapshot.child("city").getValue(String.class);
+                    String age = dataSnapshot.child("Age").getValue(String.class);
+                    String cast = dataSnapshot.child("Subcategory").getValue(String.class);
+                    String income = dataSnapshot.child("IncomeRange").getValue(String.class);
+                    String city = dataSnapshot.child("City").getValue(String.class);
+                    String state = dataSnapshot.child("State").getValue(String.class);
+                    String Height = dataSnapshot.child("Height").getValue(String.class);
+                    String Degree = dataSnapshot.child("Degree").getValue(String.class);
+                    String College = dataSnapshot.child("College").getValue(String.class);
+                    String FatherName = dataSnapshot.child("FatherName").getValue(String.class);
+                    String FatherOccupation = dataSnapshot.child("FatherOccupation").getValue(String.class);
+                    String MotherName = dataSnapshot.child("MotherName").getValue(String.class);
+                    String MotherOccupation = dataSnapshot.child("MotherOccupation").getValue(String.class);
+                    String  FamilyMembers= dataSnapshot.child("FamilyMembers").getValue(String.class);
+                    String Familytype = dataSnapshot.child("Familytype").getValue(String.class);
+                    String ParentState = dataSnapshot.child("ParentState").getValue(String.class);
+                    String ParentCity = dataSnapshot.child("ParentCity").getValue(String.class);
+                    String Year = dataSnapshot.child("Year").getValue(String.class);
+
+      Log.e("clickkkkkkk",Height);
 
                     // Set the data in TextViews
                     profileName.setText(name);
                     profileProfession.setText(profession);
                     tag.setText(tagValue);
-                    profileAge.setText(age);
+                    profileAge.setText(age+","+Height);
                     profileCast.setText(cast);
                     profileIncome.setText(income);
-                    profileCity.setText(city);
+                    profileCity.setText(city+","+state);
 
                     // Retrieve and set other profile data in TextViews similarly
-                    profileEducation.setText(dataSnapshot.child("education").getValue(String.class));
-                    profileFather.setText(dataSnapshot.child("father").getValue(String.class));
-                    profileMother.setText(dataSnapshot.child("mother").getValue(String.class));
-                    profileMembers.setText(dataSnapshot.child("members").getValue(String.class));
-                    profileFamilyType.setText(dataSnapshot.child("family_type").getValue(String.class));
-                    profileResidence.setText(dataSnapshot.child("residence").getValue(String.class));
-                    profileInterest01.setText(dataSnapshot.child("interest01").getValue(String.class));
-                    profileInterest02.setText(dataSnapshot.child("interest02").getValue(String.class));
-                    profileInterest03.setText(dataSnapshot.child("interest03").getValue(String.class));
-                    profileInterest04.setText(dataSnapshot.child("interest04").getValue(String.class));
-                    profileInterest05.setText(dataSnapshot.child("interest05").getValue(String.class));
-                    profileInterest06.setText(dataSnapshot.child("interest06").getValue(String.class));
+                  /*  if (dataSnapshot.exists()) {*/
+                        // Data exists, set the TextViews
+
+                        profileEducation.setText(Degree + "\n" + College + ", " + Year);
+                        profileFather.setText(FatherName+"("+FatherOccupation+")");
+                        profileMother.setText(MotherName+"("+MotherOccupation+")");
+                        profileMembers.setText(FamilyMembers);
+                        profileFamilyType.setText(Familytype);
+                        profileResidence.setText(ParentCity+","+ParentState);
+                   /* } else {
+                        // Data doesn't exist, handle it (e.g., display a message, hide TextViews, etc.)
+                        // For example, you could display a message saying "Data not available"
+                        profileEducation.setText("null");
+                        profileFather.setText("null");
+                        profileMother.setText("null");
+                        profileMembers.setText("null");
+                        profileFamilyType.setText("null");
+                        profileResidence.setText("null");
+                    }*/
+
+                    profileInterest01.setText(dataSnapshot.child("Interest1").getValue(String.class));
+                    profileInterest02.setText(dataSnapshot.child("Interest2").getValue(String.class));
+                    profileInterest03.setText(dataSnapshot.child("Interest3").getValue(String.class));
+                    profileInterest04.setText(dataSnapshot.child("Interest4").getValue(String.class));
+                    profileInterest05.setText(dataSnapshot.child("Interest5").getValue(String.class));
+                    profileInterest06.setText(dataSnapshot.child("Interest6").getValue(String.class));
                 }
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {

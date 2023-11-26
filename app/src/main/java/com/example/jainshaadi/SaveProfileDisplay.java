@@ -10,6 +10,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.jainshaadi.CardAdapter;
 import com.example.jainshaadi.CardItem;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,12 +27,13 @@ public class SaveProfileDisplay extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
 
     // Initialize your current user ID
-    private String currentUserId = "profile1";
+    private String currentUserId = FirebaseAuth.getInstance().getUid();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.save_profile_display);
+        getSupportActionBar().hide();
 
         recyclerView = findViewById(R.id.recyclerView);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
@@ -63,7 +65,7 @@ public class SaveProfileDisplay extends AppCompatActivity {
     }
 
     private void loadCardItems() {
-        DatabaseReference savedProfilesRef = FirebaseDatabase.getInstance().getReference("profile_details").child(currentUserId).child("savedProfiles");
+        DatabaseReference savedProfilesRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserId).child("savedProfiles");
         savedProfilesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -71,7 +73,7 @@ public class SaveProfileDisplay extends AppCompatActivity {
 
                 for (DataSnapshot profileSnapshot : dataSnapshot.getChildren()) {
                     String profileId = profileSnapshot.getKey();
-                    DatabaseReference profileRef = FirebaseDatabase.getInstance().getReference("cardItems").child(profileId);
+                    DatabaseReference profileRef = FirebaseDatabase.getInstance().getReference("users").child(profileId);
                     profileRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot profileDataSnapshot) {

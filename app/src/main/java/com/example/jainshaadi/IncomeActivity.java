@@ -89,11 +89,11 @@ nexttext= findViewById(R.id.Nexttext);
 
         spin1 = findViewById(R.id.spinner2);
         ArrayList<String> arrayAdapter2 = new ArrayList<>();
-        arrayAdapter2.add("Below 1 Lakh");
-        arrayAdapter2.add("1 Lakh to 3 Lakh");
-        arrayAdapter2.add("3 Lakhs to 6 Lakh");
-        arrayAdapter2.add("6 Lakhs to 9 Lakh");
-        arrayAdapter2.add("9 Lakhs to 12 Lakh");
+        arrayAdapter2.add("INR 1-10 Lakh per annum");
+        arrayAdapter2.add("INR 5-10 Lakh per annum");
+        arrayAdapter2.add("INR 10-15 Lakh per annum");
+        arrayAdapter2.add("INR 15-20 Lakh per annum");
+        arrayAdapter2.add("INR 20-25 Lakh per annum");
 
 
         ArrayAdapter<String> arrayAdapter7 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayAdapter2);

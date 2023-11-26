@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Dob extends AppCompatActivity {
+    int age;
     TextView date;
     LinearLayout nextlay;
     LinearLayout layout;
@@ -61,6 +62,7 @@ public class Dob extends AppCompatActivity {
                         calendar.set(Calendar.MONTH, month);
                         calendar.set(Calendar.DAY_OF_MONTH, day);
                         dates = DateFormat.getDateInstance().format(calendar.getTime());
+                         age = calculateAge(year);
 
                         // Showing the picked value in the textView
                         date.setText(dates);
@@ -130,8 +132,13 @@ public class Dob extends AppCompatActivity {
                         String userKey = FirebaseAuth.getInstance().getUid();
                         DatabaseReference userRef = databaseReference.child(userKey);
                         Map<String, Object> updateData = new HashMap<>();
+
                         updateData.put("DateOfBirth", dates);
-                        updateData.put("Height", spinnerValue1 + " " + spinnerValue2);
+
+                        updateData.put("Height", spinnerValue1.substring(0,1)  + "'" + spinnerValue2.substring(0,1)  + "\"");
+
+                        updateData.put("Age", String.valueOf(age)); // Add this line to upload age
+
                         userRef.updateChildren(updateData);
 
                         Intent i = new Intent(getApplicationContext(), Cast.class);
@@ -145,6 +152,16 @@ public class Dob extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    private int calculateAge(int year) {
+        String userKey = FirebaseAuth.getInstance().getUid();
+
+        Calendar calendar = Calendar.getInstance();
+        int currentYear = calendar.get(Calendar.YEAR);
+        return currentYear - year;
+
 
     }
 }

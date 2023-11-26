@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JainShaadi"
         tools:targetApi="31">
+        <activity
+            android:name=".Chatlist"
+            android:exported="false" />
+        <activity
+            android:name=".specificchat"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name=".Otp2"
+            android:exported="false" />
+        <activity
+            android:name=".educational_information_form"
+            android:exported="false" />
+        <activity
+            android:name=".family_information_form1"
+            android:exported="false" />
+        <activity
+            android:name=".family_information_form2"
+            android:exported="false" />
+        <activity
+            android:name=".otp"
+            android:exported="false" />
         <activity
             android:name=".ImageActivity"
             android:exported="false" />

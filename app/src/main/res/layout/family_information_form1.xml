@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="100dp"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/circle_layer_drawable"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/green_tick_icon"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="40dp"
+            android:layout_height="1dp"
+            android:background="#E3DADC"/>
+        <LinearLayout
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/circle_layer_drawable"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/green_tick_icon"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="40dp"
+            android:layout_height="1dp"
+            android:background="#E3DADC"/>
+        <LinearLayout
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/dark_grey_layer_background"
+            android:gravity="center"
+
+            >
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/dark_grey_tick_icon" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:gravity="center"
+        android:layout_marginTop="80dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Family Information"
+            android:textSize="20dp"
+            android:textColor="#524044"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="19dp"
+        android:gravity="center"
+        android:layout_marginTop="106dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:text="1/2"
+            android:textSize="16dp"
+            android:textColor="#756568"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="19dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginHorizontal="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:text="Father's Name"
+            android:textSize="16dp"
+            android:textColor="#524044"/>
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="167dp"
+        android:layout_marginHorizontal="20dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vijaydesh Jain"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:id="@+id/father_name_edit_text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginTop="242dp"
+        android:layout_marginHorizontal="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Father's Occupation"
+            android:textSize="16dp"
+            android:textColor="#524044"/>
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="273dp"
+        android:layout_marginHorizontal="20dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sample Occupation"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:id="@+id/father_occupation_edit_text"
+            android:layout_gravity="center"
+ />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginTop="348dp"
+        android:layout_marginHorizontal="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Mother's Name"
+            android:textSize="16dp"
+            android:textColor="#524044"/>
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="379dp"
+        android:layout_marginHorizontal="20dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sample Mother name"
+            android:textSize="16sp"
+            android:id="@+id/mother_name_edit_text"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginTop="454dp"
+        android:layout_marginHorizontal="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Mother's Occupation"
+            android:textSize="16dp"
+            android:textColor="#524044"/>
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="485dp"
+        android:layout_marginHorizontal="20dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sample"
+            android:textSize="16sp"
+            android:id="@+id/mother_occupation_edit_text"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+           />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginBottom="81dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:id="@+id/Verify"
+        android:background="@drawable/rounded_card_background_next_disabled">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Verify"
+            android:id="@+id/Ver"
+            android:textSize="16dp"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
