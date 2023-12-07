@@ -9,11 +9,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Describe Yourself"
+        android:text="Describe "
         android:textSize="24dp"
         android:textColor="#524044"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="12dp"
+        android:id="@+id/Question"
         android:textStyle="bold"/>
 
     <TextView
@@ -32,20 +33,19 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:layout_marginHorizontal="21dp"
             android:layout_width="match_parent"
             android:layout_height="92dp"
-android:id="@+id/Describe"
+            android:id="@+id/Describe"
             android:background="@drawable/rounded_card_8_background"
             android:gravity="top"
             android:inputType="textMultiLine"
+            android:hint=""
             android:lines="3"
             android:overScrollMode="always"
             android:scrollbarStyle="insideInset"
             android:scrollbars="vertical"
             android:scrollHorizontally="false" />
-
-        />
-
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -85,7 +85,7 @@ android:id="@+id/Describe"
                 <TextView
                     android:layout_width="65dp"
                     android:layout_height="30dp"
-                    android:text=" (500 max)"
+                    android:text=" (150 max)"
                     android:textColor="#756568"
                     android:textSize="12sp"
                     android:textStyle="bold" />

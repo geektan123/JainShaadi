@@ -1,4 +1,5 @@
 package com.example.jainshaadi;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,16 +7,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.jainshaadi.R;
+import com.bumptech.glide.Glide;
+
+import java.util.List;
 
 public class ImagePagerAdapter extends RecyclerView.Adapter<ImagePagerAdapter.ImageViewHolder> {
-    private List<Integer> imageList;
+    private List<String> imageList; // Change the type to String for storing image URLs
     private LayoutInflater inflater;
 
-    public ImagePagerAdapter(Context context, List<Integer> imageList) {
+    public ImagePagerAdapter(Context context, List<String> imageList) {
         this.imageList = imageList;
         this.inflater = LayoutInflater.from(context);
     }
@@ -29,7 +31,10 @@ public class ImagePagerAdapter extends RecyclerView.Adapter<ImagePagerAdapter.Im
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        holder.imageView.setImageResource(imageList.get(position));
+        // Load images from Firebase Storage using Glide
+        Glide.with(holder.itemView.getContext())
+                .load(imageList.get(position))
+                .into(holder.imageView);
     }
 
     @Override
@@ -37,7 +42,7 @@ public class ImagePagerAdapter extends RecyclerView.Adapter<ImagePagerAdapter.Im
         return imageList.size();
     }
 
-    class ImageViewHolder extends RecyclerView.ViewHolder {
+    static class ImageViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
 
         public ImageViewHolder(@NonNull View itemView) {

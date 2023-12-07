@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -83,25 +84,22 @@ TextView Ver;
         String college = collegeEditText.getText().toString();
         String year = yearEditText.getText().toString();
 
-        Intent i = new Intent(getApplicationContext(), family_information_form1.class);
-
-        // Add this line to attach the bundle
-        startActivity(i);
-
-
-
         if (!degree.isEmpty() && !college.isEmpty() && !year.isEmpty()) {
             HashMap<String, Object> userData = new HashMap<>();
             userData.put("Degree", degree);
             userData.put("College", college);
             userData.put("Year", year);
             databaseReference.child(userKey).updateChildren(userData);
+            Intent i = new Intent(getApplicationContext(), family_information_form1.class);
+            // Add this line to attach the bundle
+            startActivity(i);
 
 
         } else {
             // Display an error message (you can use Toast or Snackbar)
             // For example, degreeTextInputLayout.setError("Please enter a degree");
             // Similar for college and year fields
+            Toast.makeText(educational_information_form.this, "Please fill all details", Toast.LENGTH_SHORT).show();
         }
     }
 }

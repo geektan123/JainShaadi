@@ -1,0 +1,161 @@
+<!-- bottom_sheet_options.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/rounded_top"
+    >
+
+    <LinearLayout
+        android:layout_width="48dp"
+        android:layout_height="8dp"
+        android:background="@drawable/rounded_card_background_next_disabled"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <LinearLayout
+        android:id="@+id/llEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginVertical="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit_icon"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Edit Profile Icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textColor="#303030"
+            android:textStyle="bold"
+            android:text="Edit Profile"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDisableProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginVertical="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit_icon"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Edit Profile Icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textColor="#303030"
+            android:textStyle="bold"
+            android:id="@+id/disableIdText"
+            android:text="Disable Discovery"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llTestimonials"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginVertical="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit_icon"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Edit Profile Icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textColor="#303030"
+            android:textStyle="bold"
+            android:text="Submit Testimonials"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llFeedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginVertical="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit_icon"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Edit Profile Icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textColor="#303030"
+            android:textStyle="bold"
+            android:text="Feedback &amp; Review"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginVertical="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit_icon"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Edit Profile Icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textColor="#303030"
+            android:textStyle="bold"
+            android:text="Contact Us"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginVertical="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit_icon"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Edit Profile Icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textColor="#303030"
+            android:textStyle="bold"
+            android:text="Logout"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+</LinearLayout>

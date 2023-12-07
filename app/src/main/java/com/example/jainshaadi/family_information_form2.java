@@ -32,7 +32,7 @@ public class family_information_form2 extends AppCompatActivity {
 
     private Spinner spinner2;
     private Spinner stateSpinner, districtSpinner;
-    private String selectedDistrict, selectedState,Family,number;                 //vars to hold the values of selected State and District
+    private String selectedDistrict = "", selectedState = "",Family = "",number ="";                 //vars to hold the values of selected State and District
     //Spinners
     private ArrayAdapter<CharSequence> stateAdapter, districtAdapter;   //declare adapters for the spinners
 
@@ -47,10 +47,10 @@ public class family_information_form2 extends AppCompatActivity {
         spinner1 = findViewById(R.id.spinner1);
         ArrayList<String> arrayAdapter2 = new ArrayList<>();
 
-
+        arrayAdapter2.add("-Select-");
         arrayAdapter2.add("Nuclear Family");
         arrayAdapter2.add("Single-Parent Family");
-        arrayAdapter2.add("Extended Family");
+        arrayAdapter2.add("Joint Family");
 
         ArrayAdapter<String> arrayAdapter7 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayAdapter2);
         arrayAdapter7.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
@@ -59,10 +59,14 @@ public class family_information_form2 extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Family = spinner1.getSelectedItem().toString();
-                if (spinner1.getSelectedItemPosition() > 0) {
-
-                    isNextLayoutChanged++;
-
+                if(selectedState.isEmpty()||selectedDistrict.isEmpty()||selectedState.equals("Select Your State") || selectedDistrict.equals("Select Your District") || Family.isEmpty() || Family.equals("-Select-") ||number.equals("-Select-")|| number.isEmpty())
+                {
+//                                Toast.makeText(family_information_form2.this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    NextLay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Nexttext.setTextColor(Color.parseColor("#FFFFFF"));
                 }
             }
 
@@ -73,8 +77,7 @@ public class family_information_form2 extends AppCompatActivity {
         });
         spinner2 = findViewById(R.id.spinner2);
         ArrayList<String> arrayAdapter3 = new ArrayList<>();
-
-
+        arrayAdapter3.add("-Select-");
         arrayAdapter3.add("1");
         arrayAdapter3.add("2");
         arrayAdapter3.add("3");
@@ -83,6 +86,7 @@ public class family_information_form2 extends AppCompatActivity {
         arrayAdapter3.add("6");
         arrayAdapter3.add("7");
         arrayAdapter3.add("8");
+        arrayAdapter3.add("8+");
 
         ArrayAdapter<String> arrayAdapter8 = new ArrayAdapter<>(family_information_form2.this, android.R.layout.simple_spinner_item, arrayAdapter3);
         arrayAdapter8.setDropDownViewResource(android.R.layout.select_dialog_item);
@@ -91,10 +95,14 @@ public class family_information_form2 extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 number = spinner2.getSelectedItem().toString();
-                if (spinner2.getSelectedItemPosition() > 0) {
-
-                    isNextLayoutChanged++;
-
+                if(selectedState.isEmpty()||selectedDistrict.isEmpty()||selectedState.equals("Select Your State") || selectedDistrict.equals("Select Your District") || Family.isEmpty() || Family.equals("-Select-") ||number.equals("-Select-")|| number.isEmpty())
+                {
+//                                Toast.makeText(family_information_form2.this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    NextLay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    Nexttext.setTextColor(Color.parseColor("#FFFFFF"));
                 }
             }
 
@@ -289,13 +297,17 @@ public class family_information_form2 extends AppCompatActivity {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             selectedDistrict = districtSpinner.getSelectedItem().toString();
-                            if (districtSpinner.getSelectedItemPosition() > 0&&isNextLayoutChanged==2) {
-
+                            if(selectedState.isEmpty()||selectedDistrict.isEmpty()||selectedState.equals("Select Your State") || selectedDistrict.equals("Select Your District") || Family.isEmpty() || Family.equals("-Select-") ||number.equals("-Select-")|| number.isEmpty())
+                            {
+//                                Toast.makeText(family_information_form2.this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
                                 NextLay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                                 Nexttext.setTextColor(Color.parseColor("#FFFFFF"));
                             }
-                            else
-                                Toast.makeText(family_information_form2.this, "Please Complete the values", Toast.LENGTH_SHORT).show();
+//                            else
+//                                Toast.makeText(family_information_form2.this, "Please Complete the values", Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -316,17 +328,28 @@ public class family_information_form2 extends AppCompatActivity {
                             String userKey = FirebaseAuth.getInstance().getUid();
                             DatabaseReference userRef = databaseReference.child(userKey);
                             Map<String, Object> updateData = new HashMap<>();
-                            updateData.put("ParentState", selectedState);
-                            updateData.put("ParentCity", selectedDistrict);
-                        updateData.put("Familytype", Family);
-                        updateData.put("FamilyMembers", number);
+
+                            if(selectedState.equals("Select Your State") || selectedDistrict.equals("Select Your District") || Family.isEmpty() || Family.equals("-Select-") ||number.equals("-Select-")|| number.isEmpty())
+                            {
+                                Toast.makeText(family_information_form2.this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                updateData.put("ParentState", selectedState);
+                                updateData.put("ParentCity", selectedDistrict);
+                                updateData.put("Familytype", Family);
+                                updateData.put("FamilyMembers", number);
+//                                updateData.put("status","Completed");
+                                userRef.updateChildren(updateData);
+                                Intent i = new Intent(getApplicationContext(), Completeform_Image_01.class);
+                                startActivity(i);
+                            }
 
 
-                        userRef.updateChildren(updateData);
-                            NextLay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                            Nexttext.setTextColor(Color.parseColor("#FFFFFF"));
-                            Intent i = new Intent(getApplicationContext(), Homeactivity.class);
-                            startActivity(i);
+
+//                            NextLay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+//                            Nexttext.setTextColor(Color.parseColor("#FFFFFF"));
+
 
                             // Display a toast message
 

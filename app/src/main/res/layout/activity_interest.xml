@@ -13,11 +13,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pick any 6 of your interest"
+        android:text="Pick any 6 "
         android:textSize="24sp"
         android:textColor="#524044"
         android:layout_marginLeft="21dp"
         android:layout_marginTop="16dp"
+        android:id="@+id/Question"
         android:textStyle="bold"/>
 
     <TextView
@@ -38,7 +39,13 @@
         android:layout_marginLeft="21dp"
         android:layout_marginTop="32dp"
         android:textStyle="bold"/>
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="480dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <!-- Relationship options as divs -->
     <GridLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -52,16 +59,17 @@
 
         <LinearLayout
             android:layout_width="67dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:background="@drawable/rounded_card_background"
             android:id="@+id/L1"
+            android:clickable="true"
+
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -75,16 +83,16 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="70dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L2"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -99,16 +107,16 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="113dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L3"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -135,15 +143,15 @@
 
         <LinearLayout
             android:layout_width="86dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L4"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -158,16 +166,16 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="79dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L5"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -182,15 +190,15 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="92dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
-            android:width="1dp"
             android:color="#756568"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             android:id="@+id/L6"
             >
@@ -219,15 +227,15 @@
 
         <LinearLayout
             android:layout_width="98dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L7"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -266,15 +274,15 @@
 
         <LinearLayout
             android:layout_width="110dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L8"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -289,16 +297,16 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="111dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L9"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -313,16 +321,16 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="77dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L10"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -349,15 +357,15 @@
 
         <LinearLayout
             android:layout_width="95dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:id="@+id/L11"
-            android:width="1dp"
             android:color="#756568"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -372,16 +380,16 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="81dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L12"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -422,15 +430,15 @@
 
         <LinearLayout
             android:layout_width="100dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:id="@+id/L13"
-            android:width="1dp"
             android:color="#756568"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -445,16 +453,16 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="93dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L14"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -469,16 +477,16 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="88dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L15"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -505,15 +513,15 @@
 
         <LinearLayout
             android:layout_width="93dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:id="@+id/L16"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
-            android:width="1dp"
             android:color="#756568"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -528,16 +536,16 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="94dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L17"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -552,16 +560,16 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="93dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
-            android:width="1dp"
             android:color="#756568"
             android:id="@+id/L18"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background"
             >
             <TextView
@@ -574,9 +582,9 @@
                 android:textColor="#756568"
                 />
         </LinearLayout>
-
-
     </GridLayout>
+    </LinearLayout>
+</ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -593,19 +601,20 @@
             android:paddingBottom="12dp"
             android:gravity="center"
             android:id="@+id/L19"
+            android:clickable="true"
             android:background="@drawable/rounded_card_background_next_disabled"
 
 
             >
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:id="@+id/Next"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_gravity="center"
                 android:text="Submit"
-                android:textSize="16dp"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                />
+                android:textSize="16dp"
+                android:textStyle="bold" />
         </LinearLayout></LinearLayout>
 </LinearLayout>

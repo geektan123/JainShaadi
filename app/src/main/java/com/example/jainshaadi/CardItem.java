@@ -1,8 +1,10 @@
 package com.example.jainshaadi;
 
 
+import android.util.Log;
+
 public class CardItem {
-    private String AccountMangedfor;
+    private String Account_Managed_for;
     private String Category;
     private String City;
     private String Company;
@@ -42,9 +44,9 @@ public class CardItem {
         // Default constructor required for Firebase
     }
 
-    public CardItem(String accountMangedfor, String ProfileGender, String ProfileId, String ImageUrl1, String age, String category, String city, String company, String dateOfBirth, String description, String height, String incomeRange, String incomeType, String interest1, String interest2, String interest3, String interest4, String interest5, String interest6, String name, String subcategory, String role, String state, String familyMembers, String parentCity) {
+    public CardItem(String Account_Managed_for, String ProfileGender, String ProfileId, String ImageUrl1, String age, String category, String city, String company, String dateOfBirth, String description, String height, String incomeRange, String incomeType, String interest1, String interest2, String interest3, String interest4, String interest5, String interest6, String name, String subcategory, String role, String state, String familyMembers, String parentCity) {
 
-        AccountMangedfor = accountMangedfor;
+        Account_Managed_for = Account_Managed_for;
         Category = category;
         City = city;
         Age = age;
@@ -70,6 +72,7 @@ public class CardItem {
 
         FamilyMembers = familyMembers;
         ParentCity = parentCity;
+//        Log.e("ac","account = "+account);
     }
 
     public String getFamilytype() {
@@ -144,12 +147,26 @@ public class CardItem {
         FamilyMembers = familyMembers;
     }
 
-    public String getAccountMangedfor() {
-        return AccountMangedfor;
+    public String getAccount_Managed_for() {
+        if(Account_Managed_for.equals("Myself"))
+        return "Managed By Self";
+        else if (Account_Managed_for.equals("My Sister") || Account_Managed_for.equals("My Brother" ))
+        {
+            return "Managed By Their Siblings";
+        }
+        else if (Account_Managed_for.equals("My Son") || Account_Managed_for.equals("My Daughter"))
+        {
+            return "Managed By Their Parents";
+        }
+        else
+        {
+            return "Managed By Their Relatives";
+        }
+//        return Account_Managed_for;
     }
 
-    public void setAccountMangedfor(String accountMangedfor) {
-        AccountMangedfor = accountMangedfor;
+    public void setAccount_Manged_for(String Account_Managed_for) {
+        Account_Managed_for = Account_Managed_for;
     }
 
     public String getCategory() {

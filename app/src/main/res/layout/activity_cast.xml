@@ -8,10 +8,11 @@
     tools:context=".Cast">
 
     <TextView
+        android:id="@+id/Question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What's your affiliation?"
-        android:textSize="24dp"
+        android:text="Please Select "
+        android:textSize="18dp"
         android:textColor="#524044"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
@@ -20,19 +21,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet consectetur."
+        android:text="Please Select the correct Sub Community."
         android:textSize="14sp"
         android:textColor="#524044"
         android:layout_marginLeft="21dp"
         android:layout_marginTop="47dp"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="48dp"
         android:layout_marginTop="96dp">
 
         <GridLayout
             android:layout_width="234dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:rowCount="1"
             android:columnCount="2"
             android:layout_marginLeft="21dp"
@@ -40,7 +41,7 @@
             <LinearLayout
                 android:layout_width="106dp"
                 android:layout_marginRight="8dp"
-                android:layout_height="35dp"
+                android:layout_height="48dp"
                 android:gravity="center"
                     android:id="@+id/Layout1"
                 android:background="@drawable/rounded_card_background">
@@ -49,13 +50,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Digamber"
+                    android:text="Digambar"
                     android:textSize="16dp"
                     />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="120dp"
-                android:layout_height="35dp"
+                android:layout_height="48dp"
                 android:gravity="center"
                 android:id="@+id/Layout2"
 
@@ -64,7 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Shwetamber"
+                    android:text="Shvetambar"
                     android:textSize="16dp"
                     android:id="@+id/Swetamber"
                     />
@@ -80,8 +81,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sub-Category"
-            android:textSize="24dp"
+            android:text="Please Select the Particular Affiliation."
+            android:textSize="18dp"
             android:textColor="#524044"
             android:layout_marginLeft="21dp"
             android:layout_marginTop="16dp"
@@ -96,7 +97,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet consectetur."
+            android:text="Choose Others If you can't find Your Particular Affiliation."
             android:textSize="14sp"
             android:textColor="#524044"
             android:layout_marginLeft="21dp"
@@ -116,6 +117,24 @@
             android:layout_width="320dp"
             android:layout_height="48dp"
             android:background="@drawable/rounded_card_8_background"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="21dp"
+        android:id="@+id/layout6"
+        android:visibility="invisible">
+        <EditText
+            android:id="@+id/others"
+            android:layout_width="320dp"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_card_8_background"
+            android:hint="Please Specify....."
+            android:paddingHorizontal="10dp"
+
             />
 
     </LinearLayout>

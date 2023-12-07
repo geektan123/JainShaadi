@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/rounded_card_edit_card"
+    android:paddingVertical="40dp">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Image"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <FrameLayout
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="32dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="20dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shapeable_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/rounded_card_grey_background"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                />
+
+
+            <ImageView
+                android:id="@+id/plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/plus_icon" />
+        </FrameLayout>
+
+
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="93dp"
+        android:layout_height="153dp"
+        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true"
+        />
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/rounded_card_background_enabled"
+        android:layout_marginHorizontal="20dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/Next"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload"
+            android:textSize="16dp"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+
+
+</RelativeLayout>

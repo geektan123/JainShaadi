@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/rounded_card_edit_card"
+    android:paddingVertical="40dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Dob">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Question"
+        android:text="Select DOB &amp; Height"
+        android:textSize="20sp"
+        android:textColor="#524044"
+        android:layout_marginLeft="20dp"
+
+        android:textStyle="bold"/>
+
+    <!-- Text Input Field -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        >
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:gravity="center"
+            android:elevation="4dp"
+            android:background="@drawable/rounded_card_8dp_blank">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:text="Choose Date"
+                android:textSize="16sp"
+
+                android:textStyle="bold"
+                android:id="@+id/date"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:layout_marginTop="250dp"
+        android:layout_centerHorizontal="true"
+        >
+        <LinearLayout
+            android:layout_width="220dp"
+            android:layout_height="48dp"
+            android:paddingLeft="76dp"
+            android:paddingRight="76dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:gravity="center"
+            android:id="@+id/Nextlay"
+            android:background="@drawable/rounded_card_background_next_disabled"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:text="Update"
+                android:id="@+id/Nexttext"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout1"
+        android:layout_marginTop="120dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Height"
+            android:textSize="20dp"
+            android:textColor="#524044"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:layout_marginHorizontal="21dp"
+        android:id="@+id/layout"
+        >
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rowCount="1"
+            android:columnCount="2"
+            >
+            <Spinner
+                android:id="@+id/spinner1"
+
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:background="@drawable/rounded_card_8_background"
+                android:layout_marginRight="12dp"
+
+                />
+            <Spinner
+                android:id="@+id/spinner2"
+
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:background="@drawable/rounded_card_8_background"
+                />
+
+
+        </GridLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -10,15 +10,14 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="25dp"
         android:layout_height="wrap_content"
         android:paddingHorizontal="23.5dp"
         android:paddingVertical="18dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="12dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="6dp"
-        app:cardElevation="4dp"
+        android:layout_marginVertical="10dp"
+        app:cardElevation="5dp"
         >
         <GridLayout
             android:layout_width="match_parent"
@@ -43,71 +42,80 @@
 
             </LinearLayout>
             <LinearLayout
-                android:layout_width="273dp"
-                android:layout_height="67dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="12dp">
                 <androidx.cardview.widget.CardView
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="67dp"
-                    android:layout_height="67dp"
-                    app:cardCornerRadius="33.5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="360dp"
                     app:cardElevation="0dp"
                     android:layout_marginRight="16dp"
                     >
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:id="@+id/profileImg"
-
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/profile_pic"/>
                 </androidx.cardview.widget.CardView>
                 <GridLayout
-                    android:layout_width="190dp"
-                    android:layout_height="67dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:rowCount="2"
                     android:columnCount="1"
                     android:paddingTop="10dp"
                     >
                     <LinearLayout
-                        android:layout_width="190dp"
-                        android:layout_height="27dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
                         <TextView
-                            android:layout_width="190dp"
-                            android:layout_height="27dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="Ashish Gautam"
-                            android:textSize="22dp"
+                            android:textSize="28dp"
+                            android:textStyle="bold"
+                            android:textColor="#271116"
+
                             android:id="@+id/profileName"
                             />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="190dp"
-                        android:layout_height="27dp">
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="7dp">
                         <TextView
-                            android:layout_width="190dp"
-                            android:layout_height="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="Product Designer"
-                            android:textSize="16dp"
-                            android:id="@+id/profileWork"
+                            android:textSize="18dp"
+                            android:id="@+id/profileCommunity"
+                            android:textColor="#756568"
+                            android:textFontWeight="500"
+                            android:textStyle="normal"
                             />
                     </LinearLayout>
                 </GridLayout>
 
             </LinearLayout>
             <TextView
-                android:layout_width="273dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="I am looking for a soulmate who is caring, down-to-earth, should have morals and respects elders."
-                android:textSize="16sp"
+                android:textSize="18dp"
                 android:layout_marginTop="16dp"
                 android:textColor="#524044"
                 android:id="@+id/profileBio"
+                android:textFontWeight="500"
+
                 />
 
             <LinearLayout
                 android:layout_width="273dp"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">
                 <ImageView
                     android:layout_width="16dp"
@@ -125,7 +133,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="273dp"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
                 <ImageView
                     android:layout_width="16dp"
@@ -138,12 +146,12 @@
                     android:text="Digambar-Agrawal"
                     android:textColor="#524044"
                     android:textSize="14sp"
-                    android:id="@+id/profileCommunity"
+                    android:id="@+id/profileWork"
                     />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="273dp"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
                 <ImageView
                     android:layout_width="16dp"
@@ -161,7 +169,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="273dp"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
                 <ImageView
                     android:layout_width="16dp"
@@ -178,23 +186,25 @@
                     />
             </LinearLayout>
             <LinearLayout
-                android:layout_width="273dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">
 
-                <GridLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.flexbox.FlexboxLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:columnCount="4"
-                    android:rowCount="2">
+                    app:flexWrap="wrap"
+                    app:alignItems="stretch">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"
                         android:width="1dp"
-                        android:background="@drawable/rounded_hobbies_card"
-                        android:color="#756568"
+                        android:background="@drawable/homepage_hobbies_card"
+                        android:color="#FFF1F4"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
                         android:paddingRight="8dp"
@@ -207,7 +217,7 @@
                             android:layout_gravity="center"
                             android:text="Dancing"
                             android:textColor="#756568"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -215,7 +225,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"
                         android:width="1dp"
-                        android:background="@drawable/rounded_hobbies_card"
+                        android:background="@drawable/homepage_hobbies_card"
                         android:color="#756568"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
@@ -229,7 +239,7 @@
                             android:layout_gravity="center"
                             android:text="Dancing"
                             android:textColor="#756568"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -237,7 +247,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"
                         android:width="1dp"
-                        android:background="@drawable/rounded_hobbies_card"
+                        android:background="@drawable/homepage_hobbies_card"
                         android:color="#756568"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
@@ -251,7 +261,7 @@
                             android:layout_gravity="center"
                             android:text="Dancing"
                             android:textColor="#756568"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -259,7 +269,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"
                         android:width="1dp"
-                        android:background="@drawable/rounded_hobbies_card"
+                        android:background="@drawable/homepage_hobbies_card"
                         android:color="#756568"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
@@ -271,18 +281,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Dancing"
+                            android:text="Dance"
                             android:textColor="#756568"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="6dp"
                         android:layout_marginRight="4dp"
                         android:width="1dp"
-                        android:background="@drawable/rounded_hobbies_card"
+                        android:background="@drawable/homepage_hobbies_card"
                         android:color="#756568"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
@@ -294,19 +304,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Dancing"
+                            android:text="Dance"
                             android:textColor="#756568"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="6dp"
                         android:layout_marginRight="4dp"
                         android:width="1dp"
-                        android:background="@drawable/rounded_hobbies_card"
-                        android:color="#756568"
+                        android:background="@drawable/homepage_hobbies_card"
+                        android:color="#FFE0E7"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
                         android:paddingRight="8dp"
@@ -319,20 +329,20 @@
                             android:layout_gravity="center"
                             android:text="Dancing"
                             android:textColor="#756568"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
-                </GridLayout>
+                </com.google.android.flexbox.FlexboxLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="39dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:paddingRight="47dp"
+
                 >
                 <LinearLayout
-                    android:layout_width="104dp"
-                    android:layout_height="39dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp"
                     android:layout_weight="1"
@@ -342,30 +352,31 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/save">
                         <ImageView
-                            android:layout_width="19dp"
-                            android:layout_height="19dp"
-                            android:src="@drawable/saved_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/save_icon_01"
 
                             />
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="19dp"
+                            android:layout_height="wrap_content"
                             android:text="Save"
                             android:textColor="#DC143C"
-                            android:textSize="14sp"
+                            android:textSize="18dp"
                             android:textStyle="bold"
-                            android:gravity="center_vertical"
                             android:id="@+id/saveButtonText"
                             />
                     </LinearLayout>
 
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_width="133dp"
-                    android:layout_height="39dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/viewProfile"
                     android:background="@drawable/rounded_card_background_enabled"
                     android:gravity="center"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="24dp"
                     >
                     <TextView
                         android:layout_width="wrap_content"
@@ -373,7 +384,7 @@
                         android:text="View Profile"
                         android:textStyle="bold"
                         android:textColor="#FFFFFF"
-                        android:textSize="16dp"
+                        android:textSize="18dp"
                         />
                 </LinearLayout>
 

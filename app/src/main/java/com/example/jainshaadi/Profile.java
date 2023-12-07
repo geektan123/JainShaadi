@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import android.util.Log;
 
 public class Profile extends AppCompatActivity {
 
@@ -42,11 +43,12 @@ public class Profile extends AppCompatActivity {
     LinearLayout layoutmale;
     LinearLayout layoutfemale;
     LinearLayout linearnext;
-    boolean isMale = false; // Initialize the gender flag
+    String isMale = "None"; // Initialize the gender flag
     boolean isNextLayoutChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        HashMap<String, Object> userData = new HashMap<>();
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_profile);
@@ -80,8 +82,16 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 if (layout == selectedLinearLayout) {
                     layout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
+                    layoutgayab.setVisibility(View.INVISIBLE);
+                    layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    female.setTextColor(Color.parseColor("#756568"));
+                    layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    male.setTextColor(Color.parseColor("#756568"));
+                    isMale = "None";
                     myself.setTextColor(Color.parseColor("#756568"));
                     selectedLinearLayout = null;
+                    userData.clear();
                 } else {
                     if (selectedLinearLayout != null) {
                         selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
@@ -92,11 +102,14 @@ public class Profile extends AppCompatActivity {
                     layout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                     myself.setTextColor(Color.parseColor("#FFFFFF"));
                     selectedLinearLayout = layout;
+                    String selectedText = myself.getText().toString();
+                    userData.put("Account Managed for", selectedText);
+                    userData.put("Account_Managed_for", selectedText);
 
                     layoutmale.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (!isMale) {
+                            if (!(isMale.equals("Male"))) {
                                 linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                                 next.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
@@ -107,18 +120,18 @@ public class Profile extends AppCompatActivity {
                                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
                                  isNextLayoutChanged = true;
 
-                                HashMap<String, Object> userData = new HashMap<>();
                                 userData.put("Account Managed for", selectedText);
+                                userData.put("Account_Managed_for", selectedText);
                                 String gender = "Male";
 
                                 userData.put("Gender", gender);
                                 String tag = "Looking for bride";
-
+                                userData.put("status","Authenticated");
                                 userData.put("tag", tag);
 
-                                databaseReference.child(userKey).setValue(userData);
+//                                databaseReference.child(userKey).setValue(userData);
 
-                                isMale = true; // Set gender flag to true
+                                isMale = "Male"; // Set gender flag to true
                             }
                         }
                     });
@@ -126,7 +139,8 @@ public class Profile extends AppCompatActivity {
                     layoutfemale.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (isMale) {
+                            Log.e("MyTag", "This is an error log message");
+                            if (!(isMale.equals("Female"))) {
                                 linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                                 next.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
@@ -137,20 +151,19 @@ public class Profile extends AppCompatActivity {
 
                                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
 
-                                HashMap<String, Object> userData = new HashMap<>();
                                 userData.put("Account Managed for", selectedText);
                                 String gender = "Female";
                                 isNextLayoutChanged = true;
 
                                 userData.put("Gender", gender);
                                 String tag = "Looking for groom";
-
+                                userData.put("status","Authenticated");
                                 userData.put("tag", tag);
 
 
-                                databaseReference.child(userKey).setValue(userData);
+//                                databaseReference.child(userKey).setValue(userData);
 
-                                isMale = false; // Set gender flag to false
+                                isMale = "Female"; // Set gender flag to false
                             }
                         }
                     });
@@ -173,6 +186,7 @@ public class Profile extends AppCompatActivity {
                     layout1.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
                     myson.setTextColor(Color.parseColor("#756568"));
                     selectedLinearLayout = null;
+                    userData.clear();
                 } else {
                     if (selectedLinearLayout != null) {
                         selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
@@ -191,16 +205,16 @@ public class Profile extends AppCompatActivity {
 
                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
 
-                HashMap<String, Object> userData = new HashMap<>();
                 userData.put("Account Managed for", selectedText);
+                userData.put("Account_Managed_for", selectedText);
                 String gender = "Male";
 
                 userData.put("Gender", gender);
                 String tag = "Looking for bride";
 
                 userData.put("tag", tag);
-
-                databaseReference.child(userKey).setValue(userData);
+                userData.put("status","Authenticated");
+//                databaseReference.child(userKey).setValue(userData);
             }
         });
 
@@ -213,6 +227,7 @@ public class Profile extends AppCompatActivity {
                     layout2.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
                     mybro.setTextColor(Color.parseColor("#756568"));
                     selectedLinearLayout = null;
+                    userData.clear();
                 } else {
                     if (selectedLinearLayout != null) {
                         selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
@@ -230,16 +245,16 @@ public class Profile extends AppCompatActivity {
                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
 
 
-                HashMap<String, Object> userData = new HashMap<>();
-                userData.put("AccountManagedfor", selectedText);
+                userData.put("Account Managed for", selectedText);
+                userData.put("Account_Managed_for", selectedText);
 
                 String gender = "Male";
 
                 userData.put("Gender", gender);
                 String tag = "Looking for bride";
-
+                userData.put("status","Authenticated");
                 userData.put("tag", tag);
-                databaseReference.child(userKey).setValue(userData);
+//                databaseReference.child(userKey).setValue(userData);
             }
         });
         layout3.setOnClickListener(new View.OnClickListener() {
@@ -251,6 +266,7 @@ public class Profile extends AppCompatActivity {
                     layout3.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
                     mydaughter.setTextColor(Color.parseColor("#756568"));
                     selectedLinearLayout = null;
+                    userData.clear();
                 } else {
                     if (selectedLinearLayout != null) {
                         selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
@@ -267,16 +283,17 @@ public class Profile extends AppCompatActivity {
                 String selectedText = mydaughter.getText().toString();
                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
 
-                HashMap<String, Object> userData = new HashMap<>();
+//                HashMap<String, Object> userData = new HashMap<>();
                 userData.put("Account Managed for", selectedText);
+                userData.put("Account_Managed_for", selectedText);
                 String gender = "Female";
 
                 userData.put("Gender", gender);
                 String tag = "Looking for groom";
-
+                userData.put("status","Authenticated");
                 userData.put("tag", tag);
 
-                databaseReference.child(userKey).setValue(userData);
+//                databaseReference.child(userKey).setValue(userData);
             }
         });
 
@@ -289,6 +306,7 @@ public class Profile extends AppCompatActivity {
                     layout4.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
                     mysister.setTextColor(Color.parseColor("#756568"));
                     selectedLinearLayout = null;
+                    userData.clear();
                 } else {
                     if (selectedLinearLayout != null) {
                         selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
@@ -305,16 +323,15 @@ public class Profile extends AppCompatActivity {
                 // Assuming you have a reference to your Firebase Database
                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
 
-                HashMap<String, Object> userData = new HashMap<>();
-                userData.put("AccountManagedfor", selectedText);
+                userData.put("Account Managed for", selectedText);
+                userData.put("Account_Managed_for", selectedText);
                 String gender = "Female";
-
                 userData.put("Gender", gender);
                 String tag = "Looking for groom";
-
+                userData.put("status","Authenticated");
                 userData.put("tag", tag);
 
-                databaseReference.child(userKey).setValue(userData);
+//                databaseReference.child(userKey).setValue(userData);
 
             }
         });
@@ -326,6 +343,14 @@ public class Profile extends AppCompatActivity {
                     layout5.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
                     myrelative.setTextColor(Color.parseColor("#756568"));
                     selectedLinearLayout = null;
+                    userData.clear();
+                    linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
+                    layoutgayab.setVisibility(View.INVISIBLE);
+                    layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    female.setTextColor(Color.parseColor("#756568"));
+                    layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
+                    male.setTextColor(Color.parseColor("#756568"));
+                    isMale = "None";
                 } else {
                     if (selectedLinearLayout != null) {
                         selectedLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
@@ -335,32 +360,35 @@ public class Profile extends AppCompatActivity {
                     layout5.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                     myrelative.setTextColor(Color.parseColor("#FFFFFF"));
                     selectedLinearLayout = layout5;
+                    String selectedText = myrelative.getText().toString();
+                    userData.put("Account Managed for", selectedText);
+                    userData.put("Account_Managed_for", selectedText);
                     layoutgayab.setVisibility(View.VISIBLE);
                     layoutmale.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (!isMale) {
+                            if (!(isMale.equals("Male"))) {
                                 linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                                 next.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                                 male.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
                                 female.setTextColor(Color.parseColor("#756568"));
-                                String selectedText = myself.getText().toString();
+                                String selectedText = myrelative.getText().toString();
                                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
 
-                                HashMap<String, Object> userData = new HashMap<>();
                                 userData.put("Account Managed for", selectedText);
+                                userData.put("Account_Managed_for", selectedText);
                                 String gender = "Male";
                                 isNextLayoutChanged = true;
-                                userData.put("profileGender", gender);
+                                userData.put("Gender", gender);
                                 String tag = "Looking for bride";
 
                                 userData.put("tag", tag);
+                                userData.put("status","Authenticated");
+//                                databaseReference.child(userKey).setValue(userData);
 
-                                databaseReference.child(userKey).setValue(userData);
-
-                                isMale = true; // Set gender flag to true
+                                isMale = "Male"; // Set gender flag to true
                             }
                         }
                     });
@@ -368,29 +396,31 @@ public class Profile extends AppCompatActivity {
                     layoutfemale.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (isMale) {
+                            if (!(isMale.equals("Female"))) {
                                 linearnext.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                                 next.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutfemale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                                 female.setTextColor(Color.parseColor("#FFFFFF"));
                                 layoutmale.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
                                 male.setTextColor(Color.parseColor("#756568"));
-                                String selectedText = myself.getText().toString();
+                                String selectedText = myrelative.getText().toString();
 
                                 String userKey = FirebaseAuth.getInstance().getUid(); // Replace with actual user ID
 
-                                HashMap<String, Object> userData = new HashMap<>();
+//                                HashMap<String, Object> userData = new HashMap<>();
                                 userData.put("Account Managed for", selectedText);
+                                userData.put("Account_Managed_for", selectedText);
                                 String gender = "Female";
                                  isNextLayoutChanged = true;
                                 String tag = "Looking for groom";
 
                                 userData.put("tag", tag);
+                                userData.put("status","Authenticated");
+                                userData.put("Gender", gender);
+                                userData.put("status","Authenticated");
+//                                databaseReference.child(userKey).setValue(userData);
 
-                                userData.put("profileGender", gender);
-                                databaseReference.child(userKey).setValue(userData);
-
-                                isMale = false; // Set gender flag to false
+                                isMale = "Female"; // Set gender flag to false
                             }
                         }
                     });
@@ -450,10 +480,57 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 if(isNextLayoutChanged==true) {
-    Intent i = new Intent(getApplicationContext(), Name.class);
+    if(!(userData.isEmpty()))
+    {
+        String gen = "";
+        String acc = "";
+        if(userData.get("Gender").equals("Male"))
+        {
+            gen = "1";
+        } else if (userData.get("Gender").equals("Female")) {
+            gen = "2";
+        }
+        if(userData.get("Account_Managed_for").equals("Myself"))
+        {
+            acc = "1";
+        }
+        else if(userData.get("Account_Managed_for").equals("My Son"))
+        {
+            acc = "2";
+        }
+        else if(userData.get("Account_Managed_for").equals("My Brother"))
+        {
+            acc = "3";
+        }
+        else if(userData.get("Account_Managed_for").equals("My Daughter"))
+        {
+            acc = "4";
+        }
+        else if(userData.get("Account_Managed_for").equals("My Sister"))
+        {
+            acc = "5";
+        }
+        else if(userData.get("Account_Managed_for").equals("My Relative"))
+        {
+            acc = "6";
+        }
 
-    // Add this line to attach the bundle
-    startActivity(i);
+        String userKey = FirebaseAuth.getInstance().getUid();
+        userData.put("active","enabled");
+        userData.put("status","Authenticated");
+        databaseReference.child(userKey).setValue(userData);
+        Intent i = new Intent(getApplicationContext(), Name.class);
+        i.putExtra("Gender",gen);
+        i.putExtra("Account",acc);
+        // Add this line to attach the bundle
+        startActivity(i);
+
+    }
+    else
+    {
+        Toast.makeText( Profile.this, "Please Complete the values", Toast.LENGTH_SHORT).show();
+    }
+
 }
 else {
     Toast.makeText( Profile.this, "Please Complete the values", Toast.LENGTH_SHORT).show();

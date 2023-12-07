@@ -14,18 +14,27 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/load_profile">
             <LinearLayout
                 android:id="@+id/layer1"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="13.76dp" >
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/back_button"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:text="My Profile"
+                    android:layout_height="wrap_content"
+                    android:text=""
                     android:textSize="20dp"
+                    android:textStyle="bold"
                     android:textColor="#3D2429"
                     android:layout_weight="1"
                     />
@@ -35,8 +44,8 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layer2"
-                android:layout_width="380dp"
-                android:layout_height="380dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardElevation="0dp"
@@ -50,7 +59,8 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/profile_pic"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -69,7 +79,7 @@
             <LinearLayout
                 android:id="@+id/layer3"
                 android:layout_width="match_parent"
-                android:layout_height="29dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layer2"
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="20dp"
@@ -77,45 +87,45 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="29dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     >
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="29dp"
+                        android:layout_height="wrap_content"
                         android:text="Ashish Gautam"
                         android:textColor="#3D2429"
-                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        android:textSize="28dp"
                         android:id="@+id/profile_name"
                         />
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginBottom="6dp"
+                        android:id="@+id/verified"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/verified_icon" />
                 </LinearLayout>
 
             </LinearLayout>
             <TextView
-                android:id="@+id/profile_profession"
+                android:id="@+id/profile_cast"
                 android:layout_width="wrap_content"
-                android:layout_height="19dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layer3"
-                android:text="Product Designer, Zomato"
+                android:text="Digamber-Agarwal"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="2dp"
-                android:textSize="16sp"
+                android:textSize="20dp"
                 android:textColor="#756568"
                 />
 
             <LinearLayout
                 android:id="@+id/layer5"
                 android:layout_width="wrap_content"
-                android:layout_height="23sp"
-                android:layout_below="@+id/profile_profession"
-                android:textSize="12sp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_cast"
                 android:text="Looking for Bride"
                 android:layout_marginTop="12dp"
                 android:layout_marginLeft="20dp"
@@ -126,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:text="Looking for Bride"
                     android:textColor="#524044"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginVertical="4dp"
                     android:id="@+id/tag"/>
@@ -135,19 +145,20 @@
             <LinearLayout
                 android:id="@+id/layer6"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginLeft="20dp"
                 android:layout_below="@id/layer5">
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="17dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/birthday_icon" />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
                     android:text="22 Years Old, 5'10"
-                    android:textSize="14sp"
+                    android:textSize="18dp"
                     android:textColor="#524044"
                     android:layout_marginLeft="5dp"
                     android:id="@+id/profile_age"/>
@@ -155,22 +166,23 @@
             <LinearLayout
                 android:id="@+id/layer7"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/layer6"
                 android:layout_marginLeft="20dp">
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="19dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/community_icon" />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:text="Digamber-Agarwal"
-                    android:textSize="14sp"
+                    android:layout_height="wrap_content"
+                    android:text="Product Manager, Zomato"
+                    android:textSize="18dp"
                     android:textColor="#524044"
                     android:layout_marginLeft="5dp"
-                    android:id="@+id/profile_cast"/>
+                    android:id="@+id/profile_profession"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layer8"
@@ -181,13 +193,14 @@
                 android:layout_marginLeft="20dp">
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="19dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/income_icon" />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
                     android:text="INR 15-17 Lakhs per annum"
-                    android:textSize="14sp"
+                    android:textSize="18dp"
                     android:textColor="#524044"
                     android:layout_marginLeft="5dp"
                     android:id="@+id/profile_income"/>
@@ -195,19 +208,20 @@
             <LinearLayout
                 android:id="@+id/layer9"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layer8"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp">
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="19dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
                     android:src="@drawable/location_icon" />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
                     android:text="Lucknow, Uttarpradesh"
-                    android:textSize="14sp"
+                    android:textSize="18dp"
                     android:textColor="#524044"
                     android:layout_marginLeft="5dp"
                     android:id="@+id/profile_city"/>
@@ -215,16 +229,17 @@
             <LinearLayout
                 android:id="@+id/layer10"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layer9"
                 android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="20dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="19dp"
+                    android:layout_height="wrap_content"
                     android:text="Educational Information"
                     android:textColor="#3D2429"
-                    android:textSize="16sp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:layout_weight="1"
                     />
 
@@ -241,23 +256,24 @@
                     android:layout_height="wrap_content"
                     android:text="BTech in Mechanical Engineering (2022-2026) IIT Delhi"
                     android:textColor="#524044"
-                    android:textSize="14sp"
+                    android:textSize="18dp"
                     android:id="@+id/profile_education"
                     />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layer12"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layer11"
                 android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="20dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="19dp"
+                    android:layout_height="wrap_content"
                     android:text="Family Information"
                     android:textColor="#3D2429"
-                    android:textSize="16sp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:layout_weight="1"
                     />
 
@@ -265,92 +281,92 @@
             <LinearLayout
                 android:id="@+id/layer13"
                 android:layout_width="wrap_content"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layer12"
                 android:layout_marginTop="8dp"
                 android:layout_marginHorizontal="20dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="17dp"
+                    android:layout_height="wrap_content"
                     android:text="Father:"
                     android:textColor="#3D2429"
-                    android:textSize="14sp"
+                    android:textSize="18dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="17dp"
+                    android:layout_height="wrap_content"
                     android:text=" Vijaydesh Jain (Tailor)"
                     android:textColor="#756568"
-                    android:textSize="14sp"
+                    android:textSize="18dp"
                     android:id="@+id/profile_father"
                     />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layer14"
                 android:layout_width="wrap_content"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layer13"
                 android:layout_marginTop="6dp"
                 android:layout_marginHorizontal="20dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="17dp"
+                    android:layout_height="wrap_content"
                     android:text="Mother:"
                     android:textColor="#3D2429"
-                    android:textSize="14sp"
+                    android:textSize="18dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="17dp"
+                    android:layout_height="wrap_content"
                     android:text="Savitri Jain(Housewife)"
                     android:textColor="#756568"
-                    android:textSize="14sp"
+                    android:textSize="18dp"
                     android:id="@+id/profile_mother"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layer15"
                 android:layout_width="match_parent"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layer14"
                 android:layout_marginTop="6dp"
                 android:layout_marginHorizontal="20dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="17dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="17dp"
+                        android:layout_height="wrap_content"
                         android:text="Members:"
                         android:textColor="#3D2429"
-                        android:textSize="14sp"
+                        android:textSize="18dp"
                         />
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="17dp"
+                        android:layout_height="wrap_content"
                         android:text=" 5"
                         android:textColor="#756568"
-                        android:textSize="14sp"
+                        android:textSize="18dp"
                         android:id="@+id/profile_members"
                         />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="17dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="17dp"
+                        android:layout_height="wrap_content"
                         android:text="Family-Type:"
                         android:textColor="#3D2429"
-                        android:textSize="14sp"
+                        android:textSize="18dp"
                         />
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="17dp"
+                        android:layout_height="wrap_content"
                         android:text=" Nuclear"
                         android:textColor="#756568"
-                        android:textSize="14sp"
+                        android:textSize="18dp"
                         android:id="@+id/profile_family_type"
                         />
                 </LinearLayout>
@@ -358,37 +374,38 @@
             <LinearLayout
                 android:id="@+id/layer16"
                 android:layout_width="wrap_content"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layer15"
                 android:layout_marginTop="6dp"
                 android:layout_marginHorizontal="20dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="17dp"
+                    android:layout_height="wrap_content"
                     android:text="Residence:"
                     android:textColor="#3D2429"
-                    android:textSize="14sp"
+                    android:textSize="18dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="17dp"
+                    android:layout_height="wrap_content"
                     android:text="Lucknow, UP"
                     android:textColor="#756568"
-                    android:textSize="14sp"
+                    android:textSize="18dp"
                     android:id="@+id/profile_residence"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layer17"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layer16"
                 android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="20dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="19dp"
+                    android:layout_height="wrap_content"
                     android:text="Hobbies/Interest"
-                    android:textSize="16sp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:textColor="#3D2429"
                     android:layout_weight="1"/>
 
@@ -400,13 +417,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/layer17"
                 android:layout_marginTop="12dp">
-                <GridLayout
+                <com.google.android.flexbox.FlexboxLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="273dp"
                     android:layout_height="wrap_content"
-                    android:rowCount="2"
-                    android:columnCount="4"
-                    android:layout_marginBottom="100dp"
+                    app:flexWrap="wrap"
+                    app:alignItems="stretch"
                     android:layout_marginHorizontal="20dp">
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -542,19 +559,35 @@
                             android:id="@+id/profile_interest06"
                             />
                     </LinearLayout>
-                </GridLayout>
+                </com.google.android.flexbox.FlexboxLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"></LinearLayout>
             </LinearLayout>
 
         </RelativeLayout>
 
     </ScrollView>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="93dp"
+        android:layout_height="153dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:progressTint="#DC143C"
+        />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/overlay_button"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:text="Message"
         android:textSize="16dp"
+        android:textColor="#FFFFFF"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_card_background_enabled"/>
 </FrameLayout>

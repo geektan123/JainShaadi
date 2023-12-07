@@ -7,9 +7,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Name">
     <TextView
+        android:id="@+id/Question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What's your name?"
+        android:text="What's"
         android:textSize="24sp"
         android:textColor="#524044"
         android:layout_marginLeft="21dp"
@@ -34,16 +35,15 @@
         android:layout_marginTop="96dp"
         android:hint="Enter your full name" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/submitButton"
         android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="161dp"
-
         android:background="@drawable/rounded_card_background_next_disabled"
-        android:text="Submit" />
+        android:text="Next" />
 
 
 </RelativeLayout>

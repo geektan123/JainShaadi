@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -57,7 +59,26 @@ public class IncomeActivity extends AppCompatActivity {
         layout7 = findViewById(R.id.layout7);
         Role = findViewById(R.id.Role);
         Company = findViewById(R.id.Company);
-nexttext= findViewById(R.id.Nexttext);
+        nexttext= findViewById(R.id.Nexttext);
+        TextView Question = findViewById(R.id.Question);
+        Intent intent = getIntent();
+        String gen = intent.getStringExtra("Gender");
+        String acc = intent.getStringExtra("Account");
+        if(acc.equals("1"))
+        {
+            Question.setText("You Work With ?");
+        }
+        else
+        {
+            if(gen.equals("1"))
+            {
+                Question.setText("He Work With ?");
+            }
+            else if(gen.equals("2"))
+            {
+                Question.setText("She Work With ?");
+            }
+        }
      /*   layout1.setVisibility(View.INVISIBLE);
         layout2.setVisibility(View.INVISIBLE);
         layout3.setVisibility(View.INVISIBLE);
@@ -79,9 +100,12 @@ nexttext= findViewById(R.id.Nexttext);
         });*/
 
         ArrayList<String> arrayAdapter1 = new ArrayList<>();
+        arrayAdapter1.add("-Select-");
         arrayAdapter1.add("Private Company");
-        arrayAdapter1.add("Government Company");
-        arrayAdapter1.add("Startup");
+        arrayAdapter1.add("Government Service");
+        arrayAdapter1.add("Bussiness");
+        arrayAdapter1.add("Self Employed");
+        arrayAdapter1.add("NA");
         ArrayAdapter<String> arrayAdapter6 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayAdapter1);
         arrayAdapter6.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin.setAdapter(arrayAdapter6);
@@ -89,11 +113,15 @@ nexttext= findViewById(R.id.Nexttext);
 
         spin1 = findViewById(R.id.spinner2);
         ArrayList<String> arrayAdapter2 = new ArrayList<>();
-        arrayAdapter2.add("INR 1-10 Lakh per annum");
+        arrayAdapter2.add("-Select-");
+        arrayAdapter2.add("INR 0-3 Lakh per annum");
+        arrayAdapter2.add("INR 3-5 Lakh per annum");
         arrayAdapter2.add("INR 5-10 Lakh per annum");
         arrayAdapter2.add("INR 10-15 Lakh per annum");
-        arrayAdapter2.add("INR 15-20 Lakh per annum");
-        arrayAdapter2.add("INR 20-25 Lakh per annum");
+        arrayAdapter2.add("INR 15-25 Lakh per annum");
+        arrayAdapter2.add("INR 25-40 Lakh per annum");
+        arrayAdapter2.add("INR 40+ Lakh per annum");
+        arrayAdapter2.add("NA");
 
 
         ArrayAdapter<String> arrayAdapter7 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayAdapter2);
@@ -154,6 +182,8 @@ nexttext= findViewById(R.id.Nexttext);
                     databaseReference.child(userKey).updateChildren(incomeData);
 
                     Intent i = new Intent(getApplicationContext(), DescribeActivity.class);
+                    i.putExtra("Gender",gen);
+                    i.putExtra("Account",acc);
                     startActivity(i);
                 } else {
                     // Show a Toast or error message indicating that Role and Company are mandatory

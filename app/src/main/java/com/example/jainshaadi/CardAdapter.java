@@ -82,7 +82,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
 
         CardItem cardItem = cardItemList.get(position);
-        holder.postedByTextView.setText(cardItem.getAccountMangedfor());
+        holder.postedByTextView.setText(cardItem.getAccount_Managed_for());
+        Log.e("ac","acc = "+ cardItem.getAccount_Managed_for());
        Glide.with(holder.itemView.getContext()).load(cardItem.getImageUrl1()).into(holder.profileImageView);
           //holder.profileImageView.setImageResource(cardItem.getImageUrl1());
 

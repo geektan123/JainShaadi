@@ -1,12 +1,15 @@
 package com.example.jainshaadi;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -52,7 +55,10 @@ TextView Nexttext;
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_location);
-        stateSpinner = findViewById(R.id.spinner_indian_states);    //Finds a view that was identified by the android:id attribute in xml
+        NextLay = findViewById(R.id.Nextlay);
+        Nexttext = findViewById(R.id.Nexttext);
+        stateSpinner = findViewById(R.id.spinner_indian_states);
+        districtSpinner = findViewById(R.id.spinner_indian_districts);//Finds a view that was identified by the android:id attribute in xml
 
         //Populate ArrayAdapter using string array and a spinner layout that we will define
         stateAdapter = ArrayAdapter.createFromResource(this, R.array.array_indian_states, R.layout.spinner_layout);
@@ -63,11 +69,31 @@ TextView Nexttext;
         stateSpinner.setAdapter(stateAdapter);            //Set the adapter to the spinner to populate the State Spinner
 
         //When any item of the stateSpinner uis selected
+        TextView Question = findViewById(R.id.Question);
+        Intent intent = getIntent();
+        String gen = intent.getStringExtra("Gender");
+        String acc = intent.getStringExtra("Account");
+        if(acc.equals("1"))
+        {
+            Question.setText("Your Current Residence");
+        }
+        else
+        {
+            if(gen.equals("1"))
+            {
+                Question.setText("His Current Residence");
+            }
+            else if(gen.equals("2"))
+            {
+                Question.setText("Her Current Residence");
+            }
+        }
         stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //Define City Spinner but we will populate the options through the selected state
-                districtSpinner = findViewById(R.id.spinner_indian_districts);
+                NextLay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
+                isNextLayoutChanged = false;
 
                 selectedState = stateSpinner.getSelectedItem().toString();      //Obtain the selected State
 
@@ -253,8 +279,7 @@ TextView Nexttext;
                     });
                 }
 
-                NextLay = findViewById(R.id.Nextlay);
-                Nexttext = findViewById(R.id.Nexttext);
+
 
 
                 NextLay.setOnClickListener(new View.OnClickListener() {
@@ -269,6 +294,8 @@ TextView Nexttext;
                             userRef.updateChildren(updateData);
 
                             Intent i = new Intent(getApplicationContext(), Interest.class);
+                            i.putExtra("Gender",gen);
+                            i.putExtra("Account",acc);
                             startActivity(i);
 
                             // Display a toast message

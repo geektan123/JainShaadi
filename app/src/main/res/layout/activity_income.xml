@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet consectetur."
+        android:text="Select or write NA if not working"
         android:textSize="14sp"
         android:textColor="#524044"
         android:layout_marginLeft="21dp"
@@ -31,7 +31,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You work with"
+            android:text=""
+            android:id="@+id/Question"
             android:textSize="16dp"
             android:textColor="#524044"
             android:layout_marginLeft="21dp"
@@ -85,6 +86,8 @@
             android:layout_width="320dp"
             android:layout_height="48dp"
             android:background="@drawable/rounded_card_8_background"
+            android:hint="Ex: Product Manager"
+            android:paddingLeft="10dp"
             />
 
     </LinearLayout>
@@ -102,6 +105,14 @@
             android:textColor="#524044"
             android:layout_marginLeft="21dp"
             android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(For Gov. Service mention the Department)"
+            android:textSize="12sp"
+            android:textColor="#524044"
+            android:layout_marginLeft="5dp"
+            />
 
     </LinearLayout>
 
@@ -117,6 +128,8 @@
             android:layout_width="320dp"
             android:layout_height="48dp"
             android:background="@drawable/rounded_card_8_background"
+            android:hint="Ex: Google"
+            android:paddingLeft="10dp"
             />
 
     </LinearLayout>
@@ -162,13 +175,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="4dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Why is income required ?"
-            android:textSize="14sp"
-            android:textColor="#524044"
-            />
     </LinearLayout>
 
 

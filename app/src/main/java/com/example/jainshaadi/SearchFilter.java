@@ -1,18 +1,37 @@
-package com.example.jainshaadi;
-import android.content.Intent;
+package com.example.jainshaadi; // Replace with your actual package name
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
+import java.util.ArrayList;
+import java.util.List;
+import android.os.Bundle;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
+import androidx.annotation.NonNull;
+import android.util.Log;
+import android.os.Handler;
+import java.util.Collections;
+import java.util.Map;
+
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import android.view.View;
+import android.content.Intent;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jainshaadi.CardAdapter;
 import com.example.jainshaadi.CardItem;
@@ -20,183 +39,245 @@ import com.example.jainshaadi.MyProfile;
 import com.example.jainshaadi.R;
 import com.example.jainshaadi.SaveProfileDisplay;
 import com.example.jainshaadi.Search;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.Query;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-
+// Import statements...
 public class SearchFilter extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CardAdapter cardAdapter;
     private List<CardItem> cardItemList;
     private DatabaseReference databaseRef;
     private String currentUserId;
-    private static final int PAGE_SIZE = 3;
+
+    private static final int PAGE_SIZE = 5;
     private int currentPage = 1;
-    private Query query;
+    private List<String> shuffledUserIds;
+    private int visibleThreshold = 5;
+    private boolean isLoading = false;
+
     private ValueEventListener valueEventListener;
     private DatabaseReference profilesRef;
-    private final Handler handler = new Handler();
-    private int check = 0;
-    private int val = 1;
+    private DatabaseReference profilesRef1;
+    private DatabaseReference profilesRef2;
+    private Query query;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String filterType;
+    ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+        getSupportActionBar().hide();
 
         recyclerView = findViewById(R.id.recyclerView);
+        progress = findViewById(R.id.progressBar);
+        progress.setVisibility(View.VISIBLE);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        databaseRef = FirebaseDatabase.getInstance().getReference();
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         cardItemList = new ArrayList<>();
+        shuffledUserIds = new ArrayList<>();
 
         // Initialize Firebase Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         // Set the current user's ID (replace with your own logic)
-        Intent intent = getIntent();
-        currentUserId = intent.getStringExtra("currentUserId");
-        filterType = intent.getStringExtra("filterType");
         currentUserId = FirebaseAuth.getInstance().getUid();
-        Log.e("ehjjj","current = "+currentUserId);
-        Log.e("ekkkka","filter = "+filterType);
 
         // Profile Reference
         profilesRef = database.getReference("users");
+        profilesRef1 = profilesRef.child(currentUserId);
+        profilesRef2 = profilesRef1.child("Gender");
 
-        // Query
-        if (filterType.equals("Digambar")) {
-            Log.e("errorfff","digambar"+currentUserId);
-            query = profilesRef
-                    .orderByChild("Category")
-                    .equalTo("Digambar");
-        } else if (filterType.equals("Shwetamber")) {
-            query = profilesRef
-                    .orderByChild("Category")
-                    .equalTo("Shwetamber");
-        } else if (filterType.equals("Location")) {
-            DatabaseReference userLocationRef = FirebaseDatabase.getInstance().getReference("users").child(currentUserId).child("State");
-
-            userLocationRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String currentLocation = dataSnapshot.getValue(String.class);
-                    // Do something with the current user's location (currentLocation)
-                    if (currentLocation != null) {
-                        query = profilesRef
-                                .orderByChild("State")
-                                .equalTo(currentLocation);
-                        loadCardItems();
-                    } else {
-                        query = profilesRef
-                                .orderByChild("Gender")
-                                .equalTo("Female");
-                    }
-                    loadCardItems(); // Load card items after getting the location
-                }
-
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    // Handle any errors here
-                }
-            });
-        }
-
-        if(query == null)
-        {
-            query = profilesRef
-                    .orderByChild("profileGender")
-                    .equalTo("Female");
-        }
         // Set up SwipeRefreshLayout
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // Load the data again when the user swipes to refresh
-                loadCardItems();
-            }
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            cardItemList.clear();
+            currentPage = 1;
+            loadShuffledUserIds();
         });
 
-        // Load the initial data
-        loadCardItems();
+
+        // Initialize the adapter
+        cardAdapter = new CardAdapter(SearchFilter.this, cardItemList, databaseRef, currentUserId);
+
+
+        // Load shuffled user IDs and profiles
+        loadShuffledUserIds();
+
         LinearLayout saveIcon = findViewById(R.id.saved);
-        saveIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Redirect to SavedProfilesActivity
-                Intent intent = new Intent(com.example.jainshaadi.SearchFilter.this, SaveProfileDisplay.class);
-                startActivity(intent);
-            }
+        saveIcon.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            Intent intent = new Intent(SearchFilter.this, SaveProfileDisplay.class);
+            startActivity(intent);
         });
 
         GridLayout myProfile = findViewById(R.id.my_profile);
-        myProfile.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
-                // Redirect to SavedProfilesActivity
-                Intent intent = new Intent(com.example.jainshaadi.SearchFilter.this, MyProfile.class);
-                startActivity(intent);
-            }
+        myProfile.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            Intent intent = new Intent(SearchFilter.this, MyProfile.class);
+            startActivity(intent);
         });
 
         ImageView search = findViewById(R.id.search);
-        search.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
-                // Redirect to SavedProfilesActivity
-                Intent intent = new Intent(com.example.jainshaadi.SearchFilter.this, Search.class);
-                intent.putExtra("currentUserId", currentUserId);
-                startActivity(intent);
-            }
+        search.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            Intent intent = new Intent(SearchFilter.this, Search.class);
+            Log.e("e", "curent3 = " + currentUserId);
+            intent.putExtra("currentUserId", currentUserId);
+            startActivity(intent);
+        });
+        GridLayout Chat = findViewById(R.id.chatlist);
+        Chat.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            Intent intent = new Intent(SearchFilter.this, Chatlist.class);
+            startActivity(intent);
         });
 
+        // Load the initial set of profiles
+
+
+        // Set up RecyclerView scrolling listener
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
+                int totalItemCount = layoutManager.getItemCount();
+
+                if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+                    // Load more profiles when reaching the end
+                    loadNextProfiles();
+                    isLoading = true;
+                }
+            }
+        });
     }
 
-    private void loadCardItems() {
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                cardItemList.clear(); // Clear the list before adding new data
+    private void loadShuffledUserIds() {
+        recyclerView.setAdapter(cardAdapter);
+        shuffledUserIds.clear();
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
+        profilesRef1.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    // Parse data and create CardItem objects
+                Object currentUserGender = task.getResult().child("Gender").getValue();
+                Object currentUserState = task.getResult().child("State").getValue();
+                Object currentUserAge = task.getResult().child("Age").getValue();
+                Intent intent = getIntent();
+                String filterType = intent.getStringExtra("filterType");
+                if (filterType.equals("Digambar")) {
+                    query = profilesRef.orderByChild("Category").equalTo("Digambar");
+                } else if (filterType.equals("Shvetambar")) {
+                    query = profilesRef.orderByChild("Category").equalTo("Shvetambar");
+                } else if (filterType.equals("Location")) {
+                    query = profilesRef.orderByChild("State").equalTo(currentUserState.toString());
+                } else if (filterType.equals("Age")) {
+                    int age = Integer.parseInt((String) currentUserAge);
+                    query = profilesRef.orderByChild("AgeInt").startAt(age - 2).endAt(age + 2);
+                } else {
+                    query = profilesRef.orderByChild("NoResult").equalTo("NoResult");
+                }
+
+//                if (currentUserGender != null && currentUserGender.toString().equals("Female")) {
+//                    if(filterType.equals("Digambar")) {
+//                        query = profilesRef.orderByChild("Gender_Category").equalTo("Male_Digamber");
+//                    } else if (filterType.equals("Shvetambar")) {
+//                        query = profilesRef.orderByChild("Gender_Category").equalTo("Male_Shvetambar");
+//                    }
+//                    else
+//                    {
+//                        query = profilesRef.orderByChild("Gender").equalTo("Male");
+//                    }
+//                } else {
+//                    if(filterType.equals("Digambar")) {
+//                        query = profilesRef.orderByChild("Category").equalTo("Digamber");
+//                    } else if (filterType.equals("Shvetambar")) {
+//                        query = profilesRef.orderByChild("Category").equalTo("Shvetambar");
+//                    }
+//                    else
+//                    {
+//                        query = profilesRef.orderByChild("Gender").equalTo("Female");
+//                    }
+//                }
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        List<String> allUserIds = new ArrayList<>();
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            if (currentUserGender != null) {
+                                Object Status = snapshot.child("status").getValue();
+                                if(Status != null) {
+                                    if ((!((snapshot.child("Gender").getValue(String.class)).equals(currentUserGender.toString())))
+                                            && (((Status.toString()).equals("Registered"))
+                                            || ((Status.toString()).equals("Completed")))) {
+                                        allUserIds.add(snapshot.getKey());
+                                    }
+                                }
+                            }
+                        }
+                        if (allUserIds.isEmpty()) {
+                            TextView empty = findViewById(R.id.empty);
+                            empty.setVisibility(View.VISIBLE);
+                        }
+                        // Shuffle the list of user IDs
+                        Collections.shuffle(allUserIds);
+
+                        // Use the shuffled list for paginated loading
+                        shuffledUserIds.addAll(allUserIds);
+                        loadNextProfiles();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle the error
+                    }
+                });
+            }
+        });
+    }
+
+    private void loadNextProfiles() {
+        int start = (currentPage - 1) * PAGE_SIZE;
+        int end = Math.min(start + PAGE_SIZE, shuffledUserIds.size());
+
+        for (int i = start; i < end; i++) {
+            String userId = shuffledUserIds.get(i);
+
+            profilesRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
                     CardItem cardItem = snapshot.getValue(CardItem.class);
                     if (cardItem != null) {
-//                        cardItem.setProfileId(snapshot.getKey()); // Set the profile ID
                         cardItemList.add(cardItem);
+                        cardAdapter.notifyDataSetChanged();
                     }
                 }
 
-                Collections.shuffle(cardItemList);
-
-                // Initialize your CardAdapter with database reference and current user ID
-                databaseRef = FirebaseDatabase.getInstance().getReference();
-                cardAdapter = new CardAdapter(com.example.jainshaadi.SearchFilter.this, cardItemList, databaseRef, currentUserId);
-
-                recyclerView.setAdapter(cardAdapter);
-
-                // Stop the swipe-to-refresh animation
-                swipeRefreshLayout.setRefreshing(false);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Log.e("data error", "error :" + error);
-
-                // Stop the swipe-to-refresh animation
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Handle the error
+                }
+            });
+        }
+        progress.setVisibility(View.GONE);
+        isLoading = false;
+        swipeRefreshLayout.setRefreshing(false);
+        currentPage++;
     }
+
+    // ... Other existing methods ...
 }

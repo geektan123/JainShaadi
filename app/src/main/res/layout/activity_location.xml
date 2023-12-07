@@ -1,112 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:tools="http://schemas.android.com/tools"
+android:background="@color/white"
+tools:context=".LocationActivity">
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text=""
+    android:textSize="24dp"
+    android:textColor="#524044"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="12dp"
+    android:id="@+id/Question"
+    android:textStyle="bold"/>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Choose Nearby District if Specific Place is Unavailable:"
+    android:textSize="14sp"
+    android:textColor="#524044"
+    android:layout_marginLeft="21dp"
+    android:layout_marginTop="47dp"/>
+
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
+    android:layout_height="48dp"
+    android:layout_marginTop="96dp"
+    android:layout_marginLeft="21dp">
+    <Spinner
+        android:id="@+id/spinner_indian_states"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:background="@drawable/rounded_card_8_background"
+        />
 
+</LinearLayout>
 
-    tools:context=".LocationActivity">
-
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="179dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location of Groom"
+        android:text="District"
         android:textSize="24dp"
         android:textColor="#524044"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginLeft="21dp"
         android:textStyle="bold"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet consectetur."
-        android:textSize="14sp"
-        android:textColor="#524044"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="47dp"/>
+</LinearLayout>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Choose Nearby District if Specific Place is Unavailable:"
+    android:textSize="14sp"
+    android:textColor="#524044"
+    android:layout_marginLeft="21dp"
+    android:layout_marginTop="214dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:layout_marginTop="263dp"
+    android:layout_marginLeft="21dp">
+    <Spinner
+        android:id="@+id/spinner_indian_districts"
+        android:layout_width="320dp"
         android:layout_height="48dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginLeft="21dp">
-        <Spinner
-            android:id="@+id/spinner_indian_states"
-            android:layout_width="320dp"
-            android:layout_height="48dp"
-            android:background="@drawable/rounded_card_8_background"
-            />
+        android:background="@drawable/rounded_card_8_background"
+        />
 
-    </LinearLayout>
+</LinearLayout>
 
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:gravity="center"
+    android:layout_marginTop="596dp"
+    >
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="179dp">
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:paddingLeft="76dp"
+        android:paddingRight="76dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:gravity="center"
+        android:id="@+id/Nextlay"
+        android:background="@drawable/rounded_card_background_next_disabled"
+        >
         <TextView
+            android:id="@+id/Nexttext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="City"
-            android:textSize="24dp"
-            android:textColor="#524044"
-            android:layout_marginLeft="21dp"
-            android:textStyle="bold"/>
-
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet consectetur."
-        android:textSize="14sp"
-        android:textColor="#524044"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="214dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="263dp"
-        android:layout_marginLeft="21dp">
-        <Spinner
-            android:id="@+id/spinner_indian_districts"
-            android:layout_width="320dp"
-            android:layout_height="48dp"
-            android:background="@drawable/rounded_card_8_background"
+            android:layout_gravity="center"
+            android:text="Next"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
             />
-
     </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:layout_marginTop="596dp"
-        >
-        <LinearLayout
-            android:layout_width="320dp"
-            android:layout_height="48dp"
-            android:paddingLeft="76dp"
-            android:paddingRight="76dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:gravity="center"
-            android:id="@+id/Nextlay"
-            android:background="@drawable/rounded_card_background_next_disabled"
-            >
-            <TextView
-                android:id="@+id/Nexttext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Next"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                />
-        </LinearLayout>
-    </LinearLayout>
+</LinearLayout>
 </RelativeLayout>

@@ -1,0 +1,179 @@
+package com.example.jainshaadi;
+
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.yalantis.ucrop.UCrop;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+
+public class ImageEdit02 extends DialogFragment {
+    ShapeableImageView shapeableImageView;
+    Uri imageUri;
+    Uri uncompressedImage;
+    ProgressBar progressBar;
+
+    final private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+    final private StorageReference reference = FirebaseStorage.getInstance().getReference();
+    LinearLayout layout;
+
+    private final ActivityResultLauncher<Intent> imagePickerLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == getActivity().RESULT_OK && result.getData() != null) {
+                    Uri selectedImageUri = result.getData().getData();
+                    startCropActivity(selectedImageUri);
+                }
+            }
+    );
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_edit_image, container, false);
+        shapeableImageView = view.findViewById(R.id.shapeable_image_view);
+        layout = view.findViewById(R.id.Next);
+        progressBar = view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
+
+        layout.setOnClickListener(v -> {
+            if (imageUri != null) {
+                int imageSizeInBytes = getImageSize(uncompressedImage);
+                if (imageSizeInBytes > 10 * 1024 * 1024) { // 10 MB limit
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(requireContext(), "Please Upload Smaller Image Size", Toast.LENGTH_SHORT).show();
+                } else {
+                    uploadUncompressedCroppedImageToFirebase(uncompressedImage);
+                }
+            } else {
+                Toast.makeText(requireContext(), "Please Select Image", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        shapeableImageView.setOnClickListener(v -> openImagePickerWithCrop());
+
+        return view;
+    }
+
+    private void openImagePickerWithCrop() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        imagePickerLauncher.launch(galleryIntent);
+    }
+
+    private void startCropActivity(Uri imageUri) {
+        UCrop.Options options = new UCrop.Options();
+        options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
+        options.withAspectRatio(1, 1);
+        UCrop.of(imageUri, Uri.fromFile(new File(requireContext().getCacheDir(), "cropped_image")))
+                .withOptions(options)
+                .start(requireContext(), this);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == UCrop.REQUEST_CROP && resultCode == getActivity().RESULT_OK) {
+            handleCroppedImage(UCrop.getOutput(data));
+        }
+    }
+
+    private void handleCroppedImage(Uri croppedUri) {
+        if (croppedUri != null) {
+            // Display the compressed image in the ShapeableImageView
+            shapeableImageView.setImageURI(croppedUri);
+            imageUri = croppedUri;
+            uncompressedImage = croppedUri;
+        }
+    }
+
+    private void uploadUncompressedCroppedImageToFirebase(Uri croppedUri) {
+        if (croppedUri != null) {
+            progressBar.setVisibility(View.VISIBLE);
+
+            StorageReference fileReference = reference.child("uncropped_image_" + System.currentTimeMillis() + ".jpg");
+
+            fileReference.putFile(croppedUri)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        fileReference.getDownloadUrl().addOnSuccessListener(uri -> {
+                            String imageUrl = uri.toString();
+                            saveUncompressedImageUrlToDatabase(imageUrl);
+                        });
+                    })
+                    .addOnFailureListener(e -> {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(requireContext(), "Failed to upload uncropped image", Toast.LENGTH_SHORT).show();
+                    });
+        }
+    }
+
+    private void saveUncompressedImageUrlToDatabase(String imageUrl) {
+        HashMap<String, Object> imageMap = new HashMap<>();
+        imageMap.put("image02", imageUrl);
+
+        String userId = FirebaseAuth.getInstance().getUid();
+        imageMap.put("profileId", userId);
+
+        databaseReference.child(userId).updateChildren(imageMap)
+                .addOnSuccessListener(aVoid -> {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    dismiss();
+                })
+                .addOnFailureListener(e -> {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Log.e("UploadError", e.getMessage());
+                });
+
+    }
+    private int getImageSize(Uri imageUri) {
+        try {
+            InputStream inputStream = requireContext().getContentResolver().openInputStream(imageUri);
+            return inputStream != null ? inputStream.available() : 0;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+
+        WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.getWindow().setAttributes(params);
+
+        return dialog;
+    }
+}

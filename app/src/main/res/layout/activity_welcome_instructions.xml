@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-
     tools:context=".welcome_instructions">
 
     <TextView
@@ -14,6 +13,7 @@
         android:layout_height="29dp"
         android:layout_marginTop="12dp"
         android:text="Welcome to Jain Maitri"
+        android:textStyle="bold"
         android:textSize="24dp"
         android:textColor="#524044"
         android:layout_marginLeft="20dp"
@@ -34,7 +34,7 @@
     <LinearLayout
         android:id="@+id/rule_1"
         android:layout_width="wrap_content"
-        android:layout_height="17dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="55dp"
         android:layout_below="@id/line_2"
         android:layout_marginLeft="20dp"
@@ -42,15 +42,18 @@
         <ImageView
             android:layout_width="18dp"
             android:layout_height="18dp"
+            android:src="@drawable/privacy"
+            android:layout_gravity="center"
             />
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="17dp"
-            android:text="Be Yourself"
-            android:textSize="14sp"
-            android:textColor="#524044"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal|top"
-            />
+            android:text="Be Genuine"
+            android:textColor="#524044"
+            android:textStyle="bold"
+            android:textSize="16sp" />
     </LinearLayout>
     <TextView
         android:id="@+id/rule_1_statement"
@@ -60,15 +63,15 @@
         android:layout_below="@id/rule_1"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="12sp"
-        android:text="Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur."
+        android:textSize="14sp"
+        android:text="Provide accurate information on your profile. Honestly fosters trusts and meaningful connections"
         >
     </TextView>
 
     <LinearLayout
         android:id="@+id/rule_2"
         android:layout_width="wrap_content"
-        android:layout_height="17dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_below="@id/rule_1_statement"
         android:layout_marginLeft="20dp"
@@ -76,14 +79,17 @@
         <ImageView
             android:layout_width="18dp"
             android:layout_height="18dp"
+            android:src="@drawable/privacy"
+            android:layout_gravity="center"
           />
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="17dp"
-            android:text="Be Yourself"
-            android:textSize="14sp"
+            android:layout_height="wrap_content"
+            android:text="Choose Your Words Wisely"
+            android:textSize="16sp"
             android:textColor="#524044"
             android:gravity="center_horizontal|top"
+            android:textStyle="bold"
             />
     </LinearLayout>
     <TextView
@@ -94,14 +100,14 @@
         android:layout_below="@id/rule_2"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="12sp"
-        android:text="Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur."
+        android:textSize="14sp"
+        android:text="Engage in positive and mindful communication"
         >
     </TextView>
     <LinearLayout
         android:id="@+id/rule_3"
         android:layout_width="wrap_content"
-        android:layout_height="17dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_below="@id/rule_2_statement"
         android:layout_marginLeft="20dp"
@@ -109,14 +115,17 @@
         <ImageView
             android:layout_width="18dp"
             android:layout_height="18dp"
+            android:src="@drawable/privacy"
+            android:layout_gravity="center"
             />
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="17dp"
-            android:text="Be Yourself"
-            android:textSize="14sp"
+            android:layout_height="wrap_content"
+            android:text="Prioritize Privacy"
+            android:textSize="16sp"
             android:textColor="#524044"
             android:gravity="center_horizontal|top"
+            android:textStyle="bold"
             />
     </LinearLayout>
     <TextView
@@ -127,14 +136,14 @@
         android:layout_below="@id/rule_3"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="12sp"
-        android:text="Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur."
+        android:textSize="14sp"
+        android:text="Protect your personal information."
         >
     </TextView>
     <LinearLayout
         android:id="@+id/rule_4"
         android:layout_width="wrap_content"
-        android:layout_height="17dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_below="@id/rule_3_statement"
         android:layout_marginLeft="20dp"
@@ -142,14 +151,17 @@
         <ImageView
             android:layout_width="18dp"
             android:layout_height="18dp"
+            android:src="@drawable/privacy"
+            android:layout_gravity="center"
             />
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="17dp"
-            android:text="Be Yourself"
-            android:textSize="14sp"
+            android:layout_height="wrap_content"
+            android:text="Follow Community Rules"
+            android:textSize="16sp"
             android:textColor="#524044"
             android:gravity="center_horizontal|top"
+            android:textStyle="bold"
             />
     </LinearLayout>
     <TextView
@@ -160,8 +172,8 @@
         android:layout_below="@id/rule_4"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="12sp"
-        android:text="Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur."
+        android:textSize="14sp"
+        android:text="Adhere to the community guidelines to make safe and supportive environment."
         >
     </TextView>
 

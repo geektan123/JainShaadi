@@ -888,10 +888,12 @@
     </string-array>
 
     <string-array name="array_chandigarh_districts">
+        <item>Select Your District</item>
         <item>Chandigarh</item>
     </string-array>
 
     <string-array name="array_dadra_nagar_haveli_districts">
+        <item>Select Your District</item>
         <item>Dadra Nagar Haveli</item>
     </string-array>
 
@@ -917,6 +919,7 @@
     </string-array>
 
     <string-array name="array_lakshadweep_districts">
+        <item>Select Your District</item>
         <item>Lakshadweep</item>
     </string-array>
 

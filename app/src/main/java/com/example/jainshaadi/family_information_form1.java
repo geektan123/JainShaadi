@@ -26,10 +26,10 @@ public class family_information_form1 extends AppCompatActivity {
     private TextInputEditText motherNameEditText;
     private TextInputEditText motherOccupationEditText;
     LinearLayout Verify;
-    String fatherName;
-    String fatherOccupation;
-    String motherName;
-    String motherOccupation;
+    String fatherName = "";
+    String fatherOccupation = "";
+    String motherName = "";
+    String motherOccupation = "";
 TextView ver;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
@@ -83,20 +83,22 @@ TextView ver;
                 userData.put("MotherOccupation", motherOccupation);
                 String userKey = FirebaseAuth.getInstance().getUid();
 
-                databaseReference.child(userKey).updateChildren(userData);
-                Intent i = new Intent(getApplicationContext(), family_information_form2.class);
 
-                // Add this line to attach the bundle
-                startActivity(i);
+
 
 
                 if (fatherName.isEmpty() || fatherOccupation.isEmpty() || motherName.isEmpty() || motherOccupation.isEmpty()) {
                     // At least one field is empty, show an error message or take appropriate action
                     // For example, display a toast message:
+
                     Toast.makeText(family_information_form1.this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
                 } else {
                     // All fields are filled, proceed with verification
                     // Add your verification logic here
+                    databaseReference.child(userKey).updateChildren(userData);
+                    Intent i = new Intent(getApplicationContext(), family_information_form2.class);
+                    // Add this line to attach the bundle
+                    startActivity(i);
                 }
             }
         });

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/rounded_card_edit_card"
+    android:paddingVertical="40dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Name"
+    >
+    <TextView
+        android:id="@+id/Question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Name"
+        android:textSize="20sp"
+        android:textColor="#524044"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+
+        />
+
+
+    <!-- Text Input Field -->
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="130dp"
+        android:layout_marginTop="70dp"
+        android:hint="Enter your full name" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/submitButton"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="161dp"
+        android:background="@drawable/rounded_card_background_next_disabled"
+        android:text="Update" />
+
+
+</RelativeLayout>

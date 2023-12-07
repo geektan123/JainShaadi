@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="digamber_list">
+        <item>Digamber-Aggraval</item>
+        <item>Digamber-Porwal</item>
+        <item>Digamber-Kasliwal</item>
+        <item>Digamber-Golapurab</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="swetamber_list">
+        <item>Swetamber-Aggraval</item>
+        <item>Swetamber-Porwal</item>
+        <item>Swetamber-Kasliwal</item>
+        <item>Swetamber-Golapurab</item>
+        <item>Other</item>
+    </string-array>
+</resources>

@@ -29,6 +29,7 @@ public class Search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
+        getSupportActionBar().hide();
         Intent intent = getIntent();
         currentUserId = intent.getStringExtra("curentUserId");
         Log.e("e","curent1 = "+currentUserId);
@@ -48,7 +49,7 @@ public class Search extends AppCompatActivity {
                 // Redirect to SavedProfilesActivity
                 Intent intent = new Intent(Search.this,SearchFilter.class);
                 intent.putExtra("currentUserId", currentUserId);
-                intent.putExtra("filterType", "Shwetamber");
+                intent.putExtra("filterType", "Shvetambar");
                 startActivity(intent);
             }
         });
@@ -62,5 +63,16 @@ public class Search extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        LinearLayout search4 = findViewById(R.id.interest);
+        search4.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                // Redirect to SavedProfilesActivity
+                Intent intent = new Intent(Search.this, SearchFilter.class);
+                intent.putExtra("currentUserId", currentUserId);
+                intent.putExtra("filterType", "Age");
+                startActivity(intent);
+            }
+        });
+
     }
 }

@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -16,11 +18,15 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import android.view.ViewGroup;
 
 public class ViewProfile extends AppCompatActivity {
@@ -31,8 +37,14 @@ public class ViewProfile extends AppCompatActivity {
     private TextView profileInterest01, profileInterest02, profileInterest03, profileInterest04, profileInterest05, profileInterest06;
     private ViewPager2 viewPager;
     private ImagePagerAdapter adapter;
-    private List<Integer> imageList;
+    private List<String> imageList;
     private LinearLayout dotIndicators;
+    RelativeLayout Load_profile;
+    ProgressBar progress;
+    DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users");
+
+    // Get the reference to the current profile
+
         Button button;
 String name;
     @Override
@@ -40,38 +52,69 @@ String name;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_profile);
         getSupportActionBar().hide();
-
+        Load_profile = findViewById(R.id.load_profile);
+        button=findViewById(R.id.overlay_button);
+        progress = findViewById(R.id.progressBar);
+        Load_profile.setVisibility(View.INVISIBLE);
+        button.setVisibility(View.INVISIBLE);
+        progress.setVisibility(View.VISIBLE);
         Intent intent = getIntent();
         currentUserId = intent.getStringExtra("curentUserId");
         profileId = intent.getStringExtra("profileId");
+        DatabaseReference currentProfileRef = databaseRef.child(profileId);
         name=intent.getStringExtra("Name");
         viewPager = findViewById(R.id.viewPager);
-        button=findViewById(R.id.overlay_button);
+
 
         imageList = new ArrayList<>();
-        imageList.add(R.drawable.profile_picture); // Replace with your image resources
-        imageList.add(R.drawable.profile_picture);
-        imageList.add(R.drawable.profile_picture);
-
-        // Make sure you provide a valid context
-        Context context = this; // Or, replace 'this' with the appropriate context
-
-        adapter = new ImagePagerAdapter(context, imageList);
-        viewPager.setAdapter(adapter);
-        dotIndicators = findViewById(R.id.dotIndicators);
-
-        setupDotIndicators(imageList.size());
-
-        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+//        String placeholderUrl = "https://firebasestorage.googleapis.com/v0/b/jainshaadi-38ab5.appspot.com/o/1701002224460.jpg?alt=media&token=522fbe59-b67c-424b-9e30-fae067e3a1e3";
+//        imageList.add(placeholderUrl);
+//        imageList.add(placeholderUrl);
+//        imageList.add(placeholderUrl);
+        Context context = this;
+        int color = ContextCompat.getColor(this, R.color.button_enabled);
+        currentProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Add Firebase Storage references to your images
+                    // Make sure to replace "images/your_image1.jpg", "images/your_image2.jpg", etc.,
+                    // with the actual paths to your images in Firebase Storage
+                    String imageRef1 = dataSnapshot.child("image01").getValue(String.class);
+                    String imageRef2 = dataSnapshot.child("image02").getValue(String.class);
+                    String imageRef3 = dataSnapshot.child("image03").getValue(String.class);
+                    imageList.add(imageRef1);
+                    imageList.add(imageRef2);
+                    imageList.add(imageRef3);
 
-                // Update the dot indicators
-                for (int i = 0; i < dotIndicators.getChildCount(); i++) {
-                    ImageView dot = (ImageView) dotIndicators.getChildAt(i);
-                    dot.setImageResource(i == position ? R.drawable.dot_selected : R.drawable.dot_unselected);
+
+                    viewPager = findViewById(R.id.viewPager);
+
+                    adapter = new ImagePagerAdapter(context, imageList);
+                    viewPager.setAdapter(adapter);
+
+                    dotIndicators = findViewById(R.id.dotIndicators);
+
+                    setupDotIndicators(imageList.size());
+
+                    viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                        @Override
+                        public void onPageSelected(int position) {
+                            super.onPageSelected(position);
+
+                            // Update the dot indicators
+                            for (int i = 0; i < dotIndicators.getChildCount(); i++) {
+                                ImageView dot = (ImageView) dotIndicators.getChildAt(i);
+                                dot.setImageResource(i == position ? R.drawable.dot_selected : R.drawable.dot_unselected);
+                            }
+                        }
+                    });
                 }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle any errors
             }
         });
 
@@ -142,6 +185,34 @@ String name;
                     String city = dataSnapshot.child("City").getValue(String.class);
                     String state = dataSnapshot.child("State").getValue(String.class);
                     String Height = dataSnapshot.child("Height").getValue(String.class);
+                    String status = dataSnapshot.child("status").getValue(String.class);
+                    LinearLayout LL10 , LL11 , LL12 , LL13 , LL14 , LL15 , LL16;
+                    ImageView I1;
+                    LL10 = findViewById(R.id.layer10);
+                    LL11 = findViewById(R.id.layer11);
+                    LL12 = findViewById(R.id.layer12);
+                    LL13 = findViewById(R.id.layer13);
+                    LL14 = findViewById(R.id.layer14);
+                    LL15 = findViewById(R.id.layer15);
+                    LL16 = findViewById(R.id.layer16);
+                    I1 = findViewById(R.id.verified);
+                    Load_profile.setVisibility(View.VISIBLE);
+                    button.setVisibility(View.VISIBLE);
+                    progress.setVisibility(View.INVISIBLE);
+                    if(!(status.equals("Completed")))
+                    {
+                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.WRAP_CONTENT, 0);
+                        LL10.setVisibility(View.GONE);
+                        LL11.setVisibility(View.GONE);
+                        LL12.setVisibility(View.GONE);
+                        LL13.setVisibility(View.GONE);
+                        LL14.setVisibility(View.GONE);
+                        LL15.setVisibility(View.GONE);
+                        LL16.setVisibility(View.GONE);
+                        I1.setVisibility(View.GONE);
+
+                    }
 
                     // Set the data in TextViews
                     profileName.setText(name);

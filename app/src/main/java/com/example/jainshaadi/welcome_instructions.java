@@ -28,9 +28,7 @@ public class welcome_instructions extends AppCompatActivity {
                 nexttext.setTextColor(Color.parseColor("#FFFFFF"));
                 Intent i = new Intent(getApplicationContext(), Homeactivity.class);
                 startActivity(i);
-
             }
-
         });
     }
 }

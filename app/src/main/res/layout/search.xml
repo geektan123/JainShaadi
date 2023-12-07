@@ -96,12 +96,15 @@
             android:background="@drawable/rounded_card_white_background"
             android:gravity="center"
             android:layout_marginHorizontal="8dp"
-            android:id="@+id/digamber">
+            android:id="@+id/digamber"
+            android:backgroundTint="#80DADA">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Digmaber"
-                android:textSize="20dp" />
+                android:text="Digmabar"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
@@ -112,11 +115,14 @@
             android:gravity="center"
             android:layout_gravity="right"
             android:layout_marginHorizontal="8dp"
+            android:backgroundTint="#FF84E8"
             android:id="@+id/shwetamber">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Swetambar"
+                android:text="Shvetambar"
+                android:textColor="#000000"
+                android:textStyle="bold"
                 android:textSize="20dp" />
         </LinearLayout>
     </LinearLayout>
@@ -134,13 +140,16 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_card_white_background"
             android:gravity="center"
+            android:backgroundTint="#FFB196"
             android:layout_marginHorizontal="8dp"
             android:id="@+id/location">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location"
-                android:textSize="20dp" />
+                android:text="NearBy"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
         </LinearLayout>
 
         <LinearLayout
@@ -151,12 +160,15 @@
             android:gravity="center"
             android:layout_gravity="right"
             android:layout_marginHorizontal="8dp"
+            android:backgroundTint="#BBAEFF"
             android:id="@+id/interest">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Interest"
-                android:textSize="20dp" />
+                android:text="Similar Age"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
