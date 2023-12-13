@@ -257,7 +257,7 @@ public class LocationEdit extends DialogFragment {
                 NextLay.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (isNextLayoutChanged) {
+                        if (districtSpinner.getSelectedItemPosition() > 0 && stateSpinner.getSelectedItemPosition() > 0) {
                             String userKey = FirebaseAuth.getInstance().getUid();
                             DatabaseReference userRef = databaseReference.child(userKey);
                             Map<String, Object> updateData = new HashMap<>();

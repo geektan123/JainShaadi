@@ -71,6 +71,7 @@ public class ImageEdit01 extends DialogFragment {
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(requireContext(), "Please Upload Smaller Image Size", Toast.LENGTH_SHORT).show();
                 } else {
+                    layout.setEnabled(false);
                     uploadUncompressedCroppedImageToFirebase(uncompressedImage);
                 }
             } else {
@@ -109,6 +110,7 @@ public class ImageEdit01 extends DialogFragment {
     private void handleCroppedImage(Uri croppedUri) {
         if (croppedUri != null) {
             // Display the compressed image in the ShapeableImageView
+            shapeableImageView.setImageBitmap(null);
             shapeableImageView.setImageURI(croppedUri);
             imageUri = croppedUri;
             uncompressedImage = croppedUri;
@@ -129,6 +131,7 @@ public class ImageEdit01 extends DialogFragment {
                         });
                     })
                     .addOnFailureListener(e -> {
+                        layout.setEnabled(true);
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(requireContext(), "Failed to upload uncropped image", Toast.LENGTH_SHORT).show();
                     });
@@ -175,6 +178,7 @@ public class ImageEdit01 extends DialogFragment {
                         });
                     })
                     .addOnFailureListener(e -> {
+                        layout.setEnabled(true);
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(requireContext(), "Failed to upload image", Toast.LENGTH_SHORT).show();
                     });
@@ -205,8 +209,6 @@ public class ImageEdit01 extends DialogFragment {
     private void saveCompressedImageUrlToDatabase(String imageUrl) {
         HashMap<String, Object> imageMap = new HashMap<>();
         imageMap.put("imageUrl1", imageUrl);
-        imageMap.put("status", "Registered");
-        imageMap.put("active", "enabled");
 
         String userId = FirebaseAuth.getInstance().getUid();
         imageMap.put("profileId", userId);

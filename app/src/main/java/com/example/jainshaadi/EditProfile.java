@@ -43,6 +43,7 @@ public class EditProfile extends AppCompatActivity {
     // Get the reference to the current profile
     DatabaseReference currentProfileRef = databaseRef.child(FirebaseAuth.getInstance().getUid());
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +76,11 @@ public class EditProfile extends AppCompatActivity {
         Image02Edit = findViewById(R.id.Image02Edit);
         Image03Edit = findViewById(R.id.Image03Edit);
 
+        ImageView BackIcon = findViewById(R.id.back);
+        BackIcon.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            onBackPressed();
+        });
 
 
         imageList = new ArrayList<>();
@@ -84,7 +90,7 @@ public class EditProfile extends AppCompatActivity {
 //        imageList.add(placeholderUrl);
         Context context = this;
         int color = ContextCompat.getColor(this, R.color.button_enabled);
-        currentProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        currentProfileRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -97,14 +103,17 @@ public class EditProfile extends AppCompatActivity {
 
                     // Load and display images using Glide
                     if (imageRef1 != null && !imageRef1.isEmpty()) {
+                        Image01.setImageBitmap(null);
                         Glide.with(EditProfile.this).load(imageRef1).into(Image01);
                     }
 
                     if (imageRef2 != null && !imageRef2.isEmpty()) {
+                        Image02.setImageBitmap(null);
                         Glide.with(EditProfile.this).load(imageRef2).into(Image02);
                     }
 
                     if (imageRef3 != null && !imageRef3.isEmpty()) {
+                        Image03.setImageBitmap(null);
                         Glide.with(EditProfile.this).load(imageRef3).into(Image03);
                     }
                 }
@@ -221,8 +230,8 @@ public class EditProfile extends AppCompatActivity {
         Image03Edit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 // Redirect to SavedProfilesActivity
-                ImageEdit02 dialogFragment = new ImageEdit02();
-                dialogFragment.show(getSupportFragmentManager(), "ImageEdit02");
+                ImageEdit03 dialogFragment = new ImageEdit03();
+                dialogFragment.show(getSupportFragmentManager(), "ImageEdit03");
 
             }
         });
@@ -231,28 +240,20 @@ public class EditProfile extends AppCompatActivity {
         fetchAndDisplayProfileData();
     }
 
-    public void onBackPressed() {
-        // Do nothing or show a message, preventing the user from going back
-        Intent i = new Intent(getApplicationContext(), MyProfile.class);
-        // Add this line to attach the bundle
-        startActivity(i);
-    }
-
 
 
     private void fetchAndDisplayProfileData() {
         // Create a reference to the Firebase database
 
 
-        currentProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        currentProfileRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     // Retrieve profile data
                     String name = dataSnapshot.child("Name").getValue(String.class);
+                    String Category = dataSnapshot.child("Category").getValue(String.class);
                     String profession = dataSnapshot.child("Role").getValue(String.class);
-                    String tagValue = dataSnapshot.child("tag").getValue(String.class);
-                    String age = dataSnapshot.child("Age").getValue(String.class);
                     String cast = dataSnapshot.child("Subcategory").getValue(String.class);
                     String income = dataSnapshot.child("IncomeRange").getValue(String.class);
                     String city = dataSnapshot.child("City").getValue(String.class);
@@ -269,9 +270,7 @@ public class EditProfile extends AppCompatActivity {
                     String ParentState = dataSnapshot.child("ParentState").getValue(String.class);
                     String ParentCity = dataSnapshot.child("ParentCity").getValue(String.class);
                     String Year = dataSnapshot.child("Year").getValue(String.class);
-                    String status = dataSnapshot.child("status").getValue(String.class);
                     String description = dataSnapshot.child("Description").getValue(String.class);
-                    String phone = dataSnapshot.child("Year").getValue(String.class);
                     String Dob =  dataSnapshot.child("DateOfBirth").getValue(String.class);
                     String Company =  dataSnapshot.child("Company").getValue(String.class);
                     String interest01 = dataSnapshot.child("Interest1").getValue(String.class);
@@ -280,26 +279,16 @@ public class EditProfile extends AppCompatActivity {
                     String interest04 = dataSnapshot.child("Interest4").getValue(String.class);
                     String interest05 = dataSnapshot.child("Interest5").getValue(String.class);
                     String interest06 = dataSnapshot.child("Interest6").getValue(String.class);
-                    Log.e("e","1 = "+name);
-                    Log.e("e","2 = "+description);
-                    Log.e("e","3 = "+phone);
-                    Log.e("e","4 = "+Dob);
-                    Log.e("e","5 = "+cast);
-                    Log.e("e","6 = "+state+" - "+city);
-                    Log.e("e","7 = "+profession+ " at "+Company);
-                    Log.e("e","8 = "+income);
-                    Log.e("e","9 = "+Degree + ", "+College+" ("+Year+")");
-                    Log.e("e","10 = "+Familytype+" ("+FamilyMembers+")"+"\n"+FatherName+" ("+FatherOccupation+")"+"\n" +MotherName+" ("+MotherOccupation+")");
-                    Log.e("e","11 = "+interest01+", "+interest02+", "+interest03+", "+interest04+", "+interest05+", "+interest06);
+
                     Name.setText(name);
                     Bio.setText(description);
-                    DOB.setText(Dob);
-                    Community.setText(cast);
+                    DOB.setText(Dob + "\n" + Height);
+                    Community.setText(Category+"\n"+cast);
                     Location.setText(state+" - "+city);
-                    Work.setText(profession+ " at "+Company);
-                    Income.setText(income);
+                    Work.setText(profession+ " at "+Company +"\n"+income);
+                    Income.setText(Familytype + " ("+ FamilyMembers +")"+"\n"+ParentState+" - "+ParentCity);
                     Education.setText(Degree + ", "+College+" ("+Year+")");
-                    Family.setText(Familytype+" ("+FamilyMembers+")"+"&#xA;"+FatherName+" ("+FatherOccupation+")"+"&#xA;" +MotherName+" ("+MotherOccupation+")");
+                    Family.setText(FatherName+" ("+FatherOccupation+")"+"\n"+MotherName+" ("+MotherOccupation+")");
                     Hobbies.setText(interest01+", "+interest02+", "+interest03+", "+interest04+", "+interest05+", "+interest06);
                 }
             }

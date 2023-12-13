@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ public class ProfileOptionsBottomSheetFragment extends BottomSheetDialogFragment
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users");
     Boolean comp = false;
     Boolean disable = false;
+    Boolean blocked = false;
 
     @Nullable
     @Override
@@ -50,6 +52,7 @@ public class ProfileOptionsBottomSheetFragment extends BottomSheetDialogFragment
         LinearLayout btnTestimonial = view.findViewById(R.id.llTestimonials);
         LinearLayout btnContact = view.findViewById(R.id.llContact);
         TextView disableText = view.findViewById(R.id.disableIdText);
+        ImageView disable_icon = view.findViewById(R.id.disable_icon);
 
         currentProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -59,7 +62,20 @@ public class ProfileOptionsBottomSheetFragment extends BottomSheetDialogFragment
                     String status = dataSnapshot.child("status").getValue(String.class);
                     String active = dataSnapshot.child("active").getValue(String.class);
                     if ((active.equals("disabled"))) {
+                        disable_icon.setImageResource(R.drawable.enable_profile);
                         disable = true;
+                        disableText.setText("Enable Discovery");
+                    }
+                    else if(active.equals("enabled"))
+                    {
+                        disable_icon.setImageResource(R.drawable.disable_profile);
+                        disable = false;
+                        disableText.setText("Disable Discovery");
+                    }
+                    else
+                    {
+                        disable_icon.setImageResource(R.drawable.enable_profile);
+                        blocked = true;
                         disableText.setText("Enable Discovery");
                     }
                     if ((status.equals("Completed"))) {
@@ -110,9 +126,14 @@ public class ProfileOptionsBottomSheetFragment extends BottomSheetDialogFragment
         btnFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle Feedback click
+                String url = "https://forms.gle/FpgMA36VvqpN5pSk6";
+
+                // Create an Intent with ACTION_VIEW and the URL
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+                // Check if there's an app to handle the intent before starting it
                 dismiss(); // Dismiss the bottom sheet
-                // Add your logic to open the Feedback screen
+                // Add your logic to open the Review screen
             }
         });
 
@@ -120,24 +141,27 @@ public class ProfileOptionsBottomSheetFragment extends BottomSheetDialogFragment
             @Override
             public void onClick(View v) {
                 Log.e("s","you r 0 " + disable);
-                // Handle Review click
-                if(disable) {
-                    HashMap<String, Object> userData = new HashMap<>();
-                    userData.put("active", "enabled");
-                    Log.e("s","you r 1");
-                    String userKey = FirebaseAuth.getInstance().getUid();
-                    currentProfileRef.updateChildren(userData);
-                    dismiss();
+                if(!blocked) {// Handle Review click
+                    if (disable) {
+                        HashMap<String, Object> userData = new HashMap<>();
+                        userData.put("active", "enabled");
+                        Log.e("s", "you r 1");
+                        String userKey = FirebaseAuth.getInstance().getUid();
+                        currentProfileRef.updateChildren(userData);
+                        dismiss();
 
+                    } else {
+                        HashMap<String, Object> userData = new HashMap<>();
+                        userData.put("active", "disabled");
+                        Log.e("s", "you r 2");
+                        String userKey = FirebaseAuth.getInstance().getUid();
+                        currentProfileRef.updateChildren(userData);
+                        dismiss();
+                    }
                 }
                 else
                 {
-                    HashMap<String, Object> userData = new HashMap<>();
-                    userData.put("active", "disabled");
-                    Log.e("s","you r 2");
-                    String userKey = FirebaseAuth.getInstance().getUid();
-                    currentProfileRef.updateChildren(userData);
-                    dismiss();
+                    showBlockedDialog();
                 }
             }
         });
@@ -145,20 +169,44 @@ public class ProfileOptionsBottomSheetFragment extends BottomSheetDialogFragment
             @Override
             public void onClick(View v) {
                 // Handle Review click
+                String url = "https://forms.gle/X8AGYwAtTfKqDNcK7";
+
+                // Create an Intent with ACTION_VIEW and the URL
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+                // Check if there's an app to handle the intent before starting it
                 dismiss(); // Dismiss the bottom sheet
                 // Add your logic to open the Review screen
             }
         });
         btnContact.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View v) {
-                // Handle Review click
+                String url = "https://forms.gle/FpgMA36VvqpN5pSk6";
+
+                // Create an Intent with ACTION_VIEW and the URL
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+                // Check if there's an app to handle the intent before starting it
                 dismiss(); // Dismiss the bottom sheet
                 // Add your logic to open the Review screen
             }
         });
 //
         return view;
+    }
+    private void showBlockedDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Profile Restriction Notice")
+                .setMessage("Our system has identified potential violations of community guidelines on your profile. To address this issue and unblock your profile, please submit your query via our contact section. We value your commitment to a safe and respectful community.")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                         dismiss();
+                    }
+                })
+                .show();
     }
     private void showLogoutConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
@@ -172,6 +220,7 @@ public class ProfileOptionsBottomSheetFragment extends BottomSheetDialogFragment
                         GoogleSignIn.getClient(requireContext(), new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
                                 .signOut();
                         Intent i = new Intent(requireContext(),Login.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         // Add this line to attach the bundle
                         startActivity(i);
                         dismiss();

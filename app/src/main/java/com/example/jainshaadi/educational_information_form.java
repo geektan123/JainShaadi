@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -55,6 +56,10 @@ TextView Ver;
 
         yearTextInputLayout = findViewById(R.id.yearTextInputLayout);
         yearEditText = findViewById(R.id.yearEditText);
+
+        collegeEditText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
+        yearEditText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
+        degreeEditText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
         yearEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
@@ -75,14 +80,14 @@ TextView Ver;
         });
        Verify = findViewById(R.id.Verify);
        Ver=findViewById(R.id.Ver);
-        Verify.setOnClickListener(view -> saveToFirebase());
+       Verify.setOnClickListener(view -> saveToFirebase());
     }
 
     private void saveToFirebase() {
         String userKey = FirebaseAuth.getInstance().getUid();
-        String degree = degreeEditText.getText().toString();
-        String college = collegeEditText.getText().toString();
-        String year = yearEditText.getText().toString();
+        String degree = degreeEditText.getText().toString().trim();
+        String college = collegeEditText.getText().toString().trim();
+        String year = yearEditText.getText().toString().trim();
 
         if (!degree.isEmpty() && !college.isEmpty() && !year.isEmpty()) {
             HashMap<String, Object> userData = new HashMap<>();

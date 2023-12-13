@@ -25,8 +25,8 @@
         android:layout_height="17dp"
         android:layout_below="@id/welcome_to"
         android:layout_marginTop="4dp"
-        android:text="Please folow these House Rules"
-        android:textSize="14sp"
+        android:text="Please follow these House Rules"
+        android:textSize="14dp"
         android:textColor="#524044"
         android:layout_marginLeft="20dp"
         android:gravity="center_horizontal|top"
@@ -53,7 +53,7 @@
             android:text="Be Genuine"
             android:textColor="#524044"
             android:textStyle="bold"
-            android:textSize="16sp" />
+            android:textSize="16dp" />
     </LinearLayout>
     <TextView
         android:id="@+id/rule_1_statement"
@@ -63,7 +63,7 @@
         android:layout_below="@id/rule_1"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:text="Provide accurate information on your profile. Honestly fosters trusts and meaningful connections"
         >
     </TextView>
@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Choose Your Words Wisely"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="#524044"
             android:gravity="center_horizontal|top"
             android:textStyle="bold"
@@ -100,7 +100,7 @@
         android:layout_below="@id/rule_2"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:text="Engage in positive and mindful communication"
         >
     </TextView>
@@ -122,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Prioritize Privacy"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="#524044"
             android:gravity="center_horizontal|top"
             android:textStyle="bold"
@@ -136,7 +136,7 @@
         android:layout_below="@id/rule_3"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:text="Protect your personal information."
         >
     </TextView>
@@ -158,7 +158,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Follow Community Rules"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="#524044"
             android:gravity="center_horizontal|top"
             android:textStyle="bold"
@@ -172,7 +172,7 @@
         android:layout_below="@id/rule_4"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:text="Adhere to the community guidelines to make safe and supportive environment."
         >
     </TextView>

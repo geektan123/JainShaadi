@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.style.QuoteSpan;
 import android.util.Log;
@@ -69,6 +70,7 @@ public class Name extends AppCompatActivity {
         }
 //        Profile_for = databaseReference.child(userKey).child("Gender").getValue(String.class);
         editText = findViewById(R.id.editText);
+        editText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
         String txt = editText.getText().toString();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         editText.requestFocus();
@@ -113,7 +115,7 @@ public class Name extends AppCompatActivity {
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = editText.getText().toString();
+                String username = editText.getText().toString().trim();
 
                 if (!username.isEmpty()) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);

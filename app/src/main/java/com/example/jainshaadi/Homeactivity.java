@@ -119,28 +119,28 @@ public class Homeactivity extends AppCompatActivity {
             Intent intent = new Intent(Homeactivity.this, SaveProfileDisplay.class);
             startActivity(intent);
         });
-
-        GridLayout myProfile = findViewById(R.id.my_profile);
-        myProfile.setOnClickListener(view -> {
-            // Redirect to SavedProfilesActivity
-            Intent intent = new Intent(Homeactivity.this, MyProfile.class);
-            startActivity(intent);
-        });
-
-        ImageView search = findViewById(R.id.search);
-        search.setOnClickListener(view -> {
-            // Redirect to SavedProfilesActivity
-            Intent intent = new Intent(Homeactivity.this, Search.class);
-            Log.e("e", "curent3 = " + currentUserId);
-            intent.putExtra("currentUserId", currentUserId);
-            startActivity(intent);
-        });
-        GridLayout Chat = findViewById(R.id.chatlist);
-        Chat.setOnClickListener(view -> {
-            // Redirect to SavedProfilesActivity
-            Intent intent = new Intent(Homeactivity.this, Chatlist.class);
-            startActivity(intent);
-        });
+//
+//        GridLayout myProfile = findViewById(R.id.my_profile);
+//        myProfile.setOnClickListener(view -> {
+//            // Redirect to SavedProfilesActivity
+//            Intent intent = new Intent(Homeactivity.this, MyProfile.class);
+//            startActivity(intent);
+//        });
+//
+//        ImageView search = findViewById(R.id.back);
+//        search.setOnClickListener(view -> {
+//            // Redirect to SavedProfilesActivity
+//            Intent intent = new Intent(Homeactivity.this, Search.class);
+//            Log.e("e", "curent3 = " + currentUserId);
+//            intent.putExtra("currentUserId", currentUserId);
+//            startActivity(intent);
+//        });
+//        GridLayout Chat = findViewById(R.id.chatlist);
+//        Chat.setOnClickListener(view -> {
+//            // Redirect to SavedProfilesActivity
+//            Intent intent = new Intent(Homeactivity.this, Chatlist.class);
+//            startActivity(intent);
+//        });
 
         // Load the initial set of profiles
 
@@ -224,10 +224,20 @@ public class Homeactivity extends AppCompatActivity {
             profilesRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    CardItem cardItem = snapshot.getValue(CardItem.class);
-                    if (cardItem != null) {
-                        cardItemList.add(cardItem);
-                        cardAdapter.notifyDataSetChanged();
+
+                    Object Status = snapshot.child("status").getValue();
+                    Object Active = snapshot.child("active").getValue();
+                    if(Active != null && Status != null) {
+                        if (((Active.toString()).equals("enabled"))
+                                && (((Status.toString()).equals("Registered"))
+                                || ((Status.toString()).equals("Completed")))
+                        ) {
+                            CardItem cardItem = snapshot.getValue(CardItem.class);
+                            if (cardItem != null) {
+                                cardItemList.add(cardItem);
+                                cardAdapter.notifyDataSetChanged();
+                            }
+                        }
                     }
                 }
 

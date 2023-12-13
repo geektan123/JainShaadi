@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="What's"
-        android:textSize="24sp"
+        android:textSize="24dp"
         android:textColor="#524044"
         android:layout_marginLeft="21dp"
         android:layout_marginTop="16dp"
@@ -20,30 +20,40 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet consectetur."
-        android:textSize="14sp"
+        android:text="Please Enter Your Full Name."
+        android:textSize="14dp"
         android:textColor="#524044"
         android:layout_marginLeft="21dp"
-        android:layout_marginTop="47dp"/>
+        android:id="@+id/two"
+        android:layout_below="@+id/Question"
+        android:layout_marginTop="10dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/two"
+        android:layout_marginTop="30dp">
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="320dp"
+            android:layout_height="48dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="21dp"
+            android:hint="Enter your full name" />
+    </LinearLayout>
     <!-- Text Input Field -->
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="320dp"
-        android:layout_height="48dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="96dp"
-        android:hint="Enter your full name" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/submitButton"
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="161dp"
+        android:layout_marginBottom="70dp"
         android:background="@drawable/rounded_card_background_next_disabled"
-        android:text="Next" />
+        android:text="Next"
+        android:textColor="#FFFFFF" />
 
 
 </RelativeLayout>

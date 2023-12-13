@@ -98,8 +98,8 @@ public class ImageActivity extends AppCompatActivity {
                     Toast.makeText(ImageActivity.this, "Please Upload Smaller Image Size", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    layout.setEnabled(false);
                     uploadUncompressedCroppedImageToFirebase(uncompressedImage);
-
                 }
             } else {
                 Toast.makeText(ImageActivity.this, "Please Select Image", Toast.LENGTH_SHORT).show();
@@ -135,6 +135,7 @@ public class ImageActivity extends AppCompatActivity {
     private void handleCroppedImage(Uri croppedUri) {
         if (croppedUri != null) {
             // Display the compressed image in the ShapeableImageView
+            shapeableImageView.setImageBitmap(null);
             shapeableImageView.setImageURI(croppedUri);
             imageUri = croppedUri;
             uncompressedImage = croppedUri;
@@ -155,6 +156,7 @@ public class ImageActivity extends AppCompatActivity {
                     })
                     .addOnFailureListener(e -> {
                         progressBar.setVisibility(View.INVISIBLE);
+                        layout.setEnabled(true);
                         Toast.makeText(ImageActivity.this, "Failed to upload uncropped image", Toast.LENGTH_SHORT).show();
                     });
         }
@@ -177,6 +179,7 @@ public class ImageActivity extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> {
                     progressBar.setVisibility(View.INVISIBLE);
+                    layout.setEnabled(true);
 //                    Toast.makeText(ImageActivity.this, "Failed to upload image to database", Toast.LENGTH_SHORT).show();
                     Log.e("UploadError", e.getMessage());
                 });
@@ -251,10 +254,12 @@ public class ImageActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(ImageActivity.this, "Profile Image uploaded successfully", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getApplicationContext(), welcome_instructions.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
                 })
                 .addOnFailureListener(e -> {
                     progressBar.setVisibility(View.INVISIBLE);
+                    layout.setEnabled(true);
                     Toast.makeText(ImageActivity.this, "Failed to upload image, Try again", Toast.LENGTH_SHORT).show();
                     Log.e("UploadError", e.getMessage());
                 });

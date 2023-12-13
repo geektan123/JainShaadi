@@ -26,8 +26,9 @@ public class welcome_instructions extends AppCompatActivity {
                 Next.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
 
                 nexttext.setTextColor(Color.parseColor("#FFFFFF"));
-                Intent i = new Intent(getApplicationContext(), Homeactivity.class);
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
+                finish();
             }
         });
     }

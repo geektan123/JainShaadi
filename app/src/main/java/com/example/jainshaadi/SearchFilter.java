@@ -70,11 +70,12 @@ public class SearchFilter extends AppCompatActivity {
     private Query query;
     private SwipeRefreshLayout swipeRefreshLayout;
     ProgressBar progress;
+    Object currentUserGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        setContentView(R.layout.search_display);
         getSupportActionBar().hide();
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -88,6 +89,12 @@ public class SearchFilter extends AppCompatActivity {
 
         cardItemList = new ArrayList<>();
         shuffledUserIds = new ArrayList<>();
+
+        ImageView BackIcon = findViewById(R.id.back);
+        BackIcon.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            onBackPressed();
+        });
 
         // Initialize Firebase Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -113,36 +120,43 @@ public class SearchFilter extends AppCompatActivity {
 
 
         // Load shuffled user IDs and profiles
-        loadShuffledUserIds();
+        profilesRef1.child("active").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Object currentUserActive = task.getResult().getValue();
 
-        LinearLayout saveIcon = findViewById(R.id.saved);
-        saveIcon.setOnClickListener(view -> {
-            // Redirect to SavedProfilesActivity
-            Intent intent = new Intent(SearchFilter.this, SaveProfileDisplay.class);
-            startActivity(intent);
+                if (currentUserActive != null && (currentUserActive.toString().equals("enabled")||currentUserActive.toString().equals("admin"))) {
+                    loadShuffledUserIds();
+                } else {
+                    TextView Empty = findViewById(R.id.empty);
+                    progress.setVisibility(View.GONE);
+                    Empty.setText("Discovery Disabled \n \n To view other profiles, enable Discovery in My Profile -> Settings.\n \n Thank you.");
+                    Empty.setVisibility(View.VISIBLE);
+                }
+
+            }
         });
 
-        GridLayout myProfile = findViewById(R.id.my_profile);
-        myProfile.setOnClickListener(view -> {
-            // Redirect to SavedProfilesActivity
-            Intent intent = new Intent(SearchFilter.this, MyProfile.class);
-            startActivity(intent);
-        });
-
-        ImageView search = findViewById(R.id.search);
-        search.setOnClickListener(view -> {
-            // Redirect to SavedProfilesActivity
-            Intent intent = new Intent(SearchFilter.this, Search.class);
-            Log.e("e", "curent3 = " + currentUserId);
-            intent.putExtra("currentUserId", currentUserId);
-            startActivity(intent);
-        });
-        GridLayout Chat = findViewById(R.id.chatlist);
-        Chat.setOnClickListener(view -> {
-            // Redirect to SavedProfilesActivity
-            Intent intent = new Intent(SearchFilter.this, Chatlist.class);
-            startActivity(intent);
-        });
+//        GridLayout myProfile = findViewById(R.id.my_profile);
+//        myProfile.setOnClickListener(view -> {
+//            // Redirect to SavedProfilesActivity
+//            Intent intent = new Intent(SearchFilter.this, MyProfile.class);
+//            startActivity(intent);
+//        });
+//
+//        ImageView search = findViewById(R.id.search);
+//        search.setOnClickListener(view -> {
+//            // Redirect to SavedProfilesActivity
+//            Intent intent = new Intent(SearchFilter.this, Search.class);
+//            Log.e("e", "curent3 = " + currentUserId);
+//            intent.putExtra("currentUserId", currentUserId);
+//            startActivity(intent);
+//        });
+//        GridLayout Chat = findViewById(R.id.chatlist);
+//        Chat.setOnClickListener(view -> {
+//            // Redirect to SavedProfilesActivity
+//            Intent intent = new Intent(SearchFilter.this, Chatlist.class);
+//            startActivity(intent);
+//        });
 
         // Load the initial set of profiles
 
@@ -173,7 +187,7 @@ public class SearchFilter extends AppCompatActivity {
         profilesRef1.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
 
-                Object currentUserGender = task.getResult().child("Gender").getValue();
+                currentUserGender = task.getResult().child("Gender").getValue();
                 Object currentUserState = task.getResult().child("State").getValue();
                 Object currentUserAge = task.getResult().child("Age").getValue();
                 Intent intent = getIntent();
@@ -260,11 +274,19 @@ public class SearchFilter extends AppCompatActivity {
             profilesRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    CardItem cardItem = snapshot.getValue(CardItem.class);
-                    if (cardItem != null) {
-                        cardItemList.add(cardItem);
-                        cardAdapter.notifyDataSetChanged();
+                    Object Status = snapshot.child("status").getValue();
+                    if(Status != null) {
+                        if ((!((snapshot.child("Gender").getValue(String.class)).equals(currentUserGender.toString())))
+                                && (((Status.toString()).equals("Registered"))
+                                || ((Status.toString()).equals("Completed")))) {
+                            CardItem cardItem = snapshot.getValue(CardItem.class);
+                            if (cardItem != null) {
+                                cardItemList.add(cardItem);
+                                cardAdapter.notifyDataSetChanged();
+                            }
+                        }
                     }
+
                 }
 
                 @Override

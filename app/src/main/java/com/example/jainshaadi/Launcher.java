@@ -60,7 +60,7 @@ public class Launcher extends AppCompatActivity {
                         status = dataSnapshot.child("status").getValue(String.class);
                         if (status != null) {
                             if (status.equals("Registered") || status.equals("Completed")) {
-                                Intent intent = new Intent(getApplicationContext(), Homeactivity.class);
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {

@@ -5,7 +5,7 @@
     android:background="#FFFFFF">
 
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
@@ -27,6 +27,7 @@
                     android:layout_height="20dp"
                     android:src="@drawable/back_button"
                     android:layout_gravity="center_vertical"
+                    android:id="@+id/back"
                     android:layout_marginRight="10dp"
                     />
                 <TextView
@@ -99,12 +100,13 @@
                         android:textSize="28dp"
                         android:id="@+id/profile_name"
                         />
+
                     <ImageView
                         android:id="@+id/verified"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
                         android:src="@drawable/verified_icon" />
                 </LinearLayout>
 
@@ -136,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:text="Looking for Bride"
                     android:textColor="#524044"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginVertical="4dp"
                     android:id="@+id/tag"/>
@@ -170,11 +172,17 @@
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/layer6"
                 android:layout_marginLeft="20dp">
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/community_icon" />
+                    android:gravity="center"
+                    android:layout_marginRight="5dp">
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/work_icon" />
+                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -433,19 +441,20 @@
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
                         android:layout_marginRight="4dp"
+                        android:layout_marginTop="4dp"
                         android:width="1dp"
                         android:color="#756568"
                         android:background="@drawable/rounded_hobbies_card"
                         >
+
                         <TextView
+                            android:id="@+id/profile_interest01"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
                             android:textColor="#756568"
-                            android:id="@+id/profile_interest01"
-                            />
+                            android:textSize="12dp" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -455,6 +464,7 @@
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
                         android:layout_marginRight="4dp"
+                        android:layout_marginTop="4dp"
                         android:width="1dp"
                         android:color="#756568"
                         android:background="@drawable/rounded_hobbies_card"
@@ -464,7 +474,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
+                            android:textSize="12dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest02"
                             />
@@ -477,6 +487,7 @@
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
                         android:layout_marginRight="4dp"
+                        android:layout_marginTop="4dp"
                         android:width="1dp"
                         android:color="#756568"
                         android:background="@drawable/rounded_hobbies_card"
@@ -486,7 +497,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
+                            android:textSize="12dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest03"
                             />
@@ -499,6 +510,7 @@
                         android:paddingTop="4dp"
                         android:paddingBottom="4dp"
                         android:layout_marginRight="4dp"
+                        android:layout_marginTop="4dp"
                         android:width="1dp"
                         android:color="#756568"
                         android:background="@drawable/rounded_hobbies_card"
@@ -508,7 +520,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
+                            android:textSize="12dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest04"
                             />
@@ -531,7 +543,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
+                            android:textSize="12dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest05"
                             />
@@ -554,7 +566,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
+                            android:textSize="12dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest06"
                             />
@@ -582,7 +594,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/overlay_button"
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
         android:layout_height="wrap_content"
         android:text="Message"
         android:textSize="16dp"

@@ -29,14 +29,15 @@
             android:paddingVertical="18dp"
             >
             <LinearLayout
-                android:layout_height="20dp">
+                android:layout_height="wrap_content">
+
                 <TextView
+                    android:id="@+id/postedBy"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
                     android:text="Managed By his Parents"
                     android:textColor="#D2CACC"
-                    android:textSize="15sp"
-                    android:id="@+id/postedBy"
+                    android:textSize="15dp"
 
                     />
 
@@ -52,6 +53,7 @@
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="360dp"
                     app:cardElevation="0dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginRight="16dp"
                     >
 
@@ -60,6 +62,7 @@
                         android:layout_height="80dp"
                         android:id="@+id/profileImg"
                         android:scaleType="centerCrop"
+                        android:layout_gravity="center_vertical"
                         android:background="@drawable/profile_pic"/>
                 </androidx.cardview.widget.CardView>
                 <GridLayout
@@ -84,7 +87,7 @@
                             />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="190dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="7dp">
                         <TextView
@@ -110,24 +113,25 @@
                 android:textColor="#524044"
                 android:id="@+id/profileBio"
                 android:textFontWeight="500"
-
                 />
 
             <LinearLayout
                 android:layout_width="273dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">
+
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/birthday_icon"
-                    android:layout_marginRight="5dp"/>
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/birthday_icon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="26 Years Old, 5’ 10’’"
                     android:textColor="#524044"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:id="@+id/profileBirthDate"
                     />
             </LinearLayout>
@@ -135,17 +139,23 @@
                 android:layout_width="273dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/community_icon"
-                    android:layout_marginRight="5dp"/>
+                <LinearLayout
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:layout_marginRight="5dp">
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/work_icon" />
+                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Digambar-Agrawal"
                     android:textColor="#524044"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:id="@+id/profileWork"
                     />
             </LinearLayout>
@@ -154,8 +164,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/income_icon"
                     android:layout_marginRight="5dp"/>
                 <TextView
@@ -163,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:text="INR 15-17 Lakhs per annum"
                     android:textColor="#524044"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:id="@+id/profileIncome"
                     />
             </LinearLayout>
@@ -171,24 +181,25 @@
                 android:layout_width="273dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
+
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/location_icon"
-                    android:layout_marginRight="5dp"/>
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/location_icon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kanpur, Uttar Pradesh"
                     android:textColor="#524044"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:id="@+id/profileLocation"
                     />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="6dp">
 
                 <com.google.android.flexbox.FlexboxLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -201,8 +212,8 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
                         android:layout_marginRight="4dp"
-                        android:width="1dp"
                         android:background="@drawable/homepage_hobbies_card"
                         android:color="#FFF1F4"
                         android:paddingLeft="8dp"
@@ -217,20 +228,20 @@
                             android:layout_gravity="center"
                             android:text="Dancing"
                             android:textColor="#756568"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"
-                        android:width="1dp"
                         android:background="@drawable/homepage_hobbies_card"
                         android:color="#756568"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
                         android:paddingRight="8dp"
-                        android:paddingBottom="4dp">
+                        android:paddingBottom="4dp"
+                        android:layout_marginTop="6dp">
 
                         <TextView
                             android:id="@+id/profile_interest02"
@@ -239,7 +250,7 @@
                             android:layout_gravity="center"
                             android:text="Dancing"
                             android:textColor="#756568"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -252,7 +263,8 @@
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
                         android:paddingRight="8dp"
-                        android:paddingBottom="4dp">
+                        android:paddingBottom="4dp"
+                        android:layout_marginTop="6dp">
 
                         <TextView
                             android:id="@+id/profile_interest03"
@@ -261,20 +273,20 @@
                             android:layout_gravity="center"
                             android:text="Dancing"
                             android:textColor="#756568"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"
-                        android:width="1dp"
                         android:background="@drawable/homepage_hobbies_card"
                         android:color="#756568"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
                         android:paddingRight="8dp"
-                        android:paddingBottom="4dp">
+                        android:paddingBottom="4dp"
+                        android:layout_marginTop="6dp">
 
                         <TextView
                             android:id="@+id/profile_interest04"
@@ -283,7 +295,7 @@
                             android:layout_gravity="center"
                             android:text="Dance"
                             android:textColor="#756568"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -306,7 +318,7 @@
                             android:layout_gravity="center"
                             android:text="Dance"
                             android:textColor="#756568"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -329,7 +341,7 @@
                             android:layout_gravity="center"
                             android:text="Dancing"
                             android:textColor="#756568"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
                     </LinearLayout>
                 </com.google.android.flexbox.FlexboxLayout>
             </LinearLayout>
@@ -337,24 +349,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="20dp"
 
                 >
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:layout_weight="1"
+                    android:paddingLeft="20dp"
                     >
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/save">
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_width="18dp"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/save_icon_01"
+                            android:layout_gravity="center_vertical"
 
                             />
                         <TextView

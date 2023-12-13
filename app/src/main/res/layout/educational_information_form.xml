@@ -2,9 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginHorizontal="100dp"
@@ -61,12 +69,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="80dp">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="wrap_content"
             android:text="Educational Information"
             android:textSize="20dp"
             android:textColor="#524044"
@@ -75,14 +83,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="136dp">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
+            android:layout_height="wrap_content"
             android:text="Your highest degree is"
             android:textColor="#524044"
             android:textSize="16dp" />
@@ -112,12 +120,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="242dp"
         android:layout_marginHorizontal="20dp">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
+            android:layout_height="wrap_content"
             android:text="College"
             android:textSize="16dp"
             android:textColor="#524044"/>
@@ -146,12 +154,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="348dp"
         android:layout_marginHorizontal="20dp">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
+            android:layout_height="wrap_content"
             android:text="Passing Year"
             android:textSize="16dp"
             android:textColor="#524044"/>
@@ -170,7 +178,7 @@
             android:textSize="16dp"
             android:id="@+id/yearEditText"
             android:textColor="@color/black"
-            android:hint="    e.g. 2022"
+            android:hint="    e.g. 2018"
             android:layout_gravity="center"
             android:layout_marginHorizontal="16dp"/>
 
@@ -181,21 +189,22 @@
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:id="@+id/Verify"
-        android:layout_marginBottom="81dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="550dp"
         android:gravity="center"
         android:background="@drawable/rounded_card_background_next_disabled">
         <TextView
             android:id="@+id/Ver"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
-            android:text="Verify"
+            android:text="Next"
             android:textSize="16dp"
             android:textColor="#FFFFFF"
             android:layout_gravity="center"
             android:layout_marginHorizontal="16dp"
             />
     </LinearLayout>
+    </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

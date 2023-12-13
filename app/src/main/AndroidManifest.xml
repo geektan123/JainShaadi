@@ -17,11 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JainShaadi"
         tools:targetApi="31">
+<!--        <activity-->
+<!--            android:name=".Chatlist"-->
+<!--            android:exported="false" />-->
         <activity
-            android:name=".Chatlist"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".specificchat"
+            android:name=".SpecificChatActivity"
+            android:theme="@style/Message.JainShaadi"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".Otp2"
@@ -44,9 +48,9 @@
         <activity
             android:name=".SearchFilter"
             android:exported="false" />
-        <activity
-            android:name=".Search"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Search"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".MyProfile"
             android:exported="false" />
@@ -62,9 +66,9 @@
         <activity
             android:name=".CardAdapter"
             android:exported="false" />
-        <activity
-            android:name=".Homeactivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Homeactivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".welcome_instructions"
             android:exported="false" />

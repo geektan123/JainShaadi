@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-android:background="@color/white"
+android:background="#FFF9FA"
     tools:context=".Login">
 
     <ProgressBar
@@ -35,7 +35,7 @@ android:background="@color/white"
         android:layout_height="80dp"
         android:layout_below="@id/blank"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/group_12"
+        android:background="@drawable/logo_square"
         app:shapeAppearanceOverlay="@style/roundimageview"
         />
 
@@ -48,7 +48,7 @@ android:background="@color/white"
         android:text="JainMaitri"
         android:textAlignment="center"
         android:textColor="#524044"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
     <TextView
@@ -64,40 +64,58 @@ android:background="@color/white"
         android:text="By &quot;Signing in&quot; I agree to Terms &amp; Condition."
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="10sp" />
-
-
-    <LinearLayout
-        android:id="@+id/google_sign_in_button"
-        android:layout_width="320dp"
-        android:layout_height="72dp"
+        android:textSize="10dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+
+        android:text="Crafted with ❤️ for Jains, by Jains."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="10dp" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="320dp"
+        android:layout_height="72dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="80dp"
-        android:width="1dp"
-        android:background="@drawable/rounded_card_google"
-        android:color="#756568"
-        android:gravity="center"
-        android:paddingLeft="16dp"
-        android:paddingTop="12dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="12dp">
+        app:cardCornerRadius="32dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="false">
 
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="end"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/google" />
+        <LinearLayout
+            android:id="@+id/google_sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_green_boder"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:text="Sign Up with Google"
-            android:textColor="#756568"
-            android:textSize="20dp"
-            />
-    </LinearLayout>
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/google" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Continue with Google"
+                android:textColor="#756568"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

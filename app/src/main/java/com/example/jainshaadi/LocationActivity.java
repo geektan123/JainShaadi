@@ -285,20 +285,23 @@ TextView Nexttext;
                 NextLay.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (isNextLayoutChanged) {
-                            String userKey = FirebaseAuth.getInstance().getUid();
-                            DatabaseReference userRef = databaseReference.child(userKey);
-                            Map<String, Object> updateData = new HashMap<>();
-                            updateData.put("State", selectedState);
-                            updateData.put("City", selectedDistrict);
-                            userRef.updateChildren(updateData);
+                        if (!(selectedDistrict.equals("Select Your District")) && !(selectedDistrict.isEmpty())) {
+                            if (isNextLayoutChanged) {
+                                String userKey = FirebaseAuth.getInstance().getUid();
+                                DatabaseReference userRef = databaseReference.child(userKey);
+                                Map<String, Object> updateData = new HashMap<>();
+                                updateData.put("State", selectedState);
+                                updateData.put("City", selectedDistrict);
+                                userRef.updateChildren(updateData);
 
-                            Intent i = new Intent(getApplicationContext(), Interest.class);
-                            i.putExtra("Gender",gen);
-                            i.putExtra("Account",acc);
-                            startActivity(i);
+                                Intent i = new Intent(getApplicationContext(), Interest.class);
+                                i.putExtra("Gender", gen);
+                                i.putExtra("Account", acc);
+                                startActivity(i);
 
-                            // Display a toast message
+                                // Display a toast message
+                            } else
+                                Toast.makeText(LocationActivity.this, "Please Complete the values", Toast.LENGTH_SHORT).show();
                         }
                         else
                             Toast.makeText(LocationActivity.this, "Please Complete the values", Toast.LENGTH_SHORT).show();

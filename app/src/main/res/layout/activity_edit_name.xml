@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update Name"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textColor="#524044"
         android:layout_marginLeft="21dp"
         android:layout_marginTop="16dp"
@@ -26,19 +26,21 @@
     <EditText
         android:id="@+id/editText"
         android:layout_width="200dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="21dp"
         android:layout_marginRight="130dp"
         android:layout_marginTop="70dp"
-        android:hint="Enter your full name" />
+        android:hint="Enter Here" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/submitButton"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="161dp"
+        android:textColor="#FFFFFF"
         android:background="@drawable/rounded_card_background_next_disabled"
         android:text="Update" />
 

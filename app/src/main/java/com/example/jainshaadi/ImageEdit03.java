@@ -70,6 +70,7 @@ public class ImageEdit03 extends DialogFragment {
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(requireContext(), "Please Upload Smaller Image Size", Toast.LENGTH_SHORT).show();
                 } else {
+                    layout.setEnabled(false);
                     uploadUncompressedCroppedImageToFirebase(uncompressedImage);
                 }
             } else {
@@ -108,6 +109,7 @@ public class ImageEdit03 extends DialogFragment {
     private void handleCroppedImage(Uri croppedUri) {
         if (croppedUri != null) {
             // Display the compressed image in the ShapeableImageView
+            shapeableImageView.setImageBitmap(null);
             shapeableImageView.setImageURI(croppedUri);
             imageUri = croppedUri;
             uncompressedImage = croppedUri;
@@ -128,6 +130,7 @@ public class ImageEdit03 extends DialogFragment {
                         });
                     })
                     .addOnFailureListener(e -> {
+                        layout.setEnabled(true);
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(requireContext(), "Failed to upload uncropped image", Toast.LENGTH_SHORT).show();
                     });
@@ -148,6 +151,7 @@ public class ImageEdit03 extends DialogFragment {
                 })
                 .addOnFailureListener(e -> {
                     progressBar.setVisibility(View.INVISIBLE);
+                    layout.setEnabled(true);
                     Log.e("UploadError", e.getMessage());
                 });
 

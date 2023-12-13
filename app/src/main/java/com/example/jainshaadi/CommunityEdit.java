@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +68,7 @@ public class CommunityEdit extends DialogFragment {
 //        Layout4.setVisibility(View.INVISIBLE);
         Layout5.setVisibility(View.INVISIBLE);
         Spinner spin = view.findViewById(R.id.spinner1);
+        editText = view.findViewById(R.id.others);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
@@ -74,7 +76,7 @@ public class CommunityEdit extends DialogFragment {
             @Override
             public void onClick(View view) {
                 nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
-                nexttext.setTextColor(Color.parseColor("#756568"));
+//                nexttext.setTextColor(Color.parseColor("#756568"));
                 isNextLayoutChanged = false;
                 Layout6.setVisibility(view.INVISIBLE);
                 if (category.equals("Shvetambar")) {
@@ -109,12 +111,13 @@ public class CommunityEdit extends DialogFragment {
                 spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                        if (spin.getSelectedItemPosition() > 0) {
+                        if (spin.getSelectedItemPosition() > -1) {
                             spinners = arrayAdapter1.get(position);
                             subCategory = spinners;
                             if (spinners.equals("Other")) {
                                 Layout6.setVisibility(view.VISIBLE);
                                 editText = view.findViewById(R.id.others);
+                                subCategory = "";
 
                                 editText.addTextChangedListener(new TextWatcher() {
                                     @Override
@@ -135,7 +138,7 @@ public class CommunityEdit extends DialogFragment {
                                             isNextLayoutChanged = true;
                                         } else {
                                             nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
-                                            nexttext.setTextColor(Color.parseColor("#756568"));
+//                                            nexttext.setTextColor(Color.parseColor("#756568"));
                                             isNextLayoutChanged = false;
                                         }
                                     }
@@ -161,7 +164,7 @@ public class CommunityEdit extends DialogFragment {
             @Override
             public void onClick(View view) {
                 nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
-                nexttext.setTextColor(Color.parseColor("#756568"));
+//                nexttext.setTextColor(Color.parseColor("#756568"));
                 isNextLayoutChanged = false;
                 Layout6.setVisibility(view.INVISIBLE);
 
@@ -196,12 +199,14 @@ public class CommunityEdit extends DialogFragment {
                 spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                        if (spin.getSelectedItemPosition() > 0) {
+                        if (spin.getSelectedItemPosition() > -1) {
                             spinners = arrayAdapter1.get(position);
                             subCategory = spinners;
                             if (spinners.equals("Other")) {
                                 Layout6.setVisibility(view.VISIBLE);
-                                editText = view.findViewById(R.id.others);
+
+                                subCategory = "";
+                                editText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
 
                                 editText.addTextChangedListener(new TextWatcher() {
                                     @Override
@@ -214,7 +219,7 @@ public class CommunityEdit extends DialogFragment {
 
                                     @Override
                                     public void afterTextChanged(Editable editable) {
-                                        String enteredText = editable.toString();
+                                        String enteredText = editable.toString().trim();
                                         subCategory = enteredText;
                                         if (subCategory != null) {
                                             nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
@@ -222,7 +227,7 @@ public class CommunityEdit extends DialogFragment {
                                             isNextLayoutChanged = true;
                                         } else {
                                             nextlay.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
-                                            nexttext.setTextColor(Color.parseColor("#756568"));
+//                                            nexttext.setTextColor(Color.parseColor("#756568"));
                                             isNextLayoutChanged = false;
                                         }
                                     }
@@ -247,6 +252,10 @@ public class CommunityEdit extends DialogFragment {
         nextlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(subCategory.isEmpty() || subCategory.equals("-Select-"))
+                {
+                    isNextLayoutChanged = false;
+                }
                 if (isNextLayoutChanged) {
                     String userKey = FirebaseAuth.getInstance().getUid();
                     DatabaseReference userRef = databaseReference.child(userKey);

@@ -9,13 +9,13 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="wrap_content"
             android:text="Family Information"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -26,12 +26,12 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginHorizontal="20dp">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
+            android:layout_height="wrap_content"
             android:text="Father's Name"
             android:textSize="16dp"
             android:textColor="#524044"/>
@@ -47,8 +47,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="Vijaydesh Jain"
-            android:textSize="16sp"
+            android:hint="ex. Vijaydesh Jain"
+            android:textSize="16dp"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:id="@+id/father_name_edit_text"
@@ -58,12 +58,12 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:layout_marginHorizontal="20dp">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="wrap_content"
             android:text="Father's Occupation"
             android:textSize="16dp"
             android:textColor="#524044"/>
@@ -79,8 +79,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="Sample Occupation"
-            android:textSize="16sp"
+            android:hint="ex. Bussiness"
+            android:textSize="16dp"
             android:textColor="@color/black"
             android:id="@+id/father_occupation_edit_text"
             android:layout_gravity="center"
@@ -90,12 +90,12 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="250dp"
         android:layout_marginHorizontal="20dp">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="wrap_content"
             android:text="Mother's Name"
             android:textSize="16dp"
             android:textColor="#524044"/>
@@ -111,8 +111,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="Sample Mother name"
-            android:textSize="16sp"
+            android:hint="ex. Vaishali Jain"
+            android:textSize="16dp"
             android:id="@+id/mother_name_edit_text"
             android:textColor="@color/black"
             android:layout_gravity="center"
@@ -122,12 +122,12 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="340dp"
         android:layout_marginHorizontal="20dp">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="wrap_content"
             android:text="Mother's Occupation"
             android:textSize="16dp"
             android:textColor="#524044"/>
@@ -143,8 +143,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="Sample"
-            android:textSize="16sp"
+            android:hint="ex. Housewife"
+            android:textSize="16dp"
             android:id="@+id/mother_occupation_edit_text"
             android:textColor="@color/black"
             android:layout_gravity="center"
@@ -153,18 +153,18 @@
 
 
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_marginTop="450dp"
         android:gravity="center"
-        android:layout_marginHorizontal="80dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/Verify"
         android:background="@drawable/rounded_card_background_next_disabled">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="24dp"
-            android:text="Verify"
+            android:text="Update"
             android:id="@+id/Ver"
             android:textSize="16dp"
             android:textColor="#FFFFFF"

@@ -1,8 +1,11 @@
 package com.example.jainshaadi;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -57,7 +60,7 @@ public class Login extends AppCompatActivity {
                         status = dataSnapshot.child("status").getValue(String.class);
                         if (status != null) {
                             if (status.equals("Registered") || status.equals("Completed")) {
-                                Intent intent = new Intent(getApplicationContext(), Homeactivity.class);
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {
@@ -86,6 +89,15 @@ public class Login extends AppCompatActivity {
             });
         } else {
             textView = findViewById(R.id.google_sign_in_button);
+            textView.requestFocus();
+            ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
+                    textView,
+                    PropertyValuesHolder.ofFloat("scaleX", 0.9f),
+                    PropertyValuesHolder.ofFloat("scaleY", 0.9f)
+            );
+            scaleDown.setDuration(300);
+            scaleDown.setDuration(300);
+
             GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(getString(R.string.default_web_client_id))
                     .requestEmail()
@@ -98,6 +110,17 @@ public class Login extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
                     Intent i = client.getSignInIntent();
                     startActivityForResult(i, 1234);
+                }
+            });
+            textView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                        scaleDown.start();
+                    } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                        scaleDown.reverse();
+                    }
+                    return false;
                 }
             });
         }
@@ -132,7 +155,7 @@ public class Login extends AppCompatActivity {
                                                     status = dataSnapshot.child("status").getValue(String.class);
                                                     if (status != null) {
                                                         if (status.equals("Registered") || status.equals("Completed")) {
-                                                            Intent intent = new Intent(getApplicationContext(), Homeactivity.class);
+                                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                                             startActivity(intent);
                                                             finish();
                                                         } else {

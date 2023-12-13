@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:hint="OTP"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 

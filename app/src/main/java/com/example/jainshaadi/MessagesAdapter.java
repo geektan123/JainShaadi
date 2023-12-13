@@ -29,7 +29,6 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     public MessagesAdapter(Context context, ArrayList<Messages> messagesArrayList) {
         this.context = context;
         sortMessagesByTime(messagesArrayList);
-
         this.messagesArrayList = messagesArrayList;
     }
     private void sortMessagesByTime(ArrayList<Messages> messages) {
@@ -124,7 +123,7 @@ public class MessagesAdapter extends RecyclerView.Adapter {
 
         public RecieverViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewmessaage=itemView.findViewById(R.id.sendermessage);
+            textViewmessaage=itemView.findViewById(R.id.recivermessage);
             timeofmessage=itemView.findViewById(R.id.timeofmessage);
         }
     }

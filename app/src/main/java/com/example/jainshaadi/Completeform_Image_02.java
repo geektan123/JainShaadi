@@ -77,6 +77,7 @@ public class Completeform_Image_02 extends AppCompatActivity {
                     Toast.makeText(Completeform_Image_02.this, "Please Upload Smaller Image Size", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    layout.setEnabled(false);
                     uploadUncompressedCroppedImageToFirebase(uncompressedImage);
 
                 }
@@ -114,6 +115,7 @@ public class Completeform_Image_02 extends AppCompatActivity {
     private void handleCroppedImage(Uri croppedUri) {
         if (croppedUri != null) {
             // Display the compressed image in the ShapeableImageView
+            shapeableImageView.setImageBitmap(null);
             shapeableImageView.setImageURI(croppedUri);
             imageUri = croppedUri;
             uncompressedImage = croppedUri;
@@ -133,6 +135,7 @@ public class Completeform_Image_02 extends AppCompatActivity {
                         });
                     })
                     .addOnFailureListener(e -> {
+                        layout.setEnabled(true);
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(Completeform_Image_02.this, "Failed to upload uncropped image", Toast.LENGTH_SHORT).show();
                     });
@@ -150,10 +153,12 @@ public class Completeform_Image_02 extends AppCompatActivity {
                 .addOnSuccessListener(aVoid -> {
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(Completeform_Image_02.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(), MyProfile.class);
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);
                 })
                 .addOnFailureListener(e -> {
+                    layout.setEnabled(true);
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(Completeform_Image_02.this, "Failed to upload image, Try again", Toast.LENGTH_SHORT).show();
                     Log.e("UploadError", e.getMessage());

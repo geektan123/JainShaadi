@@ -3,6 +3,7 @@ package com.example.jainshaadi;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,7 @@ public class BioEdit extends DialogFragment {
         nexttext = view.findViewById(R.id.Nexttext);
         Describe = view.findViewById(R.id.Describe);
         Count = view.findViewById(R.id.Count);
+        Describe.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
 
         Describe.addTextChangedListener(new TextWatcher() {
             @Override
@@ -75,17 +77,23 @@ public class BioEdit extends DialogFragment {
             @Override
             public void onClick(View view) {
                 if (isNextLayoutChanged) {
-                    String describe = Describe.getText().toString();
-                    HashMap<String, Object> Describes = new HashMap<>();
-                    Describes.put("Description", describe);
-                    String userKey = FirebaseAuth.getInstance().getUid();
-                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+                    String describe = Describe.getText().toString().trim();
+                    if(!(describe.isEmpty())) {
+                        HashMap<String, Object> Describes = new HashMap<>();
+                        Describes.put("Description", describe);
+                        String userKey = FirebaseAuth.getInstance().getUid();
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
-                    // Update user data in Firebase
-                    databaseReference.child(userKey).updateChildren(Describes);
+                        // Update user data in Firebase
+                        databaseReference.child(userKey).updateChildren(Describes);
 
-                    // Close the dialog
-                    dismiss();
+                        // Close the dialog
+                        dismiss();
+                    }
+                    else
+                    {
+                        Toast.makeText(requireContext(), "All the field are mandatory", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(requireContext(), "All the field are mandatory", Toast.LENGTH_SHORT).show();
                 }

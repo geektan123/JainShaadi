@@ -1,5 +1,6 @@
 package com.example.jainshaadi;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -63,6 +64,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     private DatabaseReference databaseRef;
     private String currentUserId;
 
+
     public CardAdapter(Context context, List<CardItem> cardItemList, DatabaseReference databaseRef, String currentUserId) {
         this.context = context;
         this.cardItemList = cardItemList;
@@ -84,7 +86,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         CardItem cardItem = cardItemList.get(position);
         holder.postedByTextView.setText(cardItem.getAccount_Managed_for());
         Log.e("ac","acc = "+ cardItem.getAccount_Managed_for());
-       Glide.with(holder.itemView.getContext()).load(cardItem.getImageUrl1()).into(holder.profileImageView);
+
+        Glide.with(holder.itemView.getContext()).load(cardItem.getImageUrl1()).into(holder.profileImageView);
+
           //holder.profileImageView.setImageResource(cardItem.getImageUrl1());
 
 
@@ -175,6 +179,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         });
     }
 
+    private boolean isActivityValid() {
+        return context instanceof Activity && !((Activity) context).isDestroyed() && !((Activity) context).isFinishing();
+    }
     @Override
     public int getItemCount() {
         return cardItemList.size();

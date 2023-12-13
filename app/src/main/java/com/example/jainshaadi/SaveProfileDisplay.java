@@ -1,7 +1,12 @@
 package com.example.jainshaadi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,6 +47,11 @@ public class SaveProfileDisplay extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         cardItemList = new ArrayList<>();
+        ImageView BackIcon = findViewById(R.id.back);
+        BackIcon.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            onBackPressed();
+        });
 
         // Initialize Firebase Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -56,6 +66,10 @@ public class SaveProfileDisplay extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 // Load the data again when the user swipes to refresh
+                TextView empty = findViewById(R.id.empty);
+                empty.setVisibility(View.VISIBLE);
+                cardItemList.clear();
+                cardAdapter.notifyDataSetChanged();
                 loadCardItems();
             }
         });
@@ -82,6 +96,8 @@ public class SaveProfileDisplay extends AppCompatActivity {
                                 if (cardItem != null) {
                                     cardItemList.add(cardItem);
                                     cardAdapter.notifyDataSetChanged();
+                                    TextView empty = findViewById(R.id.empty);
+                                    empty.setVisibility(View.GONE);
                                 }
                             }
                         }
@@ -92,6 +108,7 @@ public class SaveProfileDisplay extends AppCompatActivity {
                         }
                     });
                 }
+
 
                 // Stop the swipe-to-refresh animation
                 swipeRefreshLayout.setRefreshing(false);

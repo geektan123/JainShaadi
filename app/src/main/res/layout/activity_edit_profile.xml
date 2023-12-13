@@ -20,6 +20,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:id="@+id/back"
                     android:src="@drawable/back_button"
                     />
                 <TextView
@@ -151,7 +152,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Aditya Singh Jadon"
+                        android:text=""
                         android:textSize="20dp"
                         android:layout_weight="1"
                         android:id="@+id/Name"/>
@@ -189,7 +190,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
-                        android:text="I am an IITian and proud to be an Indian "
+                        android:text=""
                         android:paddingVertical="4dp"
                         android:paddingHorizontal="8dp"
                         android:layout_weight="1"
@@ -232,7 +233,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
                         android:id="@+id/DOB"
-                        android:text="16/11/2003"/>
+                        android:text=""/>
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
@@ -266,7 +267,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Digambar- Khandelwal"
+                        android:text=""
                         android:textSize="20dp"
                         android:id="@+id/Community"
                         android:layout_weight="1"/>
@@ -304,7 +305,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Madhaya Pradesh- Ujjain"
+                        android:text=""
                         android:textSize="20dp"
                         android:layout_weight="1"
                         android:id="@+id/Location"
@@ -341,7 +342,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
-                        android:text="Member technical Staff at deverev "
+                        android:text=""
                         android:paddingHorizontal="8dp"
                         android:paddingTop="6dp"
                         android:layout_weight="1"
@@ -382,7 +383,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Int. MSc. Applied Mathematics, IIT Roorkee (2025)"
+                        android:text=""
                         android:textSize="20dp"
                         android:id="@+id/Education"
                         android:layout_weight="1"/>
@@ -420,7 +421,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="INR 60 LPA"
+                        android:text=""
                         android:textSize="20dp"
                         android:id="@+id/Family02"
                         android:layout_weight="1"/>
@@ -460,7 +461,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/Family"
-                        android:text="Nuclear-Faimly&#xA;Mukesh Jain (Teacher)&#xA;Jyoti Jain(Housewife)"
+                        android:text=""
                         android:textSize="20dp"
                         android:layout_weight="1"/>
                     <ImageView
@@ -496,7 +497,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Singing , Dancing , Pool, Badminton , Pool, Badminton"
+                        android:text=""
                         android:textSize="20dp"
                         android:id="@+id/Hobbies"
                         android:layout_weight="1"/>

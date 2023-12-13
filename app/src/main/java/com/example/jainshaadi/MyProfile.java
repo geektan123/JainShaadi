@@ -42,8 +42,10 @@ public class MyProfile extends AppCompatActivity {
     private LinearLayout dotIndicators;
     Button overlayButton;
     RelativeLayout Load_profile;
+    ValueEventListener ImageEventListener, profileEventListener;
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users");
     ProgressBar progress;
+    Context context;
 
     // Get the reference to the current profile
     DatabaseReference currentProfileRef = databaseRef.child(FirebaseAuth.getInstance().getUid());
@@ -64,90 +66,12 @@ public class MyProfile extends AppCompatActivity {
 //        imageList.add(placeholderUrl);
 //        imageList.add(placeholderUrl);
 //        imageList.add(placeholderUrl);
-        Context context = this;
+        context = this;
 //        int color = ContextCompat.getColor(this, R.color.button_enabled);
-
-        currentProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // Add Firebase Storage references to your images
-                    // Make sure to replace "images/your_image1.jpg", "images/your_image2.jpg", etc.,
-                    // with the actual paths to your images in Firebase Storage
-                    String imageRef1 = dataSnapshot.child("image01").getValue(String.class);
-                    String imageRef2 = dataSnapshot.child("image02").getValue(String.class);
-                    String imageRef3 = dataSnapshot.child("image03").getValue(String.class);
-                    imageList.add(imageRef1);
-                    imageList.add(imageRef2);
-                    imageList.add(imageRef3);
-
-
-        viewPager = findViewById(R.id.viewPager);
-
-        adapter = new ImagePagerAdapter(context, imageList);
-        viewPager.setAdapter(adapter);
-
-        dotIndicators = findViewById(R.id.dotIndicators);
-
-        setupDotIndicators(imageList.size());
-
-        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-
-                // Update the dot indicators
-                for (int i = 0; i < dotIndicators.getChildCount(); i++) {
-                    ImageView dot = (ImageView) dotIndicators.getChildAt(i);
-                    dot.setImageResource(i == position ? R.drawable.dot_selected : R.drawable.dot_unselected);
-                }
-            }
-        });
-
-        ImageView settingButton = findViewById(R.id.settings);
-        settingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Create and show the bottom sheet
-                ProfileOptionsBottomSheetFragment bottomSheetFragment = new ProfileOptionsBottomSheetFragment();
-                bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
-            }
-        });
-
-
-
-        ImageView EditProfile = findViewById(R.id.editProfile);
-        EditProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(comp) {
-                    Intent i = new Intent(getApplicationContext(),EditProfile.class);
-                    // Add this line to attach the bundle
-                    startActivity(i);
-                }
-                else
-                {
-                    Toast.makeText(MyProfile.this, "Complete Your Profile to Edit", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-//        overlayButton.setBackgroundColor(color);
-        overlayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),educational_information_form.class);
-
-                // Add this line to attach the bundle
-                startActivity(i);            }
-        });
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle any errors
-            }
+        ImageView BackIcon = findViewById(R.id.back);
+        BackIcon.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            onBackPressed();
         });
 
         // Initialize TextViews
@@ -175,12 +99,13 @@ public class MyProfile extends AppCompatActivity {
         fetchAndDisplayProfileData();
     }
 
-    public void onBackPressed() {
-        // Do nothing or show a message, preventing the user from going back
-            Intent i = new Intent(getApplicationContext(), Homeactivity.class);
-            // Add this line to attach the bundle
-            startActivity(i);
-    }
+//    public void onBackPressed() {
+//        // Do nothing or show a message, preventing the user from going back
+//            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+//            // Add this line to attach the bundle
+//            startActivity(i);
+//            finish();
+//    }
 
 
     private void setupDotIndicators(int count) {
@@ -205,8 +130,91 @@ public class MyProfile extends AppCompatActivity {
     private void fetchAndDisplayProfileData() {
         // Create a reference to the Firebase database
 
+        ImageEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    imageList.clear();
+                    // Add Firebase Storage references to your images
+                    // Make sure to replace "images/your_image1.jpg", "images/your_image2.jpg", etc.,
+                    // with the actual paths to your images in Firebase Storage
+                    String imageRef1 = dataSnapshot.child("image01").getValue(String.class);
+                    String imageRef2 = dataSnapshot.child("image02").getValue(String.class);
+                    String imageRef3 = dataSnapshot.child("image03").getValue(String.class);
+                    imageList.add(imageRef1);
+                    imageList.add(imageRef2);
+                    imageList.add(imageRef3);
 
-        currentProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    viewPager = findViewById(R.id.viewPager);
+
+                    adapter = new ImagePagerAdapter(context, imageList);
+                    viewPager.setAdapter(adapter);
+
+                    dotIndicators = findViewById(R.id.dotIndicators);
+
+                    setupDotIndicators(imageList.size());
+
+                    viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                        @Override
+                        public void onPageSelected(int position) {
+                            super.onPageSelected(position);
+
+                            // Update the dot indicators
+                            for (int i = 0; i < dotIndicators.getChildCount(); i++) {
+                                ImageView dot = (ImageView) dotIndicators.getChildAt(i);
+                                dot.setImageResource(i == position ? R.drawable.dot_selected : R.drawable.dot_unselected);
+                            }
+                        }
+                    });
+
+                    ImageView settingButton = findViewById(R.id.settings);
+                    settingButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // Create and show the bottom sheet
+                            ProfileOptionsBottomSheetFragment bottomSheetFragment = new ProfileOptionsBottomSheetFragment();
+                            bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
+                        }
+                    });
+
+
+                    ImageView EditProfile = findViewById(R.id.editProfile);
+                    EditProfile.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            if (comp) {
+                                Intent i = new Intent(getApplicationContext(), EditProfile.class);
+                                // Add this line to attach the bundle
+                                startActivity(i);
+                            } else {
+                                Toast.makeText(MyProfile.this, "Complete Your Profile to Edit", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+//        overlayButton.setBackgroundColor(color);
+                    overlayButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent i = new Intent(getApplicationContext(), educational_information_form.class);
+
+                            // Add this line to attach the bundle
+                            startActivity(i);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle any errors
+            }
+        };
+        currentProfileRef.addValueEventListener(ImageEventListener);
+
+
+        profileEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -222,6 +230,7 @@ public class MyProfile extends AppCompatActivity {
                     String Height = dataSnapshot.child("Height").getValue(String.class);
                     String Degree = dataSnapshot.child("Degree").getValue(String.class);
                     String College = dataSnapshot.child("College").getValue(String.class);
+                    String Company = dataSnapshot.child("Company").getValue(String.class);
                     String FatherName = dataSnapshot.child("FatherName").getValue(String.class);
                     String FatherOccupation = dataSnapshot.child("FatherOccupation").getValue(String.class);
                     String MotherName = dataSnapshot.child("MotherName").getValue(String.class);
@@ -260,7 +269,7 @@ public class MyProfile extends AppCompatActivity {
                     }
                     else
                     {
-//                        overlayButton.setVisibility(View.GONE);
+                        overlayButton.setVisibility(View.GONE);
                         comp = true;
                     }
 
@@ -272,7 +281,7 @@ public class MyProfile extends AppCompatActivity {
 
                     // Set the data in TextViews
                     profileName.setText(name);
-                    profileProfession.setText(profession);
+                    profileProfession.setText(profession +" at "+Company);
                     tag.setText(tagValue);
                     profileAge.setText(age+","+Height);
                     profileCast.setText(cast);
@@ -314,6 +323,23 @@ public class MyProfile extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 // Handle any errors
             }
-        });
+        };
+        currentProfileRef.addValueEventListener(profileEventListener);
     }
+    protected void onStop() {
+        super.onStop();
+        // Remove ValueEventListener in onStop
+        if (profileEventListener != null) {
+            currentProfileRef.removeEventListener(profileEventListener);
+            currentProfileRef.removeEventListener(ImageEventListener);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Fetch and display profile data
+        fetchAndDisplayProfileData();
+    }
+
 }

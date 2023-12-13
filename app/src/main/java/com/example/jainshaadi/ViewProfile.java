@@ -18,14 +18,11 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import android.view.ViewGroup;
 
@@ -64,6 +61,12 @@ String name;
         DatabaseReference currentProfileRef = databaseRef.child(profileId);
         name=intent.getStringExtra("Name");
         viewPager = findViewById(R.id.viewPager);
+
+        ImageView BackIcon = findViewById(R.id.back);
+        BackIcon.setOnClickListener(view -> {
+            // Redirect to SavedProfilesActivity
+            onBackPressed();
+        });
 
 
         imageList = new ArrayList<>();
@@ -184,6 +187,7 @@ String name;
                     String income = dataSnapshot.child("IncomeRange").getValue(String.class);
                     String city = dataSnapshot.child("City").getValue(String.class);
                     String state = dataSnapshot.child("State").getValue(String.class);
+                    String Company = dataSnapshot.child("Company").getValue(String.class);
                     String Height = dataSnapshot.child("Height").getValue(String.class);
                     String status = dataSnapshot.child("status").getValue(String.class);
                     LinearLayout LL10 , LL11 , LL12 , LL13 , LL14 , LL15 , LL16;
@@ -216,7 +220,7 @@ String name;
 
                     // Set the data in TextViews
                     profileName.setText(name);
-                    profileProfession.setText(profession);
+                    profileProfession.setText(profession + " at "+ Company);
                     tag.setText(tagValue);
                     profileAge.setText(age + "," + Height);
                     profileCast.setText(cast);
@@ -228,18 +232,18 @@ String name;
 
                         String Degree = dataSnapshot.child("Degree").getValue(String.class);
                         String College = dataSnapshot.child("College").getValue(String.class);
-                       String FatherName = dataSnapshot.child("FatherName").getValue(String.class);
-                       String FatherOccupation = dataSnapshot.child("FatherOccupation").getValue(String.class);
+                        String FatherName = dataSnapshot.child("FatherName").getValue(String.class);
+                        String FatherOccupation = dataSnapshot.child("FatherOccupation").getValue(String.class);
                         String MotherName = dataSnapshot.child("MotherName").getValue(String.class);
                         String MotherOccupation = dataSnapshot.child("MotherOccupation").getValue(String.class);
-                      String  FamilyMembers = dataSnapshot.child("FamilyMembers").getValue(String.class);
+                        String  FamilyMembers = dataSnapshot.child("FamilyMembers").getValue(String.class);
                         String Familytype = dataSnapshot.child("Familytype").getValue(String.class);
                         String ParentState = dataSnapshot.child("ParentState").getValue(String.class);
                         String ParentCity = dataSnapshot.child("ParentCity").getValue(String.class);
-                       String Year = dataSnapshot.child("Year").getValue(String.class);
+                        String Year = dataSnapshot.child("Year").getValue(String.class);
 
                         profileName.setText(name);
-                        profileProfession.setText(profession);
+                        profileProfession.setText(profession + " at "+ Company);
                         tag.setText(tagValue);
                         profileAge.setText(age + "," + Height);
                         profileCast.setText(cast);
@@ -269,7 +273,7 @@ String name;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), specificchat.class);
+                Intent intent = new Intent(getApplicationContext(), SpecificChatActivity.class);
                 intent.putExtra("profileId", profileId);
                 intent.putExtra("Name", name);
                 startActivity(intent);

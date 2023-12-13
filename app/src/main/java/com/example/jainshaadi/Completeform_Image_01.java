@@ -68,6 +68,7 @@ public class Completeform_Image_01 extends AppCompatActivity {
         layout = findViewById(R.id.Next);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
+        layout.setEnabled(true);
 
         layout.setOnClickListener(v -> {
             if (imageUri != null) {
@@ -77,6 +78,7 @@ public class Completeform_Image_01 extends AppCompatActivity {
                     Toast.makeText(Completeform_Image_01.this, "Please Upload Smaller Image Size", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    layout.setEnabled(false);
                     uploadUncompressedCroppedImageToFirebase(uncompressedImage);
 
                 }
@@ -114,6 +116,7 @@ public class Completeform_Image_01 extends AppCompatActivity {
     private void handleCroppedImage(Uri croppedUri) {
         if (croppedUri != null) {
             // Display the compressed image in the ShapeableImageView
+            shapeableImageView.setImageBitmap(null);
             shapeableImageView.setImageURI(croppedUri);
             imageUri = croppedUri;
             uncompressedImage = croppedUri;
@@ -134,6 +137,7 @@ public class Completeform_Image_01 extends AppCompatActivity {
                     })
                     .addOnFailureListener(e -> {
                         progressBar.setVisibility(View.INVISIBLE);
+                        layout.setEnabled(true);
                         Toast.makeText(Completeform_Image_01.this, "Failed to upload uncropped image", Toast.LENGTH_SHORT).show();
                     });
         }
@@ -156,6 +160,7 @@ public class Completeform_Image_01 extends AppCompatActivity {
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(Completeform_Image_01.this, "Failed to upload image, Try again", Toast.LENGTH_SHORT).show();
                     Log.e("UploadError", e.getMessage());
+                    layout.setEnabled(true);
                 });
     }
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,7 +36,7 @@ public class IncomeActivity extends AppCompatActivity {
     LinearLayout layout4;
     LinearLayout layout5;
     LinearLayout layout6;
-    LinearLayout layout7;
+
     EditText Role;
     EditText Company;
 
@@ -56,7 +57,6 @@ public class IncomeActivity extends AppCompatActivity {
         layout4 = findViewById(R.id.layout4);
         layout5 = findViewById(R.id.layout5);
         layout6 = findViewById(R.id.layout6);
-        layout7 = findViewById(R.id.layout7);
         Role = findViewById(R.id.Role);
         Company = findViewById(R.id.Company);
         nexttext= findViewById(R.id.Nexttext);
@@ -64,6 +64,8 @@ public class IncomeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String gen = intent.getStringExtra("Gender");
         String acc = intent.getStringExtra("Account");
+        Role.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
+        Company.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
         if(acc.equals("1"))
         {
             Question.setText("You Work With ?");
@@ -164,8 +166,8 @@ public class IncomeActivity extends AppCompatActivity {
 
                 String spinner1Value = spin.getSelectedItem().toString();
                 String spinner2Value = spin1.getSelectedItem().toString();
-                text = Role.getText().toString(); // This will fetch the text from the EditText as a String
-                text1 = Company.getText().toString(); // This will fetch the text from the EditText as a String
+                text = Role.getText().toString().trim(); // This will fetch the text from the EditText as a String
+                text1 = Company.getText().toString().trim(); // This will fetch the text from the EditText as a String
 
                 // Check if Role and Company are not empty
                 if (!text.isEmpty() && !text1.isEmpty()&&spin.getSelectedItemPosition()> 0&&spin1.getSelectedItemPosition()> 0&&isNextLayoutChanged==true) {

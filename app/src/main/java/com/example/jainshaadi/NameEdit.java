@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class NameEdit extends DialogFragment {
         View view = inflater.inflate(R.layout.activity_edit_name, container, false);
 
         editText = view.findViewById(R.id.editText);
+        editText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         editText.requestFocus();
@@ -55,7 +57,7 @@ public class NameEdit extends DialogFragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String username = editText.getText().toString();
+                String username = editText.getText().toString().trim();
                 if (!username.isEmpty()) {
                     Next.setEnabled(true);
                     Next.setBackgroundResource(R.drawable.rounded_card_background_enabled);

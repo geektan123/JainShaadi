@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -45,6 +46,10 @@ TextView ver;
         motherOccupationEditText = findViewById(R.id.mother_occupation_edit_text);
         Verify=findViewById(R.id.Verify);
         ver=findViewById(R.id.Ver);
+        fatherNameEditText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
+        fatherOccupationEditText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
+        motherNameEditText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
+        motherOccupationEditText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
 
         motherOccupationEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -72,10 +77,10 @@ TextView ver;
         findViewById(R.id.Verify).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fatherName = fatherNameEditText.getText().toString();
-                fatherOccupation = fatherOccupationEditText.getText().toString();
-                motherName = motherNameEditText.getText().toString();
-                motherOccupation = motherOccupationEditText.getText().toString();
+                fatherName = fatherNameEditText.getText().toString().trim();
+                fatherOccupation = fatherOccupationEditText.getText().toString().trim();
+                motherName = motherNameEditText.getText().toString().trim();
+                motherOccupation = motherOccupationEditText.getText().toString().trim();
                 HashMap<String, Object> userData = new HashMap<>();
                 userData.put("FatherName", fatherName);
                 userData.put("FatherOccupation", fatherOccupation);

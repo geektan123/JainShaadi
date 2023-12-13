@@ -6,4 +6,21 @@
         <item name="android:textSize">16sp</item> <!-- Custom hint text size -->
         <!-- Add other custom attributes as needed -->
     </style>
+    <style name="Message.JainShaadi" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_700</item>
+        <item name="colorPrimaryVariant">#FFE0E7</item>
+        <item name="colorOnPrimary">@color/black</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#EF3B5F</item>
+        <item name="colorSecondaryVariant">#EF3B5F</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>

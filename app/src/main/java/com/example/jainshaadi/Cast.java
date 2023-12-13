@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -74,6 +75,7 @@ public class Cast extends AppCompatActivity {
         Layout3.setVisibility(View.INVISIBLE);
         Layout4.setVisibility(View.INVISIBLE);
         Layout5.setVisibility(View.INVISIBLE);
+        editText = findViewById(R.id.others);
 
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
@@ -152,14 +154,16 @@ public class Cast extends AppCompatActivity {
                 spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                        if (spin.getSelectedItemPosition() > 0) {
+                        if (spin.getSelectedItemPosition() > -1) {
 //                            isNextLayoutChanged = true;
                             spinners = arrayAdapter1.get(position);
                             subCategory = spinners;
                             if(spinners.equals("Other"))
                             {
                                 Layout6.setVisibility(view.VISIBLE);
-                                editText = findViewById(R.id.others);
+
+                                subCategory = "";
+                                editText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
 
                                 editText.addTextChangedListener(new TextWatcher() {
                                     @Override
@@ -175,7 +179,7 @@ public class Cast extends AppCompatActivity {
                                     @Override
                                     public void afterTextChanged(Editable editable) {
                                         // This method is called to notify you that the characters within `Editable` have been changed.
-                                        String enteredText = editable.toString();
+                                        String enteredText = editable.toString().trim();
                                         subCategory = enteredText;
                                         Log.e("edit text = ", enteredText);
                                         if(subCategory!=null)
@@ -257,7 +261,7 @@ public class Cast extends AppCompatActivity {
                 spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                        if (spin.getSelectedItemPosition() > 0) {
+                        if (spin.getSelectedItemPosition() > -1) {
 //                            isNextLayoutChanged = true;
                             spinners = arrayAdapter1.get(position);
                             subCategory = spinners;
@@ -265,6 +269,7 @@ public class Cast extends AppCompatActivity {
                             {
                                 Layout6.setVisibility(view.VISIBLE);
                                 editText = findViewById(R.id.others);
+                                subCategory = "";
 
                                 editText.addTextChangedListener(new TextWatcher() {
                                     @Override
@@ -355,6 +360,10 @@ public class Cast extends AppCompatActivity {
         nextlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(subCategory == "-Select-" || subCategory.isEmpty())
+                {
+                    isNextLayoutChanged = false;
+                }
                 if (isNextLayoutChanged) {
                     String userKey = FirebaseAuth.getInstance().getUid();
                     DatabaseReference userRef = databaseReference.child(userKey);

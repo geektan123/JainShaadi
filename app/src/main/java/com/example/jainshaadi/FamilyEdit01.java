@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,10 @@ public class FamilyEdit01 extends DialogFragment {
         motherOccupationEditText = view.findViewById(R.id.mother_occupation_edit_text);
         Verify = view.findViewById(R.id.Verify);
         ver = view.findViewById(R.id.Ver);
+        fatherNameEditText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
+        fatherOccupationEditText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
+        motherNameEditText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
+        motherOccupationEditText.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
 
         motherOccupationEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -77,10 +82,10 @@ public class FamilyEdit01 extends DialogFragment {
     }
 
     private void saveToFirebase() {
-        String fatherName = fatherNameEditText.getText().toString();
-        String fatherOccupation = fatherOccupationEditText.getText().toString();
-        String motherName = motherNameEditText.getText().toString();
-        String motherOccupation = motherOccupationEditText.getText().toString();
+        String fatherName = fatherNameEditText.getText().toString().trim();
+        String fatherOccupation = fatherOccupationEditText.getText().toString().trim();
+        String motherName = motherNameEditText.getText().toString().trim();
+        String motherOccupation = motherOccupationEditText.getText().toString().trim();
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
         String userKey = FirebaseAuth.getInstance().getUid();

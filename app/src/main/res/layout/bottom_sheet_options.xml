@@ -24,8 +24,8 @@
         android:layout_marginVertical="8dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/edit_icon"
             android:layout_marginEnd="8dp"
             android:contentDescription="Edit Profile Icon"/>
@@ -48,9 +48,9 @@
         android:layout_marginVertical="8dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/edit_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/disable_icon"
             android:layout_marginEnd="8dp"
             android:contentDescription="Edit Profile Icon"/>
 
@@ -61,7 +61,7 @@
             android:textColor="#303030"
             android:textStyle="bold"
             android:id="@+id/disableIdText"
-            android:text="Disable Discovery"/>
+            android:text=""/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/llTestimonials"
@@ -72,9 +72,9 @@
         android:layout_marginVertical="8dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/edit_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/feedback"
             android:layout_marginEnd="8dp"
             android:contentDescription="Edit Profile Icon"/>
 
@@ -95,9 +95,9 @@
         android:layout_marginVertical="8dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/edit_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/testimonial"
             android:layout_marginEnd="8dp"
             android:contentDescription="Edit Profile Icon"/>
 
@@ -118,9 +118,9 @@
         android:layout_marginVertical="8dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/edit_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/contact_us"
             android:layout_marginEnd="8dp"
             android:contentDescription="Edit Profile Icon"/>
 
@@ -141,9 +141,9 @@
         android:layout_marginVertical="8dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/edit_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/logout"
             android:layout_marginEnd="8dp"
             android:contentDescription="Edit Profile Icon"/>
 

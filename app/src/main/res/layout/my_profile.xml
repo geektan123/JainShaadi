@@ -26,11 +26,13 @@
                 android:layout_marginTop="13.76dp"
                 >
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="5dp"
                     android:src="@drawable/back_button"
                     android:layout_gravity="center_vertical"
+                    android:id="@+id/back"
+                    android:layout_marginRight="5dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -154,7 +156,7 @@
                     android:layout_marginVertical="4dp"
                     android:text="Looking for Bride"
                     android:textColor="#524044"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -173,7 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="22 Years Old, 5'10"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textColor="#524044"
                     android:layout_marginLeft="5dp"
                     android:id="@+id/profile_age"/>
@@ -185,11 +187,17 @@
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/layer6"
                 android:layout_marginLeft="20dp">
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/community_icon" />
+                    android:gravity="center"
+                    android:layout_marginRight="5dp">
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/work_icon" />
+                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -431,7 +439,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/layer17"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="8dp">
                 <com.google.android.flexbox.FlexboxLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -451,16 +459,17 @@
                         android:width="1dp"
                         android:color="#756568"
                         android:background="@drawable/rounded_hobbies_card"
+                        android:layout_marginTop="4dp"
                         >
+
                         <TextView
+                            android:id="@+id/profile_interest01"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
                             android:textColor="#756568"
-                            android:id="@+id/profile_interest01"
-                            />
+                            android:textSize="12dp" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -473,13 +482,14 @@
                         android:width="1dp"
                         android:color="#756568"
                         android:background="@drawable/rounded_hobbies_card"
+                        android:layout_marginTop="4dp"
                         >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
+                            android:textSize="12dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest02"
                             />
@@ -495,13 +505,14 @@
                         android:width="1dp"
                         android:color="#756568"
                         android:background="@drawable/rounded_hobbies_card"
+                        android:layout_marginTop="4dp"
                         >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
+                            android:textSize="12dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest03"
                             />
@@ -517,13 +528,14 @@
                         android:width="1dp"
                         android:color="#756568"
                         android:background="@drawable/rounded_hobbies_card"
+                        android:layout_marginTop="4dp"
                         >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
+                            android:textSize="12dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest04"
                             />
@@ -541,15 +553,15 @@
                         android:color="#756568"
                         android:background="@drawable/rounded_hobbies_card"
                         >
+
                         <TextView
+                            android:id="@+id/profile_interest05"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
                             android:textColor="#756568"
-                            android:id="@+id/profile_interest05"
-                            />
+                            android:textSize="12dp" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -569,7 +581,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12sp"
+                            android:textSize="12dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest06"
                             />
@@ -598,7 +610,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/overlay_button"
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
         android:layout_height="wrap_content"
         android:text="Complete Profile"
         android:textSize="16dp"

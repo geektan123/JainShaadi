@@ -282,11 +282,26 @@ public class CardItem {
     }
 
     public String getName() {
+        if(Name.length() >= 23)
+        {
+            int firstSpaceIndex = Name.indexOf(" ");
+            if (firstSpaceIndex != -1) {
+                Name = Name.substring(0, firstSpaceIndex);
+            }
+        }
         return Name;
     }
 
     public void setName(String name) {
-        Name = name;
+        if(name.length() >= 23)
+        {
+            int firstSpaceIndex = name.indexOf(" ");
+            if (firstSpaceIndex != -1) {
+                Name = name.substring(0, firstSpaceIndex);
+            } else {
+                Name = name;
+            }
+        }
     }
 
     public String getSubcategory() {
@@ -298,7 +313,8 @@ public class CardItem {
     }
 
     public String getRole() {
-        return Role;
+
+        return Role + " at "+ Company;
     }
 
     public void setRole(String role) {

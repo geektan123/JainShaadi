@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,8 @@ public class WorkEdit extends DialogFragment {
         TextView nexttext = view.findViewById(R.id.Nexttext);
         Spinner spin = view.findViewById(R.id.spinner1);
         Spinner spin1 = view.findViewById(R.id.spinner2);
+        Role.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
+        Company.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
 
         ArrayList<String> arrayAdapter1 = new ArrayList<>();
         arrayAdapter1.add("-Select-");
@@ -87,8 +90,8 @@ public class WorkEdit extends DialogFragment {
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = Role.getText().toString();
-                String text1 = Company.getText().toString();
+                String text = Role.getText().toString().trim();
+                String text1 = Company.getText().toString().trim();
                 String spinner1Value = spin.getSelectedItem().toString();
                 String spinner2Value = spin1.getSelectedItem().toString();
 

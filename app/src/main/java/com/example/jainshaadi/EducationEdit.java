@@ -50,6 +50,7 @@ public class EducationEdit extends DialogFragment {
         LinearLayout verifyLayout = view.findViewById(R.id.Verify);
         TextView verifyText = view.findViewById(R.id.Ver);
 
+
         yearEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -80,9 +81,9 @@ public class EducationEdit extends DialogFragment {
 
     private void saveToFirebase() {
         String userKey = FirebaseAuth.getInstance().getUid();
-        String degree = degreeEditText.getText().toString();
-        String college = collegeEditText.getText().toString();
-        String year = yearEditText.getText().toString();
+        String degree = degreeEditText.getText().toString().trim();
+        String college = collegeEditText.getText().toString().trim();
+        String year = yearEditText.getText().toString().trim();
 
         if (!degree.isEmpty() && !college.isEmpty() && !year.isEmpty()) {
             HashMap<String, Object> userData = new HashMap<>();

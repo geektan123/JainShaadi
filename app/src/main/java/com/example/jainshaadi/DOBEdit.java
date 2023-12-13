@@ -131,18 +131,25 @@ public class DOBEdit extends DialogFragment {
                     String spinnerValue2 = spin.getSelectedItem().toString();
 
                     if (dates != null && !spinnerValue1.isEmpty() && !spinnerValue2.isEmpty()) {
-                        String userKey = FirebaseAuth.getInstance().getUid();
-                        DatabaseReference userRef = databaseReference.child(userKey);
-                        Map<String, Object> updateData = new HashMap<>();
+                        if(age >= 18) {
+                            String userKey = FirebaseAuth.getInstance().getUid();
+                            DatabaseReference userRef = databaseReference.child(userKey);
+                            Map<String, Object> updateData = new HashMap<>();
 
-                        updateData.put("DateOfBirth", dates);
-                        updateData.put("Height", spinnerValue1.substring(0, 1) + "'" + spinnerValue2.substring(0, 1) + "\"");
-                        updateData.put("Age", String.valueOf(age));
-                        updateData.put("AgeInt", age);
+                            updateData.put("DateOfBirth", dates);
+                            int firstSpaceIndex = spinnerValue2.indexOf(" ");
+                            updateData.put("Height", spinnerValue1.substring(0, 1) + "'" + spinnerValue2.substring(0, firstSpaceIndex) + "\"");
+                            updateData.put("Age", String.valueOf(age));
+                            updateData.put("AgeInt", age);
 
-                        userRef.updateChildren(updateData);
+                            userRef.updateChildren(updateData);
 
-                        dismiss();
+                            dismiss();
+                        }
+                        else
+                        {
+                            Toast.makeText(requireContext(), "Not a valid age for Marriage.", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(requireContext(), "Please fill in all fields.", Toast.LENGTH_SHORT).show();
                     }

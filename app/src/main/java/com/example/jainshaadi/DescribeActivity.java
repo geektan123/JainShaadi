@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
@@ -28,18 +29,20 @@ public class DescribeActivity extends AppCompatActivity {
     TextView nexttext;
     TextInputEditText Describe;
     TextView Count;
-    boolean isNextLayoutChanged = false;
+    boolean isNextLayoutChanged = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_describe);
-
         Next = findViewById(R.id.Nextlay);
+        Next.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
         nexttext = findViewById(R.id.Nexttext);
         Describe = findViewById(R.id.Describe);
+        Describe.setFilters(new InputFilter[]{new NoNewlineInputFilter()});
         Describe.setText("Hello! I'm on a quest for a life companion, someone who values genuine connections, shared laughter, and extraordinary adventures.");
+        Describe.requestFocus();
         Count = findViewById(R.id.Count);
         TextView Question = findViewById(R.id.Question);
         Intent intent = getIntent();
@@ -101,7 +104,7 @@ public class DescribeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                if(isNextLayoutChanged==true) {
-                   String describe = Describe.getText().toString();
+                   String describe = Describe.getText().toString().trim();
                    if(!(describe.isEmpty())) {
                        HashMap<String, Object> Describes = new HashMap<>();
                        Describes.put("Description", describe);
