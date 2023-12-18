@@ -23,4 +23,28 @@
         <!-- Customize your theme here. -->
         <item name="android:windowLightStatusBar">true</item>
     </style>
+    <style name="Login.JainShaadi" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_700</item>
+        <item name="colorPrimaryVariant">#FFE0E7</item>
+        <item name="colorOnPrimary">@color/black</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#EF3B5F</item>
+        <item name="colorSecondaryVariant">#EF3B5F</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#FFF9FA</item>
+
+        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="WhiteActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="background">@android:color/white</item>
+        <item name="android:elevation">0dp</item>
+
+        <!-- You can add more styling attributes here if needed -->
+    </style>
 </resources>

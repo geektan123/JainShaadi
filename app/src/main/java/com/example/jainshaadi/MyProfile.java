@@ -2,8 +2,10 @@ package com.example.jainshaadi;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,11 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.jainshaadi.ImagePagerAdapter;
+import com.google.android.flexbox.FlexboxLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -45,6 +49,7 @@ public class MyProfile extends AppCompatActivity {
     ValueEventListener ImageEventListener, profileEventListener;
     DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users");
     ProgressBar progress;
+//    FlexboxLayout HobbyHolder;
     Context context;
 
     // Get the reference to the current profile
@@ -54,6 +59,7 @@ public class MyProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_profile);
+//        HobbyHolder = findViewById(R.id.hobby_holder);
         Load_profile = findViewById(R.id.load_profile);
         progress = findViewById(R.id.progressBar);
         Load_profile.setVisibility(View.INVISIBLE);
@@ -315,6 +321,16 @@ public class MyProfile extends AppCompatActivity {
                     profileInterest04.setText(dataSnapshot.child("Interest4").getValue(String.class));
                     profileInterest05.setText(dataSnapshot.child("Interest5").getValue(String.class));
                     profileInterest06.setText(dataSnapshot.child("Interest6").getValue(String.class));
+                    Object more = dataSnapshot.child("More_Interest");
+                    if(more != null) {
+                        GenericTypeIndicator<List<String>> typeIndicator =
+                                new GenericTypeIndicator<List<String>>() {};
+
+                        List<String> moreData = dataSnapshot.child("More_Interest").getValue(typeIndicator);
+
+//                        List<Hobby> hobbies = dataSnapshot.child("More_Interest").getValue(typeIndicator);
+                        displayDataInFlexbox(moreData);
+                    }
                 }
             }
 
@@ -326,6 +342,51 @@ public class MyProfile extends AppCompatActivity {
         };
         currentProfileRef.addValueEventListener(profileEventListener);
     }
+    private void displayDataInFlexbox(List<String> moreData) {
+        FlexboxLayout parentFlexboxLayout = findViewById(R.id.hobby_holder);
+
+        if (moreData != null) {
+            for (String data : moreData) {
+                // Create a child LinearLayout for each data
+                LinearLayout childLinearLayout = new LinearLayout(this);
+
+                // Set layout parameters with margins
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+
+                // Set top and right margins (left, top, right, bottom)
+                layoutParams.setMargins(0, 5, 5, 0);
+
+                childLinearLayout.setLayoutParams(layoutParams);
+
+                // Apply padding, margin, and background as needed
+                childLinearLayout.setPadding(8, 4, 8, 4);
+                childLinearLayout.setBackgroundResource(R.drawable.rounded_hobbies_card);
+
+                // Create a TextView for the data
+                TextView textView = new TextView(this);
+                textView.setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                ));
+
+                // Set TextView attributes
+                textView.setText(data);
+                textView.setTextColor(Color.parseColor("#756568"));
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+
+                // Add the TextView to the child LinearLayout
+                childLinearLayout.addView(textView);
+
+                // Add the child LinearLayout to the FlexboxLayout
+                parentFlexboxLayout.addView(childLinearLayout);
+            }
+        }
+    }
+
+
     protected void onStop() {
         super.onStop();
         // Remove ValueEventListener in onStop

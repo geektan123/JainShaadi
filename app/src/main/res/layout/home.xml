@@ -91,11 +91,11 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:text="Sorry, No Matches Found 😔"
+                android:visibility="gone"
                 android:textAlignment="center"
                 android:layout_marginHorizontal="20dp"
-                android:visibility="gone"
                 android:padding="10dp"
-                android:background="@drawable/rounded_red_boder"
+                android:background="@drawable/error_card"
                 android:layout_gravity="center"/>
 
             <!-- Add any other views or content you want to display -->

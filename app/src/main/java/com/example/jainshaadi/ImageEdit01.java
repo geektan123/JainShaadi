@@ -37,8 +37,11 @@ import java.util.HashMap;
 
 public class ImageEdit01 extends DialogFragment {
     ShapeableImageView shapeableImageView;
-    Uri imageUri;
+    Uri imageUri ;
+    String tempimageUri;
+    String tempimageUri2;
     Uri uncompressedImage;
+    Dialog dialog;
     ProgressBar progressBar;
     boolean uncompressedImageUploaded = false;
 
@@ -72,6 +75,7 @@ public class ImageEdit01 extends DialogFragment {
                     Toast.makeText(requireContext(), "Please Upload Smaller Image Size", Toast.LENGTH_SHORT).show();
                 } else {
                     layout.setEnabled(false);
+                    dialog.setCancelable(false);
                     uploadUncompressedCroppedImageToFirebase(uncompressedImage);
                 }
             } else {
@@ -133,6 +137,7 @@ public class ImageEdit01 extends DialogFragment {
                     .addOnFailureListener(e -> {
                         layout.setEnabled(true);
                         progressBar.setVisibility(View.INVISIBLE);
+                        dialog.setCancelable(true);
                         Toast.makeText(requireContext(), "Failed to upload uncropped image", Toast.LENGTH_SHORT).show();
                     });
         }
@@ -152,6 +157,7 @@ public class ImageEdit01 extends DialogFragment {
                     uploadCompressedImageToFirebase();
                 })
                 .addOnFailureListener(e -> {
+                    dialog.setCancelable(true);
                     progressBar.setVisibility(View.INVISIBLE);
                     Log.e("UploadError", e.getMessage());
                 });
@@ -178,6 +184,7 @@ public class ImageEdit01 extends DialogFragment {
                         });
                     })
                     .addOnFailureListener(e -> {
+                        dialog.setCancelable(true);
                         layout.setEnabled(true);
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(requireContext(), "Failed to upload image", Toast.LENGTH_SHORT).show();
@@ -212,18 +219,33 @@ public class ImageEdit01 extends DialogFragment {
 
         String userId = FirebaseAuth.getInstance().getUid();
         imageMap.put("profileId", userId);
+        databaseReference.child(userId).get().addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        tempimageUri = documentSnapshot.child("imageUrl1").getValue(String.class);
+                        tempimageUri2 = documentSnapshot.child("image01").getValue(String.class);
+                        databaseReference.child(userId).updateChildren(imageMap)
+                                .addOnSuccessListener(aVoid -> {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    deleteImage(tempimageUri);
+                                    deleteImage(tempimageUri2);
+                                    Toast.makeText(requireContext(), "Profile Image uploaded successfully", Toast.LENGTH_SHORT).show();
 
-        databaseReference.child(userId).updateChildren(imageMap)
-                .addOnSuccessListener(aVoid -> {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(requireContext(), "Profile Image uploaded successfully", Toast.LENGTH_SHORT).show();
-                    dismiss();
+                                })
+                                .addOnFailureListener(e -> {
+                                    dialog.setCancelable(true);
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(requireContext(), "Failed to upload image, Try again", Toast.LENGTH_SHORT).show();
+                                    Log.e("UploadError", e.getMessage());
+                                });
+
+                    } else {
+                        dialog.setCancelable(true);
+                        Toast.makeText(requireContext(), "Failed to upload image, Try again", Toast.LENGTH_SHORT).show();
+                    }
                 })
-                .addOnFailureListener(e -> {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(requireContext(), "Failed to upload image, Try again", Toast.LENGTH_SHORT).show();
-                    Log.e("UploadError", e.getMessage());
-                });
+                .addOnFailureListener(e ->{
+                    dialog.setCancelable(true);
+                        Toast.makeText(requireContext(), "Failed to upload image, Try again", Toast.LENGTH_SHORT).show();});
     }
 
     private Bitmap decodeSampledBitmap(Bitmap bitmap, int reqWidth, int reqHeight) {
@@ -263,7 +285,7 @@ public class ImageEdit01 extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog = super.onCreateDialog(savedInstanceState);
 
         WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -273,5 +295,28 @@ public class ImageEdit01 extends DialogFragment {
         dialog.getWindow().setAttributes(params);
 
         return dialog;
+    }
+
+    public void deleteImage(String imageUrl) {
+        dialog.setCancelable(false);
+        // Get a reference to the Firebase Storage instance
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+
+        // Convert the download URL to a StorageReference
+        StorageReference photoRef = storage.getReferenceFromUrl(imageUrl);
+
+        // Delete the file
+        photoRef.delete()
+                .addOnSuccessListener(aVoid -> {
+//                    Toast.makeText(requireContext(), "Sucessfully Deleted Prev Image", Toast.LENGTH_SHORT).show();
+                    dialog.setCancelable(true);
+                    dismiss();
+                })
+                .addOnFailureListener(exception -> {
+//                    Toast.makeText(requireContext(), "Failed to Delete", Toast.LENGTH_SHORT).show();
+                    dialog.setCancelable(true);
+                    dismiss();
+                });
+
     }
 }

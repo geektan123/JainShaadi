@@ -1,0 +1,18 @@
+<!-- res/layout/custom_action_bar.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="#FFFFFF"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <!-- Customize your ActionBar layout here -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:padding="15dp"
+        android:src="@drawable/back_button"
+        />
+</LinearLayout>

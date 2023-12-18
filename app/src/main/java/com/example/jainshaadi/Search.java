@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 public class Search extends AppCompatActivity {
     private String currentUserId;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,14 @@ public class Search extends AppCompatActivity {
         currentUserId = intent.getStringExtra("curentUserId");
         Log.e("e","curent1 = "+currentUserId);
         LinearLayout search1 = findViewById(R.id.digamber);
+        LinearLayout StartNow = findViewById(R.id.start_now);
+        StartNow.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                // Redirect to SavedProfilesActivity
+                Intent intent = new Intent(Search.this, MyProfile.class);
+                startActivity(intent);
+            }
+        });
         search1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 // Redirect to SavedProfilesActivity

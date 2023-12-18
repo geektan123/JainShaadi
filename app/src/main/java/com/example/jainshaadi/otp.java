@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -78,7 +79,17 @@ String number;
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_otp);
-        getSupportActionBar().hide();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.verification_bar);
+        ImageView BackButton = actionBar.getCustomView().findViewById(R.id.logo);
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the click event for the logo
+                onBackPressed();
+            }
+        });
         firstLinearLayout = findViewById(R.id.firstLinearLayout);
         image1 = findViewById(R.id.image1);
         firstView = findViewById(R.id.firstView);

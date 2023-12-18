@@ -1,5 +1,6 @@
 package com.example.jainshaadi; // Replace with your actual package name
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -74,7 +75,17 @@ public class Homeactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-        getSupportActionBar().hide();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.action_regestration);
+        ImageView BackButton = actionBar.getCustomView().findViewById(R.id.logo);
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the click event for the logo
+                onBackPressed();
+            }
+        });
         recyclerView = findViewById(R.id.recyclerView);
         progress = findViewById(R.id.progressBar);
         progress.setVisibility(View.VISIBLE);

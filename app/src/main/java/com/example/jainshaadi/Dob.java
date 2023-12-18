@@ -1,5 +1,6 @@
 package com.example.jainshaadi;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -45,9 +47,20 @@ public class Dob extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dob);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.action_regestration);
+        ImageView BackButton = actionBar.getCustomView().findViewById(R.id.logo);
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the click event for the logo
+                onBackPressed();
+            }
+        });
 
         date = findViewById(R.id.date);
-        getSupportActionBar().hide();
+
         nextlay = findViewById(R.id.Nextlay);
         nexttext = findViewById(R.id.Nexttext);
         layout = findViewById(R.id.layout);

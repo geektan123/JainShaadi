@@ -278,9 +278,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:gravity="center"
-        android:layout_marginTop="100dp"
         android:background="@color/white"
-
+        android:layout_weight="1"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -290,8 +289,6 @@
             android:id="@+id/Layoutnext"
 
             android:background="@drawable/rounded_card_background_next_disabled"
-
-
             >
 
             <TextView
@@ -304,6 +301,5 @@
                 android:textSize="16dp"
                 android:textStyle="bold" />
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>

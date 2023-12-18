@@ -3,6 +3,7 @@ package com.example.jainshaadi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,6 +18,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.imageview.ShapeableImageView;
@@ -62,7 +64,18 @@ public class Completeform_Image_01 extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_form_image_01);
-        getSupportActionBar().hide();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.verification_bar);
+        ImageView BackButton = actionBar.getCustomView().findViewById(R.id.logo);
+        actionBar.getCustomView().setBackgroundColor(Color.parseColor("#FFFFFF"));
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the click event for the logo
+                onBackPressed();
+            }
+        });
 
         shapeableImageView = findViewById(R.id.shapeable_image_view);
         layout = findViewById(R.id.Next);
@@ -172,5 +185,10 @@ public class Completeform_Image_01 extends AppCompatActivity {
             e.printStackTrace();
             return 0;
         }
+    }
+    public void onStart()
+    {
+        super.onStart();
+        layout.setEnabled(true);
     }
 }

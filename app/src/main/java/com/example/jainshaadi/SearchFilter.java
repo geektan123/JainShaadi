@@ -234,10 +234,13 @@ public class SearchFilter extends AppCompatActivity {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             if (currentUserGender != null) {
                                 Object Status = snapshot.child("status").getValue();
-                                if(Status != null) {
+                                Object Active = snapshot.child("active").getValue();
+                                String show = "not";
+
+                                if(Status != null && Active != null) {
                                     if ((!((snapshot.child("Gender").getValue(String.class)).equals(currentUserGender.toString())))
                                             && (((Status.toString()).equals("Registered"))
-                                            || ((Status.toString()).equals("Completed")))) {
+                                            || ((Status.toString()).equals("Completed"))) &&(Active.toString().equals("enabled"))) {
                                         allUserIds.add(snapshot.getKey());
                                     }
                                 }

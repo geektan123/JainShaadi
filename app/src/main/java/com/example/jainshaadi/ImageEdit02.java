@@ -38,6 +38,9 @@ import java.util.HashMap;
 public class ImageEdit02 extends DialogFragment {
     ShapeableImageView shapeableImageView;
     Uri imageUri;
+
+    Dialog dialog;
+    String tempimageUri;
     Uri uncompressedImage;
     ProgressBar progressBar;
 
@@ -117,6 +120,7 @@ public class ImageEdit02 extends DialogFragment {
     }
 
     private void uploadUncompressedCroppedImageToFirebase(Uri croppedUri) {
+        dialog.setCancelable(false);
         if (croppedUri != null) {
             progressBar.setVisibility(View.VISIBLE);
 
@@ -130,6 +134,7 @@ public class ImageEdit02 extends DialogFragment {
                         });
                     })
                     .addOnFailureListener(e -> {
+                        dialog.setCancelable(true);
                         layout.setEnabled(true);
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(requireContext(), "Failed to upload uncropped image", Toast.LENGTH_SHORT).show();
@@ -138,24 +143,37 @@ public class ImageEdit02 extends DialogFragment {
     }
 
     private void saveUncompressedImageUrlToDatabase(String imageUrl) {
+
         HashMap<String, Object> imageMap = new HashMap<>();
         imageMap.put("image02", imageUrl);
 
         String userId = FirebaseAuth.getInstance().getUid();
         imageMap.put("profileId", userId);
-
-        databaseReference.child(userId).updateChildren(imageMap)
-                .addOnSuccessListener(aVoid -> {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    dismiss();
+        databaseReference.child(userId).child("imageUrl1").get().addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        tempimageUri = documentSnapshot.getValue(String.class);
+                        databaseReference.child(userId).updateChildren(imageMap)
+                                .addOnSuccessListener(aVoid -> {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    deleteImage(tempimageUri);
+                                    dismiss();
+                                })
+                                .addOnFailureListener(e -> {
+                                    dialog.setCancelable(true);
+                                    layout.setEnabled(true);
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    Log.e("UploadError", e.getMessage());
+                                });
+                    } else {
+                        dialog.setCancelable(true);
+                        Toast.makeText(requireContext(), "Failed to upload image, Try again", Toast.LENGTH_SHORT).show();
+                    }
                 })
-                .addOnFailureListener(e -> {
-                    layout.setEnabled(true);
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Log.e("UploadError", e.getMessage());
-                });
-
+                .addOnFailureListener(e ->{
+                    dialog.setCancelable(true);
+                    Toast.makeText(requireContext(), "Failed to upload image, Try again", Toast.LENGTH_SHORT).show();});
     }
+
     private int getImageSize(Uri imageUri) {
         try {
             InputStream inputStream = requireContext().getContentResolver().openInputStream(imageUri);
@@ -169,7 +187,7 @@ public class ImageEdit02 extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog = super.onCreateDialog(savedInstanceState);
 
         WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -179,5 +197,28 @@ public class ImageEdit02 extends DialogFragment {
         dialog.getWindow().setAttributes(params);
 
         return dialog;
+    }
+
+    public void deleteImage(String imageUrl) {
+        dialog.setCancelable(false);
+        // Get a reference to the Firebase Storage instance
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+
+        // Convert the download URL to a StorageReference
+        StorageReference photoRef = storage.getReferenceFromUrl(imageUrl);
+
+        // Delete the file
+        photoRef.delete()
+                .addOnSuccessListener(aVoid -> {
+//                    Toast.makeText(requireContext(), "Sucessfully Deleted Prev Image", Toast.LENGTH_SHORT).show();
+                    dialog.setCancelable(true);
+                    dismiss();
+                })
+                .addOnFailureListener(exception -> {
+//                    Toast.makeText(requireContext(), "Failed to Delete", Toast.LENGTH_SHORT).show();
+                    dialog.setCancelable(true);
+                    dismiss();
+                });
+
     }
 }

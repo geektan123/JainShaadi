@@ -1,44 +1,26 @@
 {
   "project_info": {
-    "project_number": "320624657616",
-    "project_id": "jainshaadi-38ab5",
-    "storage_bucket": "jainshaadi-38ab5.appspot.com"
+    "project_number": "858552321453",
+    "project_id": "jainmaitri-5d08f",
+    "storage_bucket": "jainmaitri-5d08f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:320624657616:android:c642c8a1ef6a73646f8ad5",
+        "mobilesdk_app_id": "1:858552321453:android:1111e2d5a56d474b540d24",
         "android_client_info": {
           "package_name": "com.example.jainshaadi"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "320624657616-gvo3rdl9anphlv4jfc6qtoa6csh6knqt.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.jainshaadi",
-            "certificate_hash": "f7816aaa7375b3c1f3b1e6d5459f92d4b496017e"
-          }
-        },
-        {
-          "client_id": "320624657616-i6036n8n7cgjjku6fteor1nul3n14h53.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDjsObGps6mOfx6HHszYBWsokw-fAVmSlQ"
+          "current_key": "AIzaSyD_HHNrWbxFK3-q5mR24GbfZlW3H10Qf88"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "320624657616-i6036n8n7cgjjku6fteor1nul3n14h53.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

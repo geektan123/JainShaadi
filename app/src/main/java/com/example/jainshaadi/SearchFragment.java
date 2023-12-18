@@ -35,6 +35,15 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.search, container, false);
 
         LinearLayout search1 = view.findViewById(R.id.digamber);
+
+        LinearLayout StartNow = view.findViewById(R.id.start_now);
+        StartNow.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                // Redirect to SavedProfilesActivity
+                Intent intent = new Intent(requireContext(), MyProfile.class);
+                startActivity(intent);
+            }
+        });
         search1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 openSearchFilter("Digambar");

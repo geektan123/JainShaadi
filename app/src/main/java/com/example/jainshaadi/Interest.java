@@ -1,11 +1,13 @@
 package com.example.jainshaadi;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +24,8 @@ import java.util.Map;
 
 public class Interest extends AppCompatActivity {
 
-    private static final int MAX_SELECTED_INTERESTS = 6;
+    private static final int MAX_SELECTED_INTERESTS = 12;
+    private static final int MIN_SELECTED_INTEREST = 6;
     private ArrayList<LinearLayout> interestLayouts = new ArrayList<>();
     private Map<LinearLayout, String> interestMap = new HashMap<>();
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
@@ -35,12 +38,23 @@ public class Interest extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_interest);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.action_regestration);
+        ImageView BackButton = actionBar.getCustomView().findViewById(R.id.logo);
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the click event for the logo
+                onBackPressed();
+            }
+        });
 
         // Initialize interest layouts
         initializeInterestLayouts();
-        submitLinearLayout = findViewById(R.id.L19);
+        submitLinearLayout = findViewById(R.id.submit);
         TextView Question = findViewById(R.id.Question);
         Intent intent = getIntent();
         gen = intent.getStringExtra("Gender");
@@ -71,24 +85,118 @@ public class Interest extends AppCompatActivity {
 
     private void initializeInterestLayouts() {
         // Add all interest layouts to the list and map
-        addInterestLayout(R.id.L1, "Gym");
-        addInterestLayout(R.id.L2, "Yoga");
-        addInterestLayout(R.id.L3, "Badminton");
-        addInterestLayout(R.id.L4, "Cricket");
-        addInterestLayout(R.id.L5, "Chess");
-        addInterestLayout(R.id.L6, "Football");
-        addInterestLayout(R.id.L7, "Athletics");
-        addInterestLayout(R.id.L8, "Bollywood");
-        addInterestLayout(R.id.L9, "Hollywood");
-        addInterestLayout(R.id.L10, "Music");
-        addInterestLayout(R.id.L11, "Comedy");
-        addInterestLayout(R.id.L12, "Drama");
-        addInterestLayout(R.id.L13, "Traveling");
-        addInterestLayout(R.id.L14, "Reading");
-        addInterestLayout(R.id.L15, "Singing");
-        addInterestLayout(R.id.L16, "Dancing");
-        addInterestLayout(R.id.L17, "Cooking");
-        addInterestLayout(R.id.L18, "Painting");
+        // Religious & Lifestyle
+        addInterestLayout(R.id.L1, "Spiritualist");
+        addInterestLayout(R.id.L2, "Traditionalist");
+        addInterestLayout(R.id.L3, "ModernJain");
+        addInterestLayout(R.id.L4, "Astrology");
+        addInterestLayout(R.id.L5, "CommunityLeader");
+        addInterestLayout(R.id.L6, "FamilyFirst");
+        addInterestLayout(R.id.L7, "ValuesDriven");
+        addInterestLayout(R.id.L8, "NomadicLifestyle");
+        addInterestLayout(R.id.L9, "TempleGoer");
+        addInterestLayout(R.id.L10, "JainDiet");
+
+// Cultural & Art
+        addInterestLayout(R.id.L11, "HistoryEnthusiast");
+        addInterestLayout(R.id.L12, "MusicLover");
+        addInterestLayout(R.id.L13, "Film");
+        addInterestLayout(R.id.L14, "Bollywood");
+        addInterestLayout(R.id.L15, "Hollywood");
+        addInterestLayout(R.id.L16, "Tollywood");
+        addInterestLayout(R.id.L17, "Theater");
+
+// Literary & Learning
+        addInterestLayout(R.id.L18, "SanskritAdmirer");
+        addInterestLayout(R.id.L19, "Bookworm");
+        addInterestLayout(R.id.L20, "HistoricalReader");
+        addInterestLayout(R.id.L21, "InquisitiveMind");
+        addInterestLayout(R.id.L22, "Linguaphile");
+
+// Health & Wellness
+        addInterestLayout(R.id.L23, "WellnessFan");
+        addInterestLayout(R.id.L24, "FitnessFreak");
+        addInterestLayout(R.id.L25, "Yoga");
+        addInterestLayout(R.id.L26, "NatureLover");
+        addInterestLayout(R.id.L27, "HealthConscious");
+        addInterestLayout(R.id.L28, "Meditator");
+
+// Technology & Trends
+        addInterestLayout(R.id.L29, "TechSavvy");
+        addInterestLayout(R.id.L30, "Instagram");
+        addInterestLayout(R.id.L31, "Reels");
+        addInterestLayout(R.id.L32, "GadgetGeek");
+
+// Hobbies & Interests
+        addInterestLayout(R.id.L33, "Foodie");
+        addInterestLayout(R.id.L34, "TeaLover");
+        addInterestLayout(R.id.L35, "Traveler");
+        addInterestLayout(R.id.L36, "Photography");
+        addInterestLayout(R.id.L37, "AnimalLover");
+        addInterestLayout(R.id.L38, "DIYer");
+        addInterestLayout(R.id.L39, "Gamer");
+        addInterestLayout(R.id.L40, "CreativeMind");
+        addInterestLayout(R.id.L41, "NaturePhotographer");
+        addInterestLayout(R.id.L42, "ArtisanalCrafts");
+        addInterestLayout(R.id.L43, "CoffeeAficionado");
+        addInterestLayout(R.id.L44, "Astrophotography");
+        addInterestLayout(R.id.L45, "Melomaniac");
+
+// Sports & Activities
+        addInterestLayout(R.id.L46, "Cricket");
+        addInterestLayout(R.id.L47, "Football");
+        addInterestLayout(R.id.L48, "Badminton");
+        addInterestLayout(R.id.L49, "Tennis");
+        addInterestLayout(R.id.L50, "Basketball");
+        addInterestLayout(R.id.L51, "Hiking");
+        addInterestLayout(R.id.L52, "Swimming");
+        addInterestLayout(R.id.L53, "Running");
+        addInterestLayout(R.id.L54, "Yoga");
+        addInterestLayout(R.id.L55, "Cycling");
+        addInterestLayout(R.id.L56, "Golf");
+        addInterestLayout(R.id.L57, "TableTennis");
+        addInterestLayout(R.id.L58, "Chess");
+        addInterestLayout(R.id.L59, "Volleyball");
+        addInterestLayout(R.id.L60, "Kabaddi");
+        addInterestLayout(R.id.L61, "Wrestling");
+        addInterestLayout(R.id.L62, "Boxing");
+        addInterestLayout(R.id.L63, "MartialArts");
+
+// Fashion & Lifestyle
+        addInterestLayout(R.id.L64, "Fashionista");
+        addInterestLayout(R.id.L65, "SimpleLiving");
+        addInterestLayout(R.id.L66, "Minimalist");
+        addInterestLayout(R.id.L67, "Trendsetter");
+
+// Career & Education
+        addInterestLayout(R.id.L68, "Scholarly");
+        addInterestLayout(R.id.L69, "CareerFocused");
+        addInterestLayout(R.id.L70, "Entrepreneurial");
+        addInterestLayout(R.id.L71, "Innovator");
+        addInterestLayout(R.id.L72, "DigitalArtist");
+        addInterestLayout(R.id.L73, "Counselor");
+
+// Family & Relationship
+        addInterestLayout(R.id.L74, "FamilyOriented");
+        addInterestLayout(R.id.L75, "Parenting");
+        addInterestLayout(R.id.L76, "Romantic");
+
+// Values & Mindfulness
+        addInterestLayout(R.id.L77, "Generous");
+        addInterestLayout(R.id.L78, "Ethical");
+        addInterestLayout(R.id.L79, "Mindful");
+        addInterestLayout(R.id.L80, "Peaceful");
+        addInterestLayout(R.id.L81, "ValuesFirst");
+        addInterestLayout(R.id.L82, "SpiritualSeeker");
+        addInterestLayout(R.id.L83, "Progressive");
+
+// Social & Philanthropy
+        addInterestLayout(R.id.L84, "Socialite");
+        addInterestLayout(R.id.L85, "Philanthropist");
+        addInterestLayout(R.id.L86, "EnvironmentalActivist");
+        addInterestLayout(R.id.L87, "CommunityContributor");
+        addInterestLayout(R.id.L88, "SocialEntrepreneur");
+
         // Add the rest of the interest layouts
 
         // Add click listeners to interest layouts
@@ -119,7 +227,9 @@ public class Interest extends AppCompatActivity {
             interestLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
             TextView textView = (TextView) interestLayout.getChildAt(0);
             textView.setTextColor(Color.parseColor("#756568"));
-            submitLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
+            if(getSelectedInterestCount() < MIN_SELECTED_INTEREST) {
+                submitLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
+            }
 //            nexttext.setTextColor(Color.parseColor("#FFFFFF"));
         } else {
             // Select interest
@@ -130,10 +240,10 @@ public class Interest extends AppCompatActivity {
                 textView.setTextColor(Color.parseColor("#FFFFFF"));
             } else {
                 // Display toast for selecting more than 6 interests
-                Toast.makeText(this, "Select only 6 interests", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Select between 6 to 12 interests", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if(getSelectedInterestCount() == (MAX_SELECTED_INTERESTS))
+            if(getSelectedInterestCount() == (MIN_SELECTED_INTEREST))
             {
                 submitLinearLayout.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
 //                nexttext.setTextColor(Color.parseColor("#FFFFFF"));
@@ -152,26 +262,41 @@ public class Interest extends AppCompatActivity {
     }
 
     public void onSubmit(View view) {
-        if (getSelectedInterestCount() == MAX_SELECTED_INTERESTS) {
+        ArrayList<String> more = new ArrayList<>();
+        if (getSelectedInterestCount() <= MAX_SELECTED_INTERESTS && getSelectedInterestCount()>= MIN_SELECTED_INTEREST) {
             int i = 1;
             // Save selected interests to the database
             for (LinearLayout layout : interestLayouts) {
                 if (layout.isSelected()) {
-                    String interest = interestMap.get(layout);
-                    interestData.put("Interest" + i, interest);
-                    i++;
+                    if(i <= 6) {
+                        String interest = interestMap.get(layout);
+                        interestData.put("Interest" + i, interest);
+                        i++;
+                    }
+                    else {
+                        String interest = interestMap.get(layout);
+                        more.add(interest);
+                    }
                     // Save interest in the database
                 }
             }
-                databaseReference.child(userKey).updateChildren(interestData);
-                Intent I = new Intent(getApplicationContext(), IncomeActivity.class);
-                I.putExtra("Gender",gen);
-                I.putExtra("Account",acc);
-                startActivity(I);
+                interestData.put("More_Interest" , more);
+                    databaseReference.child(userKey).updateChildren(interestData)
+                    .addOnSuccessListener(aVoid -> {
+                        // Success
+                        Intent I = new Intent(getApplicationContext(), IncomeActivity.class);
+                        I.putExtra("Gender", gen);
+                        I.putExtra("Account", acc);
+                        startActivity(I);
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle failure
+                        Toast.makeText(this, "Failed to update interests", Toast.LENGTH_SHORT).show();
+                    });
             // Display a success message or navigate to the next screen
         } else {
             // Display toast for not selecting exactly 6 interests
-            Toast.makeText(this, "Select exactly 6 interests", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Select Between 6 to 12 interests", Toast.LENGTH_SHORT).show();
         }
     }
 }

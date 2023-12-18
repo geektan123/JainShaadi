@@ -286,6 +286,19 @@ public class SpecificChatActivity extends AppCompatActivity {
 
             }
         });
+        mimageviewofspecificuser.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                if((mrecieveruid != null) && (msenderuid != null) && (mrecievername != null))
+                {
+                    Intent intent = new Intent(SpecificChatActivity.this, ViewProfile.class);
+                    intent.putExtra("currentUserId", msenderuid);
+                    intent.putExtra("profileId", mrecieveruid);
+                    intent.putExtra("Name", mrecievername);
+                    startActivity(intent);
+                }
+
+            }
+        });
 
 
         msendmessagebutton.setOnClickListener(new View.OnClickListener() {

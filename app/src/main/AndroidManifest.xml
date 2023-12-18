@@ -12,7 +12,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/logo_square"
-        android:label="@string/app_name"
+        android:label="Jain Maitri"
         android:roundIcon="@drawable/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JainShaadi"
@@ -104,6 +104,9 @@
             android:name=".EditProfile"
             android:exported="false" />
         <activity
+            android:name=".VerificationComplete"
+            android:exported="false" />
+        <activity
             android:name=".Completeform_Image_02"
             android:exported="false" />
         <activity
@@ -113,6 +116,7 @@
             />
         <activity
             android:name=".Login"
+            android:theme="@style/Login.JainShaadi"
             android:exported="true">
         </activity>
         <activity

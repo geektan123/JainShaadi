@@ -44,7 +44,7 @@ public class CardItem {
         // Default constructor required for Firebase
     }
 
-    public CardItem(String Account_Managed_for, String ProfileGender, String ProfileId, String ImageUrl1, String age, String category, String city, String company, String dateOfBirth, String description, String height, String incomeRange, String incomeType, String interest1, String interest2, String interest3, String interest4, String interest5, String interest6, String name, String subcategory, String role, String state, String familyMembers, String parentCity) {
+    public CardItem(String Account_Managed_for, String ProfileGender, String ProfileId, String ImageUrl1, String age, String category, String city, String company, String dateOfBirth, String description, String height, String incomeRange, String interest1, String interest2, String interest3, String interest4, String interest5, String interest6, String name, String subcategory, String role, String state) {
 
         Account_Managed_for = Account_Managed_for;
         Category = category;
@@ -55,7 +55,6 @@ public class CardItem {
         Description = description;
         Height = height;
         IncomeRange = incomeRange;
-        IncomeType = incomeType;
         Interest1 = interest1;
         Interest2 = interest2;
         Interest3 = interest3;
@@ -70,8 +69,6 @@ public class CardItem {
         profileId = ProfileId;
         profileGender = ProfileGender;
 
-        FamilyMembers = familyMembers;
-        ParentCity = parentCity;
 //        Log.e("ac","account = "+account);
     }
 

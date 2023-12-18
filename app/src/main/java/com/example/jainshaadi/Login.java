@@ -49,45 +49,45 @@ public class Login extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser != null) {
-            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users");
-            DatabaseReference currentProfileRef = databaseRef.child(FirebaseAuth.getInstance().getUid());
-
-            currentProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        status = dataSnapshot.child("status").getValue(String.class);
-                        if (status != null) {
-                            if (status.equals("Registered") || status.equals("Completed")) {
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Intent intent = new Intent(getApplicationContext(), Profile.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                        } else {
-                            Intent intent = new Intent(getApplicationContext(), Profile.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-                    else {
-                        Intent intent = new Intent(getApplicationContext(), Profile.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.e("a","here3");
-                    Toast.makeText(Login.this, "Try again !!", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
+//        if (currentUser != null) {
+//            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users");
+//            DatabaseReference currentProfileRef = databaseRef.child(FirebaseAuth.getInstance().getUid());
+//
+//            currentProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//                    if (dataSnapshot.exists()) {
+//                        status = dataSnapshot.child("status").getValue(String.class);
+//                        if (status != null) {
+//                            if (status.equals("Registered") || status.equals("Completed")) {
+//                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                startActivity(intent);
+//                                finish();
+//                            } else {
+//                                Intent intent = new Intent(getApplicationContext(), Profile.class);
+//                                startActivity(intent);
+//                                finish();
+//                            }
+//                        } else {
+//                            Intent intent = new Intent(getApplicationContext(), Profile.class);
+//                            startActivity(intent);
+//                            finish();
+//                        }
+//                    }
+//                    else {
+//                        Intent intent = new Intent(getApplicationContext(), Profile.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//                    Log.e("a","here3");
+//                    Toast.makeText(Login.this, "Try again !!", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        } else {
             textView = findViewById(R.id.google_sign_in_button);
             textView.requestFocus();
             ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
@@ -99,7 +99,7 @@ public class Login extends AppCompatActivity {
             scaleDown.setDuration(300);
 
             GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken(getString(R.string.default_web_client_id))
+//                    .requestIdToken(getString(R.string.default_web_client_id))
                     .requestEmail()
                     .build();
             client = GoogleSignIn.getClient(this, options);
@@ -108,6 +108,7 @@ public class Login extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     progressBar.setVisibility(View.VISIBLE);
+                    textView.setEnabled(false);
                     Intent i = client.getSignInIntent();
                     startActivityForResult(i, 1234);
                 }
@@ -124,7 +125,7 @@ public class Login extends AppCompatActivity {
                 }
             });
         }
-    }
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -139,7 +140,7 @@ public class Login extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.INVISIBLE);
+
 
                                 if (task.isSuccessful()) {
                                     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -151,6 +152,8 @@ public class Login extends AppCompatActivity {
                                         currentProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
+                                                progressBar.setVisibility(View.INVISIBLE);
+                                                textView.setEnabled(true);
                                                 if (dataSnapshot.exists()) {
                                                     status = dataSnapshot.child("status").getValue(String.class);
                                                     if (status != null) {
@@ -178,22 +181,33 @@ public class Login extends AppCompatActivity {
 
                                             @Override
                                             public void onCancelled(DatabaseError databaseError) {
+                                                progressBar.setVisibility(View.INVISIBLE);
+                                                textView.setEnabled(true);
                                                 Log.e("a","here3");
                                                 Toast.makeText(Login.this, "Try again !!", Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                     }
-                                    Toast.makeText(Login.this, "Success", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Login.this, "Logging You In.", Toast.LENGTH_SHORT).show();
                                 } else {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    textView.setEnabled(true);
                                     Log.e("a","here4");
                                     Toast.makeText(Login.this,"Try Again !", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
             } catch (ApiException e) {
+                textView.setEnabled(true);
+                progressBar.setVisibility(View.INVISIBLE);
                 Log.e("a","here5");
                 e.printStackTrace();
             }
         }
+    }
+    public void onStart()
+    {
+        super.onStart();
+        textView.setEnabled(true);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.jainshaadi;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -9,8 +10,10 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +46,18 @@ TextView Ver;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.educational_information_form);
-        getSupportActionBar().hide();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.verification_bar);
+        ImageView BackButton = actionBar.getCustomView().findViewById(R.id.logo);
+        actionBar.getCustomView().setBackgroundColor(Color.parseColor("#FFFFFF"));
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the click event for the logo
+                onBackPressed();
+            }
+        });
 
         // Initialize Firebase Database
 
@@ -81,6 +95,7 @@ TextView Ver;
        Verify = findViewById(R.id.Verify);
        Ver=findViewById(R.id.Ver);
        Verify.setOnClickListener(view -> saveToFirebase());
+
     }
 
     private void saveToFirebase() {

@@ -1,0 +1,21 @@
+<!-- res/drawable/error_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background shape -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="8dp" />
+            <solid android:color="#FFFFFF" /> <!-- Replace with your desired background color -->
+        </shape>
+    </item>
+
+    <!-- Border -->
+    <item android:right="1dp" android:left="1dp" android:top="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="8dp" />
+            <solid android:color="@android:color/transparent" />
+            <stroke android:color="@android:color/transparent" android:width="2dp" /> <!-- Replace with your desired border color and width -->
+        </shape>
+    </item>
+
+</layer-list>

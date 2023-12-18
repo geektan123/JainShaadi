@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/frame_108"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,529 +24,2269 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="It will be added to your interest/hobbies"
+        android:text="It will be added to interest/hobbies section"
         android:textSize="14dp"
         android:textColor="#524044"
+        android:layout_below="@id/Question"
+        android:id="@+id/SubQuestion"
         android:layout_marginLeft="21dp"
         android:layout_marginTop="6dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sports &amp; Fittness"
-        android:textSize="16dp"
-        android:textColor="#524044"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="32dp"
-        android:textStyle="bold"/>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="480dp">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <!-- Relationship options as divs -->
-    <GridLayout
+    <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:rowCount="1"
-        android:columnCount="3"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        android:layout_below="@+id/SubQuestion"
         >
 
         <LinearLayout
-            android:layout_width="67dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:color="#756568"
-            android:background="@drawable/rounded_card_background"
-            android:id="@+id/L1"
-            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
 
-            >
+            <!-- Your other layout elements -->
+
+            <!-- Interest and Sections -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/Gym"
-                android:text="Gym"
+                android:text="Religious &amp; Lifestyle:"
                 android:textSize="16dp"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="70dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:color="#756568"
-            android:id="@+id/L2"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+
+                <!-- Add Flexbox items for each interest/section -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L1"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Spiritualist"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L2"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Traditionalist"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L3"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="ModernJain"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L4"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Astrology"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L5"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="CommunityLeader"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L6"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="FamilyFirst"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L7"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="ValuesDriven"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L8"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="NomadicLifestyle"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L9"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="TempleGoer"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L10"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="JainDiet"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+
+
+                <!-- Add more Flexbox items as needed -->
+
+            </com.google.android.flexbox.FlexboxLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Yoga"
+                android:text="Cultural &amp; Art"
                 android:textSize="16dp"
-                android:id="@+id/yoga"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="113dp"
-            android:layout_height="48dp"
-           android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:color="#756568"
-            android:id="@+id/L3"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+                <!-- Interest 10 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L11"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="HistoryEnthusiast"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 11 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L12"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="MusicLover"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 12 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L13"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Film"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 13 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L14"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Bollywood"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 14 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L15"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Hollywood"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 15 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L16"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Tollywood"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 16 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L17"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Theater"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+            </com.google.android.flexbox.FlexboxLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Badminton"
+                android:text="Literary &amp; Learning"
                 android:textSize="16dp"
-                android:textColor="#756568"
-                android:id="@+id/badminton"
-                />
-        </LinearLayout>
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
 
-    </GridLayout>
-    <GridLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:rowCount="1"
-        android:columnCount="3"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="12dp"
-        >
-
-        <LinearLayout
-            android:layout_width="86dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:color="#756568"
-            android:id="@+id/L4"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
-            <TextView
-                android:id="@+id/cricket"
-                android:layout_width="wrap_content"
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Cricket"
-                android:textSize="16dp"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="79dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:color="#756568"
-            android:id="@+id/L5"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/chess"
-                android:text="Chess"
-                android:textSize="16dp"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="92dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:color="#756568"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            android:id="@+id/L6"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Football"
-                android:textSize="16dp"
-                android:textColor="#756568"
-                android:id="@+id/football"
-                />
-        </LinearLayout>
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+                <!-- Interest 17 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L18"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="SanskritAdmirer"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 18 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L19"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Bookworm"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 19 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L20"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="HistoricalReader"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 20 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L21"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="InquisitiveMind"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 21 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L22"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Linguaphile"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
 
 
-    </GridLayout>
-    <GridLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:rowCount="1"
-        android:columnCount="3"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="12dp"
-        >
-
-        <LinearLayout
-            android:layout_width="98dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:color="#756568"
-            android:id="@+id/L7"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Athletics"
-                android:textSize="16dp"
-                android:id="@+id/Athletic"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-
-
-    </GridLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Entertainment"
-        android:textSize="16dp"
-        android:textColor="#524044"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="32dp"
-        android:textStyle="bold"/>
-
-    <!-- Relationship options as divs -->
-    <GridLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:rowCount="1"
-        android:columnCount="3"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="16dp"
-        >
-
-        <LinearLayout
-            android:layout_width="110dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:color="#756568"
-            android:id="@+id/L8"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
+            </com.google.android.flexbox.FlexboxLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/Bollywood"
-                android:text="Bollywood"
+                android:text="Health &amp; Wellness"
                 android:textSize="16dp"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="111dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:color="#756568"
-            android:id="@+id/L9"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+                <!-- Interest 22 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L23"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="WellnessFan"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 23 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L24"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="FitnessFreak"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 24 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L25"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Yoga"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 25 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L26"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="NatureLover"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 26 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L27"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="HealthConscious"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 27 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L28"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Meditator"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+
+            </com.google.android.flexbox.FlexboxLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Hollywood"
+                android:text="Technology &amp; Trends"
                 android:textSize="16dp"
-                android:id="@+id/Hollywood"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="77dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:color="#756568"
-            android:id="@+id/L10"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+                <!-- Interest 28 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L29"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="TechSavvy"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 32 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L30"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Instagram"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 33 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L31"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Reels"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 34 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L32"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="GadgetGeek"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+
+            </com.google.android.flexbox.FlexboxLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/Music"
-                android:text="Music"
+                android:text="Hobbies &amp; Interests"
                 android:textSize="16dp"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
 
-    </GridLayout>
-    <GridLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:rowCount="1"
-        android:columnCount="3"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="12dp"
-        >
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+            <!-- Interest 36 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L33"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
 
-        <LinearLayout
-            android:layout_width="95dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:id="@+id/L11"
-            android:color="#756568"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="Foodie"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+
+            <!-- Interest 37 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L34"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="TeaLover"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+
+            <!-- Interest 39 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L35"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="Traveler"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+
+            <!-- Interest 40 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L36"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="Photography"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+
+            <!-- Interest 41 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L37"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="AnimalLover"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+
+            <!-- Interest 42 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L38"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="DIYer"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+
+            <!-- Interest 44 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L39"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="Gamer"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+
+            <!-- Interest 45 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L40"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="CreativeMind"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+
+            <!-- Interest 46 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L41"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="NaturePhotographer"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+
+            <!-- Interest 47 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L42"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="ArtisanalCrafts"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+
+            <!-- Interest 48 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L43"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="CoffeeAficionado"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+
+            <!-- Interest 49 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="4dp"
+                android:id="@+id/L44"
+                android:clickable="true"
+                android:background="@drawable/rounded_card_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="Astrophotography"
+                    android:lines="1"
+                    android:textSize="16dp"
+                    android:textColor="#756568"/>
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L45"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Melomaniac"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+
+
+            </com.google.android.flexbox.FlexboxLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Comedy"
+                android:text=" Sports &amp; Activities"
                 android:textSize="16dp"
-                android:id="@+id/Comedy"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="81dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:color="#756568"
-            android:id="@+id/L12"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+                <!-- Interest 51 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L46"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Cricket"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 52 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L47"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Football"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 53 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L48"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Badminton"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 54 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L49"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Tennis"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 55 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L50"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Basketball"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 56 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L51"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Hiking"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L52"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_interest">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Swimming"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L53"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Running"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L54"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Yoga"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L55"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Cycling"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L56"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Golf"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L57"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="TableTennis"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+
+                <!-- Interest 63 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L58"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Chess"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 64 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L59"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Volleyball"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 65 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L60"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Kabaddi"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 66 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L61"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Wrestling"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 67 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L62"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Boxing"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 68 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L63"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="MartialArts"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+
+
+            </com.google.android.flexbox.FlexboxLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Drama"
+                android:text="Fashion &amp; Lifestyle"
                 android:textSize="16dp"
-                android:id="@+id/Drama"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+                <!-- Interest 69 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L64"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Fashionista"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 70 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L65"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="SimpleLiving"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 71 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L66"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Minimalist"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 72 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L67"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Trendsetter"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
 
 
-    </GridLayout>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Others"
-        android:textSize="16dp"
-        android:textColor="#524044"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="32dp"
-        android:textStyle="bold"/>
-
-    <!-- Relationship options as divs -->
-    <GridLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:rowCount="1"
-        android:columnCount="3"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="16dp"
-        >
-
-        <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:id="@+id/L13"
-            android:color="#756568"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
+            </com.google.android.flexbox.FlexboxLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Traveling"
-                android:id="@+id/travelling"
+                android:text="Career &amp; Education"
                 android:textSize="16dp"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="93dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:color="#756568"
-            android:id="@+id/L14"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Reading"
-                android:id="@+id/Reading"
-                android:textSize="16dp"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="88dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:color="#756568"
-            android:id="@+id/L15"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Singing"
-                android:textSize="16dp"
-                android:id="@+id/Singing"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
 
-    </GridLayout>
-    <GridLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:rowCount="1"
-        android:columnCount="3"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="12dp"
-        >
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+                <!-- Interest 78 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L68"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
 
-        <LinearLayout
-            android:layout_width="93dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:id="@+id/L16"
-            android:layout_marginRight="4dp"
-            android:color="#756568"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Scholarly"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 79 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L69"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="CareerFocused"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 80 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L70"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Entrepreneurial"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 81 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L71"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Innovator"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 82 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L72"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="DigitalArtist"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 83 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L73"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Counselor"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+            </com.google.android.flexbox.FlexboxLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/Dancing"
-                android:text="Dancing"
+                android:text="Family &amp; Relationship"
                 android:textSize="16dp"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="94dp"
-            android:layout_height="48dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="6dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:color="#756568"
-            android:id="@+id/L17"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+                <!-- Interest 84 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L74"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="FamilyOriented"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 85 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L75"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Parenting"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 86 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L76"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Romantic"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+
+            </com.google.android.flexbox.FlexboxLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Cooking"
+                android:text="Values &amp; Mindfulness"
                 android:textSize="16dp"
-                android:id="@+id/Cooking"
-                android:textColor="#756568"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="93dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="4dp"
-            android:color="#756568"
-            android:id="@+id/L18"
-            android:clickable="true"
-            android:background="@drawable/rounded_card_background"
-            >
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+                <!-- Interest 87 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L77"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Generous"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 88 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L78"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Ethical"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 89 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L79"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Mindful"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 90 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L80"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Peaceful"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 91 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L81"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="ValuesFirst"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 92 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L82"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="SpiritualSeeker"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 93 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L83"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Progressive"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+            </com.google.android.flexbox.FlexboxLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/Painting"
-                android:text="Painting"
+                android:text="Social &amp; Philanthropy"
                 android:textSize="16dp"
-                android:textColor="#756568"
-                />
+                android:textColor="#524044"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                app:flexWrap="wrap">
+                <!-- Interest 84 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L84"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Socialite"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 85 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L85"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="Philanthropist"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 86 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L86"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="EnvironmentalActivist"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 87 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L87"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="CommunityContributor"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+                <!-- Interest 88 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/L88"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_card_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="15dp"
+                        android:text="SocialEntrepreneur"
+                        android:lines="1"
+                        android:textSize="16dp"
+                        android:textColor="#756568"/>
+                </LinearLayout>
+
+            </com.google.android.flexbox.FlexboxLayout>
+
         </LinearLayout>
-    </GridLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginHorizontal="20dp"
-        android:layout_height="48dp"
+        android:layout_height="100dp"
         android:gravity="center"
-        android:layout_marginTop="38dp"
+        android:layout_alignParentBottom="true"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center"
-            android:id="@+id/L19"
+            android:id="@+id/submit"
             android:clickable="true"
             android:background="@drawable/rounded_card_background_next_disabled"
 
@@ -563,4 +2303,4 @@
                 android:textSize="16dp"
                 android:textStyle="bold" />
         </LinearLayout></LinearLayout>
-</LinearLayout>
+</RelativeLayout>

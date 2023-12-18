@@ -80,7 +80,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:visibility="gone"
                 android:padding="10dp"
-                android:background="@drawable/rounded_red_boder"
+                android:background="@drawable/error_card"
                 android:layout_gravity="center"/>
 
             <!-- Add any other views or content you want to display -->

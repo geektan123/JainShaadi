@@ -439,13 +439,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/layer17"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
                 <com.google.android.flexbox.FlexboxLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="273dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:flexWrap="wrap"
+                    android:id="@+id/hobby_holder"
                     app:alignItems="stretch"
                     android:layout_marginHorizontal="20dp">
                     <LinearLayout
@@ -469,7 +471,7 @@
                             android:layout_gravity="center"
                             android:text="Dancing"
                             android:textColor="#756568"
-                            android:textSize="12dp" />
+                            android:textSize="16dp" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -489,7 +491,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12dp"
+                            android:textSize="16dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest02"
                             />
@@ -512,7 +514,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12dp"
+                            android:textSize="16dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest03"
                             />
@@ -535,7 +537,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12dp"
+                            android:textSize="16dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest04"
                             />
@@ -561,7 +563,7 @@
                             android:layout_gravity="center"
                             android:text="Dancing"
                             android:textColor="#756568"
-                            android:textSize="12dp" />
+                            android:textSize="16dp" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -581,7 +583,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Dancing"
-                            android:textSize="12dp"
+                            android:textSize="16dp"
                             android:textColor="#756568"
                             android:id="@+id/profile_interest06"
                             />
@@ -589,7 +591,7 @@
                 </com.google.android.flexbox.FlexboxLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"></LinearLayout>
+                    android:layout_height="100dp"></LinearLayout>
             </LinearLayout>
 
         </RelativeLayout>

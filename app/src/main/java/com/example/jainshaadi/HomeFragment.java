@@ -54,6 +54,9 @@ public class HomeFragment extends Fragment {
     private Query query;
     ProgressBar progress;
     SharedViewModel sharedViewModel;
+    private SwipeRefreshLayout.OnRefreshListener refreshListener , disableListner;
+    boolean isRefreshed = false;
+
 
     List<CardItem> existingCardItemList;
     public HomeFragment() {
@@ -92,11 +95,14 @@ public class HomeFragment extends Fragment {
         profilesRef2 = profilesRef1.child("Gender");
 
         // Set up SwipeRefreshLayout
-        swipeRefreshLayout.setOnRefreshListener(() -> {
+        refreshListener = () -> {
             cardItemList.clear();
             currentPage = 1;
             loadShuffledUserIds();
-        });
+        };
+
+        swipeRefreshLayout.setOnRefreshListener(refreshListener);
+
 
         ImageView saveIcon = view.findViewById(R.id.saved);
         saveIcon.setOnClickListener(v -> {
@@ -111,8 +117,8 @@ public class HomeFragment extends Fragment {
         existingCardItemList = sharedViewModel.getCardItemList();
 
             // Load data as usual
-            profilesRef1.child("active").get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
+        profilesRef1.child("active").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
                     Object currentUserActive = task.getResult().getValue();
 
                     if (currentUserActive != null && (currentUserActive.toString().equals("enabled")||currentUserActive.toString().equals("admin"))) {
@@ -227,6 +233,7 @@ public class HomeFragment extends Fragment {
                             if (cardItem != null) {
                                 cardItemList.add(cardItem);
                                 cardAdapter.notifyDataSetChanged();
+                                Empty.setVisibility(View.GONE);
                                 Log.e("e","c0 = "+cardItemList);
                                 sharedViewModel.setCardItemList(cardItemList);
                             }
@@ -245,26 +252,25 @@ public class HomeFragment extends Fragment {
         progress.setVisibility(View.INVISIBLE);
         currentPage++;
     }
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         profilesRef1.child("active").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Object currentUserActive = task.getResult().getValue();
 
                 if (currentUserActive != null && (currentUserActive.toString().equals("enabled")||currentUserActive.toString().equals("admin"))) {
-                    Empty.setVisibility(View.GONE);
-                    if (!existingCardItemList.isEmpty()) {
-                        // Use the existing data
-                        cardItemList.addAll(existingCardItemList);
-                        Log.e("e","v0 = "+existingCardItemList);
-                        cardAdapter.notifyDataSetChanged();
-                        recyclerView.setAdapter(cardAdapter);
-                        progress.setVisibility(View.INVISIBLE);
-                    } else {
-                        loadShuffledUserIds();
-                    }
-                } else {
+//                    Empty.setVisibility(View.GONE);
+                    if(cardItemList.isEmpty())
+                    {
+                        Empty.setText("Refresh to Load Profiles");
 
+                    }
+                    swipeRefreshLayout.setOnRefreshListener(refreshListener);
+                } else {
+                    disableListner = () -> {
+                        swipeRefreshLayout.setRefreshing(false);
+                    };
+                    swipeRefreshLayout.setOnRefreshListener(disableListner);
                     cardItemList.clear();
                     existingCardItemList.clear();
                     cardAdapter.notifyDataSetChanged();
@@ -277,5 +283,8 @@ public class HomeFragment extends Fragment {
         });
 
 
+    }
+    public void onStop() {
+        super.onStop();
     }
 }
