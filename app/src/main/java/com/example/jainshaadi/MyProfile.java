@@ -289,10 +289,10 @@ public class MyProfile extends AppCompatActivity {
                     profileName.setText(name);
                     profileProfession.setText(profession +" at "+Company);
                     tag.setText(tagValue);
-                    profileAge.setText(age+","+Height);
+                    profileAge.setText(age+" Year Old, "+Height);
                     profileCast.setText(cast);
                     profileIncome.setText(income);
-                    profileCity.setText(city+","+state);
+                    profileCity.setText(city+", "+state);
 
                     // Retrieve and set other profile data in TextViews similarly
                   /*  if (dataSnapshot.exists()) {*/
@@ -303,7 +303,7 @@ public class MyProfile extends AppCompatActivity {
                         profileMother.setText(MotherName+"("+MotherOccupation+")");
                         profileMembers.setText(FamilyMembers);
                         profileFamilyType.setText(Familytype);
-                        profileResidence.setText(ParentCity+","+ParentState);
+                        profileResidence.setText(ParentCity+", "+ParentState);
                    /* } else {
                         // Data doesn't exist, handle it (e.g., display a message, hide TextViews, etc.)
                         // For example, you could display a message saying "Data not available"
@@ -344,6 +344,8 @@ public class MyProfile extends AppCompatActivity {
     }
     private void displayDataInFlexbox(List<String> moreData) {
         FlexboxLayout parentFlexboxLayout = findViewById(R.id.hobby_holder);
+        parentFlexboxLayout.removeAllViews();
+
 
         if (moreData != null) {
             for (String data : moreData) {
@@ -355,14 +357,23 @@ public class MyProfile extends AppCompatActivity {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
+                int paddingLeft = dpToPx(context, 8);
+                int paddingTop = dpToPx(context, 4);
+                int paddingRight = dpToPx(context, 8);
+                int paddingBottom = dpToPx(context, 4);
+                int marginStart = dpToPx(context, 0);
+                int marginTop = dpToPx(context, 4);
+                int marginEnd = dpToPx(context, 4);
+                int marginBottom = dpToPx(context, 0);
 
                 // Set top and right margins (left, top, right, bottom)
-                layoutParams.setMargins(0, 5, 5, 0);
+                layoutParams.setMargins(marginStart, marginTop, marginEnd, marginBottom);
+                childLinearLayout.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
 
                 childLinearLayout.setLayoutParams(layoutParams);
 
                 // Apply padding, margin, and background as needed
-                childLinearLayout.setPadding(8, 4, 8, 4);
+
                 childLinearLayout.setBackgroundResource(R.drawable.rounded_hobbies_card);
 
                 // Create a TextView for the data
@@ -384,6 +395,10 @@ public class MyProfile extends AppCompatActivity {
                 parentFlexboxLayout.addView(childLinearLayout);
             }
         }
+    }
+    public int dpToPx(Context context, float dp) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return Math.round(dp * density);
     }
 
 

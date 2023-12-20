@@ -106,7 +106,7 @@
             android:layout_marginRight="100dp"
             android:layout_height="48dp"
             android:background="@drawable/rounded_card_8_background"
-            android:hint="Ex: Product Manager"
+            android:hint="e.g.: Product Manager, Owner"
             android:paddingLeft="10dp"
             />
 
@@ -151,7 +151,7 @@
             android:layout_marginRight="100dp"
             android:layout_height="48dp"
             android:background="@drawable/rounded_card_8_background"
-            android:hint="Ex: Google"
+            android:hint="e.g.: Google"
             android:paddingLeft="10dp"
             />
 

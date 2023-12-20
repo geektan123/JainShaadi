@@ -21,7 +21,7 @@ tools:context=".LocationActivity">
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Choose Nearby District if Specific Place is Unavailable:"
+    android:text="कृपया उस व्यक्ति के वर्तमान निवास स्थान का चयन करें, जिसके लिए यह प्रोफ़ाइल बनाई जा रही है।"
     android:textSize="14dp"
     android:textColor="#524044"
     android:layout_below="@+id/Question"
@@ -67,7 +67,7 @@ tools:context=".LocationActivity">
     android:layout_height="wrap_content"
     android:layout_below="@+id/four"
     android:id="@+id/five"
-    android:text="Choose Nearby District if Specific Place is Unavailable:"
+    android:text="यदि विशिष्ट स्थान उपलब्ध नहीं है, तो कृपया पास के जिले का चयन करें।"
     android:textSize="14dp"
     android:textColor="#524044"
     android:layout_marginLeft="21dp"

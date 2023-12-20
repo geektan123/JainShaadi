@@ -107,7 +107,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose Others If you can't find Your Particular Affiliation."
+            android:text="अगर आपका विकल्प नहीं मिला तो कृपया Others चयन करें।"
             android:textSize="14sp"
             android:textColor="#524044"
             android:layout_marginLeft="21dp"

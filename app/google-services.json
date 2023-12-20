@@ -1,26 +1,53 @@
 {
   "project_info": {
-    "project_number": "858552321453",
-    "project_id": "jainmaitri-5d08f",
-    "storage_bucket": "jainmaitri-5d08f.appspot.com"
+    "project_number": "736758052447",
+    "firebase_url": "https://startingup-454b1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "startingup-454b1",
+    "storage_bucket": "startingup-454b1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:858552321453:android:1111e2d5a56d474b540d24",
+        "mobilesdk_app_id": "1:736758052447:android:de7cf37590e1fc38338dea",
         "android_client_info": {
           "package_name": "com.example.jainshaadi"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "736758052447-ra0e5vlucch7smqo93lf1ir2fmprgvvl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jainshaadi",
+            "certificate_hash": "231e10113f73c3236cd9837c074e5ee572f9049b"
+          }
+        },
+        {
+          "client_id": "736758052447-rb5blftdhh8bo1puvsvlsugp95mn9ave.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jainshaadi",
+            "certificate_hash": "acaced5b9260cb7d91a39c4bdc0796702af40aef"
+          }
+        },
+        {
+          "client_id": "736758052447-5l0rd9qmd488mdlmh1ofk2v7m4qc55nj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyD_HHNrWbxFK3-q5mR24GbfZlW3H10Qf88"
+          "current_key": "AIzaSyCD6RpXzYBIP812fJBOQQbvY5i6DxbuPzY"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "736758052447-5l0rd9qmd488mdlmh1ofk2v7m4qc55nj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

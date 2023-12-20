@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:id="@+id/degreeTextInputLayout"
-        android:hint="ex: Msc (Applied Maths)"
+        android:hint="e.g.: Msc (Applied Maths)"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -83,7 +83,7 @@
             android:textSize="16dp"
             android:id="@+id/collegeEditText"
             android:textColor="@color/black"
-            android:hint="IIT Roorkee"
+            android:hint="e.g. IIT Roorkee"
             android:layout_gravity="center"
             android:layout_marginHorizontal="16dp"/>
 

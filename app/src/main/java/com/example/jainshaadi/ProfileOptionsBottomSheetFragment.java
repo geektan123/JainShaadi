@@ -93,6 +93,19 @@ public class ProfileOptionsBottomSheetFragment extends BottomSheetDialogFragment
 
 
 //
+        LinearLayout btnMyCard = view.findViewById(R.id.llmyCard);
+        btnMyCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent i = new Intent(requireContext(),ViewMyCard.class);
+                    // Add this line to attach the bundle
+                    startActivity(i);
+                    dismiss();
+                }
+                // Handle Edit Profile click
+                // Dismiss the bottom sheet
+                // Add your logic to open the Edit Profile screen
+        });
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

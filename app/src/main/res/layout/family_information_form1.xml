@@ -118,7 +118,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ex. Vijaydesh Jain"
+            android:hint="e.g. Vijaydesh Jain"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:layout_gravity="center"
@@ -138,6 +138,12 @@
             android:text="Father's Occupation"
             android:textSize="16dp"
             android:textColor="#524044"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text=" (Write N.A. if not working)"
+            android:textSize="12dp"
+            android:textColor="#524044"/>
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -150,7 +156,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ex. Bussiness"
+            android:hint="e.g. Bussiness"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:id="@+id/father_occupation_edit_text"
@@ -202,6 +208,12 @@
             android:text="Mother's Occupation"
             android:textSize="16dp"
             android:textColor="#524044"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text=" (Write N.A. if not working)"
+            android:textSize="12dp"
+            android:textColor="#524044"/>
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -214,7 +226,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ex. HouseWife"
+            android:hint="e.g. HouseWife, Bussiness"
             android:textSize="16sp"
             android:id="@+id/mother_occupation_edit_text"
             android:textColor="@color/black"

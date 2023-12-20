@@ -72,7 +72,7 @@ public class LocationEdit extends DialogFragment {
                 int parentID = parent.getId();
                 if (parentID == R.id.spinner_indian_states) {
                     switch (selectedState) {
-                        case "Select Your State":
+                        case "Select State":
                             districtAdapter = ArrayAdapter.createFromResource(parent.getContext(),
                                     R.array.array_default_districts, R.layout.spinner_layout);
                             break;

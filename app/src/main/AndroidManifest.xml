@@ -110,6 +110,9 @@
             android:name=".Completeform_Image_02"
             android:exported="false" />
         <activity
+            android:name=".ViewMyCard"
+            android:exported="false" />
+        <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"

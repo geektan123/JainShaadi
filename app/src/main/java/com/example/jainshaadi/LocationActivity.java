@@ -111,7 +111,7 @@ TextView Nexttext;
                 int parentID = parent.getId();
                 if (parentID == R.id.spinner_indian_states) {
                     switch (selectedState) {
-                        case "Select Your State":
+                        case "Select State":
                             districtAdapter = ArrayAdapter.createFromResource(parent.getContext(),
                                     R.array.array_default_districts, R.layout.spinner_layout);
                             break;
@@ -296,7 +296,7 @@ TextView Nexttext;
                 NextLay.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (!(selectedDistrict.equals("Select Your District")) && !(selectedDistrict.isEmpty())) {
+                        if (!(selectedDistrict.equals("Select District")) && !(selectedDistrict.isEmpty())) {
                             if (isNextLayoutChanged) {
                                 String userKey = FirebaseAuth.getInstance().getUid();
                                 DatabaseReference userRef = databaseReference.child(userKey);

@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -102,20 +103,24 @@ public class EditProfile extends AppCompatActivity {
                     String imageRef3 = dataSnapshot.child("image03").getValue(String.class);
 
                     // Load and display images using Glide
-                    if (imageRef1 != null && !imageRef1.isEmpty()) {
-                        Image01.setImageBitmap(null);
-                        Glide.with(EditProfile.this).load(imageRef1).into(Image01);
+                    // Load and display images using Glide
+                    if (!isDestroyed()) {
+                        if (imageRef1 != null && !imageRef1.isEmpty()) {
+                            Image01.setImageBitmap(null);
+                            Glide.with(EditProfile.this).load(imageRef1).into(Image01);
+                        }
+
+                        if (imageRef2 != null && !imageRef2.isEmpty()) {
+                            Image02.setImageBitmap(null);
+                            Glide.with(EditProfile.this).load(imageRef2).into(Image02);
+                        }
+
+                        if (imageRef3 != null && !imageRef3.isEmpty()) {
+                            Image03.setImageBitmap(null);
+                            Glide.with(EditProfile.this).load(imageRef3).into(Image03);
+                        }
                     }
 
-                    if (imageRef2 != null && !imageRef2.isEmpty()) {
-                        Image02.setImageBitmap(null);
-                        Glide.with(EditProfile.this).load(imageRef2).into(Image02);
-                    }
-
-                    if (imageRef3 != null && !imageRef3.isEmpty()) {
-                        Image03.setImageBitmap(null);
-                        Glide.with(EditProfile.this).load(imageRef3).into(Image03);
-                    }
                 }
             }
 
@@ -280,6 +285,7 @@ public class EditProfile extends AppCompatActivity {
                     String interest05 = dataSnapshot.child("Interest5").getValue(String.class);
                     String interest06 = dataSnapshot.child("Interest6").getValue(String.class);
 
+
                     Name.setText(name);
                     Bio.setText(description);
                     DOB.setText(Dob + "\n" + Height);
@@ -289,7 +295,22 @@ public class EditProfile extends AppCompatActivity {
                     Income.setText(Familytype + " ("+ FamilyMembers +")"+"\n"+ParentState+" - "+ParentCity);
                     Education.setText(Degree + ", "+College+" ("+Year+")");
                     Family.setText(FatherName+" ("+FatherOccupation+")"+"\n"+MotherName+" ("+MotherOccupation+")");
-                    Hobbies.setText(interest01+", "+interest02+", "+interest03+", "+interest04+", "+interest05+", "+interest06);
+                    String hobbies = interest01+", "+interest02+", "+interest03+", "+interest04+", "+interest05+", "+interest06;
+                    Object more = dataSnapshot.child("More_Interest");
+                    if(more != null) {
+                        GenericTypeIndicator<List<String>> typeIndicator =
+                                new GenericTypeIndicator<List<String>>() {};
+
+                        List<String> moreData = dataSnapshot.child("More_Interest").getValue(typeIndicator);
+
+                        //                        List<Hobby> hobbies = dataSnapshot.child("More_Interest").getValue(typeIndicator);
+                        if (moreData != null) {
+                            for (String data : moreData) {
+                                hobbies = hobbies + ", " + data;
+                            }
+                            }
+                        }
+                    Hobbies.setText(hobbies);
                 }
             }
 
@@ -299,5 +320,15 @@ public class EditProfile extends AppCompatActivity {
                 // Handle any errors
             }
         });
+    }
+    protected void onDestroy() {
+        super.onDestroy();
+        // Cancel Glide requests to prevent loading images for a destroyed activity
+        if (!isFinishing()) {
+            // Cancel Glide requests to prevent loading images for a destroyed activity
+            Glide.with(this).clear(Image01);
+            Glide.with(this).clear(Image02);
+            Glide.with(this).clear(Image03);
+        }
     }
 }

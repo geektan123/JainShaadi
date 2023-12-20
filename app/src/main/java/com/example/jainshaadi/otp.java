@@ -4,7 +4,6 @@ import android.os.Handler;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -49,7 +48,7 @@ public class otp extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextInputLayout mobileNumberLayout;
     private TextInputEditText mobileNumberEditText;
-String number;
+    String number;
     private TextInputLayout otpLayout;
     private TextInputEditText otpEditText;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
@@ -59,7 +58,7 @@ String number;
     LinearLayout Request;
     String enteredotp;
     String Codesent;
-    String temp="";
+    String temp = "";
     private LinearLayout firstLinearLayout;
     private ImageView image1;
     private View firstView;
@@ -71,7 +70,7 @@ String number;
     private LinearLayout thirdLinearLayout;
     private ImageView thirdImage;
     private TextView Timer;
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+    /*DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");*/
 
 
     @Override
@@ -79,21 +78,14 @@ String number;
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_otp);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        actionBar.setCustomView(R.layout.verification_bar);
-        ImageView BackButton = actionBar.getCustomView().findViewById(R.id.logo);
-        BackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle the click event for the logo
-                onBackPressed();
-            }
-        });
+        getSupportActionBar().hide();
+       mAuth = FirebaseAuth.getInstance();
+// set this to remove reCaptcha web
+        mAuth.getFirebaseAuthSettings().setAppVerificationDisabledForTesting(true);
         firstLinearLayout = findViewById(R.id.firstLinearLayout);
         image1 = findViewById(R.id.image1);
         firstView = findViewById(R.id.firstView);
-       Timer=findViewById(R.id.Timer);
+        Timer = findViewById(R.id.Timer);
         secondLinearLayout = findViewById(R.id.secondLinearLayout);
         secondImage = findViewById(R.id.secondImage);
         secondView = findViewById(R.id.secondView);
@@ -109,8 +101,8 @@ String number;
         mAuth = FirebaseAuth.getInstance();
         didnot = findViewById(R.id.didnot);
         Request = findViewById(R.id.request);
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
+        // progressBar = findViewById(R.id.progressBar);
+        //progressBar.setVisibility(View.INVISIBLE);
         otpLayout.setVisibility(View.INVISIBLE);
         didnot.setVisibility(View.INVISIBLE);
         Request.setVisibility(View.INVISIBLE);
@@ -134,12 +126,12 @@ String number;
                 if (number1.length() >= 10) {
                     Verify.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                     Send.setTextColor(Color.parseColor("#FFFFFF"));
+                    //  Send.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
 
                     // Hide the keyboard
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(mobileNumberEditText.getWindowToken(), 0);
-                }
-                else {
+                } else {
                     Verify.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
                     Send.setTextColor(Color.parseColor("#FFFFFF"));
 
@@ -156,17 +148,17 @@ String number;
                 String number1 = mobileNumberEditText.getText().toString();
                 // Log.e("hunda", "error :" + number1);
 
-                 number = ("+91".concat(number1)).trim();
+                number = ("+91".concat(number1)).trim();
                 Log.e("hunda", "error :" + number);
-                progressBar.setVisibility(View.VISIBLE);
+                //    progressBar.setVisibility(View.VISIBLE);
 
 
                 if (number1.isEmpty()) {
-                    progressBar.setVisibility(View.INVISIBLE);
+                    //    progressBar.setVisibility(View.INVISIBLE);
 
                     Toast.makeText(getApplicationContext(), "Please Enter YOur number", Toast.LENGTH_SHORT).show();
                 } else if (number1.length() < 10 || number1.length() > 10) {
-                    progressBar.setVisibility(View.INVISIBLE);
+                    //   progressBar.setVisibility(View.INVISIBLE);
 
                     Toast.makeText(getApplicationContext(), "Please Enter correct number", Toast.LENGTH_SHORT).show();
                 } else {
@@ -200,19 +192,19 @@ String number;
                 super.onCodeSent(s, forceResendingToken);
                 // Handle code sent
                 Toast.makeText(getApplicationContext(), "OTP is Sent", Toast.LENGTH_SHORT).show();
-                mobileNumberLayout.setVisibility(View.INVISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
+               /* mobileNumberLayout.setVisibility(View.INVISIBLE);
+               // progressBar.setVisibility(View.INVISIBLE);
                 otpLayout.setVisibility(View.VISIBLE);
                 Verify.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
                 Send.setTextColor(Color.parseColor("#FFFFFF"));
                 Request.setVisibility(View.VISIBLE);
                 Send.setText("Verify");
-                temp="Verify";
+                temp="Verify";*/
 
 
                 // Delay visibility by 60 seconds (60 * 1000 milliseconds)
-                
-              // 60 seconds
+
+                // 60 seconds
                 new CountDownTimer(60000, 1000) { // 60 seconds, tick every 1 second
                     public void onTick(long millisUntilFinished) {
                         long secondsLeft = millisUntilFinished / 1000;
@@ -226,66 +218,11 @@ String number;
                 }.start();
                 Codesent = s;
 
-                Intent intent=new Intent(otp.this,Otp2.class);
-                intent.putExtra("otp",Codesent);
+                Intent intent = new Intent(otp.this, Otp2.class);
+                intent.putExtra("otp", Codesent);
                 startActivity(intent);
             }
         };
         Log.e("gggg", "error :" + temp);
-
-        if (temp=="Verify") {
-
-            Verify.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    enteredotp = otpEditText.getText().toString();
-                    if (enteredotp.isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Enter your OTP First ", Toast.LENGTH_SHORT).show();
-                    } else {
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(otpEditText.getWindowToken(), 0);
-                        progressBar.setVisibility(View.VISIBLE);
-                        Verify.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
-                        Send.setTextColor(Color.parseColor("#FFFFFF"));
-                        String coderecieved = Codesent;
-                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(coderecieved, enteredotp);
-                        signInWithPhoneAuthCredential(credential);
-
-                    }
-                }
-            });
-        }
-
-
-    }
-
-
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    HashMap<String, Object> userData = new HashMap<>();
-                    userData.put("Phone Number", number);
-                    String userKey = FirebaseAuth.getInstance().getUid();
-
-                    databaseReference.child(userKey).updateChildren(userData);
-                    progressBar.setVisibility(View.INVISIBLE);
-                    firstLinearLayout.setBackground(getResources().getDrawable(R.drawable.circle_layer_drawable));
-                    image1.setImageResource(R.drawable.green_tick_icon);
-
-                    Toast.makeText(getApplicationContext(), "Login sucess", Toast.LENGTH_SHORT).show();
-                 /*  Intent intent = new Intent(otp.this, educational_information_form.class);
-                   startActivity(intent);
-                   finish();*/
-                } else {
-                    if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                        progressBar.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
     }
 }
-

@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pick any 6 "
+        android:text="Select Between 6 to 12 Interest"
         android:textSize="24dp"
         android:textColor="#524044"
         android:layout_marginLeft="21dp"
@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="It will be added to interest/hobbies section"
+        android:text="कृपया 6 से 12 रुचियों का चयन करें। \nIt will be added to interest/hobbies section"
         android:textSize="14dp"
         android:textColor="#524044"
         android:layout_below="@id/Question"

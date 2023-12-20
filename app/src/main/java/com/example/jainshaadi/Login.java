@@ -99,7 +99,7 @@ public class Login extends AppCompatActivity {
             scaleDown.setDuration(300);
 
             GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestIdToken(getString(R.string.default_web_client_id))
                     .requestEmail()
                     .build();
             client = GoogleSignIn.getClient(this, options);
@@ -144,9 +144,9 @@ public class Login extends AppCompatActivity {
 
                                 if (task.isSuccessful()) {
                                     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                                    Log.e("a","here1");
+                                    Log.e("a", "here1");
                                     if (currentUser != null) {
-                                        Log.e("a","here2");
+                                        Log.e("a", "here2");
                                         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users");
                                         DatabaseReference currentProfileRef = databaseRef.child(FirebaseAuth.getInstance().getUid());
                                         currentProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -171,8 +171,7 @@ public class Login extends AppCompatActivity {
                                                         startActivity(intent);
                                                         finish();
                                                     }
-                                                }
-                                                else {
+                                                } else {
                                                     Intent intent = new Intent(getApplicationContext(), Profile.class);
                                                     startActivity(intent);
                                                     finish();
@@ -183,7 +182,7 @@ public class Login extends AppCompatActivity {
                                             public void onCancelled(DatabaseError databaseError) {
                                                 progressBar.setVisibility(View.INVISIBLE);
                                                 textView.setEnabled(true);
-                                                Log.e("a","here3");
+                                                Log.e("a", "here3");
                                                 Toast.makeText(Login.this, "Try again !!", Toast.LENGTH_SHORT).show();
                                             }
                                         });
@@ -192,15 +191,16 @@ public class Login extends AppCompatActivity {
                                 } else {
                                     progressBar.setVisibility(View.INVISIBLE);
                                     textView.setEnabled(true);
-                                    Log.e("a","here4");
-                                    Toast.makeText(Login.this,"Try Again !", Toast.LENGTH_SHORT).show();
+                                    Log.e("a", "here4");
+                                    Toast.makeText(Login.this, "Try Again !", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
             } catch (ApiException e) {
                 textView.setEnabled(true);
                 progressBar.setVisibility(View.INVISIBLE);
-                Log.e("a","here5");
+                Log.e("YourTag", "Google sign-in failed. Error code: " + e.getStatusCode(), e);
+//                Log.e("a",e.getMessage());
                 e.printStackTrace();
             }
         }

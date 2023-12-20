@@ -95,7 +95,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ashish Gautam"
+                        android:text=""
                         android:textColor="#3D2429"
                         android:textStyle="bold"
                         android:textSize="28dp"
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/layer3"
-                android:text="Digamber-Agarwal"
+                android:text=""
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="2dp"
                 android:textSize="20dp"
@@ -137,7 +137,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Looking for Bride"
+                    android:text=""
                     android:textColor="#524044"
                     android:textSize="14dp"
                     android:layout_marginHorizontal="8dp"
@@ -160,7 +160,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="22 Years Old, 5'10"
+                    android:text=""
                     android:textSize="18dp"
                     android:textColor="#524044"
                     android:layout_marginLeft="5dp"
@@ -187,7 +187,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Product Manager, Zomato"
+                    android:text=""
                     android:textSize="18dp"
                     android:textColor="#524044"
                     android:layout_marginLeft="5dp"
@@ -208,7 +208,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="INR 15-17 Lakhs per annum"
+                    android:text=""
                     android:textSize="18dp"
                     android:textColor="#524044"
                     android:layout_marginLeft="5dp"
@@ -229,7 +229,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lucknow, Uttarpradesh"
+                    android:text=""
                     android:textSize="18dp"
                     android:textColor="#524044"
                     android:layout_marginLeft="5dp"
@@ -263,7 +263,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BTech in Mechanical Engineering (2022-2026) IIT Delhi"
+                    android:text=""
                     android:textColor="#524044"
                     android:textSize="18dp"
                     android:id="@+id/profile_education"
@@ -304,7 +304,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" Vijaydesh Jain (Tailor)"
+                    android:text=" "
                     android:textColor="#756568"
                     android:textSize="18dp"
                     android:id="@+id/profile_father"
@@ -327,7 +327,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Savitri Jain(Housewife)"
+                    android:text=""
                     android:textColor="#756568"
                     android:textSize="18dp"
                     android:id="@+id/profile_mother"/>
@@ -353,7 +353,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" 5"
+                        android:text=""
                         android:textColor="#756568"
                         android:textSize="18dp"
                         android:id="@+id/profile_members"
@@ -373,7 +373,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" Nuclear"
+                        android:text=""
                         android:textColor="#756568"
                         android:textSize="18dp"
                         android:id="@+id/profile_family_type"
@@ -397,7 +397,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lucknow, UP"
+                    android:text=""
                     android:textColor="#756568"
                     android:textSize="18dp"
                     android:id="@+id/profile_residence"/>
@@ -453,7 +453,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Dancing"
+                            android:text=""
                             android:textColor="#756568"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -476,7 +476,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Dancing"
+                            android:text=""
                             android:textColor="#756568"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -499,7 +499,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Dancing"
+                            android:text=""
                             android:textColor="#756568"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -522,7 +522,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Dancing"
+                            android:text=""
                             android:textColor="#756568"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -545,7 +545,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Dancing"
+                            android:text=""
                             android:textColor="#756568"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -568,10 +568,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Dancing"
+                            android:text=""
                             android:textColor="#756568"
                             android:textSize="16dp" />
                     </LinearLayout>
+                </com.google.android.flexbox.FlexboxLayout>
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    app:alignItems="stretch"
+                    android:id="@+id/hobby_holder"
+                    app:flexWrap="wrap">
+
                 </com.google.android.flexbox.FlexboxLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
