@@ -194,8 +194,8 @@ public class SearchFilter extends AppCompatActivity {
                 String filterType = intent.getStringExtra("filterType");
                 if (filterType.equals("Digambar")) {
                     query = profilesRef.orderByChild("Category").equalTo("Digambar");
-                } else if (filterType.equals("Shvetambar")) {
-                    query = profilesRef.orderByChild("Category").equalTo("Shvetambar");
+                } else if (filterType.equals("Shwetambar")) {
+                    query = profilesRef.orderByChild("Category").equalTo("Shwetambar");
                 } else if (filterType.equals("Location")) {
                     query = profilesRef.orderByChild("State").equalTo(currentUserState.toString());
                 } else if (filterType.equals("Age")) {

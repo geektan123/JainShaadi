@@ -69,10 +69,28 @@ public class Chatlist extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 chatSnapshots.clear();
+                TextView Empty = root.findViewById(R.id.empty);
+                if(chatSnapshots.size() == 0)
+                {
+                    Empty.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    Empty.setVisibility(View.GONE);
+                }
+
 
                 for (DataSnapshot chatSnapshot : dataSnapshot.getChildren()) {
                     if(chatSnapshot.exists()) {
                         chatSnapshots.add(chatSnapshot);
+                        if(chatSnapshots.size() == 0)
+                        {
+                            Empty.setVisibility(View.VISIBLE);
+                        }
+                        else
+                        {
+                            Empty.setVisibility(View.GONE);
+                        }
                     }
                 }
 

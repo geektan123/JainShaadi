@@ -47,8 +47,38 @@ public class Messages {
         this.currenttime = formatTimestamp(timestamp, context);
     }
 
+    public  String convertTimestampToString(long timestamp) {
+        // Get the current time in milliseconds
+        long currentTime = System.currentTimeMillis();
+
+        // Calculate the time difference in milliseconds
+        long timeDifference = currentTime - timestamp;
+
+        // Calculate time units
+        long seconds = timeDifference / 1000;
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        long days = hours / 24;
+        long months = days / 30;
+        long years = days / 365;
+
+        // Choose the appropriate format based on the time difference
+        if (years > 0) {
+            return years + "y";
+        } else if (months > 0) {
+            return months + "mo";
+        } else if (days > 0) {
+            return days + "d";
+        } else if (hours > 0) {
+            return hours + "h";
+        } else if (minutes > 0) {
+            return minutes + "min";
+        } else {
+            return "now";
+        }
+    }
     public String getCurrenttime() {
-        return currenttime;
+        return convertTimestampToString(timestamp);
     }
 
     public void setCurrenttime(String currenttime) {

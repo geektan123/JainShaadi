@@ -25,6 +25,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -262,6 +263,51 @@ public class ImageActivity extends AppCompatActivity {
 
         databaseReference.child(userId).updateChildren(imageMap)
                 .addOnSuccessListener(aVoid -> {
+                    Intent intent = getIntent();
+                    String gen = intent.getStringExtra("Gender");
+                    String acc = intent.getStringExtra("Account");
+                    FirebaseMessaging.getInstance().subscribeToTopic("IncompleteProfile")
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    Log.d("tag","User is subscribed");
+                                }
+                                else {
+
+                                }
+                            });
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic("IncompleteRegistration")
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    Log.d("tag","User is subscribed");
+                                }
+                                else {
+
+                                }
+                            });
+                    if(gen.equals("1"))
+                    {
+                        FirebaseMessaging.getInstance().subscribeToTopic("MaleUsers")
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()) {
+                                        Log.d("tag","User is subscribed");
+                                    }
+                                    else {
+
+                                    }
+                                });
+                    }
+                    else if(gen.equals("2"))
+                    {
+                        FirebaseMessaging.getInstance().subscribeToTopic("FemaleUsers")
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()) {
+                                        Log.d("tag","User is subscribed");
+                                    }
+                                    else {
+
+                                    }
+                                });
+                    }
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(ImageActivity.this, "Profile Image uploaded successfully", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getApplicationContext(), welcome_instructions.class);

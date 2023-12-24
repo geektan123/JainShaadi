@@ -79,7 +79,7 @@ public class CommunityEdit extends DialogFragment {
 //                nexttext.setTextColor(Color.parseColor("#756568"));
                 isNextLayoutChanged = false;
                 Layout6.setVisibility(view.INVISIBLE);
-                if (category.equals("Shvetambar")) {
+                if (category.equals("Shwetambar")) {
                     Layout2.setBackground(getResources().getDrawable(R.drawable.rounded_card_background));
                     Svetamber.setTextColor(Color.parseColor("#756568"));
                     Layout1.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
@@ -99,11 +99,30 @@ public class CommunityEdit extends DialogFragment {
 
                 ArrayList<String> arrayAdapter1 = new ArrayList<>();
                 arrayAdapter1.add("-Select-");
-                arrayAdapter1.add("Digambar-Agrawal");
-                arrayAdapter1.add("Digambar-Khandelwal");
-                arrayAdapter1.add("Digambar-Porwal");
-                arrayAdapter1.add("Digambar-Kasliwal");
-                arrayAdapter1.add("Digambar-Golapurab");
+                arrayAdapter1.add("Digambar-" + "Navnat");
+                arrayAdapter1.add("Digambar-" + "Saitwal");
+                arrayAdapter1.add("Digambar-" + "Agrawal");
+                arrayAdapter1.add("Digambar-" + "Bagherwal");
+                arrayAdapter1.add("Digambar-" + "Bhabra");
+                arrayAdapter1.add("Digambar-" + "Bunt");
+                arrayAdapter1.add("Digambar-" + "Chaturtha");
+                arrayAdapter1.add("Digambar-" + "Dugar");
+                arrayAdapter1.add("Digambar-" + "Godha");
+                arrayAdapter1.add("Digambar-" + "Golalare");
+                arrayAdapter1.add("Digambar-" + "Golapurva");
+                arrayAdapter1.add("Digambar-" + "Humad");
+                arrayAdapter1.add("Digambar-" + "Jaiswal");
+                arrayAdapter1.add("Digambar-" + "Kasliwal");
+                arrayAdapter1.add("Digambar-" + "Narsingpura");
+                arrayAdapter1.add("Digambar-" + "Oswal");
+                arrayAdapter1.add("Digambar-" + "Parwar");
+                arrayAdapter1.add("Digambar-" + "Porwal");
+                arrayAdapter1.add("Digambar-" + "Sarak");
+                arrayAdapter1.add("Digambar-" + "Sarawagi");
+                arrayAdapter1.add("Digambar-" + "Shrimal");
+                arrayAdapter1.add("Digambar-" + "Tamil");
+                arrayAdapter1.add("Digambar-" + "Veerwal");
+                arrayAdapter1.add("Digambar-" + "Vijayvargiya");
                 arrayAdapter1.add("Other");
                 ArrayAdapter<String> arrayAdapter6 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrayAdapter1);
                 arrayAdapter6.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
@@ -174,7 +193,7 @@ public class CommunityEdit extends DialogFragment {
                     Layout2.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                     Svetamber.setTextColor(Color.parseColor("#FFFFFF"));
 
-                } else if (category.equals("Shvetambar")) {
+                } else if (category.equals("Shwetambar")) {
                     Layout2.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                     Svetamber.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
@@ -184,14 +203,35 @@ public class CommunityEdit extends DialogFragment {
                 Layout3.setVisibility(View.VISIBLE);
 //                Layout4.setVisibility(View.VISIBLE);
                 Layout5.setVisibility(View.VISIBLE);
-                category = "Shvetambar";
+                category = "Shvwetambar";
 
                 ArrayList<String> arrayAdapter1 = new ArrayList<>();
                 arrayAdapter1.add("-Select-");
-                arrayAdapter1.add("Shvetambar-Khandelwal");
-                arrayAdapter1.add("Shvetambar-Porwal");
-                arrayAdapter1.add("Shvetambar-Kasliwal");
-                arrayAdapter1.add("Shvetambar-Golapurab");
+                arrayAdapter1.add("Shwetambar-" + "Navnat");
+                arrayAdapter1.add("Shwetambar-" + "Saitwal");
+                arrayAdapter1.add("Shwetambar-" + "Agrawal");
+                arrayAdapter1.add("Shwetambar-" + "Bagherwal");
+                arrayAdapter1.add("Shwetambar-" + "Bhabra");
+                arrayAdapter1.add("Shwetambar-" + "Bunt");
+                arrayAdapter1.add("Shwetambar-" + "Chaturtha");
+                arrayAdapter1.add("Shwetambar-" + "Dugar");
+                arrayAdapter1.add("Shwetambar-" + "Godha");
+                arrayAdapter1.add("Shwetambar-" + "Golalare");
+                arrayAdapter1.add("Shwetambar-" + "Golapurva");
+                arrayAdapter1.add("Shwetambar-" + "Humad");
+                arrayAdapter1.add("Shwetambar-" + "Jaiswal");
+                arrayAdapter1.add("Shwetambar-" + "Kasliwal");
+                arrayAdapter1.add("Shwetambar-" + "Narsingpura");
+                arrayAdapter1.add("Shwetambar-" + "Oswal");
+                arrayAdapter1.add("Shwetambar-" + "Parwar");
+                arrayAdapter1.add("Shwetambar-" + "Porwal");
+                arrayAdapter1.add("Shwetambar-" + "Sarak");
+                arrayAdapter1.add("Shwetambar-" + "Sarawagi");
+                arrayAdapter1.add("Shwetambar-" + "Shrimal");
+                arrayAdapter1.add("Shwetambar-" + "Tamil");
+                arrayAdapter1.add("Shwetambar-" + "Veerwal");
+                arrayAdapter1.add("Shwetambar-" + "Vijayvargiya");
+
                 arrayAdapter1.add("Other");
                 ArrayAdapter<String> arrayAdapter6 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrayAdapter1);
                 arrayAdapter6.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);

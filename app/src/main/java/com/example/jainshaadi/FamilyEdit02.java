@@ -288,9 +288,10 @@ public class FamilyEdit02 extends DialogFragment {
                         default:
                             break;
                     }
-                    districtAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);     // Specify the layout to use when the list of choices appears
-                    districtSpinner.setAdapter(districtAdapter);        //Populate the list of Districts in respect of the State selected
-
+                    if (districtAdapter != null) {
+                        districtAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        districtSpinner.setAdapter(districtAdapter);
+                    }
                     //To obtain the selected District from the spinner
 
                     districtSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

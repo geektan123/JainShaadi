@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 import android.util.Log;
@@ -75,6 +76,24 @@ public class Profile extends AppCompatActivity {
         linearnext = findViewById(R.id.Layoutnext);
         layoutgayab.setVisibility(View.INVISIBLE);
         Bundle bundle = new Bundle();
+        FirebaseMessaging.getInstance().subscribeToTopic("AllUsers")
+            .addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Log.d("tag","User is subscribed");
+                }
+                else {
+
+                }
+            });
+        FirebaseMessaging.getInstance().subscribeToTopic("IncompleteRegistration")
+            .addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Log.d("tag","User is subscribed");
+                }
+                else {
+
+                }
+            });
 
 
         layout.setOnClickListener(new View.OnClickListener() {

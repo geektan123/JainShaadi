@@ -58,7 +58,7 @@ public class Search extends AppCompatActivity {
                 // Redirect to SavedProfilesActivity
                 Intent intent = new Intent(Search.this,SearchFilter.class);
                 intent.putExtra("currentUserId", currentUserId);
-                intent.putExtra("filterType", "Shvetambar");
+                intent.putExtra("filterType", "Shwetambar");
                 startActivity(intent);
             }
         });

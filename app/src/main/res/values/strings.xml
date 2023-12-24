@@ -2,6 +2,8 @@
     <string name="app_name">JainShaadi</string>
     <string name="message">Enter text here</string>
     <string name="default_web_client_id">5384407861-sb911rjlfub8k30cf30r1cv415kdsljl.apps.googleusercontent.com</string>
+    <string name="msg_token_fmt">FCM Token: %s</string>
+
 
 
     <string-array name="array_indian_states">

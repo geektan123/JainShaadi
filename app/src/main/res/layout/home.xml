@@ -37,25 +37,18 @@
                         android:textStyle="bold"
                         />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="64dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                   >
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical">
+
                     <ImageView
 
-                        android:layout_width="29dp"
-                        android:layout_height="29dp"
-                        android:src="@drawable/save_icon"
                         android:id="@+id/saved"
-                        android:layout_marginRight="11dp"/>
-                    <ImageView
-
                         android:layout_width="29dp"
                         android:layout_height="29dp"
-                        android:src="@drawable/notification_icon"
-                        android:id="@+id/notification"
-                        android:layout_marginRight="11dp"/>
+                        android:src="@drawable/save_icon" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

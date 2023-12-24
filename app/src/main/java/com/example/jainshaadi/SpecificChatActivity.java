@@ -449,7 +449,6 @@ public class SpecificChatActivity extends AppCompatActivity {
         messageQuery.addChildEventListener(childEventListener);
     }
 
-
     private void loadMoreMessages() {
         isLoading = true;
 
