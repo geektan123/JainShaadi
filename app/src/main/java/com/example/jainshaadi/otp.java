@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.common.base.Verify;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,10 +40,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class otp extends AppCompatActivity {
+    private static final String INDIAN_PHONE_NUMBER_PATTERN = "^[789]\\d{9}$";
+    private boolean isPhoneNumberValid = false; // Add this variable
 
     LinearLayout Verify;
     private FirebaseAuth mAuth;
@@ -71,6 +77,7 @@ public class otp extends AppCompatActivity {
     private ImageView thirdImage;
     private TextView Timer;
     /*DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");*/
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
 
     @Override
@@ -79,9 +86,6 @@ public class otp extends AppCompatActivity {
 
         setContentView(R.layout.activity_otp);
         getSupportActionBar().hide();
-       mAuth = FirebaseAuth.getInstance();
-// set this to remove reCaptcha web
-        mAuth.getFirebaseAuthSettings().setAppVerificationDisabledForTesting(true);
         firstLinearLayout = findViewById(R.id.firstLinearLayout);
         image1 = findViewById(R.id.image1);
         firstView = findViewById(R.id.firstView);
@@ -101,8 +105,8 @@ public class otp extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         didnot = findViewById(R.id.didnot);
         Request = findViewById(R.id.request);
-        // progressBar = findViewById(R.id.progressBar);
-        //progressBar.setVisibility(View.INVISIBLE);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
         otpLayout.setVisibility(View.INVISIBLE);
         didnot.setVisibility(View.INVISIBLE);
         Request.setVisibility(View.INVISIBLE);
@@ -123,106 +127,62 @@ public class otp extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String number1 = s.toString();
-                if (number1.length() >= 10) {
+
+                if (number1.length() == 10 && isValidIndianPhoneNumber(number1)) {
                     Verify.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
                     Send.setTextColor(Color.parseColor("#FFFFFF"));
-                    //  Send.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_enabled));
+                    isPhoneNumberValid = true; // Set the flag to true when the phone number is valid
+                    String userKey = FirebaseAuth.getInstance().getUid();
+                    DatabaseReference userRef = databaseReference.child(userKey);
+                    Map<String, Object> updateData = new HashMap<>();
+
+                    updateData.put("Phone Number", number1);
+                    userRef.updateChildren(updateData);
 
                     // Hide the keyboard
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(mobileNumberEditText.getWindowToken(), 0);
-                } else {
+                    Toast.makeText(getApplicationContext(), "Verified", Toast.LENGTH_SHORT).show();
+                } else if (number1.length() == 10 && !isValidIndianPhoneNumber(number1)) {
+                    // The phone number is 10 digits but not valid
                     Verify.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
                     Send.setTextColor(Color.parseColor("#FFFFFF"));
+                    isPhoneNumberValid = false; // Set the flag to false when the phone number is not valid
 
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mobileNumberEditText.getWindowToken(), 0);
+                    Toast.makeText(getApplicationContext(), "Please enter a valid Indian number", Toast.LENGTH_SHORT).show();
+                } else {
+                    // The phone number is not 10 digits
+                    isPhoneNumberValid = false; // Set the flag to false when the phone number is not valid
+
+                    Verify.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
+                    Send.setTextColor(Color.parseColor("#FFFFFF"));
                 }
             }
+
         });
-
-
         Verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // Replace "7587680487" with the actual phone number
-                String number1 = mobileNumberEditText.getText().toString();
-                // Log.e("hunda", "error :" + number1);
-
-                number = ("+91".concat(number1)).trim();
-                Log.e("hunda", "error :" + number);
-                //    progressBar.setVisibility(View.VISIBLE);
-
-
-                if (number1.isEmpty()) {
-                    //    progressBar.setVisibility(View.INVISIBLE);
-
-                    Toast.makeText(getApplicationContext(), "Please Enter YOur number", Toast.LENGTH_SHORT).show();
-                } else if (number1.length() < 10 || number1.length() > 10) {
-                    //   progressBar.setVisibility(View.INVISIBLE);
-
-                    Toast.makeText(getApplicationContext(), "Please Enter correct number", Toast.LENGTH_SHORT).show();
+                // Check the flag to determine whether the phone number is valid
+                if (isPhoneNumberValid) {
+                    // Change the intent
+                    Intent intent = new Intent(otp.this, educational_information_form.class); // Replace NextActivity with your desired activity
+                    startActivity(intent);
+                    // Add any other logic you want to perform after changing the intent
                 } else {
-
-                    PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
-                            .setPhoneNumber(number)
-                            .setTimeout(60L, TimeUnit.SECONDS)
-                            .setActivity(otp.this)
-                            .setCallbacks(mCallbacks)
-                            .build();
-
-                    PhoneAuthProvider.verifyPhoneNumber(options);
+                    // Show toast if the phone number is not valid
+                    Toast.makeText(getApplicationContext(), "Please enter a valid 10-Digit Indian number", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-
-        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            @Override
-            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                // How to automatically fetch code here
-            }
-
-            @Override
-            public void onVerificationFailed(@NonNull FirebaseException e) {
-                // Handle verification failure
-            }
-
-            @Override
-            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                super.onCodeSent(s, forceResendingToken);
-                // Handle code sent
-                Toast.makeText(getApplicationContext(), "OTP is Sent", Toast.LENGTH_SHORT).show();
-               /* mobileNumberLayout.setVisibility(View.INVISIBLE);
-               // progressBar.setVisibility(View.INVISIBLE);
-                otpLayout.setVisibility(View.VISIBLE);
-                Verify.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
-                Send.setTextColor(Color.parseColor("#FFFFFF"));
-                Request.setVisibility(View.VISIBLE);
-                Send.setText("Verify");
-                temp="Verify";*/
-
-
-                // Delay visibility by 60 seconds (60 * 1000 milliseconds)
-
-                // 60 seconds
-                new CountDownTimer(60000, 1000) { // 60 seconds, tick every 1 second
-                    public void onTick(long millisUntilFinished) {
-                        long secondsLeft = millisUntilFinished / 1000;
-                        Timer.setText("You may request the new OTP in " + secondsLeft + " seconds");
-                    }
-
-                    public void onFinish() {
-                        // When the countdown is finished, make your layout visible
-                        didnot.setVisibility(View.VISIBLE);
-                    }
-                }.start();
-                Codesent = s;
-
-                Intent intent = new Intent(otp.this, Otp2.class);
-                intent.putExtra("otp", Codesent);
-                startActivity(intent);
-            }
-        };
-        Log.e("gggg", "error :" + temp);
+    }
+    // Function to validate Indian phone number
+    private static boolean isValidIndianPhoneNumber(String phoneNumber) {
+        Pattern pattern = Pattern.compile(INDIAN_PHONE_NUMBER_PATTERN);
+        Matcher matcher = pattern.matcher(phoneNumber);
+        return matcher.matches();
     }
 }

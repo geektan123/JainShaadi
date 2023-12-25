@@ -3,27 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/Verify"
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="258dp"
-        android:layout_marginEnd="1dp"
-        android:background="@drawable/rounded_card_background_next_disabled"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/Send"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="16dp"
-            android:text="Send"
-            android:textColor="#FFFFFF"
-            android:textSize="16dp" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -103,7 +82,15 @@
         android:layout_width="match_parent"
         android:layout_height="24dp"
         android:gravity="center"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="80dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Add Mobile Number"
+            android:textSize="20dp"
+            android:textColor="#524044"
+            android:layout_gravity="center"/>
+    </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/mobileNumberLayout"
         android:layout_width="match_parent"
@@ -111,7 +98,17 @@
         android:layout_marginTop="124dp"
         android:layout_marginHorizontal="20dp"
 
-        />
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mobileNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="Enter Mobile Number"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/otpLayout"
@@ -127,7 +124,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:hint="OTP"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -147,21 +144,52 @@
             android:layout_height="24dp"
             android:layout_gravity="center"
             android:layout_marginHorizontal="16dp"
-            android:text="Verify"
+            android:text="Send"
             android:textColor="#FFFFFF"
             android:textSize="16dp" />
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="93dp"
-        android:layout_height="153dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+    <LinearLayout
+        android:id="@+id/didnot"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="223dp" />
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="317dp"
+        android:background="@drawable/rounded_card_blank_background"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            android:text="I didn't get the OTP"
+            android:textColor="#524044"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/request"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="380dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/Timer"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            android:text="You may request the new OTP in 1:00"
+            android:textColor="#524044"
+            android:textSize="12sp" />
+    </LinearLayout>
+
 
 </RelativeLayout>

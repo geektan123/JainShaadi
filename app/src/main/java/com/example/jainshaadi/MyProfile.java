@@ -203,7 +203,7 @@ public class MyProfile extends AppCompatActivity {
                     overlayButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent i = new Intent(getApplicationContext(), educational_information_form.class);
+                            Intent i = new Intent(getApplicationContext(), otp.class);
 
                             // Add this line to attach the bundle
                             startActivity(i);

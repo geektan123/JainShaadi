@@ -55,7 +55,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-messaging:23.4.0")
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-inappmessaging-display")
-
+    implementation ("com.google.android.gms:play-services-auth-api-phone:18.0.1")
 }
 
 

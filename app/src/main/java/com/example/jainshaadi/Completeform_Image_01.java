@@ -1,7 +1,9 @@
 package com.example.jainshaadi;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -38,6 +40,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 
 public class Completeform_Image_01 extends AppCompatActivity {
+    private static final int STORAGE_PERMISSION_REQUEST_CODE = 1;
 
     ShapeableImageView shapeableImageView;
     Uri imageUri;
@@ -100,9 +103,29 @@ public class Completeform_Image_01 extends AppCompatActivity {
             }
         });
 
-        shapeableImageView.setOnClickListener(v -> openImagePickerWithCrop());
+        shapeableImageView.setOnClickListener(v -> {
+            if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                openImagePickerWithCrop();
+            } else {
+                // Request storage permission
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_REQUEST_CODE);
+            }
+        });
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        if (requestCode == STORAGE_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, open the image picker
+                openImagePickerWithCrop();
+            } else {
+                // Permission denied, show a message or handle accordingly
+                Toast.makeText(this, "Storage permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
     private void openImagePickerWithCrop() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         imagePickerLauncher.launch(galleryIntent);

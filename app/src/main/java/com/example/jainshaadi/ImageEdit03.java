@@ -1,7 +1,9 @@
 package com.example.jainshaadi;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.imageview.ShapeableImageView;
@@ -38,6 +41,7 @@ import java.util.HashMap;
 public class ImageEdit03 extends DialogFragment {
     ShapeableImageView shapeableImageView;
     Uri imageUri;
+    private static final int STORAGE_PERMISSION_REQUEST_CODE = 1;
 
     Dialog dialog;
     String tempimageUri;
@@ -81,11 +85,32 @@ public class ImageEdit03 extends DialogFragment {
             }
         });
 
-        shapeableImageView.setOnClickListener(v -> openImagePickerWithCrop());
+        shapeableImageView.setOnClickListener(v -> {
 
+           /* if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                openImagePickerWithCrop();
+            } else {*/
+                // Request storage permission
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_REQUEST_CODE);
+
+
+        });
         return view;
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        if (requestCode == STORAGE_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, open the image picker
+                openImagePickerWithCrop();
+            } else {
+                // Permission denied, show a message or handle accordingly
+                Toast.makeText(getContext(), "Storage permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
     private void openImagePickerWithCrop() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         imagePickerLauncher.launch(galleryIntent);
