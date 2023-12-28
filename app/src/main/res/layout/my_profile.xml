@@ -204,7 +204,7 @@
                     android:text="Product-Designer, Zomato"
                     android:textSize="18dp"
                     android:textColor="#524044"
-                    android:layout_marginLeft="5dp"
+
                     android:id="@+id/profile_profession"/>
             </LinearLayout>
             <LinearLayout
