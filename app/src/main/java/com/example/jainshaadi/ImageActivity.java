@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -22,6 +23,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,6 +51,11 @@ public class ImageActivity extends AppCompatActivity {
     ProgressBar progressBar;
     boolean uncompressedImageUploaded = false;
     private static final int STORAGE_PERMISSION_REQUEST_CODE = 1;
+    /*private static final String CAMERA_PERMISSION = Manifest.permission.POST_NOTIFICATIONS;
+    private static final String LOCATION_PERMISSION =  Manifest.permission.ACCESS_FINE_LOCATION;*/
+    private static  String READ_STORAGE_PERMISSION;
+
+    private int REQUEST_CODE = 11;
 
     final private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
     final private StorageReference reference = FirebaseStorage.getInstance().getReference();
@@ -79,7 +87,12 @@ public class ImageActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            READ_STORAGE_PERMISSION = Manifest.permission.READ_MEDIA_IMAGES;
+        }else {
+            READ_STORAGE_PERMISSION = Manifest.permission.READ_EXTERNAL_STORAGE;
 
+        }
         shapeableImageView = findViewById(R.id.shapeable_image_view);
         layout = findViewById(R.id.Next);
         progressBar = findViewById(R.id.progressBar);
@@ -126,12 +139,48 @@ public class ImageActivity extends AppCompatActivity {
                 openImagePickerWithCrop();
             } else {*/
                 // Request storage permission
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_REQUEST_CODE);
+            //    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_REQUEST_CODE);
+            showPermissionDialog();
 
         });
 
     }
+    private void showPermissionDialog() {
+
+        if (ContextCompat.checkSelfPermission(this,READ_STORAGE_PERMISSION)  == PackageManager.PERMISSION_GRANTED
+        ){
+            openImagePickerWithCrop();
+
+            Toast.makeText(this, "Permission accepted", Toast.LENGTH_SHORT).show();
+
+        }else {
+            ActivityCompat.requestPermissions(this, new String[]{ READ_STORAGE_PERMISSION },REQUEST_CODE);
+        }
+
+
+    }
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == REQUEST_CODE){
+            if(grantResults.length > 0){
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ){
+                    openImagePickerWithCrop();
+
+                }
+                else {
+                    Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }else {
+            showPermissionDialog();
+        }
+
+    }
+  /*  @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
@@ -144,7 +193,7 @@ public class ImageActivity extends AppCompatActivity {
                 Toast.makeText(this, "Storage permission denied", Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
     private void openImagePickerWithCrop() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         imagePickerLauncher.launch(galleryIntent);

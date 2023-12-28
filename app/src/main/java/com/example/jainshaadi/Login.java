@@ -3,12 +3,14 @@ package com.example.jainshaadi;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,7 +41,7 @@ public class Login extends AppCompatActivity {
     GoogleSignInClient client;
     ProgressBar progressBar;
     String status = "";
-
+ TextView login_privacy_policy;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,20 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         progressBar = findViewById(R.id.progressBar);
+        login_privacy_policy=findViewById(R.id.login_privacy_policy_part2);
+        login_privacy_policy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Define the URL for the privacy policy
+                String privacyPolicyUrl = "https://www.jainmaitri.com/T&C";
+
+                // Create an Intent to open a web page
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(privacyPolicyUrl));
+
+                // Start the activity with the intent
+                startActivity(intent);
+            }
+        });
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 //        if (currentUser != null) {

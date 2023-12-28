@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:inputType="phone"
             android:hint="Enter Mobile Number"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +124,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:hint="OTP"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -188,7 +188,7 @@
             android:layout_marginHorizontal="16dp"
             android:text="You may request the new OTP in 1:00"
             android:textColor="#524044"
-            android:textSize="12sp" />
+            android:textSize="12dp" />
     </LinearLayout>
 
 

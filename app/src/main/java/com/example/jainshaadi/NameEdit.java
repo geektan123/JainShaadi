@@ -1,10 +1,13 @@
 package com.example.jainshaadi;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -20,6 +23,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +42,7 @@ public class NameEdit extends DialogFragment {
     Button Next;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_edit_name, container, false);
@@ -48,6 +55,8 @@ public class NameEdit extends DialogFragment {
         InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         Next = view.findViewById(R.id.submitButton);
+
+
 
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -98,6 +107,9 @@ public class NameEdit extends DialogFragment {
         return view;
     }
 
+
+
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
@@ -112,4 +124,5 @@ public class NameEdit extends DialogFragment {
 
         return dialog;
     }
+
 }

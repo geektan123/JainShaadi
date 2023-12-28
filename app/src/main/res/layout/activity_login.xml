@@ -51,20 +51,35 @@ android:background="#FFF9FA"
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/login_privacy_policy"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="60dp">
 
-        android:text="By &quot;Signing in&quot; I agree to Terms &amp; Condition."
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="10dp" />
+        <TextView
+            android:id="@+id/login_privacy_policy_part1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="                                  By &quot;Signing in&quot; I agree to"
+            android:textAlignment="center"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/login_privacy_policy_part2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terms &amp; Condition."
+            android:textAlignment="center"
+            android:textColor="@color/com_facebook_blue"
+            android:textSize="10dp" />
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

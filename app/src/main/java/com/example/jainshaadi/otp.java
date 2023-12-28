@@ -1,10 +1,15 @@
 package com.example.jainshaadi;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -51,6 +56,8 @@ public class otp extends AppCompatActivity {
     private boolean isPhoneNumberValid = false; // Add this variable
 
     LinearLayout Verify;
+    String SMS_PERMISSION;
+    private int REQUEST_CODE = 11;
     private FirebaseAuth mAuth;
     private TextInputLayout mobileNumberLayout;
     private TextInputEditText mobileNumberEditText;
@@ -110,7 +117,13 @@ public class otp extends AppCompatActivity {
         otpLayout.setVisibility(View.INVISIBLE);
         didnot.setVisibility(View.INVISIBLE);
         Request.setVisibility(View.INVISIBLE);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+           SMS_PERMISSION = Manifest.permission.RECEIVE_SMS;
+        }else {
+            SMS_PERMISSION = Manifest.permission.RECEIVE_SMS;
 
+        }
+        showPermissionDialog();
 // ...
 
         mobileNumberEditText.addTextChangedListener(new TextWatcher() {
@@ -179,6 +192,41 @@ public class otp extends AppCompatActivity {
         });
 
     }
+
+    private void showPermissionDialog() {
+
+        if (ContextCompat.checkSelfPermission(this,SMS_PERMISSION)  == PackageManager.PERMISSION_GRANTED
+        ){
+
+            Toast.makeText(this, "Permission accepted", Toast.LENGTH_SHORT).show();
+
+        }else {
+            ActivityCompat.requestPermissions(this, new String[]{ SMS_PERMISSION },REQUEST_CODE);
+        }
+
+
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == REQUEST_CODE){
+            if(grantResults.length > 0){
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ){
+
+                }
+                else {
+                    Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }else {
+            showPermissionDialog();
+        }
+
+    }
+
     // Function to validate Indian phone number
     private static boolean isValidIndianPhoneNumber(String phoneNumber) {
         Pattern pattern = Pattern.compile(INDIAN_PHONE_NUMBER_PATTERN);

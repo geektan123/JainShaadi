@@ -1,17 +1,32 @@
 package com.example.jainshaadi;
 
+import android.Manifest;
+import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -41,8 +56,10 @@ public class Launcher extends AppCompatActivity {
     // Set the dimensions of the sign-in button.
 //    LinearLayout textView;
     GoogleSignInClient client;
-//    ProgressBar progressBar;
+    //    ProgressBar progressBar;
     String status = "";
+    public static final int NOTIFICATION_PERMISSION_REQUEST_CODE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +70,7 @@ public class Launcher extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.launcher_splash);
 
-        // Initialize the ProgressBar
-//        progressBar = findViewById(R.id.progressBar);
+
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
@@ -82,13 +98,13 @@ public class Launcher extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }
-                    }
-                    else {
+                    } else {
                         Intent intent = new Intent(getApplicationContext(), Profile.class);
                         startActivity(intent);
                         finish();
                     }
                 }
+
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     // Handle any errors
@@ -101,4 +117,37 @@ public class Launcher extends AppCompatActivity {
             finish();
         }
     }
+
+
+
+    }
+
+
+
+
+    /* @Override
+     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+         if (requestCode == NOTIFICATION_PERMISSION_REQUEST_CODE) {
+             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+             } else {
+                 // Permission denied, show a message or handle accordingly
+                 Toast.makeText(getApplicationContext(), "Notification  permission denied", Toast.LENGTH_SHORT).show();
+             }
+         }
+     }
+    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    Toast.makeText(getApplicationContext(), "Notification permission granted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Notification permission denied", Toast.LENGTH_SHORT).show();
+                }
+            }
+    );
 }
+*/
+

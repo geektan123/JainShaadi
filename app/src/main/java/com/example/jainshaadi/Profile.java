@@ -1,14 +1,26 @@
 package com.example.jainshaadi;
 
+import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +35,8 @@ public class Profile extends AppCompatActivity {
     private LinearLayout selectedLinearLayout = null;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
     private boolean gender = true; // Initialize with a default value (true for Male, false for Female)
+     String POST_NOTIFICATIONS_PERMISSION;
+    private int REQUEST_CODE = 11;
 
 
     TextView myself;
@@ -54,6 +68,13 @@ public class Profile extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_profile);
         this.setTitle("Create Profile For");
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            POST_NOTIFICATIONS_PERMISSION = Manifest.permission.POST_NOTIFICATIONS;
+        }else {
+            POST_NOTIFICATIONS_PERMISSION = Manifest.permission.ACCESS_NOTIFICATION_POLICY;
+
+        }
+        showPermissionDialog();
 
         myself = (TextView) findViewById(R.id.myself);
         myson = findViewById(R.id.Son);
@@ -494,68 +515,89 @@ public class Profile extends AppCompatActivity {
 
             }
         });*/
-        linearnext.setOnClickListener(new View.OnClickListener() {
+        // ... (Your existing code)
 
+        linearnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-if(isNextLayoutChanged==true) {
-    if(!(userData.isEmpty()))
-    {
-        String gen = "";
-        String acc = "";
-        if(userData.get("Gender").equals("Male"))
-        {
-            gen = "1";
-        } else if (userData.get("Gender").equals("Female")) {
-            gen = "2";
-        }
-        if(userData.get("Account_Managed_for").equals("Myself"))
-        {
-            acc = "1";
-        }
-        else if(userData.get("Account_Managed_for").equals("My Son"))
-        {
-            acc = "2";
-        }
-        else if(userData.get("Account_Managed_for").equals("My Brother"))
-        {
-            acc = "3";
-        }
-        else if(userData.get("Account_Managed_for").equals("My Daughter"))
-        {
-            acc = "4";
-        }
-        else if(userData.get("Account_Managed_for").equals("My Sister"))
-        {
-            acc = "5";
-        }
-        else if(userData.get("Account_Managed_for").equals("My Relative"))
-        {
-            acc = "6";
-        }
+                if (isNextLayoutChanged == true) {
 
-        String userKey = FirebaseAuth.getInstance().getUid();
-        userData.put("active","enabled");
-        userData.put("status","Authenticated");
-        databaseReference.child(userKey).setValue(userData);
-        Intent i = new Intent(getApplicationContext(), Name.class);
-        i.putExtra("Gender",gen);
-        i.putExtra("Account",acc);
-        // Add this line to attach the bundle
-        startActivity(i);
+                    if (!(userData.isEmpty())) {
+                        String gen = "";
+                        String acc = "";
+                        if (userData.get("Gender").equals("Male")) {
+                            gen = "1";
+                        } else if (userData.get("Gender").equals("Female")) {
+                            gen = "2";
+                        }
+                        if (userData.get("Account_Managed_for").equals("Myself")) {
+                            acc = "1";
+                        } else if (userData.get("Account_Managed_for").equals("My Son")) {
+                            acc = "2";
+                        } else if (userData.get("Account_Managed_for").equals("My Brother")) {
+                            acc = "3";
+                        } else if (userData.get("Account_Managed_for").equals("My Daughter")) {
+                            acc = "4";
+                        } else if (userData.get("Account_Managed_for").equals("My Sister")) {
+                            acc = "5";
+                        } else if (userData.get("Account_Managed_for").equals("My Relative")) {
+                            acc = "6";
+                        }
 
-    }
-    else
-    {
-        Toast.makeText( Profile.this, "Please Complete the values", Toast.LENGTH_SHORT).show();
-    }
-
-}
-else {
-    Toast.makeText( Profile.this, "Please Complete the values", Toast.LENGTH_SHORT).show();
-}
+                        String userKey = FirebaseAuth.getInstance().getUid();
+                        userData.put("active", "enabled");
+                        userData.put("status", "Authenticated");
+                        databaseReference.child(userKey).setValue(userData);
+                        Intent i = new Intent(getApplicationContext(), Name.class);
+                        i.putExtra("Gender", gen);
+                        i.putExtra("Account", acc);
+                        // Add this line to attach the bundle
+                        startActivity(i);
+                    } else {
+                        Toast.makeText(Profile.this, "Please Complete the values", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(Profile.this, "Please Complete the values", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+// Close onCreate method and the class
+
+
+    }
+
+    private void showPermissionDialog() {
+
+        if (ContextCompat.checkSelfPermission(this,POST_NOTIFICATIONS_PERMISSION)  == PackageManager.PERMISSION_GRANTED
+        ){
+
+            Toast.makeText(this, "Permission accepted", Toast.LENGTH_SHORT).show();
+
+        }else {
+            ActivityCompat.requestPermissions(this, new String[]{ POST_NOTIFICATIONS_PERMISSION },REQUEST_CODE);
+        }
+
+
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == REQUEST_CODE){
+            if(grantResults.length > 0){
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ){
+
+                }
+                else {
+                    Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }else {
+            showPermissionDialog();
+        }
 
     }
 }

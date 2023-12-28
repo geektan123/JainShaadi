@@ -228,10 +228,10 @@ String name;
                     profileName.setText(name);
                     profileProfession.setText(profession + " at "+ Company);
                     tag.setText(tagValue);
-                    profileAge.setText(age + "," + Height);
+                    profileAge.setText(age + " Year Old, " + Height);
                     profileCast.setText(cast);
                     profileIncome.setText(income);
-                    profileCity.setText(city + "," + state);
+                    profileCity.setText(city + ", " + state);
 
                     // Retrieve and set other profile data in TextViews simil
                         // Data exists, set the TextViews
@@ -248,13 +248,6 @@ String name;
                         String ParentCity = dataSnapshot.child("ParentCity").getValue(String.class);
                         String Year = dataSnapshot.child("Year").getValue(String.class);
 
-                        profileName.setText(name);
-                        profileProfession.setText(profession + " at "+ Company);
-                        tag.setText(tagValue);
-                        profileAge.setText(age + "," + Height);
-                        profileCast.setText(cast);
-                        profileIncome.setText(income);
-                        profileCity.setText(city + "," + state);
                         profileEducation.setText(Degree + "\n" + College + ", " + Year);
                         profileFather.setText(FatherName + "(" + FatherOccupation + ")");
                         profileMother.setText(MotherName + "(" + MotherOccupation + ")");

@@ -110,7 +110,7 @@ public class Dob extends AppCompatActivity {
                         layout1.setVisibility(View.VISIBLE);
                         layout.setVisibility(View.VISIBLE);
                     }
-                }, 2000, 01, 20);
+                }, 1998, 01, 01);
 
                 datePickerDialog.show();
             }

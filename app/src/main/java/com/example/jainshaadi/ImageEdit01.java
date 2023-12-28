@@ -109,7 +109,7 @@ public class ImageEdit01 extends DialogFragment {
                 openImagePickerWithCrop();
             } else {
                 // Permission denied, show a message or handle accordingly
-                Toast.makeText(getContext(), "Storage permission denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You have denied the permission please go Setting-->apps-->JainMaitri-->allow Files and Media ", Toast.LENGTH_SHORT).show();
             }
         }
     }
