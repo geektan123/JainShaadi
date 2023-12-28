@@ -35,7 +35,7 @@ android:background="#FFF9FA"
         android:layout_height="80dp"
         android:layout_below="@id/blank"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/logo_square"
+        android:background="@drawable/red_logo"
         app:shapeAppearanceOverlay="@style/roundimageview"
         />
 

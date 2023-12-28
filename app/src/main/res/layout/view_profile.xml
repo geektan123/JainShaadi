@@ -178,7 +178,7 @@
                     android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
-                    android:layout_marginRight="5dp">
+                    >
                     <ImageView
                         android:layout_width="12dp"
                         android:layout_height="wrap_content"

@@ -52,7 +52,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class otp extends AppCompatActivity {
-    private static final String INDIAN_PHONE_NUMBER_PATTERN = "^[789]\\d{9}$";
+    private static final String INDIAN_PHONE_NUMBER_PATTERN = "^[6789]\\d{9}$";
     private boolean isPhoneNumberValid = false; // Add this variable
 
     LinearLayout Verify;
@@ -96,7 +96,7 @@ public class otp extends AppCompatActivity {
         firstLinearLayout = findViewById(R.id.firstLinearLayout);
         image1 = findViewById(R.id.image1);
         firstView = findViewById(R.id.firstView);
-        Timer = findViewById(R.id.Timer);
+
         secondLinearLayout = findViewById(R.id.secondLinearLayout);
         secondImage = findViewById(R.id.secondImage);
         secondView = findViewById(R.id.secondView);
@@ -107,23 +107,18 @@ public class otp extends AppCompatActivity {
         mobileNumberEditText = findViewById(R.id.mobileNumberEditText);
         Send = findViewById(R.id.Send);
         otpLayout = findViewById(R.id.otpLayout);
-        otpEditText = findViewById(R.id.otpEditText);
         Verify = findViewById(R.id.Verify);
         mAuth = FirebaseAuth.getInstance();
-        didnot = findViewById(R.id.didnot);
-        Request = findViewById(R.id.request);
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
+
+
+
         otpLayout.setVisibility(View.INVISIBLE);
-        didnot.setVisibility(View.INVISIBLE);
-        Request.setVisibility(View.INVISIBLE);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
            SMS_PERMISSION = Manifest.permission.RECEIVE_SMS;
         }else {
             SMS_PERMISSION = Manifest.permission.RECEIVE_SMS;
 
         }
-        showPermissionDialog();
 // ...
 
         mobileNumberEditText.addTextChangedListener(new TextWatcher() {
@@ -155,7 +150,6 @@ public class otp extends AppCompatActivity {
                     // Hide the keyboard
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(mobileNumberEditText.getWindowToken(), 0);
-                    Toast.makeText(getApplicationContext(), "Verified", Toast.LENGTH_SHORT).show();
                 } else if (number1.length() == 10 && !isValidIndianPhoneNumber(number1)) {
                     // The phone number is 10 digits but not valid
                     Verify.setBackground(getResources().getDrawable(R.drawable.rounded_card_background_next_disabled));
@@ -193,39 +187,6 @@ public class otp extends AppCompatActivity {
 
     }
 
-    private void showPermissionDialog() {
-
-        if (ContextCompat.checkSelfPermission(this,SMS_PERMISSION)  == PackageManager.PERMISSION_GRANTED
-        ){
-
-            Toast.makeText(this, "Permission accepted", Toast.LENGTH_SHORT).show();
-
-        }else {
-            ActivityCompat.requestPermissions(this, new String[]{ SMS_PERMISSION },REQUEST_CODE);
-        }
-
-
-    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if(requestCode == REQUEST_CODE){
-            if(grantResults.length > 0){
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED
-                ){
-
-                }
-                else {
-                    Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-        }else {
-            showPermissionDialog();
-        }
-
-    }
 
     // Function to validate Indian phone number
     private static boolean isValidIndianPhoneNumber(String phoneNumber) {

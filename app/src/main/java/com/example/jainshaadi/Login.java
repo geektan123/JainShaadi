@@ -54,7 +54,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Define the URL for the privacy policy
-                String privacyPolicyUrl = "https://www.jainmaitri.com/T&C";
+                String privacyPolicyUrl = "https://jainmaitri.com/TermsAndConditions";
 
                 // Create an Intent to open a web page
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(privacyPolicyUrl));

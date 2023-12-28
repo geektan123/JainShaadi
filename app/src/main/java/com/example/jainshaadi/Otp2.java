@@ -82,7 +82,6 @@ public class Otp2 extends AppCompatActivity {
         firstLinearLayout = findViewById(R.id.firstLinearLayout);
         image1 = findViewById(R.id.image1);
         firstView = findViewById(R.id.firstView);
-        Timer = findViewById(R.id.Timer);
         secondLinearLayout = findViewById(R.id.secondLinearLayout);
         secondImage = findViewById(R.id.secondImage);
         secondView = findViewById(R.id.secondView);
@@ -92,28 +91,12 @@ public class Otp2 extends AppCompatActivity {
         mobileNumberEditText = findViewById(R.id.mobileNumberEditText);
         Send = findViewById(R.id.Send);
         otpLayout = findViewById(R.id.otpLayout);
-        otpEditText = findViewById(R.id.otpEditText);
         Verify = findViewById(R.id.Verify);
         mAuth = FirebaseAuth.getInstance();
-        didnot = findViewById(R.id.didnot);
-        Request = findViewById(R.id.request);
-        mobileNumberLayout.setVisibility(View.INVISIBLE);
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
-        otpLayout.setVisibility(View.VISIBLE);
-        didnot.setVisibility(View.INVISIBLE);
-        Request.setVisibility(View.VISIBLE);
-        new CountDownTimer(60000, 1000) { // 60 seconds, tick every 1 second
-            public void onTick(long millisUntilFinished) {
-                long secondsLeft = millisUntilFinished / 1000;
-                Timer.setText("You may request the new OTP in " + secondsLeft + " seconds");
-            }
 
-            public void onFinish() {
-                // When the countdown is finished, make your layout visible
-                didnot.setVisibility(View.VISIBLE);
-            }
-        }.start();
+        mobileNumberLayout.setVisibility(View.INVISIBLE);
+        otpLayout.setVisibility(View.VISIBLE);
+
 
         didnot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,11 +145,6 @@ public class Otp2 extends AppCompatActivity {
 
                 {
                     //  mprogressbarofotpauth.setVisibility(View.VISIBLE);
-                    String coderecieved=getIntent().getStringExtra("otp");
-                    //Log.e("uuuuu", coderecieved);
-
-                    PhoneAuthCredential credential= PhoneAuthProvider.getCredential(coderecieved,number1);
-                    signInWithPhoneAuthCredential(credential);
 
                 }
             }
