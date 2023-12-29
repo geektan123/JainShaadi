@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.jainshaadi"
+    namespace = "com.jainmaitri.app"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.jainshaadi"
+        applicationId = "com.jainmaitri.app"
         minSdk = 24
         targetSdk = 33
         versionCode = 1

@@ -22,98 +22,92 @@
 <!--            android:name=".Chatlist"-->
 <!--            android:exported="false" />-->
         <activity
-            android:name=".MainActivity"
+            android:name="com.jainmaitri.app.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SpecificChatActivity"
+            android:name="com.jainmaitri.app.SpecificChatActivity"
             android:theme="@style/Message.JainShaadi"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name=".Otp2"
+            android:name="com.jainmaitri.app.Otp2"
             android:exported="false" />
         <activity
-            android:name=".educational_information_form"
+            android:name="com.jainmaitri.app.educational_information_form"
             android:exported="false" />
         <activity
-            android:name=".family_information_form1"
+            android:name="com.jainmaitri.app.family_information_form1"
             android:exported="false" />
         <activity
-            android:name=".family_information_form2"
+            android:name="com.jainmaitri.app.family_information_form2"
             android:exported="false" />
         <activity
-            android:name=".otp"
+            android:name="com.jainmaitri.app.otp"
             android:exported="false" />
         <activity
-            android:name=".ImageActivity"
+            android:name="com.jainmaitri.app.ImageActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchFilter"
+            android:name="com.jainmaitri.app.SearchFilter"
             android:exported="false" />
 <!--        <activity-->
 <!--            android:name=".Search"-->
 <!--            android:exported="false" />-->
         <activity
-            android:name=".MyProfile"
+            android:name="com.jainmaitri.app.MyProfile"
             android:exported="false" />
         <activity
-            android:name=".SaveProfileDisplay"
+            android:name="com.jainmaitri.app.SaveProfileDisplay"
             android:exported="false" />
         <activity
-            android:name=".ViewProfile"
-            android:exported="false" />
-        <activity
-            android:name=".CardItem"
-            android:exported="false" />
-        <activity
-            android:name=".CardAdapter"
+            android:name="com.jainmaitri.app.ViewProfile"
             android:exported="false" />
 <!--        <activity-->
 <!--            android:name=".Homeactivity"-->
 <!--            android:exported="false" />-->
         <activity
-            android:name=".welcome_instructions"
+            android:name="com.jainmaitri.app.welcome_instructions"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".LocationActivity"
+            android:name="com.jainmaitri.app.LocationActivity"
             android:exported="false" />
         <activity
-            android:name=".DescribeActivity"
+            android:name="com.jainmaitri.app.DescribeActivity"
             android:exported="false" />
         <activity
-            android:name=".IncomeActivity"
+            android:name="com.jainmaitri.app.IncomeActivity"
             android:exported="false" />
         <activity
-            android:name=".Interest"
+            android:name="com.jainmaitri.app.Interest"
             android:exported="false" />
         <activity
-            android:name=".Cast"
+            android:name="com.jainmaitri.app.Cast"
             android:exported="false" />
         <activity
-            android:name=".Name"
+            android:name="com.jainmaitri.app.Name"
             android:exported="false" />
         <activity
-            android:name=".Dob"
+            android:name="com.jainmaitri.app.Dob"
             android:exported="true"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
-            android:name=".Profile"
+            android:name="com.jainmaitri.app.Profile"
             android:exported="false" />
         <activity
-            android:name=".Completeform_Image_01"
+            android:name="com.jainmaitri.app.Completeform_Image_01"
             android:exported="false" />
         <activity
-            android:name=".EditProfile"
+            android:name="com.jainmaitri.app.EditProfile"
             android:exported="false" />
         <activity
-            android:name=".VerificationComplete"
+            android:name="com.jainmaitri.app.VerificationComplete"
             android:exported="false" />
         <activity
-            android:name=".Completeform_Image_02"
+            android:name="com.jainmaitri.app.Completeform_Image_02"
             android:exported="false" />
         <activity
-            android:name=".ViewMyCard"
+            android:name="com.jainmaitri.app.ViewMyCard"
             android:exported="false" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
@@ -121,12 +115,12 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
         <activity
-            android:name=".Login"
+            android:name="com.jainmaitri.app.Login"
             android:theme="@style/Login.JainShaadi"
             android:exported="true">
         </activity>
         <activity
-            android:name=".Launcher"
+            android:name="com.jainmaitri.app.Launcher"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -135,7 +129,7 @@
         </activity>
 
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name="com.jainmaitri.app.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

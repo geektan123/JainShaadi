@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
 
-    tools:context=".Cast">
+    tools:context="com.jainmaitri.app.Cast">
 
     <TextView
         android:id="@+id/Question"

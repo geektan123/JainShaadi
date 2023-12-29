@@ -5,7 +5,7 @@
     android:background="@color/white"
 
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Dob">
+    tools:context="com.jainmaitri.app.Dob">
 
     <TextView
         android:layout_width="wrap_content"

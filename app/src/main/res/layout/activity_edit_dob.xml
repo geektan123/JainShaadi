@@ -6,7 +6,7 @@
     android:background="@drawable/rounded_card_edit_card"
     android:paddingVertical="40dp"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Dob">
+    tools:context="com.jainmaitri.app.Dob">
 
     <TextView
         android:layout_width="wrap_content"

@@ -6,7 +6,7 @@
     android:background="@drawable/rounded_card_edit_card"
     android:paddingVertical="40dp"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".LocationActivity">
+    tools:context="com.jainmaitri.app.LocationActivity">
 
 
     <TextView

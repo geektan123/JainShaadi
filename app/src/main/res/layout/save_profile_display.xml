@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFF1F3"
-        tools:context=".SaveProfileDisplay"
+        tools:context="com.jainmaitri.app.SaveProfileDisplay"
         >
 
         <!-- Add a FrameLayout to wrap both RecyclerView and your existing content -->

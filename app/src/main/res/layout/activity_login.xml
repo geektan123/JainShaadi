@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 android:background="#FFF9FA"
-    tools:context=".Login">
+    tools:context="com.jainmaitri.app.Login">
 
     <ProgressBar
         android:id="@+id/progressBar"
