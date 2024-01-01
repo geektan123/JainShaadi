@@ -43,10 +43,10 @@ public class HomeFragment extends Fragment {
     private String currentUserId;
     TextView Empty;
 
-    private static final int PAGE_SIZE = 5;
+    private static final int PAGE_SIZE = 10;
     private int currentPage = 1;
     private List<String> shuffledUserIds;
-    private int visibleThreshold = 5;
+    private int visibleThreshold = 2;
     private boolean isLoading = false;
 
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -163,10 +163,12 @@ public class HomeFragment extends Fragment {
                 int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
                 int totalItemCount = layoutManager.getItemCount();
 
+//                Log.e("t","isLoading = "+isLoading + "totalItem = " + totalItemCount + "lastVisible = " + lastVisibleItem+ "visi = " + visibleThreshold);
+
                 if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
                     // Load more profiles when reaching the end
-                    loadNextProfiles();
                     isLoading = true;
+                    loadNextProfiles();
                 }
             }
         });
@@ -252,15 +254,17 @@ public class HomeFragment extends Fragment {
                             }
                         }
                     }
+                    isLoading = false;
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                     // Handle the error
+                    isLoading = false;
                 }
             });
         }
-        isLoading = false;
+
         swipeRefreshLayout.setRefreshing(false);
         progress.setVisibility(View.INVISIBLE);
         currentPage++;

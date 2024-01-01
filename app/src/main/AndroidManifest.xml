@@ -17,7 +17,8 @@
         android:roundIcon="@drawable/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JainShaadi"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        >
 <!--        <activity-->
 <!--            android:name=".Chatlist"-->
 <!--            android:exported="false" />-->

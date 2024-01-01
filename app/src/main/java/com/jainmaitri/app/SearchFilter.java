@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -37,10 +38,10 @@ public class SearchFilter extends AppCompatActivity {
     private DatabaseReference databaseRef;
     private String currentUserId;
 
-    private static final int PAGE_SIZE = 5;
+    private static final int PAGE_SIZE = 2;
     private int currentPage = 1;
     private List<String> shuffledUserIds;
-    private int visibleThreshold = 5;
+    private int visibleThreshold = 2;
     private boolean isLoading = false;
 
     private ValueEventListener valueEventListener;
@@ -150,11 +151,14 @@ public class SearchFilter extends AppCompatActivity {
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
                 int totalItemCount = layoutManager.getItemCount();
+                Log.e("t","isLoading = "+isLoading + "totalItem = " + totalItemCount + "lastVisible = " + lastVisibleItem+ "visi = " + visibleThreshold);
+
 
                 if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
                     // Load more profiles when reaching the end
-                    loadNextProfiles();
                     isLoading = true;
+                    loadNextProfiles();
+
                 }
             }
         });
@@ -269,17 +273,18 @@ public class SearchFilter extends AppCompatActivity {
                             }
                         }
                     }
+                    isLoading = false;
 
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
+                    isLoading = false;
                     // Handle the error
                 }
             });
         }
         progress.setVisibility(View.GONE);
-        isLoading = false;
         swipeRefreshLayout.setRefreshing(false);
         currentPage++;
     }
