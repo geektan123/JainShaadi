@@ -75,12 +75,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         holder.Interest6.setText(cardItem.getInterest6());
 
 
-        holder.Saved = false;
+        //holder.Saved = false;
 
         //Assuming you have a reference to the Firebase database
 
        // int clickedPosition = holder.getAdapterPosition();
         String profileId = cardItem.getProfileId();
+        Log.e("sasssaa","ssaasa = "+ profileId);
 
         DatabaseReference savedProfilesRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserId).child("savedProfiles");
 
@@ -113,26 +114,26 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         });
 
 
-        holder.savedButton.setOnClickListener(view -> {
-            int clickedPosition = holder.getAdapterPosition();
-            if (clickedPosition != RecyclerView.NO_POSITION) {
-
-
-                holder.savedButton.setOnClickListener(innerView -> {
-                    if (!holder.Saved) {
-                        saveProfileToFirebase(profileId);
-                        holder.savedButtonText.setText("Unsave");
-                        holder.Saved = true;
-                    } else {
+        holder.savedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int clickedPosition = holder.getAdapterPosition();
+                if (clickedPosition != RecyclerView.NO_POSITION) {
+                    String profileId = cardItemList.get(clickedPosition).getProfileId();
+                    if(holder.Saved)
+                    {
                         deleteProfileFromFirebase(profileId);
                         holder.savedButtonText.setText("Save");
                         holder.Saved = false;
                     }
-                });
+                    else {
+                        saveProfileToFirebase(profileId);
+                        holder.savedButtonText.setText("Unsave");
+                        holder.Saved = true;
+                    }
+                }
             }
         });
-
-
         holder.viewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
