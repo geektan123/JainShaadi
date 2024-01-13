@@ -98,13 +98,13 @@
             android:gravity="center"
             android:layout_marginHorizontal="8dp"
             android:id="@+id/digamber"
-            android:backgroundTint="#80DADA">
+            android:backgroundTint="#EF3B5F">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Digamabar"
                 android:textSize="20dp"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -116,13 +116,13 @@
             android:gravity="center"
             android:layout_gravity="right"
             android:layout_marginHorizontal="8dp"
-            android:backgroundTint="#FF84E8"
+            android:backgroundTint="#EF3B5F"
             android:id="@+id/shwetamber">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Shwetambar"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:textSize="20dp" />
         </LinearLayout>
@@ -141,7 +141,7 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_card_white_background"
             android:gravity="center"
-            android:backgroundTint="#FFB196"
+            android:backgroundTint="#EF3B5F"
             android:layout_marginHorizontal="8dp"
             android:id="@+id/location">
             <TextView
@@ -150,7 +150,7 @@
                 android:text="NearBy"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:textColor="#000000"/>
+                android:textColor="#FFFFFF"/>
         </LinearLayout>
 
         <LinearLayout
@@ -161,7 +161,7 @@
             android:gravity="center"
             android:layout_gravity="right"
             android:layout_marginHorizontal="8dp"
-            android:backgroundTint="#BBAEFF"
+            android:backgroundTint="#EF3B5F"
             android:id="@+id/interest">
             <TextView
                 android:layout_width="wrap_content"
@@ -169,7 +169,7 @@
                 android:text="Similar Age"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:textColor="#000000"/>
+                android:textColor="#FFFFFF"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

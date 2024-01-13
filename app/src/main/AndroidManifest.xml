@@ -24,105 +24,135 @@
 <!--            android:exported="false" />-->
         <activity
             android:name="com.jainmaitri.app.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.SpecificChatActivity"
             android:theme="@style/Message.JainShaadi"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.Otp2"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.educational_information_form"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.family_information_form1"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.family_information_form2"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.otp"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.ImageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.SearchFilter"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 <!--        <activity-->
 <!--            android:name=".Search"-->
 <!--            android:exported="false" />-->
         <activity
             android:name="com.jainmaitri.app.MyProfile"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name="com.jainmaitri.app.SaveProfileDisplay"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.ViewProfile"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 <!--        <activity-->
 <!--            android:name=".Homeactivity"-->
 <!--            android:exported="false" />-->
         <activity
             android:name="com.jainmaitri.app.welcome_instructions"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name="com.jainmaitri.app.LocationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.DescribeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.IncomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.Interest"
-            android:exported="false" />
+            android:exported="false" android:screenOrientation="portrait"
+            />
         <activity
             android:name="com.jainmaitri.app.Cast"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.Name"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.Dob"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan|adjustResize" />
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.Profile"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.Completeform_Image_01"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.EditProfile"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.VerificationComplete"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.Completeform_Image_02"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.jainmaitri.app.ViewMyCard"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+
             />
         <activity
             android:name="com.jainmaitri.app.Login"
             android:theme="@style/Login.JainShaadi"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.jainmaitri.app.Launcher"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

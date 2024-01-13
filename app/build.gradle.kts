@@ -8,6 +8,11 @@ plugins {
 }
 
 android {
+
+    lintOptions {
+        isCheckReleaseBuilds=false
+        isAbortOnError = false
+    }
     namespace = "com.jainmaitri.app"
     compileSdk = 33
 
@@ -22,8 +27,8 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        debug {
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

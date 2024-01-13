@@ -1,25 +1,23 @@
 package com.jainmaitri.app;
 
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
-import java.util.ArrayList;
-import java.util.List;
-
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
-import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewProfile extends AppCompatActivity {
     private String currentUserId;
@@ -48,8 +47,8 @@ public class ViewProfile extends AppCompatActivity {
 
     // Get the reference to the current profile
 
-        Button button;
-String name;
+    Button button;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -235,44 +234,44 @@ String name;
                     profileCity.setText(city + ", " + state);
 
                     // Retrieve and set other profile data in TextViews simil
-                        // Data exists, set the TextViews
+                    // Data exists, set the TextViews
 
-                        String Degree = dataSnapshot.child("Degree").getValue(String.class);
-                        String College = dataSnapshot.child("College").getValue(String.class);
-                        String FatherName = dataSnapshot.child("FatherName").getValue(String.class);
-                        String FatherOccupation = dataSnapshot.child("FatherOccupation").getValue(String.class);
-                        String MotherName = dataSnapshot.child("MotherName").getValue(String.class);
-                        String MotherOccupation = dataSnapshot.child("MotherOccupation").getValue(String.class);
-                        String  FamilyMembers = dataSnapshot.child("FamilyMembers").getValue(String.class);
-                        String Familytype = dataSnapshot.child("Familytype").getValue(String.class);
-                        String ParentState = dataSnapshot.child("ParentState").getValue(String.class);
-                        String ParentCity = dataSnapshot.child("ParentCity").getValue(String.class);
-                        String Year = dataSnapshot.child("Year").getValue(String.class);
+                    String Degree = dataSnapshot.child("Degree").getValue(String.class);
+                    String College = dataSnapshot.child("College").getValue(String.class);
+                    String FatherName = dataSnapshot.child("FatherName").getValue(String.class);
+                    String FatherOccupation = dataSnapshot.child("FatherOccupation").getValue(String.class);
+                    String MotherName = dataSnapshot.child("MotherName").getValue(String.class);
+                    String MotherOccupation = dataSnapshot.child("MotherOccupation").getValue(String.class);
+                    String  FamilyMembers = dataSnapshot.child("FamilyMembers").getValue(String.class);
+                    String Familytype = dataSnapshot.child("Familytype").getValue(String.class);
+                    String ParentState = dataSnapshot.child("ParentState").getValue(String.class);
+                    String ParentCity = dataSnapshot.child("ParentCity").getValue(String.class);
+                    String Year = dataSnapshot.child("Year").getValue(String.class);
 
-                        profileEducation.setText(Degree + "\n" + College + ", " + Year);
-                        profileFather.setText(FatherName + "(" + FatherOccupation + ")");
-                        profileMother.setText(MotherName + "(" + MotherOccupation + ")");
-                        profileMembers.setText(FamilyMembers);
-                        profileFamilyType.setText(Familytype);
-                        profileResidence.setText(ParentCity + "," + ParentState);
-                        profileInterest01.setText(dataSnapshot.child("Interest1").getValue(String.class));
-                        profileInterest02.setText(dataSnapshot.child("Interest2").getValue(String.class));
-                        profileInterest03.setText(dataSnapshot.child("Interest3").getValue(String.class));
-                        profileInterest04.setText(dataSnapshot.child("Interest4").getValue(String.class));
-                        profileInterest05.setText(dataSnapshot.child("Interest5").getValue(String.class));
-                        profileInterest06.setText(dataSnapshot.child("Interest6").getValue(String.class));
-                        Object more = dataSnapshot.child("More_Interest");
-                        if(more != null) {
-                            GenericTypeIndicator<List<String>> typeIndicator =
-                                    new GenericTypeIndicator<List<String>>() {};
+                    profileEducation.setText(Degree + "\n" + College + ", " + Year);
+                    profileFather.setText(FatherName + "(" + FatherOccupation + ")");
+                    profileMother.setText(MotherName + "(" + MotherOccupation + ")");
+                    profileMembers.setText(FamilyMembers);
+                    profileFamilyType.setText(Familytype);
+                    profileResidence.setText(ParentCity + "," + ParentState);
+                    profileInterest01.setText(dataSnapshot.child("Interest1").getValue(String.class));
+                    profileInterest02.setText(dataSnapshot.child("Interest2").getValue(String.class));
+                    profileInterest03.setText(dataSnapshot.child("Interest3").getValue(String.class));
+                    profileInterest04.setText(dataSnapshot.child("Interest4").getValue(String.class));
+                    profileInterest05.setText(dataSnapshot.child("Interest5").getValue(String.class));
+                    profileInterest06.setText(dataSnapshot.child("Interest6").getValue(String.class));
+                    Object more = dataSnapshot.child("More_Interest");
+                    if(more != null) {
+                        GenericTypeIndicator<List<String>> typeIndicator =
+                                new GenericTypeIndicator<List<String>>() {};
 
-                            List<String> moreData = dataSnapshot.child("More_Interest").getValue(typeIndicator);
+                        List<String> moreData = dataSnapshot.child("More_Interest").getValue(typeIndicator);
 
-    //                        List<Hobby> hobbies = dataSnapshot.child("More_Interest").getValue(typeIndicator);
-                            displayDataInFlexbox(moreData);
-                        }
+                        //                        List<Hobby> hobbies = dataSnapshot.child("More_Interest").getValue(typeIndicator);
+                        displayDataInFlexbox(moreData);
                     }
                 }
+            }
 
 
             @Override

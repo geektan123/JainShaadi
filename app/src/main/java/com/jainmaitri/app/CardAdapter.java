@@ -1,23 +1,21 @@
 package com.jainmaitri.app;
 
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-import android.content.Context;
-
-import android.widget.LinearLayout;
-
 import com.bumptech.glide.Glide;
-
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     private List<CardItem> cardItemList;
@@ -56,6 +55,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         Log.e("ac","acc = "+ cardItem.getAccount_Managed_for());
 
         Glide.with(holder.itemView.getContext()).load(cardItem.getImageUrl1()).into(holder.profileImageView);
+       // Log.e("ProfileIdLogging", "ProfileId at position " + position + ": " + value);
 
           //holder.profileImageView.setImageResource(cardItem.getImageUrl1());
 
@@ -77,57 +77,61 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
         holder.Saved = false;
 
-        // Assuming you have a reference to the Firebase database
+        //Assuming you have a reference to the Firebase database
+
+       // int clickedPosition = holder.getAdapterPosition();
+        String profileId = cardItem.getProfileId();
 
         DatabaseReference savedProfilesRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserId).child("savedProfiles");
+
+
+
         savedProfilesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot profileSnapshot : dataSnapshot.getChildren()) {
-//                    Log.e("error",cardItem.getProfileId() + "&" + profileSnapshot.getKey() + "&" + (cardItem.getProfileId().equals(profileSnapshot.getKey())));
-                    if(cardItem.getProfileId().equals(profileSnapshot.getKey()))
-                    {
-                        holder.Saved = true;
-//                        Log.e("error","true1");
-                    }
-                }
-                if(holder.Saved)
-                {
+
+
+                if (dataSnapshot.hasChild(profileId)) {
+                    // The profile is saved
                     holder.savedButtonText.setText("Unsave");
-                }
-                else
-                {
-                    Log.e("error","false");
+                    holder.Saved = true;
+
+                    // Additional actions if the profile is saved
+                } else {
+                    // The profile is not saved
+                    holder.savedButtonText.setText("Save");
+                    holder.Saved = false;
+
+                    // Additional actions if the profile is not saved
                 }
             }
 
+            @Override
             public void onCancelled(DatabaseError error) {
                 // Handle errors
             }
         });
 
 
+        holder.savedButton.setOnClickListener(view -> {
+            int clickedPosition = holder.getAdapterPosition();
+            if (clickedPosition != RecyclerView.NO_POSITION) {
 
-        holder.savedButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int clickedPosition = holder.getAdapterPosition();
-                if (clickedPosition != RecyclerView.NO_POSITION) {
-                    String profileId = cardItemList.get(clickedPosition).getProfileId();
-                    if(holder.Saved)
-                    {
+
+                holder.savedButton.setOnClickListener(innerView -> {
+                    if (!holder.Saved) {
+                        saveProfileToFirebase(profileId);
+                        holder.savedButtonText.setText("Unsave");
+                        holder.Saved = true;
+                    } else {
                         deleteProfileFromFirebase(profileId);
                         holder.savedButtonText.setText("Save");
                         holder.Saved = false;
                     }
-                    else {
-                        saveProfileToFirebase(profileId);
-                        holder.savedButtonText.setText("Unsave");
-                        holder.Saved = true;
-                    }
-                }
+                });
             }
         });
+
 
         holder.viewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,6 +184,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            Saved=false;
 
             postedByTextView = itemView.findViewById(R.id.postedBy);
             profileImageView = itemView.findViewById(R.id.profileImg);
