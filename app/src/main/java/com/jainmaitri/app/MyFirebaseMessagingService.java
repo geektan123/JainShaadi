@@ -1,5 +1,6 @@
 package com.jainmaitri.app;
 
+import android.app.ActivityManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -12,7 +13,6 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -29,15 +30,22 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String body = remoteMessage.getData().get("body");
         String imageUrl = remoteMessage.getData().get("image");
 
-        // Handle the notification payload
-        showNotification(title, body, imageUrl);
+        // Check if the app is in the foreground
+        if (isAppInForeground(this)) {
+            // Update the UI directly (e.g., show a Snackbar or in-app toast)
+            // You can also broadcast an event or use other mechanisms to update the UI
+        } else {
+            // Handle the notification payload
+            showNotification(title, body, imageUrl);
+        }
     }
 
     private void showNotification(String title, String body, String imageUrl) {
         Log.e("t", "I am Notification");
         Intent intent = new Intent(this, Launcher.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 4575, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         // Create a notification channel for Android Oreo and above
         String channelId = "channel_id";
@@ -58,11 +66,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(smallIconResId)
-                .setLargeIcon(largeIconBitmap)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent);
+
 
         if (imageUrl != null && largeIconBitmap != null) {
             notificationBuilder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(largeIconBitmap));
@@ -84,5 +92,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static boolean isAppInForeground(Context context) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningProcesses = activityManager.getRunningAppProcesses();
+        if (runningProcesses != null) {
+            for (ActivityManager.RunningAppProcessInfo processInfo : runningProcesses) {
+                if (processInfo.processName.equals(context.getPackageName()) && processInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -160,12 +160,17 @@
         </activity>
 
         <service
-            android:name="com.jainmaitri.app.MyFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
--        </service>
+        android:name=".MyFirebaseMessagingService"
+        android:exported="false">
+        <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+    </service>
+
+       <!-- <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/frame_86__1_"/>
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/red"/>-->
 <!--        <service-->
 <!--            android:name=".MyFirebaseInstanceIDService">-->
 <!--            <intent-filter>-->

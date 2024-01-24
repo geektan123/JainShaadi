@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -95,12 +96,17 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                 if (dataSnapshot.hasChild(profileId)) {
                     // The profile is saved
                     holder.savedButtonText.setText("Unsave");
+                  holder.savedButtonText.setTextColor(ContextCompat.getColor(context, R.color.hex));
+                   holder.imagesave.setImageResource(R.drawable.unsave);
                     holder.Saved = true;
 
                     // Additional actions if the profile is saved
                 } else {
                     // The profile is not saved
                     holder.savedButtonText.setText("Save");
+                    holder.savedButtonText.setTextColor(ContextCompat.getColor(context, R.color.red));
+                    holder.imagesave.setImageResource(R.drawable.save_icon_01);
+
                     holder.Saved = false;
 
                     // Additional actions if the profile is not saved
@@ -125,11 +131,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                         deleteProfileFromFirebase(profileId);
                         holder.savedButtonText.setText("Save");
                         holder.Saved = false;
+                        holder.savedButtonText.setTextColor(ContextCompat.getColor(context, R.color.red));
+                        holder.imagesave.setImageResource(R.drawable.save_icon_01);
                     }
                     else {
                         saveProfileToFirebase(profileId);
                         holder.savedButtonText.setText("Unsave");
+
                         holder.Saved = true;
+                        holder.savedButtonText.setTextColor(ContextCompat.getColor(context, R.color.hex));
+                        holder.imagesave.setImageResource(R.drawable.unsave);
                     }
                 }
             }
@@ -173,6 +184,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         LinearLayout savedButton;
         boolean Saved;
         TextView savedButtonText;
+        ImageView imagesave;
         LinearLayout viewProfile;
         TextView Interest1;
         TextView Interest2;
@@ -206,6 +218,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             Interest5=itemView.findViewById(R.id.profile_interest05);
             Interest6=itemView.findViewById(R.id.profile_interest06);
             profilepic=itemView.findViewById(R.id.profileImg);
+            imagesave=itemView.findViewById(R.id.save_image);
 
 
         }

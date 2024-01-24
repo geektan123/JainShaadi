@@ -17,4 +17,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "JainShaadi"
 include(":app")
- 

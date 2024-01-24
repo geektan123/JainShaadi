@@ -364,6 +364,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/save">
                         <ImageView
+                            android:id="@+id/save_image"
                             android:layout_width="18dp"
                             android:layout_height="wrap_content"
                             android:src="@drawable/save_icon_01"

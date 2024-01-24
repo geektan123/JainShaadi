@@ -1,6 +1,9 @@
 package com.jainmaitri.app;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -28,11 +31,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class SpecificChatActivity extends AppCompatActivity {
 
@@ -75,7 +90,7 @@ public class SpecificChatActivity extends AppCompatActivity {
     boolean check ;
     TextView swipeMessageTextView;
 
-
+String token;
 
 
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -114,6 +129,8 @@ public class SpecificChatActivity extends AppCompatActivity {
         mmessagerecyclerview.setAdapter(messagesAdapter);
 
         intent = getIntent();
+       // FCMSend.SetServerKey(serverKey);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -127,6 +144,44 @@ public class SpecificChatActivity extends AppCompatActivity {
         senderroom = msenderuid + mrecieveruid;
         recieverroom = mrecieveruid + msenderuid;
         newMessages = firebaseDatabase.getReference().child("chats").child(senderroom).child("messages");
+       DatabaseReference tokenRef = firebaseDatabase.getReference().child("users").child(mrecieveruid);
+        
+        tokenRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                 token = dataSnapshot.child("FCMToken").getValue(String.class);
+
+                // Now you have the FCM token, you can use it as needed.
+                // For example, you might send a push notification to this token.
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle any errors that may occur.
+                Log.e("Firebase", "Error reading FCM token", databaseError.toException());
+            }
+        });
+
+        DatabaseReference names = firebaseDatabase.getReference().child("users").child(msenderuid);
+
+        names.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                sendername = dataSnapshot.child("Name").getValue(String.class);
+                // Now you have the FCM token, you can use it as needed.
+                // For example, you might send a push notification to this token.
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle any errors that may occur.
+                Log.e("Firebase", "Error reading FCM token", databaseError.toException());
+            }
+        });
 
 
         mbackbuttonofspecificchat.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +205,7 @@ public class SpecificChatActivity extends AppCompatActivity {
                             .load(url)
                             .into(mimageviewofspecificuser);
                 }
-            }
+          }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -336,7 +391,16 @@ public class SpecificChatActivity extends AppCompatActivity {
                         SenderInvite.updateChildren(Inv);
                         ReciverInvite.updateChildren(Inv2);
                     }
+                    Handler handler = new Handler();
 
+                    // Post a delayed runnable to the handler
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Call the function after three seconds
+                            sendNotification(enteredmessage);
+                        }
+                    }, 3000);
                     Messages messages = new Messages(enteredmessage, firebaseAuth.getUid(), date.getTime() , getApplicationContext());
                     firebaseDatabase = FirebaseDatabase.getInstance();
                     DatabaseReference senderReference = firebaseDatabase.getReference().child("chats").child(senderroom).child("messages").push();
@@ -356,6 +420,56 @@ public class SpecificChatActivity extends AppCompatActivity {
                     });
                 }
             }
+
+            void sendNotification(String message) {
+                try {
+                    JSONObject jsonObject = new JSONObject();
+
+                    JSONObject notificationObj = new JSONObject();
+                    notificationObj.put("title", sendername);
+                    notificationObj.put("body", message);
+                    notificationObj.put("icon", "frame_86__3_");
+
+                    JSONObject dataObj = new JSONObject();
+                    dataObj.put("userId", "123");
+
+                    jsonObject.put("notification", notificationObj);
+                    jsonObject.put("data", dataObj);
+                    jsonObject.put("to", token);
+
+                    Log.e("fhhfg","gfhfhgf"+token);
+
+                    callApi(jsonObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+
+            void callApi(JSONObject jsonObject){
+                MediaType JSON = MediaType.get("application/json; charset=utf-8");
+                OkHttpClient client = new OkHttpClient();
+                String url = "https://fcm.googleapis.com/fcm/send";
+                RequestBody body = RequestBody.create(JSON, jsonObject.toString()); // Swap arguments here
+                Request request = new Request.Builder()
+                        .url(url)
+                        .post(body)
+                        .header("Authorization","Bearer AAAAq4oztl8:APA91bHQjF8_WUyxyAJOChwvQLHEQ5MoP4mOXE1MEH1_w-lGznOcHes7T6RIM4N1KXmbkTXp05X-FTLK16Nv2QMylb3OwmHEjGK3fD86irYcyqurUYfEtChcTlGRjQKfNPkVvCFYBgpA")
+                        .build();
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    }
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+                    }
+                });
+
+            }
+
         });
 
         mmessagerecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {

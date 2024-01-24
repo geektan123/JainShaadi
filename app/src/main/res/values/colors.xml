@@ -12,6 +12,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lavender">#8692f7</color>
     <color name="your_color">#FFE0E7</color>
+    <color name="your_color_resource_id">#756568</color>
 
 
 </resources>
